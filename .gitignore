@@ -19,3 +19,4 @@ experiments/results/*.jsonl
 reports/figures/*.png
 .env
 .uv-cache/
+.hf-cache/

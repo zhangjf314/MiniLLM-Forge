@@ -64,22 +64,59 @@ The default configuration is approximately 35M-40M parameters: 512 hidden dimens
 
 ## Install
 
-Python 3.10+ is required. `uv` keeps the environment and all installed files inside the
-repository.
+Python 3.10+ is required. Choose exactly one hardware path; uv keeps the environment and
+cache inside the repository when `UV_CACHE_DIR` is set as shown.
+
+CPU development and unit tests:
 
 ```powershell
-uv sync --extra dev
+$env:UV_CACHE_DIR = Join-Path (Get-Location) '.uv-cache'
+uv sync --extra dev --extra cpu
 uv run pytest
 ```
 
-QLoRA is optional because it requires a supported NVIDIA CUDA environment:
+NVIDIA CUDA training (official PyTorch cu128 wheel):
 
 ```powershell
+$env:UV_CACHE_DIR = Join-Path (Get-Location) '.uv-cache'
+uv sync --extra dev --extra cuda
+uv run minillm-qualify-gpu
+```
+
+QLoRA selects the same cu128 torch build and adds the qualified bitsandbytes backend:
+
+```powershell
+$env:UV_CACHE_DIR = Join-Path (Get-Location) '.uv-cache'
 uv sync --extra dev --extra qlora
 ```
 
-The resolved `requirements.lock` can also be installed into an existing isolated
-environment. Do not install QLoRA dependencies on an unsupported machine.
+The CPU extra conflicts with CUDA and QLoRA by design. Do not run a hardware workflow
+without selecting its explicit extra. `requirements-cpu.lock`, `requirements-cuda.lock`,
+and `requirements.lock` (QLoRA) are exported from the same `uv.lock` resolution.
+
+Blackwell RTX 50-series GPUs require a PyTorch CUDA build with CUDA runtime 12.8 or
+newer. The locally qualified combination is torch 2.11.0+cu128 on an RTX 5060 Laptop GPU
+(8151 MiB, compute capability 12.0) with driver 577.02. This is a measured configuration,
+not the only supported configuration. CUDA 13.x was not selected because NVIDIA requires
+a 580+ driver for that runtime family.
+
+### GPU-0 Qualification
+
+The bounded qualification commands do not run a formal training campaign:
+
+```powershell
+uv run minillm-pretrain --config configs/pretrain/gpu_smoke.yaml
+uv run minillm-qualify-qwen --mode base --sequence-length 1024 `
+  --output artifacts/environment/qwen_base_1024.json
+uv run minillm-qualify-qwen --mode lora --sequence-length 1024 `
+  --output artifacts/environment/qwen_lora_1024.json
+uv run minillm-qualify-qwen --mode qlora --sequence-length 1024 `
+  --output artifacts/environment/qwen_qlora_1024.json
+```
+
+Set `HF_HOME` and `HF_HUB_CACHE` under the repository before downloading models when
+strict workspace-local caching is required. Full evidence and the 8GB decision are in
+`reports/GPU_ENVIRONMENT_QUALIFICATION.md`.
 
 ## Phase A: From Scratch
 

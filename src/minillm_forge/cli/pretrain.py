@@ -4,6 +4,8 @@ import argparse
 import hashlib
 import json
 
+import torch
+
 from minillm_forge.cli.common import split_loaders, training_config, write_json
 from minillm_forge.config import load_config
 from minillm_forge.data.manifest import validate_file_manifest
@@ -105,11 +107,22 @@ def run(config_path: str, resume: str | None = None) -> dict[str, object]:
         "global_step": state.global_step,
         "tokens_seen": state.tokens_seen,
         "peak_vram_mb": trainer.peak_vram_mb(),
+        "peak_reserved_vram_mb": trainer.peak_reserved_vram_mb(),
+        "device": str(trainer.device),
+        "gpu_name": torch.cuda.get_device_name() if trainer.device.type == "cuda" else None,
+        "torch_version": torch.__version__,
+        "torch_cuda_version": torch.version.cuda,
         "dataset_hash": dataset_hash,
-        "tiny_overfit_pass": bool(
-            initial and final and final["validation_loss"] < initial["validation_loss"] * 0.7
+        "training_smoke_pass": bool(
+            state.global_step == train_values["max_steps"]
+            and final
+            and torch.isfinite(torch.tensor(final["validation_loss"]))
         ),
     }
+    if config.get("experiment", {}).get("id") == "E01-tiny-overfit":
+        summary["tiny_overfit_pass"] = bool(
+            initial and final and final["validation_loss"] < initial["validation_loss"] * 0.7
+        )
     write_json(f"{train_values['output_dir']}/summary.json", summary)
     return summary
 

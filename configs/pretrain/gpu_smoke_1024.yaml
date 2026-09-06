@@ -1,0 +1,14 @@
+extends: gpu_smoke.yaml
+experiment:
+  id: G04-minillm-gpu-smoke-1024
+  hypothesis: The default 37M MiniLLM can complete a bounded 1024-token BF16 update on 8GB.
+data:
+  samples: 4
+  sequence_length: 1024
+  validation_fraction: 0.25
+training:
+  max_steps: 2
+  eval_every: 1
+  save_every: 1
+  output_dir: runs/gpu-qualification/minillm-1024
+

@@ -1,0 +1,78 @@
+Collecting environment information...
+
+STDERR:
+<frozen runpy>:128: RuntimeWarning: 'torch.utils.collect_env' found in sys.modules after import of package 'torch.utils', but prior to execution of 'torch.utils.collect_env'; this may result in unpredictable behaviour
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 945, in <module>
+    main()
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 917, in main
+    output = get_pretty_env_info()
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 912, in get_pretty_env_info
+    return pretty_str(get_env_info())
+                      ^^^^^^^^^^^^^^
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 768, in get_env_info
+    os=get_os(run_lambda),
+       ^^^^^^^^^^^^^^^^^^
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 596, in get_os
+    return get_windows_version(run_lambda)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 565, in get_windows_version
+    ret = run_and_read_all(
+          ^^^^^^^^^^^^^^^^^
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 139, in run_and_read_all
+    rc, out, _ = run_lambda(command)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "D:\Agents\Codex\MiniLLM-Forge\.venv\Lib\site-packages\torch\utils\collect_env.py", line 132, in run
+    output = raw_output.decode(enc)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZHJF\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\encodings\oem.py", line 15, in decode
+    return oem_decode(input, errors, True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'cp1' codec can't decode bytes in position 0--1: No mapping for the Unicode character exists in the target code page.
+
+
+FALLBACK (OEM decode errors replaced):
+PyTorch version: 2.11.0+cu128
+Is debug build: False
+CUDA used to build PyTorch: 12.8
+ROCM used to build PyTorch: N/A
+
+OS: Microsoft Windows 11 家庭版 中文版 (10.0.26100 64 位)
+GCC version: Could not collect
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: N/A
+
+Python version: 3.11.15 (main, Jun 11 2026, 04:59:07) [MSC v.1944 64 bit (AMD64)] (64-bit runtime)
+Python platform: Windows-10-10.0.26100-SP0
+Is CUDA available: True
+CUDA runtime version: 12.9.41
+CUDA_MODULE_LOADING set to: 
+GPU models and configuration: GPU 0: NVIDIA GeForce RTX 5060 Laptop GPU
+Nvidia driver version: 577.02
+cuDNN version: D:\IDE\cuda\bin\cudnn_ops_train64_8.dll
+Is XPU available: False
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+Caching allocator config: N/A
+
+CPU:
+Name: Intel(R) Core(TM) i7-14650HX
+Manufacturer: GenuineIntel
+Family: 198
+Architecture: 9
+ProcessorType: 3
+DeviceID: CPU0
+CurrentClockSpeed: 2200
+MaxClockSpeed: 2200
+L2CacheSize: 24576
+L2CacheSpeed: None
+Revision: None
+
+Versions of relevant libraries:
+[pip3] Could not collect
+[conda] Could not collect

@@ -1,4 +1,4 @@
-from minillm_forge.data.sft import SFTDataCollator, encode_sft_example
+from minillm_forge.data.sft import SFTDataCollator, _as_ids, encode_sft_example
 
 
 class CharacterTokenizer:
@@ -29,3 +29,7 @@ def test_sft_collator_masks_padding():
     assert batch["input_ids"].shape == (2, 4)
     assert batch["labels"][1].tolist() == [-100, 2, -100, -100]
     assert batch["attention_mask"][1].tolist() == [True, True, False, False]
+
+
+def test_sft_token_ids_accept_mapping_return_type():
+    assert _as_ids({"input_ids": [[1, 2, 3]]}) == [1, 2, 3]

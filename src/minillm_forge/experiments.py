@@ -34,6 +34,11 @@ REGISTRY_FIELDS = [
     "eval_score",
     "status",
     "environment",
+    "device",
+    "gpu_name",
+    "torch_version",
+    "torch_cuda_version",
+    "peak_cuda_reserved_mb",
 ]
 
 
@@ -89,4 +94,8 @@ def base_experiment_record(experiment_id: str, config: dict[str, Any]) -> dict[s
         "precision": config.get("training", {}).get("precision", ""),
         "status": "running",
         "environment": environment_metadata(),
+        "device": config.get("training", {}).get("device", "auto"),
+        "gpu_name": torch.cuda.get_device_name() if torch.cuda.is_available() else "none",
+        "torch_version": torch.__version__,
+        "torch_cuda_version": torch.version.cuda or "",
     }

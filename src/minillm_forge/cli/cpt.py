@@ -6,6 +6,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+import torch
+
 from minillm_forge.cli.common import split_loaders, training_config, write_json
 from minillm_forge.config import load_config
 from minillm_forge.data.cpt import stream_huggingface_texts
@@ -100,6 +102,11 @@ def run(config_path: str, resume: str | None = None) -> dict[str, object]:
         "final": trainer.evaluate(),
         "global_step": state.global_step,
         "peak_vram_mb": trainer.peak_vram_mb(),
+        "peak_reserved_vram_mb": trainer.peak_reserved_vram_mb(),
+        "device": str(trainer.device),
+        "gpu_name": torch.cuda.get_device_name() if trainer.device.type == "cuda" else None,
+        "torch_version": torch.__version__,
+        "torch_cuda_version": torch.version.cuda,
         "model_path": str(export_path),
         "dataset_hash": dataset_hash,
     }

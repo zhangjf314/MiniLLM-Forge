@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-09-06T09:56:19.759835+00:00",
+  "mode": "qlora",
+  "model": "Qwen/Qwen3-0.6B-Base",
+  "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "sequence_length": 512,
+  "status": "PASS",
+  "torch_version": "2.11.0+cu128",
+  "torch_cuda_runtime": "12.8",
+  "cuda_available": true,
+  "total_parameters": 376422400,
+  "trainable_parameters": 573440,
+  "trainable_percent": 0.15233949945593037,
+  "after_load_memory": {
+    "allocated_mib": 813.521484375,
+    "reserved_mib": 1194.0,
+    "peak_allocated_mib": 1107.97265625,
+    "peak_reserved_mib": 1194.0,
+    "free_mib": 5736.0,
+    "total_mib": 8150.5625
+  },
+  "forward": "PASS",
+  "backward": "PASS",
+  "optimizer_step": "PASS",
+  "loss": 2.8685967922210693,
+  "grad_norm": 3.6799752712249756,
+  "gradients_finite": true,
+  "bitsandbytes_version": "0.50.2",
+  "quantization": {
+    "bits": 4,
+    "type": "nf4",
+    "double_quantization": true,
+    "compute_dtype": "bfloat16"
+  },
+  "final_memory": {
+    "allocated_mib": 988.71826171875,
+    "reserved_mib": 2248.0,
+    "peak_allocated_mib": 2215.78662109375,
+    "peak_reserved_mib": 2248.0,
+    "free_mib": 4662.0,
+    "total_mib": 8150.5625
+  }
+}

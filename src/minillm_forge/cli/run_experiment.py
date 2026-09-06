@@ -58,6 +58,13 @@ def main() -> None:
         record["dataset_hash"] = summary.get("dataset_hash", record["dataset_hash"])
         record["trainable_params"] = summary.get("trainable_parameters", "")
         record["peak_vram_mb"] = summary.get("peak_vram_mb", "")
+        record["peak_cuda_reserved_mb"] = summary.get("peak_reserved_vram_mb", "")
+        record["device"] = summary.get("device", record["device"])
+        record["gpu_name"] = summary.get("gpu_name", record["gpu_name"])
+        record["torch_version"] = summary.get("torch_version", record["torch_version"])
+        record["torch_cuda_version"] = summary.get(
+            "torch_cuda_version", record["torch_cuda_version"]
+        )
         record["final_loss"] = summary.get("final", {}).get(
             "validation_loss", summary.get("final_evaluation", {}).get("validation_loss", "")
         )

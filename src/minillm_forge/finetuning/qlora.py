@@ -41,7 +41,11 @@ def load_qlora_model(
         trust_remote_code=trust_remote_code,
         **kwargs,
     )
-    model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
+    model = prepare_model_for_kbit_training(
+        model,
+        use_gradient_checkpointing=True,
+        gradient_checkpointing_kwargs={"use_reentrant": False},
+    )
     model.config.use_cache = False
     return add_lora_adapters(
         model,

@@ -38,4 +38,4 @@ training:
   save_every: 500
   output_dir: runs/E02-minillm-mha
   seed: 42
-
+  device: cuda

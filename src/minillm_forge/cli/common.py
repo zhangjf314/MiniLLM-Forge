@@ -41,7 +41,7 @@ class StatefulRandomSampler(Sampler[int]):
     def load_state_dict(self, state: dict[str, Any]) -> None:
         self.order = list(state["order"])
         self.position = int(state["position"])
-        self.generator.set_state(state["generator_state"])
+        self.generator.set_state(state["generator_state"].cpu())
 
 
 def write_json(path: str | Path, payload: dict[str, Any]) -> None:

@@ -31,3 +31,4 @@ training:
   save_every: 250
   output_dir: runs/E05-qwen3-full-sft
   seed: 42
+  device: cuda

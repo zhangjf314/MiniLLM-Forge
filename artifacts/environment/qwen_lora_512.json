@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-09-06T09:47:14.573374+00:00",
+  "mode": "lora",
+  "model": "Qwen/Qwen3-0.6B-Base",
+  "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "sequence_length": 512,
+  "status": "PASS",
+  "torch_version": "2.11.0+cu128",
+  "torch_cuda_runtime": "12.8",
+  "cuda_available": true,
+  "total_parameters": 596623360,
+  "trainable_parameters": 573440,
+  "trainable_percent": 0.09611423863792393,
+  "after_load_memory": {
+    "allocated_mib": 1139.0771484375,
+    "reserved_mib": 1162.0,
+    "peak_allocated_mib": 1139.0849609375,
+    "peak_reserved_mib": 1162.0,
+    "free_mib": 5768.0,
+    "total_mib": 8150.5625
+  },
+  "forward": "PASS",
+  "backward": "PASS",
+  "optimizer_step": "PASS",
+  "loss": 3.050143003463745,
+  "grad_norm": 4.083131790161133,
+  "gradients_finite": true,
+  "final_memory": {
+    "allocated_mib": 1367.14892578125,
+    "reserved_mib": 3122.0,
+    "peak_allocated_mib": 3096.66455078125,
+    "peak_reserved_mib": 3122.0,
+    "free_mib": 3788.0,
+    "total_mib": 8150.5625
+  }
+}

@@ -32,3 +32,4 @@ training:
   save_every: 250
   output_dir: runs/E04-qwen3-math-cpt
   seed: 42
+  device: cuda

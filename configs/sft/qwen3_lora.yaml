@@ -36,3 +36,4 @@ training:
   save_every: 250
   output_dir: runs/E09-qwen3-lora-r16
   seed: 42
+  device: cuda

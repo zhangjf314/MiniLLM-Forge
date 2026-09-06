@@ -72,7 +72,12 @@ def set_seed(seed: int) -> None:
 
 def resolve_device(requested: str) -> torch.device:
     if requested != "auto":
-        return torch.device(requested)
+        device = torch.device(requested)
+        if device.type == "cuda" and not torch.cuda.is_available():
+            raise RuntimeError(
+                "CUDA was explicitly requested but is unavailable; refusing CPU fallback"
+            )
+        return device
     if torch.cuda.is_available():
         return torch.device("cuda")
     if getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
@@ -162,6 +167,11 @@ class ForgeTrainer:
         if self.device.type != "cuda":
             return None
         return torch.cuda.max_memory_allocated(self.device) / 1024**2
+
+    def peak_reserved_vram_mb(self) -> float | None:
+        if self.device.type != "cuda":
+            return None
+        return torch.cuda.max_memory_reserved(self.device) / 1024**2
 
     def _save(self, name: str, extra_metrics: dict[str, Any] | None = None) -> Path:
         sampler = self.train_loader.sampler

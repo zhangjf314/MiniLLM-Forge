@@ -35,6 +35,11 @@ def load_full_sft_model(
         **kwargs,
     )
     if gradient_checkpointing:
-        model.gradient_checkpointing_enable()
+        try:
+            model.gradient_checkpointing_enable(
+                gradient_checkpointing_kwargs={"use_reentrant": False}
+            )
+        except TypeError:
+            model.gradient_checkpointing_enable()
         model.config.use_cache = False
     return model

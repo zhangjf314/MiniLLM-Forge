@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+import torch
 from torch.utils.data import Dataset
 
 from minillm_forge.cli.common import read_jsonl, split_loaders, training_config, write_json
@@ -116,6 +117,11 @@ def run(config_path: str, resume: str | None = None) -> dict[str, object]:
         "final": trainer.evaluate(),
         "global_step": state.global_step,
         "peak_vram_mb": trainer.peak_vram_mb(),
+        "peak_reserved_vram_mb": trainer.peak_reserved_vram_mb(),
+        "device": str(trainer.device),
+        "gpu_name": torch.cuda.get_device_name() if trainer.device.type == "cuda" else None,
+        "torch_version": torch.__version__,
+        "torch_cuda_version": torch.version.cuda,
         "model_path": str(export_path),
         "dataset_hash": dataset_hash,
     }

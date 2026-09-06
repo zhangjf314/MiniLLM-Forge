@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import Any
 
@@ -9,6 +10,8 @@ DEFAULT_SYSTEM_PROMPT = "You are a mathematical reasoning assistant."
 
 
 def _as_ids(tokenized: Any) -> list[int]:
+    if isinstance(tokenized, Mapping):
+        tokenized = tokenized["input_ids"]
     if isinstance(tokenized, torch.Tensor):
         tokenized = tokenized.tolist()
     if tokenized and isinstance(tokenized[0], list):

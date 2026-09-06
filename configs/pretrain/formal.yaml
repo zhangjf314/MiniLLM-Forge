@@ -49,4 +49,4 @@ training:
   save_every: 500
   output_dir: runs/E01-minillm-baseline
   seed: 42
-  device: auto
+  device: cuda

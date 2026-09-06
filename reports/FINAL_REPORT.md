@@ -105,10 +105,16 @@ Observed cases: **none recorded yet**.
 
 ## 12. Efficiency
 
-Hardware-specific measurements: **TBD**. The default formal design assumes a single
-24 GB GPU; QLoRA, gradient checkpointing, a micro batch of one, and accumulation provide
-a lower-memory path. Effective batch is micro batch multiplied by accumulation steps and
-GPU count.
+The reference design remains a single 24 GB GPU for broader full-fine-tuning margin. The
+actual local qualification hardware is an NVIDIA GeForce RTX 5060 Laptop GPU with 8151
+MiB, driver 577.02, and compute capability 12.0. It was qualified using torch
+2.11.0+cu128 and BF16.
+
+At sequence length 1024 and micro-batch one, measured peak allocated/reserved memory was
+927/1058 MiB for MiniLLM, 2184/2358 MiB for Qwen evaluation, 5021/5050 MiB for LoRA,
+3315/3584 MiB for QLoRA, and 5999/6032 MiB for both full CPT and full SFT single-step
+tests. QLoRA is the preferred local formal path. Full CPT/SFT are technically
+single-step feasible but retain less than 1 GiB of measured system-level headroom.
 
 ## 13. Limitations
 
@@ -118,12 +124,15 @@ GPU count.
   models without validation.
 - Public benchmarks may exist in upstream pretraining data. Collision auditing can
   protect local fine-tuning data but cannot prove the base model was uncontaminated.
-- QLoRA depends on bitsandbytes and supported CUDA hardware.
+- QLoRA depends on bitsandbytes and supported CUDA hardware. The local Windows backend
+  passed NF4 forward/backward, but other platforms require independent qualification.
+- Full CPT/SFT long-run stability is not established by the bounded one-step 8GB tests.
 - Code completion is not portfolio completion. GPU training, repeated runs, frozen
   manifests, curves, and written conclusions remain required evidence.
 
 ## 14. Conclusions
 
-The repository provides the complete executable scaffolding and correctness gates for
-the planned study. Scientific conclusions are intentionally deferred until pinned,
-hardware-measured experiments populate the registry and report.
+The training stack is code-complete and its RTX 5060 CUDA, MiniLLM, Qwen, LoRA, and QLoRA
+paths are qualified. Scientific quality conclusions remain deferred until pinned formal
+experiments populate the registry. See `reports/GPU_ENVIRONMENT_QUALIFICATION.md` for the
+environment evidence and measured feasibility boundary.
