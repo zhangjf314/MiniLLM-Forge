@@ -3,7 +3,7 @@
   "classification": "CUDA_GPU_QUALIFIED",
   "additional_classification": "QLORA_GPU_QUALIFIED",
   "baseline_commit": "da1393dda1d35cc52d99377c0b0c397e265ae6ed",
-  "final_commit": "PENDING_FINAL_COMMIT",
+  "final_commit": "8810a43fbe060155eabdd5fbe193fc4c98aaafef",
   "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
   "compute_capability": "12.0",
   "vram_mib": 8150.5625,
