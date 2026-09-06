@@ -1,0 +1,38 @@
+experiment:
+  id: E11-qwen3-qlora-r16
+  phase: sft
+  hypothesis: NF4 QLoRA reduces measured VRAM while retaining most LoRA quality.
+model:
+  name_or_path: Qwen/Qwen3-0.6B-Base
+  revision: da87bfb608c14b7cf20ba1ce41287e8de496c0cd
+  method: qlora
+lora:
+  rank: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: all-linear
+data:
+  file: data/processed/openr1_math_sft.jsonl
+  source_dataset: open-r1/OpenR1-Math-220k
+  revision: e4e141ec9dea9f8326f4d347be56105859b2bd68
+  manifest: artifacts/data_manifests/openr1_math_sft.json
+  problem_field: problem
+  answer_field: solution
+  max_samples: 20000
+  max_length: 1024
+  quality_filter: true
+  validation_fraction: 0.05
+optimizer: {lr: 2.0e-4, betas: [0.9, 0.95], weight_decay: 0.01}
+scheduler: {warmup_ratio: 0.03, min_lr_ratio: 0.1}
+training:
+  max_steps: 1250
+  micro_batch_size: 1
+  gradient_accumulation_steps: 16
+  grad_clip: 1.0
+  precision: bf16
+  gradient_checkpointing: true
+  log_every: 10
+  eval_every: 100
+  save_every: 250
+  output_dir: runs/E11-qwen3-qlora-r16
+  seed: 42

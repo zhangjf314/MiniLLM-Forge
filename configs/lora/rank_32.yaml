@@ -1,0 +1,5 @@
+rank: 32
+alpha: 64
+dropout: 0.05
+target_modules: all-linear
+

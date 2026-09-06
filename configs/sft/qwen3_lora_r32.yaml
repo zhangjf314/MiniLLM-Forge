@@ -1,0 +1,7 @@
+extends: qwen3_lora.yaml
+experiment:
+  id: E10-qwen3-lora-r32
+  hypothesis: Rank 32 has diminishing quality returns relative to parameter and memory cost.
+lora: {rank: 32, alpha: 64}
+training: {output_dir: runs/E10-qwen3-lora-r32}
+

@@ -1,0 +1,17 @@
+{
+  "dataset": "controlled-math-v1",
+  "path": "data/eval/controlled_math.jsonl",
+  "sample_count": 12,
+  "categories": [
+    "arithmetic",
+    "equation",
+    "percentage",
+    "ratio",
+    "word_problem",
+    "algebra"
+  ],
+  "samples_per_category": 2,
+  "sha256": "721ec4e845f8e8c272829fda1959bf3a39a05db15714150191a31a2660014706",
+  "created_at": "2026-09-06T08:48:15.1813305Z",
+  "training_use_permitted": false
+}

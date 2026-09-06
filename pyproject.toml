@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "minillm-forge"
+version = "1.0.0"
+description = "A reproducible laboratory for decoder-only Transformer pretraining and LLM fine-tuning."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "MiniLLM-Forge contributors" }]
+dependencies = [
+  "accelerate>=1.2,<2",
+  "datasets>=3.2,<5",
+  "matplotlib>=3.9,<4",
+  "numpy>=1.26,<3",
+  "pandas>=2.2,<4",
+  "peft>=0.14,<1",
+  "psutil>=6,<8",
+  "pyyaml>=6,<7",
+  "tensorboard>=2.18,<3",
+  "tokenizers>=0.21,<1",
+  "torch>=2.5,<3",
+  "transformers>=4.48,<6",
+]
+
+[project.optional-dependencies]
+qlora = ["bitsandbytes>=0.45,<1; platform_system != 'Darwin'"]
+dev = ["pytest>=8.3,<10", "pytest-cov>=6,<8", "ruff>=0.9,<1"]
+
+[project.scripts]
+minillm-pretrain = "minillm_forge.cli.pretrain:main"
+minillm-cpt = "minillm_forge.cli.cpt:main"
+minillm-sft = "minillm_forge.cli.sft:main"
+minillm-evaluate = "minillm_forge.cli.evaluate:main"
+minillm-tokenizer = "minillm_forge.cli.train_tokenizer:main"
+minillm-experiment = "minillm_forge.cli.run_experiment:main"
+minillm-audit = "minillm_forge.cli.audit_data:main"
+minillm-plot = "minillm_forge.cli.plot_metrics:main"
+minillm-prepare-corpus = "minillm_forge.cli.prepare_corpus:main"
+minillm-prepare-sft = "minillm_forge.cli.prepare_sft:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/minillm_forge"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --basetemp=.pytest-tmp"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

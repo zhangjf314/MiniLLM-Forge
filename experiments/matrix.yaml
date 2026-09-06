@@ -1,0 +1,35 @@
+experiments:
+  - {id: E00, method: base-zero-shot, variable: none, question: Original Qwen baseline}
+  - {id: E01, method: minillm-gqa, variable: baseline, question: From-scratch trainability}
+  - {id: E02, method: minillm-mha, variable: attention, question: MHA versus GQA}
+  - {id: E03, method: minillm-lr, variable: learning_rate, values: [1.0e-4, 3.0e-4, 8.0e-4]}
+  - {id: E04, method: cpt, variable: math_corpus, question: Domain adaptation}
+  - {id: E05, method: direct-sft, variable: training_path, question: Direct SFT baseline}
+  - {id: E06, method: cpt-then-sft, variable: training_path, question: Does CPT help SFT}
+  - {id: E07, method: lora, variable: rank, value: 4}
+  - {id: E08, method: lora, variable: rank, value: 8}
+  - {id: E09, method: lora, variable: rank, value: 16}
+  - {id: E10, method: lora, variable: rank, value: 32}
+  - {id: E11, method: qlora, variable: quantization, value: nf4-double-quant}
+  - {id: E12, method: lora, variable: target_modules, values: [qv, qkvo, all-linear]}
+  - {id: E13, method: minillm, variable: warmup_ratio, values: [0.0, 0.03, 0.1]}
+  - {id: E14, method: repeat, variable: seed, values: [42, 123, 2026]}
+
+protocol:
+  required_sections:
+    - hypothesis
+    - controlled_variables
+    - independent_variable
+    - metrics
+    - result
+    - interpretation
+    - conclusion
+  common_metrics:
+    - validation_loss
+    - perplexity
+    - exact_match
+    - peak_vram_mb
+    - tokens_per_second
+    - trainable_parameters
+  conclusion_values: [supported, partially-supported, rejected]
+

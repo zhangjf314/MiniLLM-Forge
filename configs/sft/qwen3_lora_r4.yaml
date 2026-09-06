@@ -1,0 +1,7 @@
+extends: qwen3_lora.yaml
+experiment:
+  id: E07-qwen3-lora-r4
+  hypothesis: Rank 4 is a low-memory LoRA control with limited adaptation capacity.
+lora: {rank: 4, alpha: 8}
+training: {output_dir: runs/E07-qwen3-lora-r4}
+

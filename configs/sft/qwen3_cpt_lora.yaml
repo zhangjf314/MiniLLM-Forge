@@ -1,0 +1,9 @@
+extends: qwen3_lora.yaml
+experiment:
+  id: E06-qwen3-cpt-then-lora-sft
+  hypothesis: Math CPT before SFT improves held-out math exact match over direct SFT.
+model:
+  name_or_path: runs/E04-qwen3-math-cpt/final_model
+  revision: null
+training:
+  output_dir: runs/E06-qwen3-cpt-then-lora-sft

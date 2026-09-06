@@ -1,0 +1,7 @@
+extends: qwen3_lora.yaml
+experiment:
+  id: E08-qwen3-lora-r8
+  hypothesis: Rank 8 improves capacity over rank 4 at modest parameter cost.
+lora: {rank: 8, alpha: 16}
+training: {output_dir: runs/E08-qwen3-lora-r8}
+

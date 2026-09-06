@@ -1,0 +1,13 @@
+{"id":"arithmetic-001","category":"arithmetic","problem":"Compute 37 + 48.","answer":"Final answer: 85"}
+{"id":"arithmetic-002","category":"arithmetic","problem":"Compute 144 divided by 12.","answer":"Final answer: 12"}
+{"id":"equation-001","category":"equation","problem":"Solve 3x + 7 = 25 for x.","answer":"Final answer: 6"}
+{"id":"equation-002","category":"equation","problem":"Solve 5y - 9 = 31 for y.","answer":"Final answer: 8"}
+{"id":"percentage-001","category":"percentage","problem":"A price of 80 dollars is increased by 15 percent. What is the new price?","answer":"Final answer: 92"}
+{"id":"percentage-002","category":"percentage","problem":"What is 35 percent of 240?","answer":"Final answer: 84"}
+{"id":"ratio-001","category":"ratio","problem":"The ratio of red to blue beads is 3:5. If there are 24 red beads, how many blue beads are there?","answer":"Final answer: 40"}
+{"id":"ratio-002","category":"ratio","problem":"Divide 126 in the ratio 2:5. What is the larger part?","answer":"Final answer: 90"}
+{"id":"word-001","category":"word_problem","problem":"Mina reads 18 pages on Monday and twice as many on Tuesday. How many pages does she read in total?","answer":"Final answer: 54"}
+{"id":"word-002","category":"word_problem","problem":"A train travels 72 kilometers per hour for 2.5 hours. How far does it travel?","answer":"Final answer: 180"}
+{"id":"algebra-001","category":"algebra","problem":"If f(x) = 2x squared - 3, compute f(4).","answer":"Final answer: 29"}
+{"id":"algebra-002","category":"algebra","problem":"Factor x squared - 9. Give the factorization.","answer":"Final answer: (x-3)(x+3)"}
+

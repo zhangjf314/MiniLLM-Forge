@@ -1,0 +1,47 @@
+experiment:
+  id: E01-tiny-overfit
+  phase: pretrain
+  hypothesis: A correct training loop can memorize a small deterministic corpus.
+
+model:
+  vocab_size: 128
+  hidden_size: 64
+  num_layers: 2
+  num_attention_heads: 4
+  num_key_value_heads: 2
+  intermediate_size: 128
+  max_seq_len: 64
+  use_rope: true
+  tie_word_embeddings: true
+  gradient_checkpointing: false
+  pad_token_id: 0
+  bos_token_id: 1
+  eos_token_id: 2
+
+data:
+  synthetic: true
+  samples: 64
+  sequence_length: 32
+  validation_fraction: 0.125
+
+optimizer:
+  lr: 0.003
+  betas: [0.9, 0.95]
+  weight_decay: 0.01
+
+scheduler:
+  warmup_steps: 2
+  min_lr_ratio: 0.2
+
+training:
+  max_steps: 60
+  micro_batch_size: 8
+  gradient_accumulation_steps: 1
+  grad_clip: 1.0
+  precision: fp32
+  log_every: 10
+  eval_every: 20
+  save_every: 30
+  output_dir: runs/tiny-overfit-verified
+  seed: 42
+  device: auto

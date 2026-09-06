@@ -1,0 +1,8 @@
+extends: qwen3_lora.yaml
+experiment:
+  id: E12-qwen3-lora-qv
+  hypothesis: Adapting only query/value projections reduces cost but may limit quality.
+lora:
+  target_modules: [q_proj, v_proj]
+training: {output_dir: runs/E12-qwen3-lora-qv}
+
