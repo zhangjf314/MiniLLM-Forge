@@ -25,6 +25,10 @@ if __name__ == "__main__":
         from minillm_forge.data.formal import prepare
 
         prepare()
+    elif sys.argv[1:] in (["budget"], ["finalize"]):
+        from minillm_forge.evaluation.formal_evidence import approve_budget, finalize
+
+        approve_budget() if sys.argv[1] == "budget" else finalize()
     else:
         from minillm_forge.cli.formal_pretrain import main
 

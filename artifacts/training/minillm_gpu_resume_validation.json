@@ -1,0 +1,65 @@
+{
+  "classification": "EXACT_RESUME_CONFIRMED",
+  "comparison": {
+    "model": {
+      "continuous_sha256": "6436cedc74fbd724045a26c1071b757b4f9947b512cd743ec206c2c3242fd48a",
+      "resumed_sha256": "6436cedc74fbd724045a26c1071b757b4f9947b512cd743ec206c2c3242fd48a",
+      "equal": true
+    },
+    "optimizer": {
+      "continuous_sha256": "bcc07f94c729a7ccf4e3592185626f83cb244a6c234cd8dc0c9629d31cea11fc",
+      "resumed_sha256": "bcc07f94c729a7ccf4e3592185626f83cb244a6c234cd8dc0c9629d31cea11fc",
+      "equal": true
+    },
+    "scheduler": {
+      "continuous_sha256": "6c1f64e30117f4ad17ab0a10653c1ead51149ab126945ae2c8fe99efe47f21c8",
+      "resumed_sha256": "6c1f64e30117f4ad17ab0a10653c1ead51149ab126945ae2c8fe99efe47f21c8",
+      "equal": true
+    },
+    "rng_state": {
+      "continuous_sha256": "023443634caf7e4d653817a6b28fd81459bbc4e420fd958ec16bd7aaf343325c",
+      "resumed_sha256": "023443634caf7e4d653817a6b28fd81459bbc4e420fd958ec16bd7aaf343325c",
+      "equal": true
+    }
+  },
+  "checkpoint_step": 4,
+  "checkpoint_tokens": 65536,
+  "checkpoint_lr": 0.0001333333333333333,
+  "end_step": 8,
+  "end_tokens": 131072,
+  "cuda_rng_present": true,
+  "continuous_metrics": {
+    "validation_loss": 9.208956413798862,
+    "validation_perplexity": 9986.16999051159,
+    "evaluated_targets": 294624
+  },
+  "resumed_metrics": {
+    "validation_loss": 9.208956413798862,
+    "validation_perplexity": 9986.16999051159,
+    "evaluated_targets": 294624
+  },
+  "control_cost": "8-step real-corpus control within pilot horizon; no repeated formal run",
+  "pilot_interruption": {
+    "checkpoint_step": 153,
+    "checkpoint_tokens": 2506752,
+    "optimizer_steps": [
+      153.0
+    ],
+    "scheduler_last_epoch": 153,
+    "resume_event": {
+      "elapsed_seconds": 0.5449474999913946,
+      "event": "resume",
+      "global_step": 153,
+      "tokens_seen": 2506752,
+      "learning_rate": 0.00017142355863620525,
+      "scheduler_last_epoch": 153,
+      "cuda_rng_restored": true
+    },
+    "final_step": 306,
+    "final_tokens": 5013504,
+    "checkpoint_sha256": "b5b6f84d1d8fcb8069a38db6ab0497e2da6a12f18d63d51c52c4f555e690a273",
+    "cuda_rng_present": true,
+    "sampler_position": 2448,
+    "validation": "RESUME_SEMANTICS_VALIDATED; no full-pilot duplicate run"
+  }
+}

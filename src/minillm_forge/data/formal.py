@@ -62,7 +62,12 @@ def verify_frozen() -> dict:
 
 
 def prepare(documents: int = 30000) -> dict:
-    if MANIFEST.exists():
+    frozen_manifest = (
+        json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else None
+    )
+    if frozen_manifest and all(
+        Path(item["path"]).exists() for item in frozen_manifest["files"].values()
+    ):
         return verify_frozen()
     root = Path("data/processed/minillm-formal")
     root.mkdir(parents=True, exist_ok=True)
@@ -125,29 +130,37 @@ def prepare(documents: int = 30000) -> dict:
                 handle.write(text + "\n")
     tokenizer_texts = splits["train"][:5000]
     tokenizer_input_hash = hashlib.sha256("\n".join(tokenizer_texts).encode()).hexdigest()
-    print(f"training 24K BPE on {len(tokenizer_texts)} train-only documents", flush=True)
-    tokenizer = train_bpe_tokenizer(tokenizer_texts, TOKENIZER, full_byte_alphabet=True)
+    if TOKENIZER_MANIFEST.exists():
+        from tokenizers import Tokenizer
+
+        frozen_tokenizer = json.loads(TOKENIZER_MANIFEST.read_text(encoding="utf-8"))
+        if frozen_tokenizer["tokenizer_input_corpus_hash"] != tokenizer_input_hash:
+            raise ValueError("tokenizer input corpus differs from frozen input")
+        if frozen_tokenizer["tokenizer_artifact_hash"] != file_digest(TOKENIZER):
+            raise ValueError("frozen tokenizer hash mismatch")
+        tokenizer = Tokenizer.from_file(str(TOKENIZER))
+    else:
+        print(f"training 24K BPE on {len(tokenizer_texts)} train-only documents", flush=True)
+        tokenizer = train_bpe_tokenizer(tokenizer_texts, TOKENIZER, full_byte_alphabet=True)
     stats = validate_tokenizer(tokenizer, splits["validation"])
     if stats.vocab_size != 24000 or stats.unk_ratio != 0 or stats.roundtrip_success_rate != 1:
         raise ValueError(f"tokenizer qualification failed: {stats}")
-    json_write(
-        TOKENIZER_MANIFEST,
-        {
-            "dataset": SOURCE,
-            "revision": REVISION,
-            "algorithm": "byte-level BPE",
-            "tokenizer_input_corpus_hash": tokenizer_input_hash,
-            "training_documents": len(tokenizer_texts),
-            "training_partition": "train only",
-            "tokenizer_artifact_hash": file_digest(TOKENIZER),
-            "special_tokens": {
-                token: tokenizer.token_to_id(token)
-                for token in ("<pad>", "<bos>", "<eos>", "<unk>")
-            },
-            "statistics": stats.to_dict(),
-            "created_at": datetime.now(timezone.utc).isoformat(),
+    tokenizer_manifest = {
+        "dataset": SOURCE,
+        "revision": REVISION,
+        "algorithm": "byte-level BPE",
+        "tokenizer_input_corpus_hash": tokenizer_input_hash,
+        "training_documents": len(tokenizer_texts),
+        "training_partition": "train only",
+        "tokenizer_artifact_hash": file_digest(TOKENIZER),
+        "special_tokens": {
+            token: tokenizer.token_to_id(token) for token in ("<pad>", "<bos>", "<eos>", "<unk>")
         },
-    )
+        "statistics": stats.to_dict(),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    if not TOKENIZER_MANIFEST.exists():
+        json_write(TOKENIZER_MANIFEST, tokenizer_manifest)
     files, counts = {}, {}
     for split, texts in splits.items():
         token_path = root / f"{split}.bin"
@@ -193,6 +206,12 @@ def prepare(documents: int = 30000) -> dict:
         },
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
-    json_write(MANIFEST, manifest)
+    if frozen_manifest:
+        for field in ("files", "partitions", "tokenizer_hash", "corpus_hash"):
+            if manifest[field] != frozen_manifest[field]:
+                raise ValueError(f"rebuilt corpus differs from frozen manifest: {field}")
+        manifest = frozen_manifest
+    else:
+        json_write(MANIFEST, manifest)
     print(json.dumps(manifest, indent=2), flush=True)
     return manifest

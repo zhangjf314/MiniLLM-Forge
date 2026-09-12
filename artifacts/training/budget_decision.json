@@ -1,0 +1,16 @@
+{
+  "formal_approved": true,
+  "pilot_summary_hash": "4de02d9094bbd6db9c899eff572935331691868e1886c37b999fd784c191507c",
+  "pilot_tokens": 5013504,
+  "pilot_median_tokens_per_second": 19504.851348361553,
+  "nominal_budget": 50000000,
+  "planned_optimizer_steps": 3052,
+  "actual_input_token_budget": 50003968,
+  "estimated_compute_seconds": 2563.668243705966,
+  "estimated_100m_compute_seconds": 5126.929614277742,
+  "reason": "Pilot is stable and validation improves. Freeze the preferred 50M bounded experiment; 100M is not needed for this first baseline and would double the laptop runtime.",
+  "thermal_evidence": {
+    "snapshot": "NVIDIA GeForce RTX 5060 Laptop GPU, 66, 32.42 W, 277 MHz, 2530 MiB, 5281 MiB"
+  },
+  "created_at": "2026-09-12T06:34:28.452589+00:00"
+}

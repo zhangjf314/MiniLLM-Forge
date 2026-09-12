@@ -8,6 +8,7 @@ import hashlib
 import json
 import statistics
 import subprocess
+import time
 from pathlib import Path
 
 import torch
@@ -127,6 +128,7 @@ def sample_generations(trainer, destination):
 
 
 def run(path, resume=None, stop=None, output=None):
+    session_started = time.perf_counter()
     config, manifest = canonical_config(path)
     if config["experiment"]["id"] == "E01":
         pilot = json.loads(Path("runs/gpu1-pilot/summary.json").read_text(encoding="utf-8"))
@@ -140,6 +142,9 @@ def run(path, resume=None, stop=None, output=None):
     if output:
         config["training"]["output_dir"] = output
     root = Path(config["training"]["output_dir"])
+    prior_wall = 0.0
+    if resume and (root / "summary.json").exists():
+        prior_wall = json.loads((root / "summary.json").read_text())["elapsed_seconds"]
     if not resume and (root / "metrics.jsonl").exists():
         raise ValueError("fresh run output already exists; use a new run ID or explicit resume")
     trainer = build(config, manifest)
@@ -165,18 +170,27 @@ def run(path, resume=None, stop=None, output=None):
     sample_generations(trainer, root / f"generation_step_{state.global_step}.json")
     json_write(root / "hardware_after.json", {"snapshot": gpu_snapshot()})
     records = [item for item in state.history if item["event"] == "train"]
+    probe = DataLoader(
+        Subset(trainer.train_loader.dataset, range(32)),
+        batch_size=config["training"]["micro_batch_size"],
+        generator=torch.Generator().manual_seed(987),
+    )
+    final_probe_loss = trainer.evaluate_loader(probe)["validation_loss"]
+    final_validation = trainer.evaluate()
     summary = {
         "status": "completed" if state.global_step == config["training"]["max_steps"] else "paused",
         "global_step": state.global_step,
         "tokens_seen": state.tokens_seen,
         "supervised_tokens_seen": state.supervised_tokens_seen,
         "final_train_loss": records[-1]["loss"],
-        "final_validation": trainer.evaluate(),
+        "final_validation": final_validation,
+        "final_train_probe_loss": final_probe_loss,
         "best_validation_loss": state.best_validation_loss,
         "best_step": state.best_step,
         "peak_allocated_mib": state.peak_allocated_mib,
         "peak_reserved_mib": state.peak_reserved_mib,
-        "elapsed_seconds": state.elapsed_seconds,
+        "elapsed_seconds": prior_wall + time.perf_counter() - session_started,
+        "loop_elapsed_seconds": state.elapsed_seconds,
         "compute_seconds": state.compute_seconds,
         "median_tokens_per_second": statistics.median(x["tokens_per_second"] for x in records),
         "average_tokens_per_second": state.tokens_seen / state.compute_seconds,

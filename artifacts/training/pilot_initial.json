@@ -1,0 +1,6 @@
+{
+  "initial_train_loss": 10.197603702545166,
+  "validation_loss": 10.196364243825277,
+  "validation_perplexity": 26805.550246990944,
+  "evaluated_targets": 294624
+}

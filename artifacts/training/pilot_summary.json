@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "global_step": 306,
+  "tokens_seen": 5013504,
+  "supervised_tokens_seen": 5008608,
+  "final_train_loss": 6.719974398612976,
+  "final_validation": {
+    "validation_loss": 6.631342384550306,
+    "validation_perplexity": 758.4996858003292,
+    "evaluated_targets": 294624
+  },
+  "final_train_probe_loss": 6.571399807929993,
+  "best_validation_loss": 6.631342384550306,
+  "best_step": 306,
+  "peak_allocated_mib": 1849.02490234375,
+  "peak_reserved_mib": 2394.0,
+  "elapsed_seconds": 334.8447721999837,
+  "loop_elapsed_seconds": 312.80302839993965,
+  "compute_seconds": 257.1089450006839,
+  "median_tokens_per_second": 19504.851348361553,
+  "average_tokens_per_second": 19499.53160900981,
+  "nan_count": 0,
+  "inf_count": 0,
+  "oom_count": 0,
+  "parameters": 37462528,
+  "config_hash": "affe944b8e7a73110d7d1ddae4bbb53121aaea9329e965c85ffaded4a7590daa",
+  "data_identity": {
+    "manifest_hash": "44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103",
+    "tokenizer_hash": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+    "validation_hash": "da42c8818d5865f3251c454977e5532e1a51fe30edd3ed0d62794b92a3d846a3"
+  }
+}
