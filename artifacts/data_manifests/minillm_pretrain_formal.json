@@ -1,0 +1,54 @@
+{
+  "dataset": "HuggingFaceFW/fineweb-edu",
+  "subset": "sample-10BT",
+  "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+  "shard": "sample/10BT/000_00000.parquet",
+  "acquisition": {
+    "documents": 30000,
+    "raw_text_bytes": 147782794,
+    "sha256": "3d25fec88f46277c63906873272845b6d3c3561a435a5dcb2ca511e734e1f2f3",
+    "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9"
+  },
+  "normalized_documents": 29998,
+  "duplicate_removals": 2,
+  "empty_removals": 0,
+  "files": {
+    "train": {
+      "path": "data\\processed\\minillm-formal\\train.bin",
+      "sha256": "f3ce849ebd08c88b92d82831f1c9e786a0ae6a60a43c04d0fa07263e486f609c"
+    },
+    "validation": {
+      "path": "data\\processed\\minillm-formal\\validation.bin",
+      "sha256": "da42c8818d5865f3251c454977e5532e1a51fe30edd3ed0d62794b92a3d846a3"
+    }
+  },
+  "partitions": {
+    "train": {
+      "documents": 29694,
+      "raw_tokens": 32179813,
+      "packed_tokens": 32179200,
+      "sequences": 31425,
+      "tail_tokens_dropped": 613,
+      "text_sha256": "af4acccefcbdae6013a97a7f6836db57bb06a87ca41c6267647dcf45b6432f64"
+    },
+    "validation": {
+      "documents": 304,
+      "raw_tokens": 295098,
+      "packed_tokens": 294912,
+      "sequences": 288,
+      "tail_tokens_dropped": 186,
+      "text_sha256": "5b82844aaa2417ecfae823b1046fe45070bc3d2030515d999c52090c51be5633"
+    }
+  },
+  "tokenizer_hash": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+  "corpus_hash": "765bd0d20973c44d959b253fd97a1dcbe1373d5b854df2b8cad2533e14d2d37c",
+  "creation_config": {
+    "documents": 30000,
+    "sequence_length": 1024,
+    "dtype": "little-endian uint16",
+    "split_rule": "normalized SHA256 first 8 hex modulo 100 == 0 => val",
+    "dedup": "normalized exact",
+    "packing": "independent streams; EOS between docs"
+  },
+  "created_at": "2026-09-12T05:58:20.405352+00:00"
+}

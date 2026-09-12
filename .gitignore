@@ -20,3 +20,7 @@ reports/figures/*.png
 .env
 .uv-cache/
 .hf-cache/
+.mpl-cache/
+.tmp/
+!artifacts/tokenizers/
+!reports/figures/minillm_*.png

@@ -31,6 +31,7 @@ def train_bpe_tokenizer(
     *,
     vocab_size: int = 24_000,
     min_frequency: int = 2,
+    full_byte_alphabet: bool = False,
 ):
     try:
         from tokenizers import Tokenizer, decoders, models, pre_tokenizers, processors, trainers
@@ -47,6 +48,7 @@ def train_bpe_tokenizer(
         min_frequency=min_frequency,
         special_tokens=SPECIAL_TOKENS,
         show_progress=False,
+        initial_alphabet=pre_tokenizers.ByteLevel.alphabet() if full_byte_alphabet else [],
     )
     tokenizer.train_from_iterator((normalize_text(text) for text in texts), trainer=trainer)
     tokenizer.post_processor = processors.TemplateProcessing(
