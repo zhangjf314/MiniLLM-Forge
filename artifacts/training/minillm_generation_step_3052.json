@@ -1,0 +1,25 @@
+{
+  "global_step": 3052,
+  "generation": {
+    "seed": 42,
+    "temperature": 0,
+    "top_p": 1.0,
+    "max_new_tokens": 32,
+    "mode": "greedy"
+  },
+  "purpose": "qualitative sanity only; not a benchmark",
+  "samples": [
+    {
+      "prompt": "The purpose of education is",
+      "completion": " to be able to be able to be able to be able to be able to be able to be able to be able to be able to be able to be"
+    },
+    {
+      "prompt": "In mathematics, a fraction is",
+      "completion": " a type of data that is used to describe the data. The data is used to determine the data in the data. The data is used to determine the data"
+    },
+    {
+      "prompt": "Plants use sunlight to",
+      "completion": " make a difference in the amount of light that is not available to the body. The amount of light that is not available to the body is not limited to the"
+    }
+  ]
+}

@@ -8,8 +8,9 @@ Qwen3-0.6B-Base pipeline for continued pretraining (CPT), full SFT, LoRA, and QL
 The project is an experiment laboratory, not a chat application or inference service.
 
 > MiniLLM uses a deliberately limited corpus to validate the complete Transformer
-> training mechanism and controlled architecture/optimization experiments. It does not
-> claim compute-optimal or fully converged pretraining.
+> training mechanism and controlled architecture/optimization experiments. The E01
+> formal run completed 50,003,968 processed tokens with fixed-validation perplexity
+> 104.42. This does not claim compute-optimal or fully converged pretraining.
 
 ## What Is Implemented
 
@@ -144,14 +145,23 @@ uv run minillm-tokenizer data/processed/fineweb_edu_train.txt `
 For an exact formal token budget, rerun corpus preparation with `--tokenizer` and
 `--target-tokens` after the tokenizer is trained. This writes the pinned data manifest.
 
-After placing a pinned, audited corpus at the path in `configs/pretrain/formal.yaml`:
+The frozen FineWeb-Edu subset, 24K tokenizer, calibration decision, and exact resume
+control are recorded in versioned manifests. Run or resume the formal configuration with:
 
 ```powershell
-uv run minillm-experiment --config configs/pretrain/formal.yaml --id E01
+uv run --no-sync minillm-pretrain --config configs/pretrain/formal.yaml
+uv run --no-sync minillm-pretrain --config configs/pretrain/formal.yaml `
+  --resume runs/E01-minillm-formal/last.pt
 ```
 
 The formal run must not start unless unit tests, Tiny Overfit, and finite-gradient checks
-pass. The MHA and no-RoPE controls are in `configs/pretrain/`.
+pass. E01 has completed; its measured protocol, limitations, curves, and checkpoint
+inventory are in `reports/MINILLM_FORMAL_PRETRAINING.md`. The MHA and no-RoPE controls
+remain in `configs/pretrain/` and were not run during GPU-1.
+
+![MiniLLM validation loss](reports/figures/minillm_val_loss.png)
+
+![MiniLLM held-out perplexity](reports/figures/minillm_perplexity.png)
 
 ## Phase B: Qwen CPT and SFT
 
@@ -233,13 +243,13 @@ metadata to `experiments/registry.csv`.
 The central comparisons are GQA/MHA, RoPE/no-RoPE, learning rate, warmup, CPT/direct
 SFT/CPT-to-SFT, LoRA rank 4/8/16/32, adapter placement, LoRA/QLoRA, and repeated seeds.
 
-| Model | Method | Trainable params | Peak VRAM | Math EM | Tokens/s | Status |
+| Model | Method | Trainable params | Peak allocated VRAM | Quality metric | Tokens/s | Status |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| Qwen Base | zero-shot | - | TBD | TBD | - | pending GPU run |
-| MiniLLM | pretrain | TBD | TBD | TBD | TBD | smoke gate only |
-| Qwen | CPT | TBD | TBD | TBD | TBD | pending GPU run |
-| Qwen | LoRA SFT | TBD | TBD | TBD | TBD | pending GPU run |
-| Qwen | QLoRA SFT | TBD | TBD | TBD | TBD | pending CUDA run |
+| Qwen Base | zero-shot | - | TBD | Math EM TBD | - | pending formal run |
+| MiniLLM | from-scratch pretrain | 37,462,528 | 1,849 MiB | fixed-val PPL 104.42 | 19,573 | E01 completed |
+| Qwen | CPT | TBD | TBD | Math EM TBD | TBD | pending formal run |
+| Qwen | LoRA SFT | TBD | TBD | Math EM TBD | TBD | pending formal run |
+| Qwen | QLoRA SFT | TBD | TBD | Math EM TBD | TBD | pending formal run |
 
 ## Repository Map
 
@@ -267,10 +277,11 @@ real training evidence. The current repository deliberately distinguishes them:
 | --- | --- | --- |
 | Transformer unit tests | `tests/` | implemented; see latest test run |
 | Tiny overfit | `runs/tiny-overfit-verified/summary.json` | passed locally; see generated summary |
-| Checkpoint resume | checkpoint tests and interrupted run | unit path implemented |
-| Baseline, CPT, SFT, LoRA, QLoRA | eval/run manifests | pending real GPU runs |
+| Checkpoint resume | exact control plus pilot interruption | exact resume confirmed |
+| MiniLLM formal pretraining | E01 result, metrics, curves, checkpoints | validated at 50,003,968 tokens |
+| Qwen baseline, CPT, SFT, LoRA, QLoRA | eval/run manifests | pending formal GPU runs |
 | 10+ controlled experiments | registry plus reports | matrix defined; results pending |
 | Contamination audit | JSON report | command implemented; corpus audit pending |
-| Final technical report | `reports/FINAL_REPORT.md` | honest implementation report/template |
+| Final technical report | `reports/FINAL_REPORT.md` | GPU-1 evidence integrated; later stages pending |
 
 See `reports/FINAL_REPORT.md` for assumptions, expected evidence, and limitations.

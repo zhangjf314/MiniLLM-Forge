@@ -136,6 +136,9 @@ def finalize():
     config = read_json(ROOT / "resolved_config.json")
     tokenizer = read_json(TOKENIZER_MANIFEST)
     resume = read_json(ARTIFACTS / "minillm_gpu_resume_validation.json")
+    regression = read_json(ARTIFACTS / "minillm_regression_validation.json")
+    if regression["status"] != "PASS":
+        raise ValueError("formal evidence cannot be validated without regression PASS")
     records = [
         json.loads(line) for line in (ROOT / "metrics.jsonl").read_text().splitlines() if line
     ]
@@ -147,6 +150,7 @@ def finalize():
     final_val = summary["final_validation"]
     result = {
         "classification": "MINILLM_FORMAL_PRETRAINING_VALIDATED",
+        "primary_classification": "VALIDATED",
         "experiment_id": "E01",
         "model": "MiniLLM",
         "parameters": summary["parameters"],
@@ -184,6 +188,8 @@ def finalize():
         "elapsed_seconds": summary["elapsed_seconds"],
         "compute_seconds": summary["compute_seconds"],
         "resume_validation": resume["classification"],
+        "regression_validation": regression["status"],
+        "regression_evidence": str(ARTIFACTS / "minillm_regression_validation.json"),
         "non_finite_events": summary["nan_count"] + summary["inf_count"],
         "nan_events": summary["nan_count"],
         "inf_events": summary["inf_count"],
@@ -384,7 +390,9 @@ no continuous thermal-control intervention was made.
 
 Three fixed English completions, seed 42, greedy decoding (temperature 0, top_p 1),
 32 new tokens, at initialization/mid/final. Raw outputs are retained in training artifacts.
-They are qualitative sanity samples, not a language or math benchmark.
+Initialization repeats arbitrary tokens. Mid/final samples form common English syntactic
+fragments but remain repetitive and semantically unreliable. This is a mechanism-level
+improvement only; the samples are not a language or math benchmark.
 
 ## 14. Failures
 
@@ -393,7 +401,14 @@ Recorded pre-clip gradient norms span {r["gradient_norm_min"]:.3f}–{r["gradien
 Clip threshold is 1.0. These are logged interval endpoint norms, not every micro-step.
 The data discovery stall and its explicit-shard resolution are retained under failures/.
 
-## 15. Limitations
+## 15. Regression Verification
+
+Regression verification: {r["regression_validation"]}. Ruff check and full-repository
+format checks passed, 28 tests passed, all 41 YAML files parsed, the lock remained valid,
+and both sdist and wheel built. GPU-0 environment artifacts have no diff from the stage
+baseline. Details are in minillm_regression_validation.json.
+
+## 16. Limitations
 
 Limited token budget; not compute-optimal, not fully pretrained, not production quality,
 not comparable to Qwen. One seed, one fixed validation partition, no formal architecture
@@ -401,7 +416,7 @@ ablation. Repeated corpus exposure and first-shard selection limit generalizatio
 The model remains undertrained in the practical sense that this is only a small bounded
 pretraining study; a learning curve does not establish a fully converged language model.
 
-## 16. Conclusion
+## 17. Conclusion
 
 The measured held-out and training dynamics answer trainability and generalization for
 this configuration. Resume and GPU metrics provide engineering evidence. Readiness for

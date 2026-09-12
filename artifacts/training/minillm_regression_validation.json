@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "ruff_check": {
+    "status": "PASS",
+    "scope": "repository"
+  },
+  "ruff_format": {
+    "status": "PASS",
+    "files_checked": 100
+  },
+  "pytest": {
+    "status": "PASS",
+    "passed": 28,
+    "duration_seconds": 6.17
+  },
+  "yaml_parse": {
+    "status": "PASS",
+    "files_checked": 41
+  },
+  "uv_lock_check": "PASS",
+  "package_build": {
+    "status": "PASS",
+    "artifacts": [
+      "dist/minillm_forge-1.0.0.tar.gz",
+      "dist/minillm_forge-1.0.0-py3-none-any.whl"
+    ]
+  },
+  "gpu0_environment_diff_from_stage_baseline": [],
+  "historical_gpu0_artifacts_untouched": true,
+  "generated_at": "2026-09-12T07:24:00+00:00"
+}

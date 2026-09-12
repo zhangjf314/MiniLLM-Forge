@@ -35,7 +35,13 @@ The objective is next-token prediction. The model returns logits aligned with in
 gradient accumulation, clipping, AdamW, warmup/cosine scheduling, AMP, evaluation,
 finite checks, OOM records, and atomic checkpoints.
 
-Measured formal-run results: **TBD**.
+The measured E01 run trained the 37,462,528-parameter model from scratch for 3,052
+optimizer steps: 50,003,968 input tokens and 49,955,136 supervised next-token targets.
+Fixed held-out loss fell from 10.1964 to 4.6484 and perplexity from 26,805.55 to 104.42.
+The matched 32-block train probe ended at loss 4.5320, for a validation-minus-probe gap
+of 0.1164. The best validation result occurred at the final step; this supports stable
+learning over the bounded run, not full language-model convergence. Complete dynamics
+and six measured curves are in `reports/MINILLM_FORMAL_PRETRAINING.md`.
 
 The CPU Tiny Overfit gate completed 60 optimizer steps on 15,360 tokens. Validation loss
 fell from 4.9014 to 0.7506 and perplexity from 134.48 to 2.118. Resuming the saved step-30
@@ -52,6 +58,14 @@ Data governance normalizes Unicode, hashes normalized text for exact deduplicati
 uses character n-gram Jaccard similarity for near-collision detection. Upstream revision,
 filter settings, counts, corpus digest, and removed benchmark overlaps belong in every
 data manifest.
+
+E01 used the pinned FineWeb-Edu sample-10BT revision
+`87f09149ef4734204d70ed1d046ddc9ca3f2b8f9`, with the first 30,000 rows of the first
+parquet shard. Exact normalized deduplication removed two documents before a hash-based
+train/validation split, leaving 29,694 train and 304 validation documents. The packed
+training stream contains 32,179,200 input tokens, so the 50.004M formal budget is
+1.554 corpus passes—not 50M unique tokens. The formal tokenizer is a train-only 24K
+byte-level BPE with zero validation UNKs and a frozen artifact hash.
 
 ## 6. Continued Pretraining
 
@@ -101,7 +115,10 @@ Results and conclusions: **TBD after controlled runs**.
 Failures are retained with symptom, evidence, root cause, fix, and before/after behavior.
 No hypothetical failure is presented as observed evidence.
 
-Observed cases: **none recorded yet**.
+The generic streaming dataset enumerator stalled before writing corpus bytes during
+GPU-1 preparation. The zero-byte attempt and diagnosis are retained; preparation was
+resolved with the same pinned source/revision and an explicit first parquet shard. E01
+training itself recorded zero NaN, Inf, and OOM events.
 
 ## 12. Efficiency
 
@@ -116,6 +133,13 @@ At sequence length 1024 and micro-batch one, measured peak allocated/reserved me
 tests. QLoRA is the preferred local formal path. Full CPT/SFT are technically
 single-step feasible but retain less than 1 GiB of measured system-level headroom.
 
+For E01, calibration selected micro-batch 4 with accumulation 4. The formal run measured
+1,849/2,394 MiB peak allocated/reserved memory, 19,573 input tokens/s median compute
+throughput, 2,549.1 seconds of synchronized update compute, and 2,684.8 seconds active
+wall time. First/last-quarter throughput medians were 19,557/19,485 tokens/s. A real-data
+continuous-vs-resumed control matched model, optimizer, scheduler, and RNG hashes;
+the separate 5M-token pilot also resumed across an intentional midpoint interruption.
+
 ## 13. Limitations
 
 - MiniLLM receives a deliberately limited token budget and is not claimed to be fully
@@ -127,12 +151,16 @@ single-step feasible but retain less than 1 GiB of measured system-level headroo
 - QLoRA depends on bitsandbytes and supported CUDA hardware. The local Windows backend
   passed NF4 forward/backward, but other platforms require independent qualification.
 - Full CPT/SFT long-run stability is not established by the bounded one-step 8GB tests.
-- Code completion is not portfolio completion. GPU training, repeated runs, frozen
-  manifests, curves, and written conclusions remain required evidence.
+- E01 is one seed and one bounded first-shard corpus run. Formal architecture ablations,
+  repeated seeds, and the Qwen adaptation experiments remain future evidence.
 
 ## 14. Conclusions
 
 The training stack is code-complete and its RTX 5060 CUDA, MiniLLM, Qwen, LoRA, and QLoRA
-paths are qualified. Scientific quality conclusions remain deferred until pinned formal
-experiments populate the registry. See `reports/GPU_ENVIRONMENT_QUALIFICATION.md` for the
-environment evidence and measured feasibility boundary.
+paths are qualified. GPU-1 additionally validates that the from-scratch MiniLLM E01
+configuration trains stably, improves a frozen held-out split through the 50.004M-token
+budget, and resumes exactly in the bounded control. This is a reproducible engineering
+and trainability baseline, not a production language model. Qwen CPT/SFT/LoRA/QLoRA
+scientific conclusions remain deferred to later pinned experiments. See
+`reports/GPU_ENVIRONMENT_QUALIFICATION.md` and
+`reports/MINILLM_FORMAL_PRETRAINING.md` for the measured evidence and limitations.

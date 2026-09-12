@@ -1,0 +1,24 @@
+{
+  "checkpoints": [
+    {
+      "path": "runs\\E01-minillm-formal\\best.pt",
+      "bytes": 449794345,
+      "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc"
+    },
+    {
+      "path": "runs\\E01-minillm-formal\\last.pt",
+      "bytes": 449794345,
+      "sha256": "af840ed660d4c30ddc3aa1a7fc5e3830e46c6ee0ea728b3726dab763cc0e87de"
+    },
+    {
+      "path": "runs\\E01-minillm-formal\\step-00000100.pt",
+      "bytes": 449764194,
+      "sha256": "6deca3f79b7d91b785357957d86d362978dd730e1ffc36cda79cc985a56a1ee7"
+    },
+    {
+      "path": "runs\\E01-minillm-formal\\step-00001526.pt",
+      "bytes": 449780066,
+      "sha256": "f36dc1e62b1c474cc15cdc6d4f57469101a6e8265887c2c76e806d12eafd8a66"
+    }
+  ]
+}

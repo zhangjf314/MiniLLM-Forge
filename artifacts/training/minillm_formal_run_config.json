@@ -1,0 +1,69 @@
+{
+  "experiment": {
+    "id": "E01",
+    "phase": "pretrain",
+    "hypothesis": "A 37M-parameter GQA model learns a limited educational corpus stably."
+  },
+  "model": {
+    "vocab_size": 24000,
+    "hidden_size": 512,
+    "num_layers": 8,
+    "num_attention_heads": 8,
+    "num_key_value_heads": 4,
+    "intermediate_size": 1536,
+    "max_seq_len": 1024,
+    "use_rope": true,
+    "tie_word_embeddings": true,
+    "gradient_checkpointing": true,
+    "pad_token_id": 0,
+    "bos_token_id": 1,
+    "eos_token_id": 2
+  },
+  "data": {
+    "frozen": true,
+    "synthetic": false,
+    "train_tokens": "data/processed/minillm-formal/train.bin",
+    "validation_tokens": "data/processed/minillm-formal/validation.bin",
+    "source_dataset": "HuggingFaceFW/fineweb-edu",
+    "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "manifest": "artifacts/data_manifests/minillm_pretrain_formal.json",
+    "tokenizer": "artifacts/tokenizers/minillm-tokenizer.json",
+    "sequence_length": 1024,
+    "drop_remainder": true
+  },
+  "optimizer": {
+    "lr": 0.0003,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "weight_decay": 0.1
+  },
+  "scheduler": {
+    "warmup_ratio": 0.03,
+    "min_lr_ratio": 0.1
+  },
+  "training": {
+    "max_steps": 3052,
+    "micro_batch_size": 4,
+    "gradient_accumulation_steps": 4,
+    "grad_clip": 1.0,
+    "precision": "bf16",
+    "log_every": 25,
+    "eval_every": 153,
+    "save_every": 0,
+    "output_dir": "runs/E01-minillm-formal",
+    "seed": 42,
+    "device": "cuda"
+  },
+  "checkpoint_steps": [
+    100,
+    1526
+  ],
+  "data_identity": {
+    "manifest_hash": "44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103",
+    "tokenizer_hash": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+    "validation_hash": "da42c8818d5865f3251c454977e5532e1a51fe30edd3ed0d62794b92a3d846a3"
+  },
+  "git_commit": "f864bd93ec6451dea512b2e2e94ba4992b78608b"
+}
