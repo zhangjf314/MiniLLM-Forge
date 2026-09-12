@@ -1,0 +1,30 @@
+{
+  "checkpoints": {
+    "early": {
+      "path": "runs\\E04-qwen3-math-cpt\\early.pt",
+      "size_bytes": 2403672221,
+      "sha256": "d872fb165c68dda86b7a6114415fb4eb26e378ca76ca609a522925b8edfc6ded"
+    },
+    "mid": {
+      "path": "runs\\E04-qwen3-math-cpt\\mid.pt",
+      "size_bytes": 2403663217,
+      "sha256": "71c37dd47f2f7ea9d6da98407ff5792eb34a3579b8d8a678380bbbff30110b38"
+    },
+    "three_quarter": {
+      "path": "runs\\E04-qwen3-math-cpt\\three-quarter.pt",
+      "size_bytes": 2403682893,
+      "sha256": "0480bcf8d854efc1c32649826eb81f382e8d5bef5ce1917b9d4ffc0e17225938"
+    },
+    "last": {
+      "path": "runs\\E04-qwen3-math-cpt\\last.pt",
+      "size_bytes": 2403670311,
+      "sha256": "9d6fd8d5609dc9b742d099f83c653da52055b3f48baa923c5189aa1c839137f9"
+    },
+    "best_math_validation": {
+      "path": "runs\\E04-qwen3-math-cpt\\best_math_validation.pt",
+      "size_bytes": 2403692551,
+      "sha256": "cbe9a2a11bd8268893f81238e7147bdb0d21ad8e6d8bcd3083355001f1c06936"
+    }
+  },
+  "git_commit": "75056185fe52fbeb96ecdec8641bcfd012b5338e"
+}

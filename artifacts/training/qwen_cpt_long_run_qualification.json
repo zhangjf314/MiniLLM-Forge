@@ -1,0 +1,49 @@
+{
+  "classification": "FULL_CPT_LONG_RUN_QUALIFIED",
+  "global_step": 123,
+  "tokens_seen": 503808,
+  "peak_allocated_vram_mib": 4419.30712890625,
+  "peak_reserved_vram_mib": 4550.0,
+  "estimated_min_system_headroom_mib": 2360.0,
+  "median_tokens_per_second": 1973.6705326192307,
+  "elapsed_seconds": 278.9673341001617,
+  "nan_events": 0,
+  "inf_events": 0,
+  "oom_events": 0,
+  "evaluation": {
+    "event": "evaluation",
+    "global_step": 123,
+    "tokens_seen": 503808,
+    "math_loss": 1.6326258515473455,
+    "math_ppl": 5.117294347129303,
+    "math_tokens": 65408,
+    "general_loss": 2.837927627377212,
+    "general_ppl": 17.08033202163382,
+    "general_tokens": 65408
+  },
+  "checkpoint": "runs\\E04-qwen3-math-cpt-qualification\\resume-source.pt",
+  "checkpoint_sha256": "546a1aee6f0542f2d0db88569a24448e6dbc603164f95f6b061dc27d49dcec43",
+  "resume_validation": "CPT_RESUME_SEMANTICS_VALIDATED",
+  "resume_expected": {
+    "global_step": 122,
+    "tokens_seen": 499712,
+    "learning_rate": 2.0031361231803606e-06,
+    "scheduler_last_epoch": 122,
+    "torch_rng": "5feb54a46230d321d888e9b43cf5a57492665f199e4377408d79ee460e36679c",
+    "cuda_rng": [
+      "aefdce03def94ffed42159e55677ec20e91200e1981f25b1f271b6fd99c3c263"
+    ]
+  },
+  "resume_restored": {
+    "global_step": 122,
+    "tokens_seen": 499712,
+    "learning_rate": 2.0031361231803606e-06,
+    "scheduler_last_epoch": 122,
+    "torch_rng": "5feb54a46230d321d888e9b43cf5a57492665f199e4377408d79ee460e36679c",
+    "cuda_rng": [
+      "aefdce03def94ffed42159e55677ec20e91200e1981f25b1f271b6fd99c3c263"
+    ]
+  },
+  "resume_continued_to_step": 123,
+  "git_commit": "945e9d4a52305644142c79f118b3b22dfcad0bae"
+}

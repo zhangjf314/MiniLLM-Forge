@@ -74,7 +74,7 @@ The planned test compares both math and general held-out perplexity before and a
 A math improvement accompanied by general degradation will be reported as possible
 catastrophic forgetting, not as an unconditional gain.
 
-Measured CPT results: **TBD**.
+Measured CPT result: **QWEN_MATH_CPT_VALIDATED_WITH_GENERAL_DEGRADATION** at 10,002,432 tokens. Math PPL 5.1715 → 5.0348 (-2.64%); general PPL 17.0799 → 17.2311 (+0.89%). This is domain language-model adaptation evidence, not proof of mathematical reasoning gain.
 
 ## 7. SFT
 
@@ -150,9 +150,9 @@ the separate 5M-token pilot also resumed across an intentional midpoint interrup
   protect local fine-tuning data but cannot prove the base model was uncontaminated.
 - QLoRA depends on bitsandbytes and supported CUDA hardware. The local Windows backend
   passed NF4 forward/backward, but other platforms require independent qualification.
-- Full CPT/SFT long-run stability is not established by the bounded one-step 8GB tests.
+- Full CPT long-run stability is established only for the frozen 512-token GPU-2A configuration; full SFT remains unqualified for long runs.
 - E01 is one seed and one bounded first-shard corpus run. Formal architecture ablations,
-  repeated seeds, and the Qwen adaptation experiments remain future evidence.
+  repeated seeds, and the Qwen SFT/LoRA/QLoRA experiments remain future evidence.
 
 ## 14. Conclusions
 

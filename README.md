@@ -165,6 +165,19 @@ remain in `configs/pretrain/` and were not run during GPU-1.
 
 ## Phase B: Qwen CPT and SFT
 
+<!-- GPU2A_RESULTS_START -->
+### GPU-2A measured CPT result
+
+- Base → CPT math PPL: 5.1715 → 5.0348 (-2.64%)
+- Base → CPT general PPL: 17.0799 → 17.2311 (+0.89%)
+- CPT input tokens: 10,002,432; peak allocated VRAM: 4406.9 MiB
+- Median training throughput: 1972.91 tokens/s
+- Classification: `QWEN_MATH_CPT_VALIDATED_WITH_GENERAL_DEGRADATION`
+
+This is domain language-model adaptation evidence, not a claim of improved mathematical
+reasoning accuracy.
+<!-- GPU2A_RESULTS_END -->
+
 Freeze the baseline before any training:
 
 ```powershell
@@ -245,9 +258,9 @@ SFT/CPT-to-SFT, LoRA rank 4/8/16/32, adapter placement, LoRA/QLoRA, and repeated
 
 | Model | Method | Trainable params | Peak allocated VRAM | Quality metric | Tokens/s | Status |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
-| Qwen Base | zero-shot | - | TBD | Math EM TBD | - | pending formal run |
+| Qwen Base | frozen PPL baseline | - | 2148 MiB | Math PPL 5.17 | - | E00 frozen |
 | MiniLLM | from-scratch pretrain | 37,462,528 | 1,849 MiB | fixed-val PPL 104.42 | 19,573 | E01 completed |
-| Qwen | CPT | TBD | TBD | Math EM TBD | TBD | pending formal run |
+| Qwen | full CPT | 596,049,920 | 4407 MiB | Math PPL 5.03 | 1973 | E04 completed |
 | Qwen | LoRA SFT | TBD | TBD | Math EM TBD | TBD | pending formal run |
 | Qwen | QLoRA SFT | TBD | TBD | Math EM TBD | TBD | pending formal run |
 
@@ -279,9 +292,9 @@ real training evidence. The current repository deliberately distinguishes them:
 | Tiny overfit | `runs/tiny-overfit-verified/summary.json` | passed locally; see generated summary |
 | Checkpoint resume | exact control plus pilot interruption | exact resume confirmed |
 | MiniLLM formal pretraining | E01 result, metrics, curves, checkpoints | validated at 50,003,968 tokens |
-| Qwen baseline, CPT, SFT, LoRA, QLoRA | eval/run manifests | pending formal GPU runs |
+| Qwen baseline and CPT | E00/E04 manifests, reports, curves | validated; SFT/LoRA/QLoRA remain pending |
 | 10+ controlled experiments | registry plus reports | matrix defined; results pending |
-| Contamination audit | JSON report | command implemented; corpus audit pending |
-| Final technical report | `reports/FINAL_REPORT.md` | GPU-1 evidence integrated; later stages pending |
+| CPT contamination audit | pinned JSON report | completed for local train/validation/benchmark probes |
+| Final technical report | `reports/FINAL_REPORT.md` | GPU-1 and GPU-2A evidence integrated; later stages pending |
 
 See `reports/FINAL_REPORT.md` for assumptions, expected evidence, and limitations.

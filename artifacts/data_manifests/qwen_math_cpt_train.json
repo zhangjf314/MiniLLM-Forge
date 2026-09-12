@@ -1,0 +1,31 @@
+{
+  "tokenizer": "Qwen/Qwen3-0.6B-Base",
+  "tokenizer_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "tokenizer_digest": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+  "sequence_length": 512,
+  "git_commit": "5261797f9fa29ce4eb0593b5b96e7028b3b379bb",
+  "dataset": "HuggingFaceTB/finemath",
+  "dataset_configuration": "finemath-4plus",
+  "revision": "e92b25a616738fe95dc186b64dfb19f9c8525594",
+  "split": "train",
+  "selected_shard_or_range": "pinned streaming order; first accepted range for math validation, subsequent accepted range for CPT",
+  "sampling_rule": "pinned streaming order; first accepted range for math validation, subsequent accepted range for CPT",
+  "document_count": 6565,
+  "raw_text_bytes": 33524651,
+  "normalized_count": 6565,
+  "duplicate_removals": 0,
+  "token_count": 10002432,
+  "selected_token_budget": 10002432,
+  "data_digest": "37db2b796b317996aa10a15d40a0405c88d5808777564790a8e035fca58a8c28",
+  "text_file": "data\\processed\\qwen-gpu2a\\train.jsonl",
+  "text_file_sha256": "62bd3b68572ac1b9aaf54b998e07f95ab53ed5fcb4798cdcf2d601e6b2d60c62",
+  "token_file": "data\\processed\\qwen-gpu2a\\train_tokens.pt",
+  "token_file_sha256": "5ec9473f8f0fd2f3e7f6bf8702f641cfde54043768f86dcb8f6191b7252bebe1",
+  "filter_configuration": {
+    "normalization": "normalize_text + normalized SHA-256 deduplication",
+    "ngram_size": 8,
+    "near_threshold": 0.8,
+    "controlled_benchmark": "data/eval/controlled_math.jsonl",
+    "general_validation": "artifacts/data_manifests/qwen_general_validation.json"
+  }
+}

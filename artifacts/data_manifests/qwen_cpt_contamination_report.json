@@ -1,0 +1,18 @@
+{
+  "before_count": 6565,
+  "removed_exact": 0,
+  "removed_near": 0,
+  "duplicate_removals": 0,
+  "after_count": 6565,
+  "ngram_size": 8,
+  "near_threshold": 0.8,
+  "probe_documents": 149,
+  "collision_examples": [],
+  "scope_limitation": "This local audit cannot rule out contamination in Qwen's upstream pretraining.",
+  "dataset": "HuggingFaceTB/finemath",
+  "revision": "e92b25a616738fe95dc186b64dfb19f9c8525594",
+  "train_manifest": "artifacts/data_manifests/qwen_math_cpt_train.json",
+  "math_validation_manifest": "artifacts/data_manifests/qwen_math_validation.json",
+  "general_validation_manifest": "artifacts/data_manifests/qwen_general_validation.json",
+  "controlled_benchmark": "data/eval/controlled_math.jsonl"
+}

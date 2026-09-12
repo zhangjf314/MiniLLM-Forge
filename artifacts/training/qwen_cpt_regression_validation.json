@@ -1,0 +1,70 @@
+{
+  "classification": "PASS",
+  "checks": {
+    "pytest": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "output": "................................                                         [100%]\n32 passed in 6.21s\n"
+    },
+    "ruff": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "output": "All checks passed!\n"
+    },
+    "format": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "output": "109 files already formatted\n"
+    },
+    "lock": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "uv",
+        "lock",
+        "--check"
+      ],
+      "output": "Resolved 111 packages in 9ms\n"
+    },
+    "build": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "uv",
+        "build"
+      ],
+      "output": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\minillm_forge-1.0.0.tar.gz\nSuccessfully built dist\\minillm_forge-1.0.0-py3-none-any.whl\n"
+    },
+    "yaml": {
+      "status": "PASS",
+      "scope": "git-tracked repository YAML only; caches and test temporaries excluded",
+      "files_parsed": 26,
+      "baseline_commit": "3b5fa0be15ec17b05af2f5b768cb55780767ebe0",
+      "baseline_files": 26,
+      "file_count_delta": 0,
+      "error": null
+    }
+  },
+  "git_commit": "75056185fe52fbeb96ecdec8641bcfd012b5338e"
+}

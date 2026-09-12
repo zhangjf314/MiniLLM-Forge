@@ -1,0 +1,17 @@
+{
+  "classification": "POST_CPT_FROZEN_EVALUATION",
+  "model_path": "runs\\E04-qwen3-math-cpt\\final_model",
+  "base_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "math_manifest": "artifacts/data_manifests/qwen_math_validation.json",
+  "general_manifest": "artifacts/data_manifests/qwen_general_validation.json",
+  "event": "evaluation",
+  "global_step": 2442,
+  "tokens_seen": 10002432,
+  "math_loss": 1.616370048664976,
+  "math_ppl": 5.034781095518302,
+  "math_tokens": 65408,
+  "general_loss": 2.8467168798670173,
+  "general_ppl": 17.231117045515557,
+  "general_tokens": 65408,
+  "controlled_math_em": null
+}

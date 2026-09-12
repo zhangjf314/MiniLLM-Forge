@@ -1,0 +1,13 @@
+{
+  "classification": "QWEN_MATH_CPT_VALIDATED_WITH_GENERAL_DEGRADATION",
+  "reports": [
+    "reports/QWEN_MATH_CPT.md",
+    "reports/QWEN_BASE_VS_CPT.md"
+  ],
+  "figures": 6,
+  "checkpoint_count": 5,
+  "registry": "experiments/registry.csv",
+  "regression": "PASS",
+  "git_commit": "75056185fe52fbeb96ecdec8641bcfd012b5338e",
+  "evidence_digest": "fc015fdfdc7a751ad6c777524b9261ea7cca2ed9f7eba3b8082bd8232525e9a1"
+}

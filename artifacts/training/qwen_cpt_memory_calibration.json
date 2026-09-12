@@ -1,0 +1,63 @@
+{
+  "classification": "CALIBRATION_PASS",
+  "configuration": {
+    "sequence_length": 512,
+    "micro_batch": 1,
+    "gradient_accumulation": 8,
+    "precision": "bf16",
+    "gradient_checkpointing": true,
+    "optimizer_foreach": false,
+    "optimizer_fused": false,
+    "optimizer_state_bits": 8
+  },
+  "previous_attempts": [
+    {
+      "classification": "CALIBRATION_HEADROOM_WARNING",
+      "configuration": {
+        "sequence_length": 512,
+        "micro_batch": 1,
+        "gradient_accumulation": 8,
+        "precision": "bf16",
+        "gradient_checkpointing": true,
+        "optimizer_foreach": false
+      },
+      "peak_allocated_mib": 5524.3251953125,
+      "peak_reserved_mib": 5654.0,
+      "estimated_min_system_headroom_mib": 1292.0,
+      "median_tokens_per_second": 2027.2116234416173
+    },
+    {
+      "classification": "CALIBRATION_HEADROOM_WARNING",
+      "configuration": {
+        "sequence_length": 512,
+        "micro_batch": 1,
+        "gradient_accumulation": 8,
+        "precision": "bf16",
+        "gradient_checkpointing": true,
+        "optimizer_foreach": false,
+        "optimizer_fused": true
+      },
+      "peak_allocated_mib": 5524.4765625,
+      "peak_reserved_mib": 5654.0,
+      "estimated_min_system_headroom_mib": 1292.0,
+      "median_tokens_per_second": 2058.073206038788
+    }
+  ],
+  "peak_allocated_vram_mib": 4406.9248046875,
+  "peak_reserved_vram_mib": 4536.0,
+  "estimated_min_system_headroom_mib": 2410.0,
+  "median_tokens_per_second": 2004.5960989487821,
+  "elapsed_seconds": 16.669718999997713,
+  "compute_seconds": 16.655776800122112,
+  "global_step": 8,
+  "micro_batches_seen": 64,
+  "tokens_seen": 32768,
+  "data_cursor": 64,
+  "nan_events": 0,
+  "inf_events": 0,
+  "oom_events": 0,
+  "best_math_loss": Infinity,
+  "best_step": 0,
+  "peak_allocated_mib": 4406.9248046875,
+  "peak_reserved_mib": 4536.0
+}

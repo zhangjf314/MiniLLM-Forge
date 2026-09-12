@@ -1,0 +1,23 @@
+{
+  "classification": "QWEN_BASELINE_FROZEN",
+  "experiment_id": "E00",
+  "model": "Qwen/Qwen3-0.6B-Base",
+  "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "parameters": 596049920,
+  "tokenizer_digest": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+  "seed": 42,
+  "math_loss": 1.6431705131544732,
+  "math_ppl": 5.171539982669485,
+  "math_tokens": 65408,
+  "general_loss": 2.8379039792343974,
+  "general_ppl": 17.07992810827877,
+  "general_tokens": 65408,
+  "controlled_math_em": null,
+  "controlled_math_note": "Not run: generative EM is secondary and not a reliable primary metric for this Base LM.",
+  "peak_allocated_vram_mib": 2148.2861328125,
+  "peak_reserved_vram_mib": 2374.0,
+  "elapsed_seconds": 17.249505499959923,
+  "math_manifest": "artifacts/data_manifests/qwen_math_validation.json",
+  "general_manifest": "artifacts/data_manifests/qwen_general_validation.json",
+  "git_commit": "5261797f9fa29ce4eb0593b5b96e7028b3b379bb"
+}

@@ -1,0 +1,16 @@
+{
+  "decision": "10M-token bounded formal full-parameter CPT",
+  "formal_training_tokens": 10002432,
+  "formal_optimizer_steps": 2442,
+  "qualification_tokens": 503808,
+  "sequence_length": 512,
+  "micro_batch": 1,
+  "gradient_accumulation": 8,
+  "optimizer": "AdamW8bit",
+  "optimizer_state_bits": 8,
+  "learning_rate": 2e-05,
+  "learning_rate_reason": "2e-5 is a conservative full-parameter CPT rate for an already pretrained 0.6B LM; no LR sweep is authorized.",
+  "selected_before_formal_run": true,
+  "config_hash": "9f7e71c9b3654d44bf0af6dcffc0471b02bf81a7d504879cc230c4e941e901d6",
+  "git_commit": "945e9d4a52305644142c79f118b3b22dfcad0bae"
+}

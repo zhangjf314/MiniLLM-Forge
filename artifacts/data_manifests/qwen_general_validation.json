@@ -1,0 +1,23 @@
+{
+  "tokenizer": "Qwen/Qwen3-0.6B-Base",
+  "tokenizer_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "tokenizer_digest": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+  "sequence_length": 512,
+  "git_commit": "5261797f9fa29ce4eb0593b5b96e7028b3b379bb",
+  "dataset": "HuggingFaceFW/fineweb-edu",
+  "dataset_configuration": "sample-10BT",
+  "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+  "source_contract": "GPU-1 frozen validation text, independently Qwen-tokenized",
+  "source_file": "data\\processed\\minillm-formal\\validation.txt",
+  "source_file_sha256": "5b82844aaa2417ecfae823b1046fe45070bc3d2030515d999c52090c51be5633",
+  "document_count": 89,
+  "raw_text_bytes": 308726,
+  "normalized_count": 89,
+  "duplicate_removals": 0,
+  "token_count": 65536,
+  "data_digest": "a30f0c42f62b34ab04c100987414299cd1b9a6e61235f9ad767c9bb3ff46007e",
+  "text_file": "data\\processed\\qwen-gpu2a\\general_validation.jsonl",
+  "text_file_sha256": "96ed4434e7a28ac0e2ecd4fb6ee56010486b4071d7f9e382f35bf1904d29f6eb",
+  "token_file": "data\\processed\\qwen-gpu2a\\general_validation_tokens.pt",
+  "token_file_sha256": "03f43f664e9528560468da4c4a271e7d061bb259b2ceb0a3b7f61d10b2573fba"
+}

@@ -42,7 +42,6 @@ def _metrics(path: str | Path, event: str) -> list[dict[str, Any]]:
 
 
 def run_regression(config: dict[str, Any]) -> dict[str, Any]:
-    del config
     commands = {
         "pytest": [sys.executable, "-m", "pytest", "-q"],
         "ruff": [sys.executable, "-m", "ruff", "check", "."],
@@ -61,11 +60,23 @@ def run_regression(config: dict[str, Any]) -> dict[str, Any]:
         }
     import yaml
 
-    yaml_files = sorted(
-        path
-        for path in Path(".").rglob("*.yaml")
-        if not any(part.startswith(".") or part in {"build", "dist", "runs"} for part in path.parts)
+    tracked_yaml_output = subprocess.check_output(["git", "ls-files", "*.yaml", "*.yml"], text=True)
+    yaml_files = [Path(line) for line in tracked_yaml_output.splitlines() if line.strip()]
+    baseline_yaml_output = subprocess.check_output(
+        [
+            "git",
+            "ls-tree",
+            "-r",
+            "--name-only",
+            config["stage"]["baseline_commit"],
+        ],
+        text=True,
     )
+    baseline_yaml_files = [
+        line
+        for line in baseline_yaml_output.splitlines()
+        if line.lower().endswith((".yaml", ".yml"))
+    ]
     error = None
     try:
         for path in yaml_files:
@@ -74,7 +85,11 @@ def run_regression(config: dict[str, Any]) -> dict[str, Any]:
         error = f"{type(exc).__name__}: {exc}"
     checks["yaml"] = {
         "status": "PASS" if error is None else "FAIL",
+        "scope": "git-tracked repository YAML only; caches and test temporaries excluded",
         "files_parsed": len(yaml_files),
+        "baseline_commit": config["stage"]["baseline_commit"],
+        "baseline_files": len(baseline_yaml_files),
+        "file_count_delta": len(yaml_files) - len(baseline_yaml_files),
         "error": error,
     }
     result = {
@@ -283,7 +298,9 @@ PPL {result["initial_general_ppl"]:.4f} → {result["final_general_ppl"]:.4f}
 ## 15. Catastrophic Forgetting Analysis
 
 Both PPLs were measured together near 0/25/50/75/100% of the budget. The general-domain
-delta is reported quantitatively rather than hidden by the math result.
+delta is reported quantitatively rather than hidden by the math result. The 5% relative
+general-loss early-stop gate did not trigger; the smaller sustained degradation remains
+material to the classification.
 
 ## 16. Checkpoint / Resume
 
@@ -447,6 +464,14 @@ reasoning accuracy.
         "| Qwen baseline, CPT, SFT, LoRA, QLoRA | eval/run manifests | pending formal GPU runs |",
         "| Qwen baseline and CPT | E00/E04 manifests, reports, curves | validated; SFT/LoRA/QLoRA remain pending |",
     )
+    readme = readme.replace(
+        "| Contamination audit | JSON report | command implemented; corpus audit pending |",
+        "| CPT contamination audit | pinned JSON report | completed for local train/validation/benchmark probes |",
+    )
+    readme = readme.replace(
+        "| Final technical report | `reports/FINAL_REPORT.md` | GPU-1 evidence integrated; later stages pending |",
+        "| Final technical report | `reports/FINAL_REPORT.md` | GPU-1 and GPU-2A evidence integrated; later stages pending |",
+    )
     readme_path.write_text(readme, encoding="utf-8")
 
     final_path = Path("reports/FINAL_REPORT.md")
@@ -466,6 +491,10 @@ reasoning accuracy.
     final_text = final_text.replace(
         "Qwen CPT/SFT/LoRA/QLoRA scientific conclusions remain deferred to later pinned experiments.",
         "Qwen CPT now has pinned math/general PPL evidence; SFT/LoRA/QLoRA scientific conclusions remain deferred to later pinned experiments.",
+    )
+    final_text = final_text.replace(
+        "repeated seeds, and the Qwen adaptation experiments remain future evidence.",
+        "repeated seeds, and the Qwen SFT/LoRA/QLoRA experiments remain future evidence.",
     )
     final_path.write_text(final_text, encoding="utf-8")
 
