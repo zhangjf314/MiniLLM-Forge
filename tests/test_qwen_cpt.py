@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import torch
 
+from minillm_forge.cli.stage_gpu2a import classify_cpt_result
 from minillm_forge.data.qwen_cpt import (
     ProbeContaminationFilter,
     freeze_general_partition,
@@ -62,3 +63,15 @@ def test_probe_filter_and_fixed_blocks() -> None:
     assert len(dataset) == 2
     assert dataset[1]["input_ids"].tolist() == [5, 6, 7, 8, 9]
     assert dataset[1]["labels"].tolist() == [5, 6, 7, 8, 9]
+
+
+def test_sustained_small_general_degradation_is_not_hidden() -> None:
+    classification, hypotheses, sustained = classify_cpt_result(
+        math_ppl_delta=-0.1,
+        general_ppl_delta=0.01,
+        base_general_ppl=17.0,
+        post_general_ppls=[17.1, 17.08, 17.04, 17.01],
+    )
+    assert classification == "QWEN_MATH_CPT_VALIDATED_WITH_GENERAL_DEGRADATION"
+    assert hypotheses["H-CPT-2"] == "supported"
+    assert sustained

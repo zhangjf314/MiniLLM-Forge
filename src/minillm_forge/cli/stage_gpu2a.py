@@ -531,6 +531,36 @@ def _read_metrics(path: str | Path, event: str | None = None) -> list[dict[str, 
     return records
 
 
+def classify_cpt_result(
+    *,
+    math_ppl_delta: float,
+    general_ppl_delta: float,
+    base_general_ppl: float,
+    post_general_ppls: list[float],
+) -> tuple[str, dict[str, str], bool]:
+    sustained_general_degradation = bool(post_general_ppls) and all(
+        value > base_general_ppl for value in post_general_ppls
+    )
+    if math_ppl_delta >= 0:
+        classification = "QWEN_MATH_CPT_NO_DOMAIN_GAIN"
+    elif sustained_general_degradation:
+        classification = "QWEN_MATH_CPT_VALIDATED_WITH_GENERAL_DEGRADATION"
+    else:
+        classification = "QWEN_MATH_CPT_VALIDATED"
+    hypotheses = {
+        "H-CPT-1": "supported" if math_ppl_delta < 0 else "rejected",
+        "H-CPT-2": (
+            "supported"
+            if sustained_general_degradation
+            else "partially-supported"
+            if general_ppl_delta > 0
+            else "rejected"
+        ),
+        "H-CPT-3": "supported",
+    }
+    return classification, hypotheses, sustained_general_degradation
+
+
 def formal(config: dict[str, Any], resume: str | None = None) -> dict[str, Any]:
     qualification = json.loads(QUALIFICATION.read_text(encoding="utf-8"))
     if qualification["classification"] != "FULL_CPT_LONG_RUN_QUALIFIED":
@@ -620,29 +650,12 @@ def formal(config: dict[str, Any], resume: str | None = None) -> dict[str, Any]:
     general_delta = final_eval["general_ppl"] - base["general_ppl"]
     math_relative = math_delta / base["math_ppl"]
     general_relative = general_delta / base["general_ppl"]
-    if math_delta >= 0:
-        classification = "QWEN_MATH_CPT_NO_DOMAIN_GAIN"
-    elif general_relative > 0.01:
-        classification = "QWEN_MATH_CPT_VALIDATED_WITH_GENERAL_DEGRADATION"
-    else:
-        classification = "QWEN_MATH_CPT_VALIDATED"
-    hypothesis_results = {
-        "H-CPT-1": (
-            "supported"
-            if math_relative <= -0.01
-            else "partially-supported"
-            if math_delta < 0
-            else "rejected"
-        ),
-        "H-CPT-2": (
-            "supported"
-            if general_relative > 0.01
-            else "partially-supported"
-            if general_delta > 0
-            else "rejected"
-        ),
-        "H-CPT-3": "supported",
-    }
+    classification, hypothesis_results, sustained_general_degradation = classify_cpt_result(
+        math_ppl_delta=math_delta,
+        general_ppl_delta=general_delta,
+        base_general_ppl=base["general_ppl"],
+        post_general_ppls=[record["general_ppl"] for record in evaluations[1:]],
+    )
     result = {
         "classification": classification,
         "experiment_id": "E04",
@@ -689,6 +702,7 @@ def formal(config: dict[str, Any], resume: str | None = None) -> dict[str, Any]:
         "math_ppl_relative_delta": math_relative,
         "general_ppl_delta": general_delta,
         "general_ppl_relative_delta": general_relative,
+        "sustained_general_degradation": sustained_general_degradation,
         "controlled_math_em": None,
         "hypothesis_results": hypothesis_results,
         "metrics_path": str(metrics_path),
