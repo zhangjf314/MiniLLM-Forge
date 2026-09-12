@@ -12,6 +12,7 @@ def build_adamw(
     weight_decay: float = 0.1,
     eps: float = 1e-8,
     foreach: bool | None = None,
+    fused: bool | None = None,
 ) -> torch.optim.AdamW:
     """Create AdamW groups so norms and biases are not weight-decayed."""
     decay, no_decay = [], []
@@ -26,4 +27,6 @@ def build_adamw(
         {"params": decay, "weight_decay": weight_decay},
         {"params": no_decay, "weight_decay": 0.0},
     ]
-    return torch.optim.AdamW(groups, lr=lr, betas=tuple(betas), eps=eps, foreach=foreach)
+    return torch.optim.AdamW(
+        groups, lr=lr, betas=tuple(betas), eps=eps, foreach=foreach, fused=fused
+    )

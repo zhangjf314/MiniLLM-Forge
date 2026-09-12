@@ -252,7 +252,8 @@ loss/PPL {result["initial_general_loss"]:.6f}/{result["initial_general_ppl"]:.4f
 
 512 context: {calibration["peak_allocated_mib"]:.1f} MiB peak allocated and
 {calibration["estimated_min_system_headroom_mib"]:.1f} MiB estimated minimum headroom.
-AdamW `foreach=false` reduces transient copies without changing full-parameter CPT.
+Fused AdamW with `foreach=false` reduces transient copies without changing
+full-parameter CPT.
 
 ## 10. Long-run Qualification
 

@@ -313,6 +313,7 @@ def _trainer(config: dict[str, Any], *, total_steps: int, output_dir: str) -> Qw
         learning_rate=optimizer["lr"],
         betas=tuple(optimizer["betas"]),
         weight_decay=optimizer["weight_decay"],
+        optimizer_fused=optimizer["fused"],
         warmup_ratio=scheduler["warmup_ratio"],
         min_lr_ratio=scheduler["min_lr_ratio"],
         grad_clip=training["grad_clip"],
@@ -328,6 +329,22 @@ def calibrate(config: dict[str, Any]) -> dict[str, Any]:
     metrics_path = output_dir / "metrics.jsonl"
     if metrics_path.exists():
         metrics_path.unlink()
+    previous_attempts: list[dict[str, Any]] = []
+    if CALIBRATION.exists():
+        previous = json.loads(CALIBRATION.read_text(encoding="utf-8"))
+        previous_attempts.extend(previous.get("previous_attempts", []))
+        previous_attempts.append(
+            {
+                "classification": previous.get("classification"),
+                "configuration": previous.get("configuration"),
+                "peak_allocated_mib": previous.get("peak_allocated_mib"),
+                "peak_reserved_mib": previous.get("peak_reserved_mib"),
+                "estimated_min_system_headroom_mib": previous.get(
+                    "estimated_min_system_headroom_mib"
+                ),
+                "median_tokens_per_second": previous.get("median_tokens_per_second"),
+            }
+        )
     trainer = _trainer(
         config,
         total_steps=config["training"]["calibration_steps"],
@@ -353,7 +370,9 @@ def calibrate(config: dict[str, Any]) -> dict[str, Any]:
             "precision": config["training"]["precision"],
             "gradient_checkpointing": config["training"]["gradient_checkpointing"],
             "optimizer_foreach": config["optimizer"]["foreach"],
+            "optimizer_fused": config["optimizer"]["fused"],
         },
+        "previous_attempts": previous_attempts,
         **trainer_summary,
     }
     write_json(CALIBRATION, result)
@@ -364,9 +383,9 @@ def calibrate(config: dict[str, Any]) -> dict[str, Any]:
 **{result["classification"]}**
 
 The frozen long-run candidate is sequence length 512, micro-batch 1, gradient
-accumulation 8, BF16, gradient checkpointing, and full-parameter AdamW with
-`foreach=false`. The latter avoids list-wide optimizer temporaries; it does not change
-the full-parameter CPT objective.
+accumulation 8, BF16, gradient checkpointing, and fused full-parameter AdamW with
+`foreach=false`. The fused kernel avoids list-wide optimizer temporaries; it does not
+change the full-parameter CPT objective. Earlier attempts remain in the JSON evidence.
 
 ## Measured calibration
 

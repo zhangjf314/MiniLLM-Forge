@@ -143,6 +143,7 @@ class QwenCPTTrainer:
         learning_rate: float,
         betas: tuple[float, float],
         weight_decay: float,
+        optimizer_fused: bool,
         warmup_ratio: float,
         min_lr_ratio: float,
         grad_clip: float,
@@ -188,6 +189,7 @@ class QwenCPTTrainer:
             betas=betas,
             weight_decay=weight_decay,
             foreach=False,
+            fused=optimizer_fused,
         )
         self.scheduler = build_cosine_scheduler(
             self.optimizer,
