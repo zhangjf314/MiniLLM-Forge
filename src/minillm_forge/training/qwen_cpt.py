@@ -16,7 +16,7 @@ from torch.utils.data import DataLoader, Dataset
 from minillm_forge.evaluation.perplexity import evaluate_perplexity
 from minillm_forge.finetuning.full_sft import load_full_sft_model
 from minillm_forge.training.checkpoint import load_checkpoint, save_checkpoint
-from minillm_forge.training.optimizer import build_adamw
+from minillm_forge.training.optimizer import build_adamw, build_adamw_8bit
 from minillm_forge.training.scheduler import build_cosine_scheduler
 from minillm_forge.training.trainer import set_seed
 
@@ -143,6 +143,7 @@ class QwenCPTTrainer:
         learning_rate: float,
         betas: tuple[float, float],
         weight_decay: float,
+        optimizer_name: str,
         optimizer_fused: bool,
         warmup_ratio: float,
         min_lr_ratio: float,
@@ -183,14 +184,24 @@ class QwenCPTTrainer:
             low_cpu_mem_usage=True,
         )
         self.model.to("cuda")
-        self.optimizer = build_adamw(
-            self.model,
-            lr=learning_rate,
-            betas=betas,
-            weight_decay=weight_decay,
-            foreach=False,
-            fused=optimizer_fused,
-        )
+        if optimizer_name == "AdamW8bit":
+            self.optimizer = build_adamw_8bit(
+                self.model,
+                lr=learning_rate,
+                betas=betas,
+                weight_decay=weight_decay,
+            )
+        elif optimizer_name == "AdamW":
+            self.optimizer = build_adamw(
+                self.model,
+                lr=learning_rate,
+                betas=betas,
+                weight_decay=weight_decay,
+                foreach=False,
+                fused=optimizer_fused,
+            )
+        else:
+            raise ValueError(f"unsupported full-CPT optimizer: {optimizer_name}")
         self.scheduler = build_cosine_scheduler(
             self.optimizer,
             total_steps=total_steps,

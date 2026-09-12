@@ -313,6 +313,7 @@ def _trainer(config: dict[str, Any], *, total_steps: int, output_dir: str) -> Qw
         learning_rate=optimizer["lr"],
         betas=tuple(optimizer["betas"]),
         weight_decay=optimizer["weight_decay"],
+        optimizer_name=optimizer["name"],
         optimizer_fused=optimizer["fused"],
         warmup_ratio=scheduler["warmup_ratio"],
         min_lr_ratio=scheduler["min_lr_ratio"],
@@ -371,6 +372,7 @@ def calibrate(config: dict[str, Any]) -> dict[str, Any]:
             "gradient_checkpointing": config["training"]["gradient_checkpointing"],
             "optimizer_foreach": config["optimizer"]["foreach"],
             "optimizer_fused": config["optimizer"]["fused"],
+            "optimizer_state_bits": config["optimizer"]["state_bits"],
         },
         "previous_attempts": previous_attempts,
         **trainer_summary,
@@ -383,9 +385,9 @@ def calibrate(config: dict[str, Any]) -> dict[str, Any]:
 **{result["classification"]}**
 
 The frozen long-run candidate is sequence length 512, micro-batch 1, gradient
-accumulation 8, BF16, gradient checkpointing, and fused full-parameter AdamW with
-`foreach=false`. The fused kernel avoids list-wide optimizer temporaries; it does not
-change the full-parameter CPT objective. Earlier attempts remain in the JSON evidence.
+accumulation 8, BF16, gradient checkpointing, and full-parameter 8-bit AdamW. Quantizing
+optimizer state reduces memory without quantizing model weights or freezing parameters.
+Earlier FP32/BF16-state AdamW attempts remain in the JSON evidence.
 
 ## Measured calibration
 
