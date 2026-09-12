@@ -1,0 +1,3 @@
+# Artifact hashes describe bytes; do not rewrite tokenizer JSON on Windows checkout.
+artifacts/tokenizers/*.json -text
+*.png binary

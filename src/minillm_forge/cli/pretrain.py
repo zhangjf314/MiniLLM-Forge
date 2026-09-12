@@ -30,6 +30,10 @@ def synthetic_dataset(vocab_size: int, sequence_length: int, samples: int) -> Ca
 
 def run(config_path: str, resume: str | None = None) -> dict[str, object]:
     config = load_config(config_path)
+    if config.get("data", {}).get("frozen"):
+        from minillm_forge.cli.formal_pretrain import run as run_formal
+
+        return run_formal(config_path, resume=resume)
     model_values = dict(config["model"])
     data_values = config["data"]
     set_seed(config["training"].get("seed", 42))

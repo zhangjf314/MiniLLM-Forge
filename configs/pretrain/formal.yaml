@@ -1,5 +1,5 @@
 experiment:
-  id: E01-minillm-baseline
+  id: E01
   phase: pretrain
   hypothesis: A 37M-parameter GQA model learns a limited educational corpus stably.
 
@@ -19,14 +19,15 @@ model:
   eos_token_id: 2
 
 data:
+  frozen: true
   synthetic: false
-  files: [data/processed/fineweb_edu_train.txt]
+  train_tokens: data/processed/minillm-formal/train.bin
+  validation_tokens: data/processed/minillm-formal/validation.bin
   source_dataset: HuggingFaceFW/fineweb-edu
   revision: 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9
-  manifest: artifacts/data_manifests/fineweb_edu.json
+  manifest: artifacts/data_manifests/minillm_pretrain_formal.json
   tokenizer: artifacts/tokenizers/minillm-tokenizer.json
   sequence_length: 1024
-  validation_fraction: 0.02
   drop_remainder: true
 
 optimizer:
@@ -39,14 +40,16 @@ scheduler:
   min_lr_ratio: 0.1
 
 training:
-  max_steps: 12000
-  micro_batch_size: 2
-  gradient_accumulation_steps: 8
+  max_steps: 3052
+  micro_batch_size: 4
+  gradient_accumulation_steps: 4
   grad_clip: 1.0
   precision: bf16
-  log_every: 10
-  eval_every: 250
-  save_every: 500
-  output_dir: runs/E01-minillm-baseline
+  log_every: 25
+  eval_every: 153
+  save_every: 0
+  output_dir: runs/E01-minillm-formal
   seed: 42
   device: cuda
+
+checkpoint_steps: [100, 1526]

@@ -1,0 +1,11 @@
+extends: formal.yaml
+experiment:
+  id: GPU1-pilot
+  phase: pretrain
+  hypothesis: Five million real-corpus tokens train stably before formal budget approval.
+training:
+  max_steps: 306
+  log_every: 25
+  eval_every: 75
+  output_dir: runs/gpu1-pilot
+checkpoint_steps: [4, 8, 153]

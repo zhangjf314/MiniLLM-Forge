@@ -1,0 +1,80 @@
+{
+  "micro_batch": 2,
+  "grad_accum": 8,
+  "config": {
+    "experiment": {
+      "id": "E01-minillm-baseline",
+      "phase": "pretrain",
+      "hypothesis": "A 37M-parameter GQA model learns a limited educational corpus stably."
+    },
+    "model": {
+      "vocab_size": 24000,
+      "hidden_size": 512,
+      "num_layers": 8,
+      "num_attention_heads": 8,
+      "num_key_value_heads": 4,
+      "intermediate_size": 1536,
+      "max_seq_len": 1024,
+      "use_rope": true,
+      "tie_word_embeddings": true,
+      "gradient_checkpointing": true,
+      "pad_token_id": 0,
+      "bos_token_id": 1,
+      "eos_token_id": 2
+    },
+    "data": {
+      "synthetic": false,
+      "files": [
+        "data/processed/fineweb_edu_train.txt"
+      ],
+      "source_dataset": "HuggingFaceFW/fineweb-edu",
+      "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "manifest": "artifacts/data_manifests/fineweb_edu.json",
+      "tokenizer": "artifacts/tokenizers/minillm-tokenizer.json",
+      "sequence_length": 1024,
+      "validation_fraction": 0.02,
+      "drop_remainder": true
+    },
+    "optimizer": {
+      "lr": 0.0003,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "weight_decay": 0.1
+    },
+    "scheduler": {
+      "warmup_steps": 1,
+      "min_lr_ratio": 0.1
+    },
+    "training": {
+      "max_steps": 8,
+      "micro_batch_size": 2,
+      "gradient_accumulation_steps": 8,
+      "grad_clip": 1.0,
+      "precision": "bf16",
+      "log_every": 1,
+      "eval_every": 0,
+      "save_every": 0,
+      "output_dir": "runs/gpu1-calibration/batch-2",
+      "seed": 42,
+      "device": "cuda",
+      "tensorboard": false
+    },
+    "data_identity": {
+      "manifest_hash": "44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103",
+      "tokenizer_hash": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+      "validation_hash": "da42c8818d5865f3251c454977e5532e1a51fe30edd3ed0d62794b92a3d846a3"
+    },
+    "checkpoint_steps": []
+  },
+  "gpu_before": "NVIDIA GeForce RTX 5060 Laptop GPU, 50, 12.16 W, 1687 MHz, 254 MiB, 7557 MiB",
+  "status": "PASS",
+  "tokens_seen": 131072,
+  "peak_allocated_mib": 1226.16748046875,
+  "peak_reserved_mib": 1580.0,
+  "median_tokens_per_second": 18254.414091867533,
+  "median_step_seconds": 0.8975367500097491,
+  "headroom_fraction": 0.6539425959864733,
+  "gpu_after": "NVIDIA GeForce RTX 5060 Laptop GPU, 55, 41.38 W, 1687 MHz, 1716 MiB, 6095 MiB"
+}

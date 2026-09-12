@@ -128,6 +128,15 @@ def sample_generations(trainer, destination):
 
 def run(path, resume=None, stop=None, output=None):
     config, manifest = canonical_config(path)
+    if config["experiment"]["id"] == "E01":
+        pilot = json.loads(Path("runs/gpu1-pilot/summary.json").read_text(encoding="utf-8"))
+        decision = json.loads((TRAINING_ROOT / "budget_decision.json").read_text(encoding="utf-8"))
+        if pilot["status"] != "completed" or pilot["tokens_seen"] < 5_000_000:
+            raise ValueError("formal run requires a completed 5M-token pilot")
+        if any(pilot[key] for key in ("nan_count", "inf_count", "oom_count")):
+            raise ValueError("pilot numerical gate failed")
+        if not decision["formal_approved"]:
+            raise ValueError("formal budget is not approved by pilot evidence")
     if output:
         config["training"]["output_dir"] = output
     root = Path(config["training"]["output_dir"])
@@ -287,7 +296,7 @@ def compare_resume(continuous_path, resumed_path, checkpoint_path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["calibrate", "train", "compare"])
+    parser.add_argument("action", choices=["calibrate", "train", "compare", "freeze"])
     parser.add_argument("--config", default="configs/pretrain/formal.yaml")
     parser.add_argument("--micro-batch", type=int, choices=[2, 4, 8, 16], default=2)
     parser.add_argument("--resume")
@@ -297,7 +306,24 @@ def main():
     parser.add_argument("--checkpoint")
     args = parser.parse_args()
     torch.set_num_threads(4)
-    if args.action == "calibrate":
+    if args.action == "freeze":
+        config, manifest = canonical_config(args.config)
+        model = MiniLLM(MiniLLMConfig(**config["model"]))
+        json_write(
+            TRAINING_ROOT / "minillm_formal_model.json",
+            {
+                "model": "MiniLLM",
+                "parameter_count": model.num_parameters(),
+                "trainable_parameter_count": model.num_parameters(trainable_only=True),
+                "architecture": model.config.to_dict(),
+                "git_commit": git_commit(),
+                "config_hash": config_hash(config["model"]),
+                "architecture_frozen": True,
+                "stage_gpu1_baseline": "05df0d0201746fab521ea776c00440e206ac7f47",
+                "data_identity": config["data_identity"],
+            },
+        )
+    elif args.action == "calibrate":
         calibrate(args.config, args.micro_batch)
     elif args.action == "compare":
         compare_resume(args.continuous, args.resume, args.checkpoint)
