@@ -1,0 +1,114 @@
+{
+  "stage": "STAGE_GPU_2B_RD2",
+  "classification": "GPU2B_RD2_PEFT_TRANSFER_RECOMMENDED",
+  "execution_class": "DESIGN_ONLY",
+  "status": "COMPLETE",
+  "current_gpu2b_status": "STAGE_GPU_2B_BLOCKED_BY_MEMORY_QUALIFICATION",
+  "math_domain_adaptation": "CONFIRMED",
+  "math_reasoning_improvement": "NOT_ESTABLISHED",
+  "cpt_to_full_sft_transfer": "NOT_ASSESSED",
+  "hardware_migration": {
+    "status": "PRESERVED_FOR_FUTURE_H1",
+    "current_platform_authority": "UNAVAILABLE",
+    "minimum_recommended_vram_gib": 12,
+    "observed_full_sft_peak_mib": 7776,
+    "estimated_headroom_mib": {
+      "8_gib": 35,
+      "12_gib": 4512,
+      "16_gib": 8608,
+      "24_gib": 16800
+    },
+    "estimate_is_qualification_evidence": false,
+    "future_gate": "FRESH_HARDWARE_AUTHORITY_ENVIRONMENT_Q0_Q1_Q2"
+  },
+  "peft_transfer_study": {
+    "status": "RECOMMENDED_NEXT",
+    "proposed_stage": "STAGE_GPU_2C_PEFT_TRANSFER",
+    "proposed_runs": 12,
+    "initializations": ["BASE_INIT", "CPT_INIT"],
+    "methods": ["LORA", "QLORA"],
+    "seeds": [42, 31415, 271828],
+    "primary_comparisons": ["C-LORA - B-LORA", "C-QLORA - B-QLORA"],
+    "primary_metrics": ["GSM8K_ACCURACY", "MATH500_ACCURACY"],
+    "claim_scope": "CPT_TO_PEFT_SFT_TRANSFER_ONLY",
+    "full_sft_claim_allowed": false,
+    "preliminary_feasibility": "PROMISING_REQUIRES_FRESH_Q0_Q1_Q2",
+    "formal_training_authorized_by_rd2": false,
+    "training_budget": {
+      "formal_optimizer_updates": 14400,
+      "formal_input_tokens": 109533072,
+      "formal_assistant_target_tokens": 84293916,
+      "benchmark_generations": 21828,
+      "maximum_generated_tokens": 11175936
+    }
+  },
+  "full_sft_recovery": {
+    "status": "CONDITIONAL_RESEARCH_PATH_NOT_IMMEDIATE_RECOMMENDATION",
+    "memory_composition_estimate_mib": {
+      "bf16_weights": 1136.875,
+      "bf16_gradients": 1136.875,
+      "nominal_two_8bit_moment_states": 1136.875,
+      "persistent_nominal_subtotal": 3410.625,
+      "unattributed_within_peak_cuda_allocation": 2236.74462890625,
+      "physical_peak_minus_peak_cuda_allocation": 2128.63037109375
+    },
+    "compatible_candidates": [
+      "EXISTING_NON_REENTRANT_GRADIENT_CHECKPOINTING_BASELINE",
+      "CUDA_ALLOCATOR_CONFIGURATION_AS_LOW_CONFIDENCE_ADJUNCT"
+    ],
+    "requires_equivalence_test": [
+      "ACTIVATION_CHECKPOINT_SEGMENTATION",
+      "ALTERNATIVE_ATTENTION_BACKEND",
+      "CPU_OPTIMIZER_STATE_OFFLOAD",
+      "GRADIENT_OFFLOAD"
+    ],
+    "already_active_or_exhausted": [
+      "GRADIENT_CHECKPOINTING",
+      "PYTORCH_SDPA",
+      "MICRO_BATCH_ONE",
+      "ADAMW8BIT",
+      "EMPTY_CACHE_AT_OPTIMIZER_BOUNDARY"
+    ],
+    "rejected_changes": [
+      "SHORTER_CONTEXT",
+      "SEQUENCE_PACKING_WITH_CHANGED_TOKEN_WEIGHTING_OR_ORDER",
+      "MICRO_BATCH_OR_ACCUMULATION_CHANGE",
+      "OPTIMIZER_CHANGE",
+      "FP16_FOR_BF16",
+      "SINGLE_GPU_ZERO_OR_FSDP_SHARDING_WITHOUT_OFFLOAD"
+    ],
+    "amendment_feasibility": "CONDITIONAL_ON_SEPARATE_EQUIVALENCE_EVIDENCE",
+    "amendment_authorized": false
+  },
+  "portfolio_decision": {
+    "largest_current_evidence_gap": [
+      "REAL_DOWNSTREAM_SFT",
+      "LORA",
+      "QLORA",
+      "DOWNSTREAM_BENCHMARKS",
+      "MULTI_SEED_CONTROLLED_COMPARISON"
+    ],
+    "track_scores_out_of_50": {
+      "HARDWARE_MIGRATION": 41,
+      "PEFT_TRANSFER": 45,
+      "FULL_SFT_MEMORY_RECOVERY": 36
+    }
+  },
+  "recommended_next_authorized_stage": "STAGE_GPU_2C_PEFT_TRANSFER",
+  "recommendation_scope": "DESIGN_AND_FRESH_QUALIFICATION_BEFORE_FORMAL_TRAINING",
+  "original_gpu2b_frozen": true,
+  "original_gpu2b_primary_comparison": "C-FULL - B-FULL",
+  "numerical_launches": {
+    "training": 0,
+    "benchmark": 0,
+    "ppl": 0,
+    "generation": 0
+  },
+  "evidence": {
+    "gpu2b_result_sha256": "56e499c769bf388fb72a9b7b0179074d9adf0eb6bc7c0a0a923510596c128f2e",
+    "rd_result_sha256": "cf2ffcd8dac59d4a5f24a97a3e9c0609afb357dff9af5f0a4a8af6a98e9a936a",
+    "h1_platform_result_sha256": "60dff71279319258ae773cabdd3ebf5412d55f37ff79aba19f9cd2eb23a01a2b",
+    "full_sft_config_sha256": "bbdd6a342b1ed8337849d25fc1920b0e5923b6c7e7e302e8ae1004a5134df0d2"
+  },
+  "git_baseline": "723c7fd"
+}
