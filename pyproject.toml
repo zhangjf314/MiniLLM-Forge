@@ -48,6 +48,7 @@ minillm-qualify-gpu = "minillm_forge.cli.qualify_gpu:main"
 minillm-qualify-qwen = "minillm_forge.cli.qualify_qwen:main"
 minillm-stage-gpu2b = "minillm_forge.cli.stage_gpu2b:main"
 minillm-stage-gpu2b-recovery = "minillm_forge.cli.stage_gpu2b_recovery:main"
+minillm-stage-gpu2b-h1-platform = "minillm_forge.cli.stage_gpu2b_h1_platform:main"
 
 [tool.uv]
 conflicts = [

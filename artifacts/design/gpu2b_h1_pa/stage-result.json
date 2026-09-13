@@ -1,0 +1,41 @@
+{
+  "stage": "STAGE_GPU_2B_H1_PA",
+  "classification": "STAGE_GPU_2B_H1_PA_COMPLETE",
+  "execution_class": "ZERO_TRAINING_WORK",
+  "historical_rd": "STAGE_GPU_2B_RD_COMPLETE",
+  "historical_rd_recovery_mode": "HARDWARE_MIGRATION",
+  "historical_gpu2b": "STAGE_GPU_2B_BLOCKED_BY_MEMORY_QUALIFICATION",
+  "h1_platform_authority": "UNAVAILABLE",
+  "h1_execution": "NOT_AUTHORIZED",
+  "selected_environment": null,
+  "next_authorized_work": "STAGE_GPU_2B_RD2_DESIGN_ONLY",
+  "numerical_launches": {
+    "training": 0,
+    "benchmark": 0,
+    "ppl": 0,
+    "generation": 0
+  },
+  "platform_requirement": {
+    "minimum_measured_physical_headroom_mib": 1536,
+    "historical_observed_physical_occupancy_mib": 7776,
+    "empirical_lower_bound_capacity_mib": 9312,
+    "preferred_physical_vram_gib": 12,
+    "preferred_capacity_is_formal_gate": false
+  },
+  "candidate_environment_count": 1,
+  "eligible_environment_count": 0,
+  "availability_evidence": {
+    "connected_codex_hosts": ["local"],
+    "authorized_remote_environment_recorded": false,
+    "authorized_cloud_environment_recorded": false,
+    "inventory": "reports/gpu2b_h1_pa/available-platforms.tsv"
+  },
+  "historical_evidence": {
+    "rd_stage_result": "artifacts/design/gpu2b_rd/stage-result.json",
+    "rd_stage_result_sha256": "cf2ffcd8dac59d4a5f24a97a3e9c0609afb357dff9af5f0a4a8af6a98e9a936a",
+    "gpu2b_stage_result": "artifacts/training/gpu2b-stage-result.json",
+    "gpu2b_stage_result_sha256": "56e499c769bf388fb72a9b7b0179074d9adf0eb6bc7c0a0a923510596c128f2e"
+  },
+  "audit_baseline_commit": "9452478",
+  "scientific_endpoint_measured": false
+}

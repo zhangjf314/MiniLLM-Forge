@@ -1,0 +1,2 @@
+environment_id	gpu_model	physical_vram_mib	os	driver	cuda	torch	bitsandbytes	transformers	peft	location	access_status	execution_mode	display_status	h1_eligible	authority_reason
+LOCAL-RTX5060L-8GB	NVIDIA GeForce RTX 5060 Laptop GPU	8151	Windows 11 10.0.26100 build 26100	577.02	12.8	2.11.0+cu128	0.50.2	5.16.1	0.20.0	local	AVAILABLE_TO_PROJECT	WDDM	disabled	NO	Historical frozen Full-SFT Q64 minimum physical headroom was 35 MiB versus the required 1536 MiB
