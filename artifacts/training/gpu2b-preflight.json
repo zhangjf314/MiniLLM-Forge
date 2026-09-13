@@ -1,0 +1,271 @@
+{
+  "stage": "STAGE_GPU_2B",
+  "phase": "GPU2B-Q0",
+  "classification": "GPU2B_Q0_PASS",
+  "status": "PASS",
+  "formal_training_runs_launched": 0,
+  "code_commit": "c037320486ea8525200baf9a52ef0d898d4daf09",
+  "working_tree_clean": true,
+  "platform": "Windows-10-10.0.26100-SP0",
+  "python": "3.11.15 (main, Jun 11 2026, 04:59:07) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "checks": {
+    "pytest": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "output": "........................................                                 [100%]\n40 passed in 5.86s\n"
+    },
+    "ruff": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "output": "All checks passed!\n"
+    },
+    "format": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "output": "126 files already formatted\n"
+    },
+    "lock": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "uv",
+        "lock",
+        "--check"
+      ],
+      "output": "Resolved 111 packages in 2ms\n"
+    },
+    "build": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "uv",
+        "build"
+      ],
+      "output": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\minillm_forge-1.0.0.tar.gz\nSuccessfully built dist\\minillm_forge-1.0.0-py3-none-any.whl\n"
+    },
+    "yaml": {
+      "status": "PASS",
+      "files_parsed": 29,
+      "files": [
+        "configs/cpt/qwen3_math.yaml",
+        "configs/lora/rank_16.yaml",
+        "configs/lora/rank_32.yaml",
+        "configs/lora/rank_4.yaml",
+        "configs/lora/rank_8.yaml",
+        "configs/lora/targets_all_linear.yaml",
+        "configs/lora/targets_qkvo.yaml",
+        "configs/lora/targets_qv.yaml",
+        "configs/minillm/base.yaml",
+        "configs/pretrain/formal.yaml",
+        "configs/pretrain/gpu_smoke.yaml",
+        "configs/pretrain/gpu_smoke_1024.yaml",
+        "configs/pretrain/mha.yaml",
+        "configs/pretrain/no_rope.yaml",
+        "configs/pretrain/pilot.yaml",
+        "configs/pretrain/smoke.yaml",
+        "configs/sft/gpu2b/full-sft-config.yaml",
+        "configs/sft/gpu2b/lora-config.yaml",
+        "configs/sft/gpu2b/qlora-config.yaml",
+        "configs/sft/qwen3_cpt_lora.yaml",
+        "configs/sft/qwen3_full.yaml",
+        "configs/sft/qwen3_lora.yaml",
+        "configs/sft/qwen3_lora_qkvo.yaml",
+        "configs/sft/qwen3_lora_qv.yaml",
+        "configs/sft/qwen3_lora_r32.yaml",
+        "configs/sft/qwen3_lora_r4.yaml",
+        "configs/sft/qwen3_lora_r8.yaml",
+        "configs/sft/qwen3_qlora.yaml",
+        "experiments/matrix.yaml"
+      ],
+      "errors": []
+    },
+    "frozen_design_artifacts": {
+      "status": "PASS",
+      "items": [
+        {
+          "path": "reports/GPU2B_DESIGN.md",
+          "expected_sha256": "f277f87388ab8b1bff7d9a3d52882e470a1dd2b575b5f542451a8eae7939680c",
+          "actual_sha256": "f277f87388ab8b1bff7d9a3d52882e470a1dd2b575b5f542451a8eae7939680c",
+          "status": "PASS"
+        },
+        {
+          "path": "artifacts/data_manifests/sft-dataset-manifest.json",
+          "expected_sha256": "f21d49f5c1dd587c88930a67727a247c5683ac5711a324027c5813a06d986c38",
+          "actual_sha256": "f21d49f5c1dd587c88930a67727a247c5683ac5711a324027c5813a06d986c38",
+          "status": "PASS"
+        },
+        {
+          "path": "artifacts/data_manifests/sft-contamination-report.json",
+          "expected_sha256": "8cd2796c8a989b18b468b14db43c7e16868ac1b3d26155b7e36ba71d47fc4524",
+          "actual_sha256": "8cd2796c8a989b18b468b14db43c7e16868ac1b3d26155b7e36ba71d47fc4524",
+          "status": "PASS"
+        },
+        {
+          "path": "artifacts/eval_manifests/evaluation-manifest.json",
+          "expected_sha256": "eb13f3e67d78b14a4c177b08f2727380daad8a3fb2aa0b3c7b4f3f9174b0718e",
+          "actual_sha256": "eb13f3e67d78b14a4c177b08f2727380daad8a3fb2aa0b3c7b4f3f9174b0718e",
+          "status": "PASS"
+        },
+        {
+          "path": "reports/gpu2b/prompt-format.md",
+          "expected_sha256": "77c3e381b5975746b71f359405cd465c8921c0ad79ec22f9961e596f0aad7b7c",
+          "actual_sha256": "77c3e381b5975746b71f359405cd465c8921c0ad79ec22f9961e596f0aad7b7c",
+          "status": "PASS"
+        },
+        {
+          "path": "configs/sft/gpu2b/full-sft-config.yaml",
+          "expected_sha256": "bbdd6a342b1ed8337849d25fc1920b0e5923b6c7e7e302e8ae1004a5134df0d2",
+          "actual_sha256": "bbdd6a342b1ed8337849d25fc1920b0e5923b6c7e7e302e8ae1004a5134df0d2",
+          "status": "PASS"
+        },
+        {
+          "path": "configs/sft/gpu2b/lora-config.yaml",
+          "expected_sha256": "841c60f02bea18db86d76f3258ac001254f21c4b3541bb87949640dd8be53b93",
+          "actual_sha256": "841c60f02bea18db86d76f3258ac001254f21c4b3541bb87949640dd8be53b93",
+          "status": "PASS"
+        },
+        {
+          "path": "configs/sft/gpu2b/qlora-config.yaml",
+          "expected_sha256": "5b09200b77b3e63d15acf505364974fdbb814926c25e7d8b09b9047e265b1414",
+          "actual_sha256": "5b09200b77b3e63d15acf505364974fdbb814926c25e7d8b09b9047e265b1414",
+          "status": "PASS"
+        },
+        {
+          "path": "artifacts/training/seed-manifest.json",
+          "expected_sha256": "fecf85ecf3aabfbb0cc987039c9d562fe49082a437417ae55c1576f0b01f88e4",
+          "actual_sha256": "fecf85ecf3aabfbb0cc987039c9d562fe49082a437417ae55c1576f0b01f88e4",
+          "status": "PASS"
+        },
+        {
+          "path": "reports/gpu2b/memory-qualification-plan.md",
+          "expected_sha256": "1cca4713edceb79636006ea8c158b7d679d9aeb9c62284d9e502e051da58ad84",
+          "actual_sha256": "1cca4713edceb79636006ea8c158b7d679d9aeb9c62284d9e502e051da58ad84",
+          "status": "PASS"
+        },
+        {
+          "path": "reports/gpu2b/resume-qualification-plan.md",
+          "expected_sha256": "71422c64b7f9d3566cdb6fa68b922b7437a48bd29308a6e87b75f6571e887603",
+          "actual_sha256": "71422c64b7f9d3566cdb6fa68b922b7437a48bd29308a6e87b75f6571e887603",
+          "status": "PASS"
+        },
+        {
+          "path": "reports/gpu2b/decision-rules.md",
+          "expected_sha256": "431552622588d0d9819d060d001cc1b16731b0254336d451c0591c52b6d9cffd",
+          "actual_sha256": "431552622588d0d9819d060d001cc1b16731b0254336d451c0591c52b6d9cffd",
+          "status": "PASS"
+        },
+        {
+          "path": "reports/gpu2b/claims-and-nonclaims.md",
+          "expected_sha256": "0a9e7458cfa69552420a3f8906f0e68dd30e72f0792aaf771f60b6d2458bb572",
+          "actual_sha256": "0a9e7458cfa69552420a3f8906f0e68dd30e72f0792aaf771f60b6d2458bb572",
+          "status": "PASS"
+        }
+      ],
+      "errors": []
+    },
+    "data_identity": {
+      "status": "PASS",
+      "errors": [],
+      "partitions": {
+        "all": {
+          "path": "data\\processed\\gpu2b\\sft_math_v1.jsonl",
+          "expected_sha256": "275c974aee0c9473fe5981deef36bf92d7d605371cb16f3d995c04782c79e77c",
+          "actual_sha256": "275c974aee0c9473fe5981deef36bf92d7d605371cb16f3d995c04782c79e77c",
+          "examples": 20000
+        },
+        "train": {
+          "path": "data\\processed\\gpu2b\\sft_math_v1_train.jsonl",
+          "expected_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+          "actual_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+          "examples": 19200
+        },
+        "validation": {
+          "path": "data\\processed\\gpu2b\\sft_math_v1_validation.jsonl",
+          "expected_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+          "actual_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+          "examples": 800
+        }
+      },
+      "train_input_tokens": 9127756,
+      "train_assistant_target_tokens": 7024493
+    },
+    "contamination": {
+      "status": "PASS",
+      "report_sha256": "8cd2796c8a989b18b468b14db43c7e16868ac1b3d26155b7e36ba71d47fc4524",
+      "remaining_known_collisions": 0
+    },
+    "seed_permutations": {
+      "status": "PASS",
+      "items": {
+        "42": {
+          "expected_sha256": "0c89abf02e63ed9a6b65045461d8838323e841f11e4a7a19aca8c85e3b87e760",
+          "actual_sha256": "0c89abf02e63ed9a6b65045461d8838323e841f11e4a7a19aca8c85e3b87e760",
+          "status": "PASS"
+        },
+        "31415": {
+          "expected_sha256": "4c18e59dea93605202017c2ea916c10add570090e5e457b97df92b3c07864cfa",
+          "actual_sha256": "4c18e59dea93605202017c2ea916c10add570090e5e457b97df92b3c07864cfa",
+          "status": "PASS"
+        },
+        "271828": {
+          "expected_sha256": "dc4224e8219aaa62f451833646dfcc725ddb9c8b46da3d07ed921e917ff8c232",
+          "actual_sha256": "dc4224e8219aaa62f451833646dfcc725ddb9c8b46da3d07ed921e917ff8c232",
+          "status": "PASS"
+        }
+      },
+      "paired_across_all_initializations_and_families": true,
+      "errors": []
+    },
+    "token_accounting": {
+      "status": "PASS",
+      "contract_assistant_target_tokens": 7024493,
+      "contract_optimizer_updates": 1200,
+      "cache": {
+        "classification": "GPU2B_TOKEN_CACHE_VALIDATED",
+        "source_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+        "tokenizer_digest": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+        "examples": 19200,
+        "input_tokens": 9127756,
+        "assistant_target_tokens": 7024493,
+        "cache_path": "data\\processed\\gpu2b\\sft_math_v1_train_tokens.pt",
+        "cache_sha256": "4b6ebe7f7784938f3056e0e062eb84c7ecb78e69736b1527d7ade76723e409f0"
+      },
+      "error": null
+    },
+    "cpt_checkpoint": {
+      "status": "PASS",
+      "path": "runs\\E04-qwen3-math-cpt\\final_model",
+      "tree_sha256": "0dc455e2499c73bb46d54be7911849864154e965870299222897946341cab585",
+      "model_sha256": "d9a30813347f1fa6076859fdf764ed241c48e8b4d4a7a44cb7746d035e6f2c4a"
+    },
+    "predecessor": {
+      "status": "PASS",
+      "classification": "STAGE_GPU_2B_D_COMPLETE"
+    }
+  },
+  "started_at_unix": 1789279461.0993466,
+  "ended_at_unix": 1789279486.4871938
+}
