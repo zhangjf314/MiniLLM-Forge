@@ -1,0 +1,35 @@
+{
+  "classification": "STAGE_GPU_2B_D_COMPLETE",
+  "execution_class": "ZERO_TRAINING_WORK",
+  "design_baseline": "5479eaea03432532af6d4eb7ded4cda97176b3d7",
+  "design_commit": "e96542c3f6b49368f16ec4b22695ae8b30393ed7",
+  "factorial_design": "2_INIT x 3_ADAPTATION",
+  "formal_arms": 6,
+  "formal_seeds_per_arm": 3,
+  "maximum_formal_training_runs": 18,
+  "primary_science": "CPT_TO_DOWNSTREAM_SFT_TRANSFER",
+  "primary_metric_class": "GENERATED_MATH_TASK_PERFORMANCE",
+  "secondary_metrics": [
+    "MATH_PPL",
+    "GENERAL_PPL"
+  ],
+  "sft_execution": "NOT_RUN",
+  "training_executed": false,
+  "sft_dataset": "open-r1/OpenR1-Math-220k",
+  "sft_revision": "e4e141ec9dea9f8326f4d347be56105859b2bd68",
+  "training_examples": 19200,
+  "validation_examples": 800,
+  "assistant_target_token_budget": 7024493,
+  "primary_benchmarks": [
+    "GSM8K",
+    "MATH-500"
+  ],
+  "seeds": [
+    42,
+    31415,
+    271828
+  ],
+  "regression": "PASS",
+  "checksums": "artifacts\\design\\gpu2b\\checksums.txt",
+  "formal_artifact_count": 14
+}

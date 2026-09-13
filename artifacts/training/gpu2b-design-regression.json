@@ -1,0 +1,71 @@
+{
+  "classification": "PASS",
+  "stage": "STAGE_GPU_2B_D",
+  "design_commit": "e96542c3f6b49368f16ec4b22695ae8b30393ed7",
+  "checks": {
+    "pytest": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "output": "......................................                                   [100%]\n38 passed in 5.75s\n"
+    },
+    "ruff": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "output": "All checks passed!\n"
+    },
+    "format": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "output": "121 files already formatted\n"
+    },
+    "lock": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "uv",
+        "lock",
+        "--check"
+      ],
+      "output": "Resolved 111 packages in 1ms\n"
+    },
+    "build": {
+      "status": "PASS",
+      "returncode": 0,
+      "command": [
+        "uv",
+        "build"
+      ],
+      "output": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\minillm_forge-1.0.0.tar.gz\nSuccessfully built dist\\minillm_forge-1.0.0-py3-none-any.whl\n"
+    },
+    "yaml": {
+      "status": "PASS",
+      "scope": "version-controlled YAML plus new GPU-2B-D family configs",
+      "files_parsed": 29,
+      "predecessor_files": 26,
+      "expected_delta": 3,
+      "error": null
+    }
+  },
+  "training_executed": false
+}
