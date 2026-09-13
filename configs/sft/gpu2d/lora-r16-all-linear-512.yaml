@@ -1,0 +1,11 @@
+extends: ../gpu2b/lora-config.yaml
+design:
+  id: GPU2D_LORA_R16_ALL_LINEAR_CONTEXT_512
+  stage: STAGE_GPU_2D_R0
+  execution_status: bounded_fallback_only
+data:
+  max_length: 512
+  train_examples: 19162
+  target_token_budget: 5177783
+  zero_assistant_examples_excluded: 38
+

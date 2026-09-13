@@ -1,0 +1,9 @@
+extends: ../gpu2b/lora-config.yaml
+design:
+  id: GPU2D_CONSTRAINED_LORA_C1_R8_ALL_LINEAR_CONTEXT_1024
+  stage: STAGE_GPU_2D_R0
+  execution_status: bounded_candidate_c_only
+lora:
+  rank: 8
+  alpha: 16
+

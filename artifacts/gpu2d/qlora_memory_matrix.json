@@ -1,0 +1,27 @@
+{
+  "stage": "STAGE_GPU_2D_R0",
+  "family": "QLORA",
+  "minimum_physical_headroom_mib": 1536,
+  "q1_updates": 64,
+  "tests": {
+    "QLORA_R16_ALL_LINEAR_1024": {
+      "context": 1024,
+      "variant": "R16_ALL_LINEAR",
+      "status": "NOT_RUN",
+      "policy": "PLANNED_FIRST"
+    },
+    "QLORA_R16_ALL_LINEAR_768": {
+      "context": 768,
+      "variant": "R16_ALL_LINEAR",
+      "status": "NOT_RUN",
+      "policy": "CONDITIONAL_CANDIDATE_A"
+    },
+    "QLORA_R16_ALL_LINEAR_512": {
+      "context": 512,
+      "variant": "R16_ALL_LINEAR",
+      "status": "NOT_RUN",
+      "policy": "CONDITIONAL_CANDIDATE_A_FALLBACK"
+    }
+  },
+  "formal_campaign_authorized": false
+}

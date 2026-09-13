@@ -1,0 +1,8 @@
+extends: ../gpu2b/lora-config.yaml
+design:
+  id: GPU2D_CONSTRAINED_LORA_C2_R16_ATTENTION_CONTEXT_1024
+  stage: STAGE_GPU_2D_R0
+  execution_status: bounded_candidate_c_only
+lora:
+  target_modules: [q_proj, k_proj, v_proj, o_proj]
+

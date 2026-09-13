@@ -1,0 +1,21 @@
+{
+  "stage": "STAGE_GPU_2D_R0",
+  "classification": "GPU2D_CONTEXT_DATA_MANIFEST_FROZEN",
+  "context": 1024,
+  "examples": 19200,
+  "source_examples": 19200,
+  "excluded_zero_assistant_examples": 0,
+  "excluded_source_indices": [],
+  "input_tokens_retained": 9127756,
+  "assistant_tokens_retained": 7024493,
+  "assistant_token_retention_relative_to_1024": 1.0,
+  "examples_truncated": 1624,
+  "final_answer_retained": 17689,
+  "final_answer_retention_rate": 0.9213020833333333,
+  "source_dataset_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+  "encoded_dataset_digest": "20984afc195a5227665b4eed42fcaffc3876e383074739a7cfb8749ee010c225",
+  "cache_path": "data\\processed\\gpu2d\\sft_math_context_1024_train_tokens.pt",
+  "cache_sha256": "5d10c0e8e86902753aaac6bfbad810cb1861dff4af14b6e01bcb30d695eed143",
+  "semantic_change": "NONE",
+  "formal_campaign_authorized": false
+}

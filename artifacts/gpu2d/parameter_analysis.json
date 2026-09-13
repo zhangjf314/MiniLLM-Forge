@@ -1,0 +1,85 @@
+{
+  "stage": "STAGE_GPU_2D_R0",
+  "classification": "GPU2D_CANDIDATE_PARAMETER_ANALYSIS_COMPLETE",
+  "status": "PASS",
+  "variants": {
+    "LORA_R16_ALL_LINEAR": {
+      "logical_total_parameters": 606142464,
+      "meta_instantiated_total_parameters": 761724928,
+      "trainable_parameters": 10092544,
+      "trainable_percent_of_logical_model": 1.665044869715645,
+      "adapter_parameter_bytes_bf16": 20185088,
+      "optimizer_parameter_count": 10092544,
+      "trainable_tensor_count": 392,
+      "unexpected_non_adapter_trainables": [],
+      "lora": {
+        "target_modules": "all-linear",
+        "rank": 16,
+        "alpha": 32,
+        "dropout": 0.05,
+        "bias": "none",
+        "modules_to_save": []
+      }
+    },
+    "QLORA_R16_ALL_LINEAR": {
+      "logical_total_parameters": 606142464,
+      "meta_instantiated_total_parameters": 761724928,
+      "trainable_parameters": 10092544,
+      "trainable_percent_of_logical_model": 1.665044869715645,
+      "adapter_parameter_bytes_bf16": 20185088,
+      "optimizer_parameter_count": 10092544,
+      "trainable_tensor_count": 392,
+      "unexpected_non_adapter_trainables": [],
+      "lora": {
+        "target_modules": "all-linear",
+        "rank": 16,
+        "alpha": 32,
+        "dropout": 0.05,
+        "bias": "none",
+        "modules_to_save": []
+      }
+    },
+    "C1_R8_ALL_LINEAR": {
+      "logical_total_parameters": 601096192,
+      "meta_instantiated_total_parameters": 756678656,
+      "trainable_parameters": 5046272,
+      "trainable_percent_of_logical_model": 0.8395115569123419,
+      "adapter_parameter_bytes_bf16": 10092544,
+      "optimizer_parameter_count": 5046272,
+      "trainable_tensor_count": 392,
+      "unexpected_non_adapter_trainables": [],
+      "lora": {
+        "target_modules": "all-linear",
+        "rank": 8,
+        "alpha": 16,
+        "dropout": 0.05,
+        "bias": "none",
+        "modules_to_save": []
+      }
+    },
+    "C2_R16_ATTENTION": {
+      "logical_total_parameters": 600637440,
+      "meta_instantiated_total_parameters": 756219904,
+      "trainable_parameters": 4587520,
+      "trainable_percent_of_logical_model": 0.7637752318603382,
+      "adapter_parameter_bytes_bf16": 9175040,
+      "optimizer_parameter_count": 4587520,
+      "trainable_tensor_count": 224,
+      "unexpected_non_adapter_trainables": [],
+      "lora": {
+        "target_modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj"
+        ],
+        "rank": 16,
+        "alpha": 32,
+        "dropout": 0.05,
+        "bias": "none",
+        "modules_to_save": []
+      }
+    }
+  },
+  "formal_campaign_authorized": false
+}

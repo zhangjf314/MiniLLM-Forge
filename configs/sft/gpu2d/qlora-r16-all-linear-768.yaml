@@ -1,0 +1,11 @@
+extends: ../gpu2b/qlora-config.yaml
+design:
+  id: GPU2D_QLORA_R16_ALL_LINEAR_CONTEXT_768
+  stage: STAGE_GPU_2D_R0
+  execution_status: conditional_candidate_a
+data:
+  max_length: 768
+  train_examples: 19191
+  target_token_budget: 6405009
+  zero_assistant_examples_excluded: 9
+

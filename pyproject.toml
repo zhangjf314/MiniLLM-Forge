@@ -50,6 +50,7 @@ minillm-stage-gpu2b = "minillm_forge.cli.stage_gpu2b:main"
 minillm-stage-gpu2b-recovery = "minillm_forge.cli.stage_gpu2b_recovery:main"
 minillm-stage-gpu2b-h1-platform = "minillm_forge.cli.stage_gpu2b_h1_platform:main"
 minillm-stage-gpu2c = "minillm_forge.cli.stage_gpu2c:main"
+minillm-stage-gpu2d = "minillm_forge.cli.stage_gpu2d:main"
 
 [tool.uv]
 conflicts = [

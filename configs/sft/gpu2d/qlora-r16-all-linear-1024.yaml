@@ -1,0 +1,6 @@
+extends: ../gpu2b/qlora-config.yaml
+design:
+  id: GPU2D_QLORA_R16_ALL_LINEAR_CONTEXT_1024
+  stage: STAGE_GPU_2D_R0
+  execution_status: frozen_before_qualification
+

@@ -1,0 +1,33 @@
+{
+  "stage": "STAGE_GPU_2D_R0",
+  "family": "LORA",
+  "minimum_physical_headroom_mib": 1536,
+  "q1_updates": 64,
+  "tests": {
+    "LORA_R16_ALL_LINEAR_768": {
+      "context": 768,
+      "variant": "R16_ALL_LINEAR",
+      "status": "NOT_RUN",
+      "policy": "PLANNED_FIRST"
+    },
+    "LORA_R16_ALL_LINEAR_512": {
+      "context": 512,
+      "variant": "R16_ALL_LINEAR",
+      "status": "NOT_RUN",
+      "policy": "CONDITIONAL_IF_768_FAILS"
+    },
+    "LORA_R8_ALL_LINEAR_1024": {
+      "context": 1024,
+      "variant": "R8_ALL_LINEAR",
+      "status": "NOT_RUN",
+      "policy": "CANDIDATE_C_CONDITIONAL"
+    },
+    "LORA_R16_ATTENTION_1024": {
+      "context": 1024,
+      "variant": "R16_ATTENTION",
+      "status": "NOT_RUN",
+      "policy": "CANDIDATE_C_CONDITIONAL"
+    }
+  },
+  "formal_campaign_authorized": false
+}

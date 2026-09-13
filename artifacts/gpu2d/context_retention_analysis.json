@@ -1,0 +1,219 @@
+{
+  "stage": "STAGE_GPU_2D_R0",
+  "classification": "GPU2D_CONTEXT_RETENTION_ANALYSIS_COMPLETE",
+  "status": "PASS",
+  "method": {
+    "serialization": "production encode_sft_example and pinned Qwen chat template",
+    "truncation": "right truncation of complete serialized message",
+    "percentiles": "nearest-rank",
+    "final_answer_retention": "normalized current-scorer extraction after truncation equals normalized current-scorer extraction from the untruncated solution",
+    "reference_answer_availability": "normalized current-scorer extraction after truncation equals the frozen reference_answer"
+  },
+  "contexts": [
+    512,
+    768,
+    1024
+  ],
+  "source_files": {
+    "train": {
+      "path": "data\\processed\\gpu2b\\sft_math_v1_train.jsonl",
+      "sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2"
+    },
+    "validation": {
+      "path": "data\\processed\\gpu2b\\sft_math_v1_validation.jsonl",
+      "sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59"
+    }
+  },
+  "partitions": {
+    "train": {
+      "examples": 19200,
+      "dataset_digest": "0c5e5516fc166cc950be5956e470322227fe8767f0a25e0564688253fb87ea55",
+      "total_tokens": {
+        "count": 19200,
+        "p50": 400,
+        "p75": 633,
+        "p90": 973,
+        "p95": 1175,
+        "p99": 1673,
+        "max": 4011,
+        "mean": 501.0235416666667
+      },
+      "prefix_tokens": {
+        "count": 19200,
+        "p50": 98,
+        "p75": 129,
+        "p90": 169,
+        "p95": 201,
+        "p99": 305,
+        "max": 1008,
+        "mean": 109.54494791666667
+      },
+      "assistant_tokens": {
+        "count": 19200,
+        "p50": 289,
+        "p75": 514,
+        "p90": 842,
+        "p95": 1050,
+        "p99": 1532,
+        "max": 3860,
+        "mean": 391.47859375
+      },
+      "untruncated_input_tokens": 9619652,
+      "untruncated_assistant_tokens": 7516389,
+      "full_solution_reference_matches": 4542,
+      "full_solution_reference_match_rate": 0.2365625,
+      "contexts": {
+        "512": {
+          "context": 512,
+          "examples": 19200,
+          "examples_unaffected": 12452,
+          "examples_truncated": 6748,
+          "examples_losing_assistant_tokens": 6748,
+          "examples_losing_all_assistant_tokens": 38,
+          "examples_eligible_for_training": 19162,
+          "assistant_tokens_retained": 5177783,
+          "input_tokens_retained": 7275025,
+          "final_answer_retained": 12952,
+          "reference_answer_available": 2370,
+          "assistant_token_retention_rate": 0.6888657572140027,
+          "input_token_retention_rate": 0.7562669626718306,
+          "final_answer_retention_rate": 0.6745833333333333,
+          "reference_answer_availability_rate": 0.1234375,
+          "assistant_token_retention_relative_to_1024": 0.7371041582645181
+        },
+        "768": {
+          "context": 768,
+          "examples": 19200,
+          "examples_unaffected": 15871,
+          "examples_truncated": 3329,
+          "examples_losing_assistant_tokens": 3329,
+          "examples_losing_all_assistant_tokens": 9,
+          "examples_eligible_for_training": 19191,
+          "assistant_tokens_retained": 6405009,
+          "input_tokens_retained": 8507280,
+          "final_answer_retained": 16116,
+          "reference_answer_available": 3088,
+          "assistant_token_retention_rate": 0.8521391056263852,
+          "input_token_retention_rate": 0.8843646319014451,
+          "final_answer_retention_rate": 0.839375,
+          "reference_answer_availability_rate": 0.16083333333333333,
+          "assistant_token_retention_relative_to_1024": 0.9118108595168363
+        },
+        "1024": {
+          "context": 1024,
+          "examples": 19200,
+          "examples_unaffected": 17576,
+          "examples_truncated": 1624,
+          "examples_losing_assistant_tokens": 1624,
+          "examples_losing_all_assistant_tokens": 0,
+          "examples_eligible_for_training": 19200,
+          "assistant_tokens_retained": 7024493,
+          "input_tokens_retained": 9127756,
+          "final_answer_retained": 17689,
+          "reference_answer_available": 3763,
+          "assistant_token_retention_rate": 0.9345568729878136,
+          "input_token_retention_rate": 0.9488655098957842,
+          "final_answer_retention_rate": 0.9213020833333333,
+          "reference_answer_availability_rate": 0.19598958333333333,
+          "assistant_token_retention_relative_to_1024": 1.0
+        }
+      },
+      "serialization_errors": []
+    },
+    "validation": {
+      "examples": 800,
+      "dataset_digest": "ea638f376b828db494661f83422196102e6e5cf6a9ef3166e68afc54ba65f80d",
+      "total_tokens": {
+        "count": 800,
+        "p50": 385,
+        "p75": 583,
+        "p90": 930,
+        "p95": 1155,
+        "p99": 1660,
+        "max": 4035,
+        "mean": 487.7325
+      },
+      "prefix_tokens": {
+        "count": 800,
+        "p50": 96,
+        "p75": 132,
+        "p90": 177,
+        "p95": 215,
+        "p99": 320,
+        "max": 1004,
+        "mean": 112.57125
+      },
+      "assistant_tokens": {
+        "count": 800,
+        "p50": 271,
+        "p75": 463,
+        "p90": 805,
+        "p95": 1002,
+        "p99": 1599,
+        "max": 3560,
+        "mean": 375.16125
+      },
+      "untruncated_input_tokens": 390186,
+      "untruncated_assistant_tokens": 300129,
+      "full_solution_reference_matches": 186,
+      "full_solution_reference_match_rate": 0.2325,
+      "contexts": {
+        "512": {
+          "context": 512,
+          "examples": 800,
+          "examples_unaffected": 544,
+          "examples_truncated": 256,
+          "examples_losing_assistant_tokens": 256,
+          "examples_losing_all_assistant_tokens": 2,
+          "examples_eligible_for_training": 798,
+          "assistant_tokens_retained": 211152,
+          "input_tokens_retained": 300542,
+          "final_answer_retained": 561,
+          "reference_answer_available": 109,
+          "assistant_token_retention_rate": 0.7035374788840798,
+          "input_token_retention_rate": 0.7702531613128097,
+          "final_answer_retention_rate": 0.70125,
+          "reference_answer_availability_rate": 0.13625
+        },
+        "768": {
+          "context": 768,
+          "examples": 800,
+          "examples_unaffected": 677,
+          "examples_truncated": 123,
+          "examples_losing_assistant_tokens": 123,
+          "examples_losing_all_assistant_tokens": 1,
+          "examples_eligible_for_training": 799,
+          "assistant_tokens_retained": 256651,
+          "input_tokens_retained": 346472,
+          "final_answer_retained": 683,
+          "reference_answer_available": 133,
+          "assistant_token_retention_rate": 0.8551356250145771,
+          "input_token_retention_rate": 0.8879662519926395,
+          "final_answer_retention_rate": 0.85375,
+          "reference_answer_availability_rate": 0.16625
+        },
+        "1024": {
+          "context": 1024,
+          "examples": 800,
+          "examples_unaffected": 740,
+          "examples_truncated": 60,
+          "examples_losing_assistant_tokens": 60,
+          "examples_losing_all_assistant_tokens": 0,
+          "examples_eligible_for_training": 800,
+          "assistant_tokens_retained": 279339,
+          "input_tokens_retained": 369396,
+          "final_answer_retained": 743,
+          "reference_answer_available": 163,
+          "assistant_token_retention_rate": 0.9307297861919375,
+          "input_token_retention_rate": 0.9467177192415924,
+          "final_answer_retention_rate": 0.92875,
+          "reference_answer_availability_rate": 0.20375
+        }
+      },
+      "serialization_errors": []
+    }
+  },
+  "historical_artifacts_modified": false,
+  "formal_training_launches": 0,
+  "benchmark_launches": 0
+}
