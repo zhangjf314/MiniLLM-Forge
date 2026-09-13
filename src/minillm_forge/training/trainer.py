@@ -65,6 +65,7 @@ class TrainingState:
     minimum_headroom_mb: float | None = None
     history: list[dict[str, Any]] = field(default_factory=list)
     sampler_state: dict[str, Any] | None = None
+    loader_generator_state: torch.Tensor | None = None
 
 
 def set_seed(seed: int) -> None:
@@ -182,6 +183,9 @@ class ForgeTrainer:
         sampler = self.train_loader.sampler
         if hasattr(sampler, "state_dict"):
             self.state.sampler_state = sampler.state_dict()
+        loader_generator = getattr(self.train_loader, "generator", None)
+        if loader_generator is not None:
+            self.state.loader_generator_state = loader_generator.get_state()
         return save_checkpoint(
             self.output_dir / name,
             model=self.model,
@@ -206,6 +210,9 @@ class ForgeTrainer:
         sampler = self.train_loader.sampler
         if self.state.sampler_state is not None and hasattr(sampler, "load_state_dict"):
             sampler.load_state_dict(self.state.sampler_state)
+        loader_generator = getattr(self.train_loader, "generator", None)
+        if self.state.loader_generator_state is not None and loader_generator is not None:
+            loader_generator.set_state(self.state.loader_generator_state.cpu())
 
     @torch.no_grad()
     def evaluate(self) -> dict[str, float]:

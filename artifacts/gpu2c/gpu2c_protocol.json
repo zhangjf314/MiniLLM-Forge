@@ -1,0 +1,202 @@
+{
+  "stage": "STAGE_GPU_2C_PEFT_TRANSFER",
+  "qualification_stage": "STAGE_GPU_2C_Q",
+  "protocol_status": "FROZEN_BEFORE_QUALIFICATION",
+  "formal_runs": 12,
+  "initializations": ["B", "C"],
+  "methods": ["LORA", "QLORA"],
+  "seeds": [42, 31415, 271828],
+  "run_id_style": "GPU2B_COMPATIBLE_LOWERCASE_s",
+  "formal_run_ids": [
+    "B-LORA-s42",
+    "B-LORA-s31415",
+    "B-LORA-s271828",
+    "C-LORA-s42",
+    "C-LORA-s31415",
+    "C-LORA-s271828",
+    "B-QLORA-s42",
+    "B-QLORA-s31415",
+    "B-QLORA-s271828",
+    "C-QLORA-s42",
+    "C-QLORA-s31415",
+    "C-QLORA-s271828"
+  ],
+  "formal_execution_order": [
+    "B-LORA-s42",
+    "C-LORA-s42",
+    "C-QLORA-s42",
+    "B-QLORA-s42",
+    "C-LORA-s31415",
+    "B-LORA-s31415",
+    "B-QLORA-s31415",
+    "C-QLORA-s31415",
+    "B-QLORA-s271828",
+    "C-QLORA-s271828",
+    "C-LORA-s271828",
+    "B-LORA-s271828"
+  ],
+  "execution_order_policy": "FROZEN_BALANCED_SEED_BLOCK_ORDER",
+  "train_records": 19200,
+  "validation_records": 800,
+  "input_tokens": 9127756,
+  "assistant_tokens": 7024493,
+  "updates": 1200,
+  "micro_batch_size": 1,
+  "gradient_accumulation_steps": 16,
+  "effective_examples_per_update": 16,
+  "context_length": 1024,
+  "precision": "BF16",
+  "dataset": {
+    "train_path": "data/processed/gpu2b/sft_math_v1_train.jsonl",
+    "train_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+    "validation_path": "data/processed/gpu2b/sft_math_v1_validation.jsonl",
+    "validation_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+    "token_cache_path": "data/processed/gpu2b/sft_math_v1_train_tokens.pt",
+    "token_cache_sha256": "4b6ebe7f7784938f3056e0e062eb84c7ecb78e69736b1527d7ade76723e409f0",
+    "assistant_starts_int32_sha256": "543c49926db447ecf3465956cc244a2ea8399105ac4220481e1f5f8f0fe77c69"
+  },
+  "initialization_contracts": {
+    "B": {
+      "model": "Qwen/Qwen3-0.6B-Base",
+      "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+      "config_sha256": "461f8999eee16aa9fa00ecc891755ef8067fca39f7880393fa7e670dbcc81413",
+      "parameter_count": 596049920
+    },
+    "C": {
+      "path": "runs/E04-qwen3-math-cpt/final_model",
+      "model_sha256": "d9a30813347f1fa6076859fdf764ed241c48e8b4d4a7a44cb7746d035e6f2c4a",
+      "base_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+      "cpt_tokens": 10002432,
+      "cpt_updates": 2442,
+      "cpt_config_hash": "9f7e71c9b3654d44bf0af6dcffc0471b02bf81a7d504879cc230c4e941e901d6"
+    },
+    "tokenizer_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+    "tokenizer_sha256": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe"
+  },
+  "lora_config": {
+    "source": "configs/sft/gpu2b/lora-config.yaml",
+    "sha256": "841c60f02bea18db86d76f3258ac001254f21c4b3541bb87949640dd8be53b93",
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "targets": "all-linear",
+    "bias": "none",
+    "modules_to_save": [],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0002,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.03
+  },
+  "qlora_config": {
+    "source": "configs/sft/gpu2b/qlora-config.yaml",
+    "sha256": "5b09200b77b3e63d15acf505364974fdbb814926c25e7d8b09b9047e265b1414",
+    "bits": 4,
+    "quantization": "NF4",
+    "double_quantization": true,
+    "compute": "BF16",
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "targets": "all-linear",
+    "bias": "none",
+    "modules_to_save": [],
+    "optimizer": "PagedAdamW8bit",
+    "learning_rate": 0.0002,
+    "scheduler": "cosine",
+    "warmup_ratio": 0.03
+  },
+  "primary_comparisons": ["C-LORA - B-LORA", "C-QLORA - B-QLORA"],
+  "primary_metrics": ["GSM8K_accuracy", "MATH500_accuracy"],
+  "secondary_metrics": [
+    "training_loss",
+    "validation_sft_loss",
+    "gradient_norm",
+    "learning_rate",
+    "physical_vram",
+    "cuda_allocated",
+    "cuda_reserved",
+    "target_tokens_per_second",
+    "samples_per_second",
+    "step_time",
+    "wall_clock_time",
+    "trainable_parameters",
+    "adapter_size",
+    "checkpoint_size"
+  ],
+  "claim_scope": "CPT_TO_PEFT_SFT_TRANSFER_ONLY",
+  "formal_checkpoint_selection": "FINAL_TOKEN_BUDGET_CHECKPOINT",
+  "formal_inference": "DIRECT_PEFT_ADAPTER_INFERENCE",
+  "generation": {
+    "do_sample": false,
+    "temperature": null,
+    "top_p": null,
+    "num_beams": 1,
+    "batch_size": 1,
+    "max_new_tokens": 512,
+    "eos_token_ids": [151643, 151645],
+    "pad_token_id": 151643
+  },
+  "bootstrap": {
+    "enabled_for_problem_level_benchmark_uncertainty": true,
+    "seed": 20260913,
+    "resamples": 10000,
+    "confidence_level": 0.95,
+    "interval": "PERCENTILE",
+    "resampling_unit": "BENCHMARK_PROBLEM_ID_PAIRED_ACROSS_ALL_ARMS_AND_SEEDS",
+    "does_not_replace_training_seed_variability": true
+  },
+  "transfer_rule": {
+    "source": "reports/gpu2b/decision-rules.md",
+    "sha256": "431552622588d0d9819d060d001cc1b16731b0254336d451c0591c52b6d9cffd",
+    "positive_mean_margin_points": 1.0,
+    "negative_mean_margin_points": -1.0,
+    "minimum_directional_seeds": 2,
+    "conflict_margin_points": 0.5
+  },
+  "overall_outcome_order": [
+    "CPT_TO_PEFT_SFT_TRANSFER_SUPPORTED",
+    "CPT_TO_PEFT_SFT_TRANSFER_NEGATIVE",
+    "CPT_TO_PEFT_SFT_TRANSFER_METHOD_DEPENDENT",
+    "GPU2C_FORMAL_RESULTS_INCONCLUSIVE",
+    "CPT_TO_PEFT_SFT_TRANSFER_NOT_SUPPORTED"
+  ],
+  "overall_outcome_rules": {
+    "CPT_TO_PEFT_SFT_TRANSFER_SUPPORTED": "Both LoRA and QLoRA satisfy the frozen positive transfer rule on both benchmarks.",
+    "CPT_TO_PEFT_SFT_TRANSFER_NEGATIVE": "Both LoRA and QLoRA satisfy the frozen negative transfer rule on both benchmarks.",
+    "CPT_TO_PEFT_SFT_TRANSFER_METHOD_DEPENDENT": "Exactly one PEFT method satisfies positive or negative transfer, or the two methods have opposing confirmed directions.",
+    "GPU2C_FORMAL_RESULTS_INCONCLUSIVE": "Neither earlier rule applies and at least one method is mixed because benchmark directions conflict or either absolute mean reaches 1.0 point.",
+    "CPT_TO_PEFT_SFT_TRANSFER_NOT_SUPPORTED": "Every remaining valid complete outcome."
+  },
+  "qualification": {
+    "q0_required": true,
+    "q1_updates_per_method": 64,
+    "q1_initialization": "B",
+    "q1_seed": 42,
+    "minimum_physical_headroom_mib": 1536,
+    "q2_control_updates": 16,
+    "q2_boundary_update": 8,
+    "methods": ["LORA", "QLORA"]
+  },
+  "rerun_policy": {
+    "allowed": [
+      "INFRA_FAILURE",
+      "HARDWARE_INTERRUPTION",
+      "VERIFIED_SOFTWARE_FAULT",
+      "CORRUPTED_ARTIFACT"
+    ],
+    "forbidden": ["LOW_ACCURACY", "HIGH_LOSS", "CPT_ARM_LOST", "UNFAVORABLE_SEED"],
+    "preserve_failed_artifact": true,
+    "failed_seed_replacement": false
+  },
+  "formal_campaign_authorized": false,
+  "authorization_requires": [
+    "Q0_P_PASS",
+    "Q1_LORA_PASS",
+    "Q1_QLORA_PASS",
+    "Q2_LORA_PASS",
+    "Q2_QLORA_PASS",
+    "REGRESSION_PASS"
+  ],
+  "historical_gpu2b_frozen": true,
+  "design_baseline_commit": "117f32d"
+}
