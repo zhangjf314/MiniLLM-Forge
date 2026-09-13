@@ -84,6 +84,11 @@ assistant response tokens are trained. This masking path is independently tested
 
 Measured full-SFT results: **TBD**.
 
+GPU-2B-D design status: **STAGE_GPU_2B_D_COMPLETE**. The preregistered numerical stage
+uses Base/CPT initialization paired within Full SFT, LoRA and QLoRA, three shared seeds,
+one frozen 19,200-example/7,024,493-target-token SFT budget, and GSM8K plus MATH-500
+generated-answer accuracy as the primary endpoints. No SFT training was run in GPU-2B-D.
+
 ## 8. LoRA and QLoRA
 
 LoRA uses PEFT adapters with configurable rank, alpha, dropout, and target modules.

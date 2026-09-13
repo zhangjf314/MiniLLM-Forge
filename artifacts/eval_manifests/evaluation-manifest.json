@@ -1,0 +1,94 @@
+{
+  "stage": "STAGE_GPU_2B_D",
+  "primary_metric_class": "GENERATED_MATH_TASK_PERFORMANCE",
+  "primary_benchmarks": {
+    "gsm8k": {
+      "dataset": "openai/gsm8k",
+      "subset": "main",
+      "split": "test",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "license": "MIT",
+      "examples": 1319,
+      "record_digest": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf",
+      "snapshot_path": "data\\processed\\gpu2b\\gsm8k_test.jsonl",
+      "snapshot_sha256": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf",
+      "problem_field": "question",
+      "answer_field": "answer"
+    },
+    "math500": {
+      "dataset": "HuggingFaceH4/MATH-500",
+      "subset": "default",
+      "split": "test",
+      "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+      "license": "not declared by HF snapshot; upstream openai/prm800k is MIT",
+      "examples": 500,
+      "record_digest": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec",
+      "snapshot_path": "data\\processed\\gpu2b\\math500_test.jsonl",
+      "snapshot_sha256": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec",
+      "problem_field": "problem",
+      "answer_field": "answer"
+    }
+  },
+  "diagnostic_probes": {
+    "controlled_math": {
+      "dataset": "local controlled-math-v1",
+      "split": "test",
+      "examples": 12,
+      "record_digest": "45603979c72a224ea3a98a1f46f54a3a6227e9b3a1e4c3763ece3710093e7ca0",
+      "snapshot_path": "data/eval/controlled_math.jsonl",
+      "snapshot_sha256": "721ec4e845f8e8c272829fda1959bf3a39a05db15714150191a31a2660014706",
+      "role": "secondary diagnostic only"
+    },
+    "math_ppl": {
+      "dataset": "frozen GPU-2A frozen_math_ppl",
+      "split": "validation",
+      "examples": 48,
+      "record_digest": "6965dad61798470002c31896008623a40416a38f30e68228225f506e840948f2",
+      "snapshot_path": "data\\processed\\qwen-gpu2a\\math_validation.jsonl",
+      "snapshot_sha256": "16d5a6d5e2ccebb621a2043506801afb1081bf82f298ab34b568ead38317d7fc",
+      "role": "PPL diagnostic and contamination-protection probe",
+      "manifest": "artifacts/data_manifests/qwen_math_validation.json"
+    },
+    "general_ppl": {
+      "dataset": "frozen GPU-2A frozen_general_ppl",
+      "split": "validation",
+      "examples": 89,
+      "record_digest": "e3e60e6795978a7a9cead2bb9e78bf0987180ed474c35502e1b5c62852d045c6",
+      "snapshot_path": "data\\processed\\qwen-gpu2a\\general_validation.jsonl",
+      "snapshot_sha256": "96ed4434e7a28ac0e2ecd4fb6ee56010486b4071d7f9e382f35bf1904d29f6eb",
+      "role": "PPL diagnostic and contamination-protection probe",
+      "manifest": "artifacts/data_manifests/qwen_general_validation.json"
+    }
+  },
+  "generation": {
+    "prompt": "Qwen chat template over frozen system prompt and benchmark problem",
+    "do_sample": false,
+    "temperature": null,
+    "num_beams": 1,
+    "max_new_tokens": 512,
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "pad_token_id": 151643,
+    "batch_size": 1
+  },
+  "scoring": {
+    "primary": "deterministic exact match after frozen extraction/normalization",
+    "gsm8k_reference_extraction": "substring after final #### marker",
+    "math500_reference_field": "answer",
+    "prediction_extraction": "last balanced boxed expression; else final-answer marker; else final non-empty line",
+    "manual_correction": false,
+    "evaluator": "src/minillm_forge/evaluation/math_eval.py",
+    "evaluator_sha256": "9a39f02e471367c7cec47b5ea2f2a6fd84ca09816b8ffcb0965b9e61c7bb3433"
+  },
+  "tokenizer_contract": {
+    "name": "Qwen/Qwen3-0.6B-Base",
+    "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+    "digest": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+    "vocabulary_resize": false,
+    "eos_token_id": 151643,
+    "im_end_token_id": 151645,
+    "pad_token_id": 151643
+  }
+}

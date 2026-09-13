@@ -178,6 +178,16 @@ This is domain language-model adaptation evidence, not a claim of improved mathe
 reasoning accuracy.
 <!-- GPU2A_RESULTS_END -->
 
+### GPU-2B-D transfer design freeze
+
+`STAGE_GPU_2B_D_COMPLETE` freezes a 2-initialization × 3-adaptation × 3-seed design:
+Base/CPT initialization paired within Full SFT, LoRA and QLoRA. The identical 19,200-row
+training partition provides 7,024,493 assistant target tokens to every arm. GSM8K and
+MATH-500 generated-answer accuracy are primary; frozen math/general PPL are diagnostics.
+See `reports/GPU2B_DESIGN.md` for the preregistered rules and execution gates.
+
+This is a zero-training design result. SFT, LoRA and QLoRA formal results remain pending.
+
 Freeze the baseline before any training:
 
 ```powershell

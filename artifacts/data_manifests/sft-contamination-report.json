@@ -1,0 +1,104 @@
+{
+  "stage": "STAGE_GPU_2B_D",
+  "procedure_frozen_before_training": true,
+  "training_candidates_scanned": 29619,
+  "accepted_examples": 20000,
+  "removed_colliding_examples": 4,
+  "normalized_exact": {
+    "normalization": "NFKC + casefold + remove non-word",
+    "threshold": 1.0
+  },
+  "near_duplicate": {
+    "unit": "word 5-gram",
+    "metric": "Jaccard",
+    "threshold": 0.8
+  },
+  "problem_statement_overlap": {
+    "unit": "word 5-gram",
+    "metric": "intersection / smaller-set size",
+    "threshold": 0.6,
+    "minimum_shared_ngrams": 8
+  },
+  "benchmarks": {
+    "gsm8k": {
+      "examples": 1319,
+      "record_digest": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf"
+    },
+    "math500": {
+      "examples": 500,
+      "record_digest": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec"
+    },
+    "controlled_math": {
+      "examples": 12,
+      "record_digest": "45603979c72a224ea3a98a1f46f54a3a6227e9b3a1e4c3763ece3710093e7ca0"
+    },
+    "frozen_math_ppl": {
+      "examples": 48,
+      "record_digest": "6965dad61798470002c31896008623a40416a38f30e68228225f506e840948f2"
+    },
+    "frozen_general_ppl": {
+      "examples": 89,
+      "record_digest": "e3e60e6795978a7a9cead2bb9e78bf0987180ed474c35502e1b5c62852d045c6"
+    }
+  },
+  "collisions": [
+    {
+      "source_index": 7573,
+      "uuid": "db050216-efe4-564d-9d5b-d7ba1f239acc",
+      "problem_sha256": "7de1b30975203c7182955e8fbaa56e957d05baaa388b8210e568191d4b56cd4c",
+      "matches": [
+        {
+          "benchmark": "math500",
+          "benchmark_index": 230,
+          "match_type": "problem_statement_overlap_word_5gram_containment",
+          "score": 0.758621,
+          "shared_ngrams": 22
+        }
+      ]
+    },
+    {
+      "source_index": 8522,
+      "uuid": "44549fdb-c278-58af-b843-ac63138985fe",
+      "problem_sha256": "53f83291b477744b4af6f0ed029008fd31038677484ceba66694a351830d20fd",
+      "matches": [
+        {
+          "benchmark": "math500",
+          "benchmark_index": 292,
+          "match_type": "normalized_exact",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "source_index": 24545,
+      "uuid": "7e733226-d500-5382-ab72-d3d4f0d627c7",
+      "problem_sha256": "6252b16793d32bba03c0a874b1127c960663de80efe15bee7772cc105856e4c4",
+      "matches": [
+        {
+          "benchmark": "math500",
+          "benchmark_index": 230,
+          "match_type": "problem_statement_overlap_word_5gram_containment",
+          "score": 0.617647,
+          "shared_ngrams": 21
+        }
+      ]
+    },
+    {
+      "source_index": 28530,
+      "uuid": "aff885ac-f242-555b-8646-e82b34750982",
+      "problem_sha256": "2409a3e2c8738616c1c07fdc64e35eb25981e6a33cba6507623d3b23724d96a4",
+      "matches": [
+        {
+          "benchmark": "math500",
+          "benchmark_index": 224,
+          "match_type": "problem_statement_overlap_word_5gram_containment",
+          "score": 0.615385,
+          "shared_ngrams": 8
+        }
+      ]
+    }
+  ],
+  "policy": "every matched SFT item is removed before the 20,000-example set is finalized",
+  "remaining_known_collisions": 0,
+  "limitation": "lexical matching cannot rule out semantic paraphrases or upstream model-pretraining contamination"
+}

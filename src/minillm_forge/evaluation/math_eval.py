@@ -6,13 +6,35 @@ from decimal import Decimal, InvalidOperation
 from typing import Any
 
 FINAL_PATTERNS = [
-    re.compile(r"\\boxed\{([^{}]+)\}"),
     re.compile(r"(?:final answer|answer)\s*(?:is|:)?\s*([^\n.]+)", re.IGNORECASE),
     re.compile(r"####\s*([^\n]+)"),
 ]
 
 
+def _balanced_boxed_answers(text: str) -> list[str]:
+    answers: list[str] = []
+    marker = r"\boxed{"
+    start = 0
+    while (marker_index := text.find(marker, start)) >= 0:
+        content_start = marker_index + len(marker)
+        depth = 1
+        index = content_start
+        while index < len(text) and depth:
+            if text[index] == "{":
+                depth += 1
+            elif text[index] == "}":
+                depth -= 1
+            index += 1
+        if depth == 0:
+            answers.append(text[content_start : index - 1].strip())
+        start = content_start
+    return answers
+
+
 def extract_final_answer(text: str) -> str:
+    boxed = _balanced_boxed_answers(text)
+    if boxed:
+        return boxed[-1]
     for pattern in FINAL_PATTERNS:
         matches = pattern.findall(text)
         if matches:
@@ -24,6 +46,8 @@ def extract_final_answer(text: str) -> str:
 def normalize_answer(answer: str) -> str:
     normalized = answer.strip().lower()
     normalized = normalized.replace(",", "").replace("$", "")
+    normalized = normalized.replace(r"\left", "").replace(r"\right", "")
+    normalized = normalized.replace(r"\dfrac", r"\frac").replace(r"\tfrac", r"\frac")
     normalized = re.sub(r"\\(?:text|mathrm)\{([^{}]*)\}", r"\1", normalized)
     normalized = normalized.rstrip(". ")
     try:

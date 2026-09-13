@@ -1,0 +1,54 @@
+{
+  "stage": "STAGE_GPU_2B_D",
+  "seeds": [
+    42,
+    31415,
+    271828
+  ],
+  "arms": [
+    "B-FULL",
+    "C-FULL",
+    "B-LORA",
+    "C-LORA",
+    "B-QLORA",
+    "C-QLORA"
+  ],
+  "formal_runs": [
+    "B-FULL-s42",
+    "B-FULL-s31415",
+    "B-FULL-s271828",
+    "C-FULL-s42",
+    "C-FULL-s31415",
+    "C-FULL-s271828",
+    "B-LORA-s42",
+    "B-LORA-s31415",
+    "B-LORA-s271828",
+    "C-LORA-s42",
+    "C-LORA-s31415",
+    "C-LORA-s271828",
+    "B-QLORA-s42",
+    "B-QLORA-s31415",
+    "B-QLORA-s271828",
+    "C-QLORA-s42",
+    "C-QLORA-s31415",
+    "C-QLORA-s271828"
+  ],
+  "paired_across_all_six_arms": true,
+  "sampler": "torch.randperm over the frozen 19,200-row train partition",
+  "permutations": {
+    "42": {
+      "examples": 19200,
+      "uint32_le_sha256": "0c89abf02e63ed9a6b65045461d8838323e841f11e4a7a19aca8c85e3b87e760"
+    },
+    "31415": {
+      "examples": 19200,
+      "uint32_le_sha256": "4c18e59dea93605202017c2ea916c10add570090e5e457b97df92b3c07864cfa"
+    },
+    "271828": {
+      "examples": 19200,
+      "uint32_le_sha256": "dc4224e8219aaa62f451833646dfcc725ddb9c8b46da3d07ed921e917ff8c232"
+    }
+  },
+  "validation_partition_is_seed_invariant": true,
+  "failed_seed_replacement": "forbidden"
+}

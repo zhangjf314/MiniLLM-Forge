@@ -1,0 +1,70 @@
+{
+  "stage": "STAGE_GPU_2B_D",
+  "dataset_id": "SFT_MATH_V1",
+  "dataset": "open-r1/OpenR1-Math-220k",
+  "subset": "default",
+  "split": "train",
+  "revision": "e4e141ec9dea9f8326f4d347be56105859b2bd68",
+  "license": "Apache-2.0",
+  "selection": "first 20,000 accepted in pinned streaming order after frozen quality, deduplication, serialization, and benchmark-collision filters",
+  "scanned_source_rows": 29619,
+  "accepted_examples": 20000,
+  "rejections": {
+    "benchmark_collision": 4,
+    "duplicate": 71,
+    "quality": 9075,
+    "serialization": 11,
+    "too_few_target_tokens": 458
+  },
+  "fields": {
+    "prompt": "problem",
+    "response": "solution",
+    "reference_answer": "reference_answer"
+  },
+  "serialization": "Qwen chat template; system+user masked; assistant-only loss",
+  "system_prompt": "You are a mathematical reasoning assistant.",
+  "max_length": 1024,
+  "tokenizer": "Qwen/Qwen3-0.6B-Base",
+  "tokenizer_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "tokenizer_digest": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+  "all": {
+    "examples": 20000,
+    "input_tokens_after_truncation": 9497152,
+    "assistant_target_tokens": 7303832,
+    "untruncated_tokens": 10009838,
+    "truncated_examples": 1684,
+    "record_digest": "275c974aee0c9473fe5981deef36bf92d7d605371cb16f3d995c04782c79e77c",
+    "path": "data\\processed\\gpu2b\\sft_math_v1.jsonl",
+    "file_sha256": "275c974aee0c9473fe5981deef36bf92d7d605371cb16f3d995c04782c79e77c"
+  },
+  "train": {
+    "examples": 19200,
+    "input_tokens_after_truncation": 9127756,
+    "assistant_target_tokens": 7024493,
+    "untruncated_tokens": 9619652,
+    "truncated_examples": 1624,
+    "record_digest": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+    "path": "data\\processed\\gpu2b\\sft_math_v1_train.jsonl",
+    "file_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2"
+  },
+  "validation": {
+    "examples": 800,
+    "input_tokens_after_truncation": 369396,
+    "assistant_target_tokens": 279339,
+    "untruncated_tokens": 390186,
+    "truncated_examples": 60,
+    "record_digest": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+    "path": "data\\processed\\gpu2b\\sft_math_v1_validation.jsonl",
+    "file_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59"
+  },
+  "split_rule": "800 smallest sha256('gpu2b-validation-v1:' + uuid) values form validation; source order preserved within each partition",
+  "formal_budget": {
+    "epochs": 1,
+    "training_examples": 19200,
+    "assistant_target_tokens": 7024493,
+    "optimizer_steps": 1200,
+    "micro_batch_size": 1,
+    "gradient_accumulation_steps": 16
+  },
+  "baseline_commit": "5479eaea03432532af6d4eb7ded4cda97176b3d7"
+}
