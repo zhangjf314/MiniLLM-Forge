@@ -4,7 +4,7 @@
   "classification": "GPU2B_Q0_PASS",
   "status": "PASS",
   "formal_training_runs_launched": 0,
-  "code_commit": "f4338c85c7aaf458b6e1386fa488f9b1f1efa0cf",
+  "code_commit": "52cb008ce6e56aa4001fc1c9460275520c154ecc",
   "working_tree_clean": true,
   "platform": "Windows-10-10.0.26100-SP0",
   "python": "3.11.15 (main, Jun 11 2026, 04:59:07) [MSC v.1944 64 bit (AMD64)]",
@@ -20,7 +20,7 @@
         "pytest",
         "-q"
       ],
-      "output": "........................................                                 [100%]\n40 passed in 5.71s\n"
+      "output": "........................................                                 [100%]\n40 passed in 4.74s\n"
     },
     "ruff": {
       "status": "PASS",
@@ -55,7 +55,7 @@
         "lock",
         "--check"
       ],
-      "output": "Resolved 111 packages in 1ms\n"
+      "output": "Resolved 111 packages in 2ms\n"
     },
     "build": {
       "status": "PASS",
@@ -64,7 +64,7 @@
         "uv",
         "build"
       ],
-      "output": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\minillm_forge-1.0.0.tar.gz\nSuccessfully built dist\\minillm_forge-1.0.0-py3-none-any.whl\n"
+      "output": "Building source distribution...\nWARN Retry attempt #0. Sleeping 1.6043868s before the next attempt\nBuilding wheel from source distribution...\nSuccessfully built dist\\minillm_forge-1.0.0.tar.gz\nSuccessfully built dist\\minillm_forge-1.0.0-py3-none-any.whl\n"
     },
     "yaml": {
       "status": "PASS",
@@ -266,6 +266,6 @@
       "classification": "STAGE_GPU_2B_D_COMPLETE"
     }
   },
-  "started_at_unix": 1789279964.6440935,
-  "ended_at_unix": 1789279983.8753266
+  "started_at_unix": 1789280502.2449737,
+  "ended_at_unix": 1789280533.1832519
 }

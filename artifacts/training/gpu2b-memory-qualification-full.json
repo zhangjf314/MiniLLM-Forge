@@ -16,6 +16,18 @@
       "nan_count": 0,
       "inf_count": 0,
       "oom_count": 0
+    },
+    {
+      "status": "FAIL",
+      "classification": "STAGE_GPU_2B_BLOCKED_BY_MEMORY_QUALIFICATION",
+      "code_commit": "f4338c85c7aaf458b6e1386fa488f9b1f1efa0cf",
+      "actual_optimizer_updates": 64,
+      "peak_allocated_vram_mib": 5647.36962890625,
+      "peak_reserved_vram_mib": 11672.0,
+      "minimum_observed_headroom_mib": 0.0,
+      "nan_count": 0,
+      "inf_count": 0,
+      "oom_count": 0
     }
   ],
   "actual_optimizer_updates": 64,
@@ -24,8 +36,13 @@
   "actual_target_tokens": 378911,
   "peak_allocated_vram_mib": 5647.36962890625,
   "peak_reserved_vram_mib": 11672.0,
-  "minimum_observed_headroom_mib": 0.0,
-  "median_target_tokens_per_second": 1128.0568085567916,
+  "minimum_observed_headroom_mib": 35,
+  "maximum_observed_system_vram_used_mib": 7776,
+  "system_vram_monitor_samples": 1423,
+  "system_vram_monitor_errors": [],
+  "cuda_mem_get_info_minimum_free_mib": 0.0,
+  "memory_measurement_note": "The nvidia-smi physical-memory monitor is authoritative for the frozen system-headroom gate. CUDA allocator counters are retained separately because WDDM may report virtual reservations above physical capacity.",
+  "median_target_tokens_per_second": 1093.2521255841657,
   "nan_count": 0,
   "inf_count": 0,
   "oom_count": 0,
@@ -41,9 +58,9 @@
   "qlora_identity": {
     "status": "PASS"
   },
-  "code_commit": "f4338c85c7aaf458b6e1386fa488f9b1f1efa0cf",
-  "started_at_unix": 1789279996.5867345,
-  "ended_at_unix": 1789280408.975635,
+  "code_commit": "52cb008ce6e56aa4001fc1c9460275520c154ecc",
+  "started_at_unix": 1789280542.52871,
+  "ended_at_unix": 1789280902.011706,
   "trainer_state": {
     "global_step": 64,
     "epoch": 1,

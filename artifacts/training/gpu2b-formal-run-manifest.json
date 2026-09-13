@@ -2,7 +2,7 @@
   "stage": "STAGE_GPU_2B",
   "phase": "GPU2B-T",
   "execution_order_authority": "artifacts/training/seed-manifest.json:formal_runs",
-  "code_commit": "f4338c85c7aaf458b6e1386fa488f9b1f1efa0cf",
+  "code_commit": "52cb008ce6e56aa4001fc1c9460275520c154ecc",
   "formal_training_authorized": false,
   "runs": [
     {
