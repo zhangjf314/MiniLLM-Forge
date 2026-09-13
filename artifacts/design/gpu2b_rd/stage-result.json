@@ -1,0 +1,49 @@
+{
+  "stage": "STAGE_GPU_2B_RD",
+  "classification": "STAGE_GPU_2B_RD_COMPLETE",
+  "execution_class": "ZERO_TRAINING_WORK",
+  "predecessor": "STAGE_GPU_2B_BLOCKED_BY_MEMORY_QUALIFICATION",
+  "recovery_mode": "HARDWARE_MIGRATION",
+  "future_stage": "STAGE_GPU_2B_H1",
+  "scientific_design_change": "NONE",
+  "configuration_change": "NONE",
+  "historical_gpu2b_relabeling": "FORBIDDEN",
+  "scientific_endpoint_measured": false,
+  "numerical_launches": {
+    "training": 0,
+    "benchmark": 0,
+    "ppl": 0,
+    "generation": 0
+  },
+  "resource_authority": {
+    "observed_physical_vram_used_mib": 7776,
+    "required_minimum_headroom_mib": 1536,
+    "implied_lower_bound_mib": 9312,
+    "preferred_future_physical_vram_gib": 12,
+    "preferred_capacity_is_scientific_requirement": false
+  },
+  "h1_gate_policy": {
+    "fresh_q0_required": true,
+    "fresh_full_q64_required": true,
+    "fresh_lora_q64_required": true,
+    "fresh_qlora_q64_required": true,
+    "fresh_full_resume_required": true,
+    "fresh_lora_resume_required": true,
+    "fresh_qlora_resume_required": true,
+    "minimum_physical_headroom_mib": 1536,
+    "historical_qualification_import_allowed": false,
+    "formal_training_before_all_gates_pass": false
+  },
+  "frozen_scientific_design": {
+    "initializations": ["BASE_INIT", "CPT_INIT"],
+    "adaptation_methods": ["FULL_SFT", "LORA", "QLORA"],
+    "seeds": [42, 31415, 271828],
+    "formal_runs": 18,
+    "primary_science": "CPT_TO_DOWNSTREAM_SFT_TRANSFER",
+    "primary_contrast": "C-FULL - B-FULL",
+    "primary_benchmarks": ["GSM8K", "MATH-500"]
+  },
+  "design_baseline_commit": "caf660d13041ce561698ff41ba94ad0f470664a2",
+  "historical_evidence": "artifacts/training/gpu2b-stage-result.json",
+  "reports_directory": "reports/gpu2b_rd"
+}
