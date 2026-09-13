@@ -54,10 +54,14 @@ class TrainingState:
     global_step: int = 0
     epoch: int = 0
     batches_seen: int = 0
+    examples_seen: int = 0
     tokens_seen: int = 0
+    target_tokens_seen: int = 0
     best_validation_loss: float = float("inf")
     nan_count: int = 0
+    inf_count: int = 0
     oom_count: int = 0
+    minimum_headroom_mb: float | None = None
     history: list[dict[str, Any]] = field(default_factory=list)
     sampler_state: dict[str, Any] | None = None
 
@@ -223,20 +227,29 @@ class ForgeTrainer:
         self.state.best_validation_loss = min(self.state.best_validation_loss, mean_loss)
         return result
 
-    def train(self) -> TrainingState:
+    def train_until(self, target_step: int, *, finalize: bool = False) -> TrainingState:
+        """Train to an explicit optimizer step, preserving resumable iterator state.
+
+        ``target_step`` is bounded by the configured schedule length.  Qualification
+        controls use this method to stop exactly on an accumulation boundary, seal a
+        checkpoint, and continue without changing the scheduler's total-step contract.
+        """
+        if not self.state.global_step <= target_step <= self.config.max_steps:
+            raise ValueError("target_step must be between global_step and configured max_steps")
         if len(self.train_loader) == 0:
             raise ValueError("train_loader must contain at least one batch")
         self.model.train()
         self.optimizer.zero_grad(set_to_none=True)
         window_loss = 0.0
         window_tokens = 0
+        window_target_tokens = 0
         window_batches = 0
         window_started = time.perf_counter()
         activation_stats: dict[str, float] = {}
 
-        while self.state.global_step < self.config.max_steps:
+        while self.state.global_step < target_step:
             for raw_batch in self.train_loader:
-                if self.state.global_step >= self.config.max_steps:
+                if self.state.global_step >= target_step:
                     break
                 batch = self._prepare_batch(raw_batch)
                 try:
@@ -254,7 +267,10 @@ class ForgeTrainer:
                     if will_log and logits is not None:
                         activation_stats = tensor_statistics(logits)
                     if not bool(torch.isfinite(loss)):
-                        self.state.nan_count += 1
+                        if bool(torch.isnan(loss)):
+                            self.state.nan_count += 1
+                        else:
+                            self.state.inf_count += 1
                         raise FloatingPointError(
                             f"non-finite training loss at step {self.state.global_step}"
                         )
@@ -274,9 +290,21 @@ class ForgeTrainer:
                     raise
 
                 self.state.batches_seen += 1
+                self.state.examples_seen += int(batch["input_ids"].shape[0])
                 tokens = int(batch.get("attention_mask", batch["input_ids"].ne(-1)).sum())
+                target_tokens = int(batch.get("labels", batch["input_ids"]).ne(-100).sum())
                 self.state.tokens_seen += tokens
+                self.state.target_tokens_seen += target_tokens
+                if self.device.type == "cuda":
+                    free_bytes, _ = torch.cuda.mem_get_info(self.device)
+                    free_mb = free_bytes / 1024**2
+                    self.state.minimum_headroom_mb = (
+                        free_mb
+                        if self.state.minimum_headroom_mb is None
+                        else min(self.state.minimum_headroom_mb, free_mb)
+                    )
                 window_tokens += tokens
+                window_target_tokens += target_tokens
                 window_loss += float(loss.detach())
                 window_batches += 1
                 accumulation_boundary = (
@@ -310,15 +338,18 @@ class ForgeTrainer:
                         "grad_norm": float(grad_norm),
                         "parameter_norm": global_parameter_norm(self.model),
                         "tokens_per_second": window_tokens / elapsed,
+                        "target_tokens_per_second": window_target_tokens / elapsed,
                         "tokens_seen": self.state.tokens_seen,
+                        "target_tokens_seen": self.state.target_tokens_seen,
                         "nan_count": self.state.nan_count,
+                        "inf_count": self.state.inf_count,
                         "oom_count": self.state.oom_count,
                         "peak_vram_mb": self.peak_vram_mb(),
                         **activation_stats,
                     }
                     self.state.history.append(record)
                     self._log(record)
-                    window_loss, window_tokens, window_batches = 0.0, 0, 0
+                    window_loss, window_tokens, window_target_tokens, window_batches = 0.0, 0, 0, 0
                     activation_stats = {}
                     window_started = time.perf_counter()
 
@@ -333,12 +364,16 @@ class ForgeTrainer:
                     self.model.train()
                 if self.config.save_every and self.state.global_step % self.config.save_every == 0:
                     self._save(f"step-{self.state.global_step:08d}.pt")
-                if self.state.global_step >= self.config.max_steps:
+                if self.state.global_step >= target_step:
                     break
             self.state.epoch += 1
 
-        final_evaluation = self.evaluate()
-        self._save("last.pt", final_evaluation)
-        if self.writer is not None:
-            self.writer.close()
+        if finalize:
+            final_evaluation = self.evaluate()
+            self._save("last.pt", final_evaluation)
+            if self.writer is not None:
+                self.writer.close()
         return self.state
+
+    def train(self) -> TrainingState:
+        return self.train_until(self.config.max_steps, finalize=True)

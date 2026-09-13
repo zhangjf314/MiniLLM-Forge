@@ -15,6 +15,8 @@ def load_qlora_model(
     alpha: int = 32,
     dropout: float = 0.05,
     target_modules: str | Sequence[str] = "all-linear",
+    bias: str = "none",
+    modules_to_save: Sequence[str] | None = None,
     trust_remote_code: bool = False,
     **kwargs: Any,
 ):
@@ -53,4 +55,6 @@ def load_qlora_model(
         alpha=alpha,
         dropout=dropout,
         target_modules=target_modules,
+        bias=bias,
+        modules_to_save=modules_to_save,
     )

@@ -1,0 +1,1 @@
+"""Stage-level execution contracts."""

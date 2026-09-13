@@ -11,6 +11,8 @@ def add_lora_adapters(
     alpha: int = 32,
     dropout: float = 0.05,
     target_modules: str | Sequence[str] = "all-linear",
+    bias: str = "none",
+    modules_to_save: Sequence[str] | None = None,
 ):
     try:
         from peft import LoraConfig, TaskType, get_peft_model
@@ -18,13 +20,16 @@ def add_lora_adapters(
         raise RuntimeError("install 'peft' to use LoRA") from exc
     if rank <= 0 or alpha <= 0:
         raise ValueError("LoRA rank and alpha must be positive")
+    if bias not in {"none", "all", "lora_only"}:
+        raise ValueError("LoRA bias must be none, all, or lora_only")
     config = LoraConfig(
         task_type=TaskType.CAUSAL_LM,
         r=rank,
         lora_alpha=alpha,
         lora_dropout=dropout,
         target_modules=target_modules,
-        bias="none",
+        bias=bias,
+        modules_to_save=list(modules_to_save) if modules_to_save else None,
     )
     return get_peft_model(model, config)
 
