@@ -454,7 +454,7 @@ def _digest_value(value: Any) -> str:
             digest.update(b"tensor")
             digest.update(str(tensor.dtype).encode())
             digest.update(str(tuple(tensor.shape)).encode())
-            digest.update(tensor.view(torch.uint8).numpy().tobytes())
+            digest.update(tensor.reshape(-1).view(torch.uint8).numpy().tobytes())
         elif isinstance(item, np.ndarray):
             digest.update(b"ndarray")
             digest.update(str(item.dtype).encode())

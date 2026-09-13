@@ -1,6 +1,7 @@
 import random
 
 import numpy as np
+import pytest
 import torch
 
 from minillm_forge.training.checkpoint import load_checkpoint, save_checkpoint
@@ -49,3 +50,45 @@ def test_rng_restore_keeps_default_generator_state_on_cpu():
     }
     restore_rng_state(state)
     assert torch.get_rng_state().device.type == "cpu"
+
+
+def test_checkpoint_ignores_bnb_auxiliary_state_only_for_4bit_model(tmp_path):
+    class MockFourBitLinear(torch.nn.Linear):
+        is_loaded_in_4bit = True
+
+    model = MockFourBitLinear(3, 2)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.1)
+    path = save_checkpoint(
+        tmp_path / "four-bit.pt",
+        model=model,
+        optimizer=optimizer,
+        scheduler=None,
+        scaler=None,
+        trainer_state={"global_step": 0},
+        config={},
+    )
+    payload = torch.load(path, weights_only=False)
+    payload["model"]["weight.quant_state.bitsandbytes__nf4"] = torch.ones(1)
+    torch.save(payload, path)
+
+    load_checkpoint(path, model=model, optimizer=optimizer)
+
+
+def test_checkpoint_keeps_strict_loading_for_non_4bit_model(tmp_path):
+    model = torch.nn.Linear(3, 2)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.1)
+    path = save_checkpoint(
+        tmp_path / "ordinary.pt",
+        model=model,
+        optimizer=optimizer,
+        scheduler=None,
+        scaler=None,
+        trainer_state={"global_step": 0},
+        config={},
+    )
+    payload = torch.load(path, weights_only=False)
+    payload["model"]["weight.quant_state.bitsandbytes__nf4"] = torch.ones(1)
+    torch.save(payload, path)
+
+    with pytest.raises(RuntimeError, match="Unexpected key"):
+        load_checkpoint(path, model=model, optimizer=optimizer)

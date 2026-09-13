@@ -6,6 +6,7 @@ import json
 import math
 import os
 import platform
+import shutil
 import subprocess
 import time
 from pathlib import Path
@@ -391,7 +392,31 @@ def memory_qualification(
         raise RuntimeError("qualification was not prospectively listed in the bounded grid")
     output_dir = Path("runs/gpu2d/qualification/q1") / test_key.lower()
     metrics_path = output_dir / "metrics.jsonl"
+    previous_attempts = list(matrix["tests"][test_key].get("previous_attempts", []))
     if metrics_path.exists():
+        records = [
+            json.loads(line)
+            for line in metrics_path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        prior_train = [record for record in records if record.get("event") == "train"]
+        if prior_train:
+            archive = output_dir / (
+                f"metrics-interrupted-at-step-{prior_train[-1]['global_step']:04d}.jsonl"
+            )
+            shutil.copy2(metrics_path, archive)
+            previous_attempts.append(
+                {
+                    "classification": "INFRA_INTERRUPTION",
+                    "updates_completed": prior_train[-1]["global_step"],
+                    "nan_count": prior_train[-1]["nan_count"],
+                    "inf_count": prior_train[-1]["inf_count"],
+                    "oom_count": prior_train[-1]["oom_count"],
+                    "preserved_metrics": str(archive),
+                    "preserved_metrics_sha256": file_sha256(archive),
+                    "rerun_authorized": True,
+                }
+            )
         metrics_path.unlink()
     started = time.time()
     trainer = None
@@ -502,6 +527,7 @@ def memory_qualification(
             "os": platform.platform(),
         },
         "code_commit": _git_commit(),
+        "previous_attempts": previous_attempts,
         "formal_run": False,
         "benchmark_result": False,
     }
@@ -595,6 +621,42 @@ def resume_qualification(
     if matrix["tests"][test_key]["status"] != "PASS":
         raise RuntimeError(f"{test_key} Q1 must pass before resume qualification")
     root = Path("runs/gpu2d/qualification/q2") / test_key.lower()
+    previous_attempts = []
+    for branch in ("continuous", "interrupted"):
+        metrics = root / branch / "metrics.jsonl"
+        if not metrics.exists():
+            continue
+        records = [
+            json.loads(line)
+            for line in metrics.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        train_records = [record for record in records if record.get("event") == "train"]
+        if train_records:
+            if family == "QLORA":
+                reason = (
+                    "bitsandbytes NF4 auxiliary state was serialized but rejected "
+                    "by the ordinary strict PyTorch model loader."
+                )
+            else:
+                reason = "Scalar optimizer tensor digest did not support zero dimensions."
+            archive = metrics.with_name(
+                f"metrics-verified-software-fault-at-step-"
+                f"{train_records[-1]['global_step']:04d}.jsonl"
+            )
+            shutil.copy2(metrics, archive)
+            previous_attempts.append(
+                {
+                    "classification": "VERIFIED_SOFTWARE_FAULT",
+                    "branch": branch,
+                    "updates_completed": train_records[-1]["global_step"],
+                    "reason": reason,
+                    "preserved_metrics": str(archive),
+                    "preserved_metrics_sha256": file_sha256(archive),
+                    "rerun_authorized": True,
+                }
+            )
+        metrics.unlink()
     continuous, _ = build_trainer(
         family, context, variant, max_steps=16, output_dir=root / "continuous"
     )
@@ -670,6 +732,7 @@ def resume_qualification(
         "trajectory_match": trajectory_match,
         "sample_order_match": sample_order_match,
         "rng_match": rng_match,
+        "previous_attempts": previous_attempts,
         "continuous_final": continuous_final,
         "resumed_final": resumed_final,
         "formal_run": False,

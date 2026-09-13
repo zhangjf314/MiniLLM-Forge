@@ -9,6 +9,32 @@ import numpy as np
 import torch
 from torch import nn
 
+_BNB_QUANTIZATION_AUXILIARY_SUFFIXES = (
+    ".absmax",
+    ".quant_map",
+    ".nested_absmax",
+    ".nested_quant_map",
+    ".quant_state.bitsandbytes__nf4",
+    ".quant_state.bitsandbytes__fp4",
+)
+
+
+def _model_state_for_load(model: nn.Module, state: dict[str, Any]) -> dict[str, Any]:
+    """Drop immutable bitsandbytes serialization metadata for a fresh 4-bit base.
+
+    bitsandbytes adds quantization metadata to ``state_dict`` through save hooks, but
+    its modules do not consume those keys through PyTorch's ordinary strict loader.
+    The freshly constructed model already owns the same frozen quantization state;
+    adapter and other registered tensors remain subject to strict loading.
+    """
+    if not getattr(model, "is_loaded_in_4bit", False):
+        return state
+    return {
+        key: value
+        for key, value in state.items()
+        if not key.endswith(_BNB_QUANTIZATION_AUXILIARY_SUFFIXES)
+    }
+
 
 def capture_rng_state() -> dict[str, Any]:
     state: dict[str, Any] = {
@@ -69,7 +95,7 @@ def load_checkpoint(
     restore_rng: bool = True,
 ) -> dict[str, Any]:
     checkpoint = torch.load(Path(path), map_location=map_location, weights_only=False)
-    model.load_state_dict(checkpoint["model"])
+    model.load_state_dict(_model_state_for_load(model, checkpoint["model"]))
     if optimizer is not None and checkpoint.get("optimizer") is not None:
         optimizer.load_state_dict(checkpoint["optimizer"])
     if scheduler is not None and checkpoint.get("scheduler") is not None:

@@ -1,10 +1,12 @@
 {
   "stage": "STAGE_GPU_2D_R0",
-  "status": "FROZEN_BEFORE_GPU_QUALIFICATION",
+  "classification": "GPU2D_REDUCED_CONTEXT_PEFT_RECOMMENDED",
+  "status": "COMPLETE",
   "historical_boundary": {
     "GPU2B": "STAGE_GPU_2B_BLOCKED_BY_MEMORY_QUALIFICATION",
     "GPU2C": "GPU2C_BLOCKED_BY_MEMORY_QUALIFICATION",
-    "preserved": true
+    "preserved": true,
+    "historical_artifacts_modified": false
   },
   "measured_retention_judgment": {
     "context_768": {
@@ -19,20 +21,36 @@
       "final_answer_retention_rate": 0.6745833333333333,
       "final_answer_retention_relative_to_1024": 0.7322064559895981,
       "zero_assistant_examples_excluded": 38,
-      "judgment": "MATERIAL_SCIENTIFIC_EXPOSURE_LOSS"
+      "judgment": "MATERIAL_SCIENTIFIC_EXPOSURE_LOSS_ACCEPTED_ONLY_AFTER_HIGHER_CONTEXT_PATHS_FAILED"
     },
     "judgment_timing": "AFTER_COMPLETE_RETENTION_ANALYSIS_AND_BEFORE_GPU_QUALIFICATION"
   },
   "candidate_A": {
     "name": "UNIFIED_REDUCED_CONTEXT_PEFT",
-    "preferred_context": 768,
-    "fallback_context": 512,
+    "selected_context": 512,
     "formal_runs": 12,
     "matrix": "2 initializations x 2 methods x 3 seeds",
-    "claim_scope": "CPT_TO_PEFT_SFT_TRANSFER_UNDER_FROZEN_REDUCED_CONTEXT",
-    "resource_status": "NOT_YET_QUALIFIED",
-    "resume_status": "NOT_RUN",
-    "formal_campaign_authorized": false
+    "claim_scope": "CPT_TO_PEFT_SFT_TRANSFER_UNDER_FROZEN_512_CONTEXT",
+    "lora_resource_status": "PASS",
+    "qlora_resource_status": "PASS",
+    "lora_resume_status": "PASS",
+    "qlora_resume_status": "PASS",
+    "resource_status": "QUALIFIED",
+    "scientific_value": "Controlled Base/CPT transfer comparison for both LoRA and QLoRA, limited to a newly frozen 512-context exposure.",
+    "portfolio_value": "Highest available value: real LoRA and QLoRA, multi-seed paired transfer, and two frozen math benchmarks.",
+    "scientific_cost": "Relative to the 1024-context production exposure, 26.29% of assistant tokens and 26.78% of final-answer retention are lost; this is a material data-exposure change.",
+    "compute_estimate": {
+      "label": "ESTIMATE",
+      "lora_training_hours_per_run": 2.0504,
+      "qlora_training_hours_per_run": 2.5907,
+      "total_training_hours": 27.8464,
+      "evaluation_generation_ceiling_tokens_per_run": 931328,
+      "assumed_generation_throughput_tokens_per_second_range": [20, 40],
+      "evaluation_hours_total_range": [77.6107, 155.2213],
+      "campaign_hours_total_range": [105.4571, 183.0677],
+      "notes": "Training extrapolates 64-update Q1 wall time to 1200 updates. Evaluation uses the frozen 1819-problem, 512-max-new-token ceiling and an explicit unmeasured 20-40 token/s planning assumption; actual EOS termination should reduce it."
+    },
+    "formal_campaign_authorized": true
   },
   "candidate_B": {
     "name": "QLORA_ONLY_CONTEXT_1024",
@@ -40,12 +58,24 @@
     "formal_runs": 6,
     "matrix": "2 initializations x 1 method x 3 seeds",
     "claim_scope": "CPT_TO_QLORA_SFT_TRANSFER_UNDER_1024_CONTEXT_QLORA",
-    "resource_status": "NOT_YET_QUALIFIED",
-    "resume_status": "NOT_RUN",
+    "qlora_resource_status": "FAIL",
+    "resume_status": "NOT_RUN_BECAUSE_Q1_FAILED",
+    "resource_status": "BLOCKED_BY_MEMORY_QUALIFICATION",
+    "scientific_value": "Would preserve the 1024-context exposure and a clean QLoRA Base/CPT contrast, but no formal execution is authorized.",
+    "portfolio_value": "Narrower than Candidate A because it omits formal LoRA; presently unavailable on the frozen 8GB environment.",
+    "compute_estimate": {
+      "label": "ESTIMATE_FOR_PLANNING_ONLY_BLOCKED_CANDIDATE",
+      "qlora_training_hours_per_run": 3.0546,
+      "total_training_hours": 18.3277,
+      "evaluation_hours_total_range": [38.8053, 77.6107],
+      "campaign_hours_total_range": [57.133, 95.9384]
+    },
     "formal_campaign_authorized": false
   },
   "candidate_C": {
     "name": "CONSTRAINED_LORA_CONTEXT_1024",
+    "context": 1024,
+    "formal_runs_if_selected": 6,
     "claim_scope": "CPT_TO_RESOURCE_CONSTRAINED_LORA_SFT_TRANSFER",
     "scientific_change": "NEW_PEFT_CONFIGURATION",
     "bounded_variants": [
@@ -54,6 +84,8 @@
         "rank": 8,
         "alpha": 16,
         "targets": "all-linear",
+        "trainable_parameters": 5046272,
+        "trainable_percent": 0.8395115569123419,
         "config_sha256": "2b7b04dae04f2562c2bb3dd1fb77e3ff86d94a3fe9a8ddf86a521d5a01c473e3"
       },
       {
@@ -61,26 +93,31 @@
         "rank": 16,
         "alpha": 32,
         "targets": ["q_proj", "k_proj", "v_proj", "o_proj"],
+        "trainable_parameters": 4587520,
+        "trainable_percent": 0.7637752318603382,
         "config_sha256": "bd5821889a783ef049cf6fb20ee47ca30a9e90a19f8bbfb371352395a763aa4a"
       }
     ],
     "resource_status": "BOUNDED_FALLBACK_NOT_RUN",
+    "resume_status": "NOT_RUN",
+    "scientific_value": "Could preserve context 1024 but would answer a newly constrained-LoRA question with changed adapter capacity.",
+    "portfolio_value": "Lower than the qualified dual-method Candidate A; further memory search is not justified.",
+    "compute_estimate": {
+      "label": "ESTIMATE_USING_UNQUALIFIED_GPU2C_LORA_1024_PROXY",
+      "proxy_training_hours_per_run": 2.2005,
+      "proxy_total_training_hours": 13.2029,
+      "evaluation_hours_total_range": [38.8053, 77.6107],
+      "proxy_campaign_hours_total_range": [52.0082, 90.8136],
+      "notes": "No Candidate C GPU trial was run, so this is not a measured Candidate C runtime."
+    },
     "formal_campaign_authorized": false
   },
-  "qualification_order": [
-    "LORA_R16_ALL_LINEAR_768",
-    "LORA_R16_ALL_LINEAR_512_IF_768_FAILS",
-    "QLORA_R16_ALL_LINEAR_1024",
-    "QLORA_MATCHED_REDUCED_CONTEXT_IF_CANDIDATE_A_REMAINS_VIABLE",
-    "RESUME_FOR_HIGHEST_PRIORITY_RESOURCE_FEASIBLE_CANDIDATE",
-    "CANDIDATE_C_ONLY_IF_A_AND_B_DO_NOT_YIELD_A_QUALIFIED_STUDY"
-  ],
-  "selection_order": [
-    "CANDIDATE_A_CONTEXT_768_IF_BOTH_METHODS_AND_RESUME_PASS",
-    "CANDIDATE_B_CONTEXT_1024_OVER_CANDIDATE_A_CONTEXT_512_WHEN_BOTH_QUALIFY",
-    "CANDIDATE_A_CONTEXT_512_IF_B_FAILS_AND_BOTH_A_METHODS_AND_RESUME_PASS",
-    "CANDIDATE_C_AS_BOUNDED_FALLBACK",
-    "NO_8GB_FORMAL_STUDY"
+  "selection_rationale": [
+    "Candidate A at 768 is blocked because matched-context QLoRA failed the unchanged 1536 MiB headroom gate.",
+    "Candidate B is blocked because QLoRA at 1024 failed the unchanged 1536 MiB headroom gate.",
+    "Candidate A at 512 passed Q1 and exact Q2 for both LoRA and QLoRA.",
+    "The 512 exposure loss is material but retains a majority of the 1024 assistant and final-answer signal; it is accepted only after the higher-context paths failed.",
+    "Candidate C remains NOT_RUN because a higher-value bounded path already qualified."
   ],
   "memory_authority": {
     "physical_monitor": "nvidia-smi independent sampling",
@@ -88,8 +125,9 @@
     "allocator_configuration": "INHERITED_DEFAULT; PYTORCH_CUDA_ALLOC_CONF_UNSET",
     "historical_gate_changed": false
   },
-  "formal_campaign_authorized": false,
-  "recommended_formal_stage": null,
+  "recommended_formal_stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "formal_campaign_authorized": true,
+  "authorization_scope": "NEXT_STAGE_ONLY",
   "formal_training_launches": 0,
   "benchmark_launches": 0
 }

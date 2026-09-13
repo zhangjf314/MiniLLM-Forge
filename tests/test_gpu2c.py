@@ -11,6 +11,11 @@ def test_gpu2c_state_digest_is_content_sensitive_and_dict_order_invariant():
     assert _digest_value(left) != _digest_value(changed)
 
 
+def test_gpu2c_state_digest_supports_scalar_optimizer_tensors():
+    assert _digest_value(torch.tensor(8.0)) == _digest_value(torch.tensor(8.0))
+    assert _digest_value(torch.tensor(8.0)) != _digest_value(torch.tensor(9.0))
+
+
 def test_gpu2c_snapshot_comparison_reports_each_field():
     result = _snapshot_comparison({"a": 1, "b": 2}, {"a": 1, "b": 3})
     assert result == {"all_match": False, "field_matches": {"a": True, "b": False}}
