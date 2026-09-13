@@ -6,6 +6,7 @@ import os
 import platform
 import subprocess
 import sys
+import threading
 import time
 from dataclasses import asdict
 from pathlib import Path
@@ -47,6 +48,60 @@ EXPECTED_TRAIN_EXAMPLES = 19_200
 EXPECTED_VALIDATION_EXAMPLES = 800
 EXPECTED_TARGET_TOKENS = 7_024_493
 EXPECTED_UPDATES = 1_200
+
+
+class NvidiaMemoryMonitor:
+    """Sample physical GPU memory independently of the CUDA allocator on WDDM."""
+
+    def __init__(self, interval_seconds: float = 0.2) -> None:
+        self.interval_seconds = interval_seconds
+        self.minimum_free_mib: int | None = None
+        self.maximum_used_mib: int | None = None
+        self.samples = 0
+        self.errors: list[str] = []
+        self._stop = threading.Event()
+        self._thread: threading.Thread | None = None
+
+    def _sample(self) -> None:
+        try:
+            output = subprocess.check_output(
+                [
+                    "nvidia-smi",
+                    "--query-gpu=memory.used,memory.free",
+                    "--format=csv,noheader,nounits",
+                ],
+                text=True,
+                stderr=subprocess.STDOUT,
+            )
+            used_text, free_text = output.splitlines()[0].split(",")
+            used, free = int(used_text.strip()), int(free_text.strip())
+            self.maximum_used_mib = (
+                used if self.maximum_used_mib is None else max(self.maximum_used_mib, used)
+            )
+            self.minimum_free_mib = (
+                free if self.minimum_free_mib is None else min(self.minimum_free_mib, free)
+            )
+            self.samples += 1
+        except Exception as exc:
+            if len(self.errors) < 10:
+                self.errors.append(f"{type(exc).__name__}: {exc}")
+
+    def _run(self) -> None:
+        while not self._stop.is_set():
+            self._sample()
+            self._stop.wait(self.interval_seconds)
+
+    def __enter__(self) -> NvidiaMemoryMonitor:
+        self._sample()
+        self._thread = threading.Thread(target=self._run, daemon=True)
+        self._thread.start()
+        return self
+
+    def __exit__(self, *_: object) -> None:
+        self._stop.set()
+        if self._thread is not None:
+            self._thread.join(timeout=5)
+        self._sample()
 
 
 def file_sha256(path: str | Path) -> str:
@@ -604,8 +659,9 @@ def memory_qualification(family: str, *, steps: int = 64) -> dict[str, Any]:
     if metrics_path.exists():
         metrics_path.unlink()
     started = time.time()
-    trainer, metadata = build_trainer(family, max_steps=steps, output_dir=output_dir)
-    trainer.train_until(steps, finalize=True)
+    with NvidiaMemoryMonitor() as memory_monitor:
+        trainer, metadata = build_trainer(family, max_steps=steps, output_dir=output_dir)
+        trainer.train_until(steps, finalize=True)
     history = [record for record in trainer.state.history if record.get("event") == "train"]
     grad_norms = [float(record["grad_norm"]) for record in history]
     rates = [float(record["target_tokens_per_second"]) for record in history]
@@ -617,7 +673,7 @@ def memory_qualification(family: str, *, steps: int = 64) -> dict[str, Any]:
         and state.oom_count == 0
         and bool(grad_norms)
         and all(torch.isfinite(torch.tensor(grad_norms)))
-        and (state.minimum_headroom_mb or 0) >= 1536
+        and (memory_monitor.minimum_free_mib or 0) >= 1536
         and metadata["qlora_identity"]["status"] == "PASS"
     )
     result = {
@@ -637,7 +693,16 @@ def memory_qualification(family: str, *, steps: int = 64) -> dict[str, Any]:
         "actual_target_tokens": state.target_tokens_seen,
         "peak_allocated_vram_mib": trainer.peak_vram_mb(),
         "peak_reserved_vram_mib": trainer.peak_reserved_vram_mb(),
-        "minimum_observed_headroom_mib": state.minimum_headroom_mb,
+        "minimum_observed_headroom_mib": memory_monitor.minimum_free_mib,
+        "maximum_observed_system_vram_used_mib": memory_monitor.maximum_used_mib,
+        "system_vram_monitor_samples": memory_monitor.samples,
+        "system_vram_monitor_errors": memory_monitor.errors,
+        "cuda_mem_get_info_minimum_free_mib": state.minimum_headroom_mb,
+        "memory_measurement_note": (
+            "The nvidia-smi physical-memory monitor is authoritative for the frozen "
+            "system-headroom gate. CUDA allocator counters are retained separately because "
+            "WDDM may report virtual reservations above physical capacity."
+        ),
         "median_target_tokens_per_second": median(rates) if rates else None,
         "nan_count": state.nan_count,
         "inf_count": state.inf_count,
