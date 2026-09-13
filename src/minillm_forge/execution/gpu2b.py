@@ -560,6 +560,7 @@ def build_trainer(
             seed=seed,
             device=training["device"],
             tensorboard=False,
+            empty_cache_after_step=True,
         ),
         run_config=config,
     )
@@ -580,6 +581,25 @@ def memory_qualification(family: str, *, steps: int = 64) -> dict[str, Any]:
     if preflight_result["status"] != "PASS":
         raise RuntimeError("GPU2B-Q0 must pass before memory qualification")
     output_dir = Path("runs/gpu2b/qualification/memory") / family.lower()
+    destination = Path(f"artifacts/training/gpu2b-memory-qualification-{family.lower()}.json")
+    previous_attempts = []
+    if destination.exists():
+        previous = json.loads(destination.read_text(encoding="utf-8"))
+        previous_attempts.extend(previous.get("previous_attempts", []))
+        previous_attempts.append(
+            {
+                "status": previous.get("status"),
+                "classification": previous.get("classification"),
+                "code_commit": previous.get("code_commit"),
+                "actual_optimizer_updates": previous.get("actual_optimizer_updates"),
+                "peak_allocated_vram_mib": previous.get("peak_allocated_vram_mib"),
+                "peak_reserved_vram_mib": previous.get("peak_reserved_vram_mib"),
+                "minimum_observed_headroom_mib": previous.get("minimum_observed_headroom_mib"),
+                "nan_count": previous.get("nan_count"),
+                "inf_count": previous.get("inf_count"),
+                "oom_count": previous.get("oom_count"),
+            }
+        )
     metrics_path = output_dir / "metrics.jsonl"
     if metrics_path.exists():
         metrics_path.unlink()
@@ -610,6 +630,7 @@ def memory_qualification(family: str, *, steps: int = 64) -> dict[str, Any]:
             else "STAGE_GPU_2B_BLOCKED_BY_MEMORY_QUALIFICATION"
         ),
         "status": "PASS" if passed else "FAIL",
+        "previous_attempts": previous_attempts,
         "actual_optimizer_updates": state.global_step,
         "actual_examples": state.examples_seen,
         "actual_input_tokens": state.tokens_seen,
@@ -630,8 +651,11 @@ def memory_qualification(family: str, *, steps: int = 64) -> dict[str, Any]:
         "code_commit": _git_commit(),
         "started_at_unix": started,
         "ended_at_unix": time.time(),
-        "trainer_state": asdict(state),
+        "trainer_state": {
+            key: value
+            for key, value in asdict(state).items()
+            if key not in {"history", "sampler_state"}
+        },
     }
-    destination = Path(f"artifacts/training/gpu2b-memory-qualification-{family.lower()}.json")
     write_json(destination, result)
     return result

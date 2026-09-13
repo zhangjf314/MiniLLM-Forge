@@ -40,6 +40,7 @@ class TrainingConfig:
     device: str = "auto"
     fail_on_non_finite: bool = True
     tensorboard: bool = True
+    empty_cache_after_step: bool = False
 
     def __post_init__(self) -> None:
         for name in ("max_steps", "gradient_accumulation_steps", "log_every"):
@@ -326,6 +327,8 @@ class ForgeTrainer:
                     self.scheduler.step()
                 self.optimizer.zero_grad(set_to_none=True)
                 self.state.global_step += 1
+                if self.config.empty_cache_after_step and self.device.type == "cuda":
+                    torch.cuda.empty_cache()
 
                 if self.state.global_step % self.config.log_every == 0:
                     elapsed = max(time.perf_counter() - window_started, 1e-9)
