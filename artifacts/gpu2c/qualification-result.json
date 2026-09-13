@@ -1,0 +1,89 @@
+{
+  "stage": "STAGE_GPU_2C_Q",
+  "classification": "GPU2C_BLOCKED_BY_MEMORY_QUALIFICATION",
+  "status": "FAIL",
+  "gates": {
+    "Q0": "PASS",
+    "Q1_LORA": "FAIL",
+    "Q1_QLORA": "NOT_RUN",
+    "Q2_LORA": "NOT_RUN",
+    "Q2_QLORA": "NOT_RUN",
+    "REGRESSION": "PASS"
+  },
+  "formal_campaign_authorized": false,
+  "formal_training_launches": 0,
+  "benchmark_launches": 0,
+  "protocol_sha256": "d35238b2e07cb1922401e1199bff8da76e2b3da2ee85f409956236fd30e00385",
+  "q0_sha256": "0e7764036d24c6105c7238522dd70f5a099d1426bda66eb1f6e01f7ffb4decc5",
+  "q1_lora_sha256": "a0dcec8a8b9a0fa49be2112f815f45efd2338befccb787a72d0cbbbc996efacb",
+  "q1_qlora_sha256": "87d67bcf8e33958afc789119edf9f7da42b06f128fb3b7bb974595b48e1f3bc1",
+  "q2_sha256": "bb900ccb3eb2a265a393ecb02c774f895e0ea0469329120ccb509ef8d8f631da",
+  "regression": {
+    "status": "PASS",
+    "checks": {
+      "pytest": {
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "-q"
+        ],
+        "output": ".............................................                            [100%]\n45 passed in 5.92s\n"
+      },
+      "ruff": {
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "check",
+          "."
+        ],
+        "output": "All checks passed!\n"
+      },
+      "format": {
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "format",
+          "--check",
+          "."
+        ],
+        "output": "156 files already formatted\n"
+      },
+      "lock": {
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "uv",
+          "lock",
+          "--check"
+        ],
+        "output": "Resolved 111 packages in 1ms\n"
+      },
+      "build": {
+        "status": "PASS",
+        "returncode": 0,
+        "command": [
+          "uv",
+          "build"
+        ],
+        "output": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\minillm_forge-1.0.0.tar.gz\nSuccessfully built dist\\minillm_forge-1.0.0-py3-none-any.whl\n"
+      },
+      "yaml": {
+        "status": "PASS",
+        "files_parsed": 29,
+        "errors": []
+      }
+    }
+  },
+  "protocol_commit": "71f0e49b6e370698a112a82adb07bae9e866f140",
+  "qualification_execution_code_commit": "71f0e49b6e370698a112a82adb07bae9e866f140",
+  "recommended_next_stage": "NEW_PROSPECTIVE_RECOVERY_DESIGN_REQUIRED"
+}

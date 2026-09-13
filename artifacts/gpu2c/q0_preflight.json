@@ -1,0 +1,281 @@
+{
+  "stage": "STAGE_GPU_2C_Q",
+  "phase": "GPU2C-Q0-P",
+  "classification": "GPU2C_Q0_P_PASS",
+  "status": "PASS",
+  "formal_campaign_authorized": false,
+  "formal_training_launches": 0,
+  "benchmark_launches": 0,
+  "code_commit": "71f0e49b6e370698a112a82adb07bae9e866f140",
+  "protocol_sha256": "d35238b2e07cb1922401e1199bff8da76e2b3da2ee85f409956236fd30e00385",
+  "checks": {
+    "dataset_identity": {
+      "status": "PASS",
+      "errors": [],
+      "partitions": {
+        "all": {
+          "path": "data\\processed\\gpu2b\\sft_math_v1.jsonl",
+          "expected_sha256": "275c974aee0c9473fe5981deef36bf92d7d605371cb16f3d995c04782c79e77c",
+          "actual_sha256": "275c974aee0c9473fe5981deef36bf92d7d605371cb16f3d995c04782c79e77c",
+          "examples": 20000
+        },
+        "train": {
+          "path": "data\\processed\\gpu2b\\sft_math_v1_train.jsonl",
+          "expected_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+          "actual_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+          "examples": 19200
+        },
+        "validation": {
+          "path": "data\\processed\\gpu2b\\sft_math_v1_validation.jsonl",
+          "expected_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+          "actual_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+          "examples": 800
+        }
+      },
+      "train_input_tokens": 9127756,
+      "train_assistant_target_tokens": 7024493
+    },
+    "token_cache": {
+      "classification": "GPU2B_TOKEN_CACHE_VALIDATED",
+      "source_sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+      "tokenizer_digest": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+      "examples": 19200,
+      "input_tokens": 9127756,
+      "assistant_target_tokens": 7024493,
+      "cache_path": "data\\processed\\gpu2b\\sft_math_v1_train_tokens.pt",
+      "cache_sha256": "4b6ebe7f7784938f3056e0e062eb84c7ecb78e69736b1527d7ade76723e409f0",
+      "status": "PASS"
+    },
+    "assistant_mask": {
+      "status": "PASS",
+      "expected_sha256": "543c49926db447ecf3465956cc244a2ea8399105ac4220481e1f5f8f0fe77c69",
+      "actual_sha256": "543c49926db447ecf3465956cc244a2ea8399105ac4220481e1f5f8f0fe77c69"
+    },
+    "seed_permutations": {
+      "status": "PASS",
+      "seeds": {
+        "42": {
+          "status": "PASS",
+          "sample_count": 19200,
+          "expected_sha256": "0c89abf02e63ed9a6b65045461d8838323e841f11e4a7a19aca8c85e3b87e760",
+          "actual_sha256": "0c89abf02e63ed9a6b65045461d8838323e841f11e4a7a19aca8c85e3b87e760",
+          "first_indices": [
+            3942,
+            17860,
+            6664,
+            1537,
+            7542,
+            6835,
+            9580,
+            15658
+          ],
+          "last_indices": [
+            4002,
+            2456,
+            1058,
+            3337,
+            19044,
+            17477,
+            8868,
+            18738
+          ]
+        },
+        "31415": {
+          "status": "PASS",
+          "sample_count": 19200,
+          "expected_sha256": "4c18e59dea93605202017c2ea916c10add570090e5e457b97df92b3c07864cfa",
+          "actual_sha256": "4c18e59dea93605202017c2ea916c10add570090e5e457b97df92b3c07864cfa",
+          "first_indices": [
+            3390,
+            1685,
+            12279,
+            1114,
+            1017,
+            14060,
+            4950,
+            15229
+          ],
+          "last_indices": [
+            6840,
+            8366,
+            14894,
+            3864,
+            12626,
+            17579,
+            10730,
+            10682
+          ]
+        },
+        "271828": {
+          "status": "PASS",
+          "sample_count": 19200,
+          "expected_sha256": "dc4224e8219aaa62f451833646dfcc725ddb9c8b46da3d07ed921e917ff8c232",
+          "actual_sha256": "dc4224e8219aaa62f451833646dfcc725ddb9c8b46da3d07ed921e917ff8c232",
+          "first_indices": [
+            15234,
+            9542,
+            3999,
+            15901,
+            1699,
+            12260,
+            12846,
+            8450
+          ],
+          "last_indices": [
+            15683,
+            9575,
+            13924,
+            6238,
+            15475,
+            12237,
+            552,
+            753
+          ]
+        }
+      }
+    },
+    "base_checkpoint": {
+      "status": "PASS",
+      "model": "Qwen/Qwen3-0.6B-Base",
+      "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+      "parameter_count": 596049920,
+      "expected_config_sha256": "461f8999eee16aa9fa00ecc891755ef8067fca39f7880393fa7e670dbcc81413",
+      "actual_config_sha256": "461f8999eee16aa9fa00ecc891755ef8067fca39f7880393fa7e670dbcc81413"
+    },
+    "cpt_checkpoint": {
+      "status": "PASS",
+      "path": "runs/E04-qwen3-math-cpt/final_model",
+      "expected_model_sha256": "d9a30813347f1fa6076859fdf764ed241c48e8b4d4a7a44cb7746d035e6f2c4a",
+      "actual_model_sha256": "d9a30813347f1fa6076859fdf764ed241c48e8b4d4a7a44cb7746d035e6f2c4a",
+      "base_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+      "cpt_tokens": 10002432,
+      "cpt_updates": 2442,
+      "cpt_config_hash": "9f7e71c9b3654d44bf0af6dcffc0471b02bf81a7d504879cc230c4e941e901d6",
+      "validation_classification": "QWEN_MATH_CPT_VALIDATED_WITH_GENERAL_DEGRADATION"
+    },
+    "tokenizer": {
+      "status": "PASS",
+      "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+      "expected_sha256": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe",
+      "actual_sha256": "3fe32a8d9deb69b4b17efbc1af1bbde2dc345949efdc975ff315a3d066821cfe"
+    },
+    "configs": {
+      "status": "PASS",
+      "families": {
+        "LORA": {
+          "status": "PASS",
+          "path": "configs\\sft\\gpu2b\\lora-config.yaml",
+          "expected_file_sha256": "841c60f02bea18db86d76f3258ac001254f21c4b3541bb87949640dd8be53b93",
+          "actual_file_sha256": "841c60f02bea18db86d76f3258ac001254f21c4b3541bb87949640dd8be53b93",
+          "semantic_config_hash": "5d8bba87b8d1e812b8c82377163d5f73011341f3dd97b9233deb4a844f672f57"
+        },
+        "QLORA": {
+          "status": "PASS",
+          "path": "configs\\sft\\gpu2b\\qlora-config.yaml",
+          "expected_file_sha256": "5b09200b77b3e63d15acf505364974fdbb814926c25e7d8b09b9047e265b1414",
+          "actual_file_sha256": "5b09200b77b3e63d15acf505364974fdbb814926c25e7d8b09b9047e265b1414",
+          "semantic_config_hash": "17bb6ff4e2a8691ae1a385c9e4aa1529da4ed7fd1c57ec51a2a9ae1dc7b47408"
+        }
+      }
+    },
+    "benchmarks": {
+      "status": "PASS",
+      "gsm8k": {
+        "status": "PASS",
+        "examples": 1319,
+        "revision": "740312add88f781978c0658806c59bc2815b9866",
+        "expected_sha256": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf",
+        "actual_sha256": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf"
+      },
+      "math500": {
+        "status": "PASS",
+        "examples": 500,
+        "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+        "expected_sha256": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec",
+        "actual_sha256": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec"
+      }
+    },
+    "static_artifacts": {
+      "status": "PASS",
+      "expected": {
+        "prompt": "77c3e381b5975746b71f359405cd465c8921c0ad79ec22f9961e596f0aad7b7c",
+        "evaluation_manifest": "eb13f3e67d78b14a4c177b08f2727380daad8a3fb2aa0b3c7b4f3f9174b0718e",
+        "scorer": "9a39f02e471367c7cec47b5ea2f2a6fd84ca09816b8ffcb0965b9e61c7bb3433",
+        "decision_rules": "431552622588d0d9819d060d001cc1b16731b0254336d451c0591c52b6d9cffd",
+        "contamination_report": "8cd2796c8a989b18b468b14db43c7e16868ac1b3d26155b7e36ba71d47fc4524"
+      },
+      "actual": {
+        "prompt": "77c3e381b5975746b71f359405cd465c8921c0ad79ec22f9961e596f0aad7b7c",
+        "evaluation_manifest": "eb13f3e67d78b14a4c177b08f2727380daad8a3fb2aa0b3c7b4f3f9174b0718e",
+        "scorer": "9a39f02e471367c7cec47b5ea2f2a6fd84ca09816b8ffcb0965b9e61c7bb3433",
+        "decision_rules": "431552622588d0d9819d060d001cc1b16731b0254336d451c0591c52b6d9cffd",
+        "contamination_report": "8cd2796c8a989b18b468b14db43c7e16868ac1b3d26155b7e36ba71d47fc4524"
+      }
+    },
+    "regression": {
+      "status": "PASS",
+      "checks": {
+        "pytest": {
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "-q"
+          ],
+          "output": ".............................................                            [100%]\n45 passed in 5.60s\n"
+        },
+        "ruff": {
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "check",
+            "."
+          ],
+          "output": "All checks passed!\n"
+        },
+        "format": {
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "format",
+            "--check",
+            "."
+          ],
+          "output": "155 files already formatted\n"
+        },
+        "lock": {
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "uv",
+            "lock",
+            "--check"
+          ],
+          "output": "Resolved 111 packages in 1ms\n"
+        },
+        "build": {
+          "status": "PASS",
+          "returncode": 0,
+          "command": [
+            "uv",
+            "build"
+          ],
+          "output": "Building source distribution...\nBuilding wheel from source distribution...\nSuccessfully built dist\\minillm_forge-1.0.0.tar.gz\nSuccessfully built dist\\minillm_forge-1.0.0-py3-none-any.whl\n"
+        },
+        "yaml": {
+          "status": "PASS",
+          "files_parsed": 29,
+          "errors": []
+        }
+      }
+    }
+  }
+}

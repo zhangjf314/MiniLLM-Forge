@@ -1,0 +1,9 @@
+{
+  "stage": "STAGE_GPU_2C_Q",
+  "phase": "GPU2C-Q1-QLORA",
+  "classification": "GPU2C_QLORA_NOT_RUN_AFTER_PRIOR_GATE_FAILURE",
+  "status": "NOT_RUN",
+  "reason": "A preceding qualification gate failed; sequential stop rule applied.",
+  "formal_run": false,
+  "benchmark_result": false
+}

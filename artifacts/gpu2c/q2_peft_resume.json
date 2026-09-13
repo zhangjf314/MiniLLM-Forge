@@ -1,0 +1,23 @@
+{
+  "stage": "STAGE_GPU_2C_Q",
+  "phase": "GPU2C-Q2-PEFT-RESUME",
+  "classification": "GPU2C_Q2_NOT_RUN_AFTER_Q1_GATE_FAILURE",
+  "status": "NOT_RUN",
+  "formal_campaign_authorized": false,
+  "methods": {
+    "LORA": {
+      "family": "LORA",
+      "status": "NOT_RUN",
+      "classification": "GPU2C_LORA_RESUME_NOT_RUN",
+      "reason": "Both Q1 memory gates did not pass.",
+      "formal_run": false
+    },
+    "QLORA": {
+      "family": "QLORA",
+      "status": "NOT_RUN",
+      "classification": "GPU2C_QLORA_RESUME_NOT_RUN",
+      "reason": "Both Q1 memory gates did not pass.",
+      "formal_run": false
+    }
+  }
+}

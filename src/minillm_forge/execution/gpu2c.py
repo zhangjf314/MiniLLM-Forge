@@ -677,10 +677,42 @@ def resume_qualification(family: str) -> dict[str, Any]:
 
 def finalize() -> dict[str, Any]:
     q0 = json.loads(Q0_RESULT.read_text(encoding="utf-8"))
-    q1 = {
-        family: json.loads(path.read_text(encoding="utf-8")) for family, path in Q1_RESULTS.items()
-    }
-    q2 = json.loads(Q2_RESULT.read_text(encoding="utf-8"))
+    q1: dict[str, dict[str, Any]] = {}
+    for family, path in Q1_RESULTS.items():
+        if path.exists():
+            q1[family] = json.loads(path.read_text(encoding="utf-8"))
+            continue
+        q1[family] = {
+            "stage": STAGE,
+            "phase": f"GPU2C-Q1-{family}",
+            "classification": f"GPU2C_{family}_NOT_RUN_AFTER_PRIOR_GATE_FAILURE",
+            "status": "NOT_RUN",
+            "reason": "A preceding qualification gate failed; sequential stop rule applied.",
+            "formal_run": False,
+            "benchmark_result": False,
+        }
+        write_json(path, q1[family])
+    if Q2_RESULT.exists():
+        q2 = json.loads(Q2_RESULT.read_text(encoding="utf-8"))
+    else:
+        q2 = {
+            "stage": STAGE,
+            "phase": "GPU2C-Q2-PEFT-RESUME",
+            "classification": "GPU2C_Q2_NOT_RUN_AFTER_Q1_GATE_FAILURE",
+            "status": "NOT_RUN",
+            "formal_campaign_authorized": False,
+            "methods": {
+                family: {
+                    "family": family,
+                    "status": "NOT_RUN",
+                    "classification": f"GPU2C_{family}_RESUME_NOT_RUN",
+                    "reason": "Both Q1 memory gates did not pass.",
+                    "formal_run": False,
+                }
+                for family in ("LORA", "QLORA")
+            },
+        }
+        write_json(Q2_RESULT, q2)
     regression = _regression()
     gates = {
         "Q0": q0["status"],
@@ -691,11 +723,21 @@ def finalize() -> dict[str, Any]:
         "REGRESSION": regression["status"],
     }
     passed = all(value == "PASS" for value in gates.values())
+    if passed:
+        classification = "GPU2C_FORMAL_CAMPAIGN_QUALIFIED"
+    elif q0["status"] != "PASS":
+        classification = "GPU2C_SCIENTIFIC_IDENTITY_FAILURE"
+    elif q1["LORA"]["status"] == "PASS" and q1["QLORA"]["status"] != "PASS":
+        classification = "GPU2C_LORA_QUALIFIED_QLORA_BLOCKED"
+    elif q1["QLORA"]["status"] == "PASS" and q1["LORA"]["status"] != "PASS":
+        classification = "GPU2C_QLORA_QUALIFIED_LORA_BLOCKED"
+    elif q1["LORA"]["status"] != "PASS" or q1["QLORA"]["status"] != "PASS":
+        classification = "GPU2C_BLOCKED_BY_MEMORY_QUALIFICATION"
+    else:
+        classification = "GPU2C_RESUME_QUALIFICATION_FAILED"
     result = {
         "stage": STAGE,
-        "classification": (
-            "GPU2C_FORMAL_CAMPAIGN_QUALIFIED" if passed else "GPU2C_RESUME_QUALIFICATION_FAILED"
-        ),
+        "classification": classification,
         "status": "PASS" if passed else "FAIL",
         "gates": gates,
         "formal_campaign_authorized": passed,
@@ -708,8 +750,10 @@ def finalize() -> dict[str, Any]:
         "q2_sha256": file_sha256(Q2_RESULT),
         "regression": regression,
         "protocol_commit": q0["code_commit"],
-        "qualification_commit": _git_commit(),
-        "recommended_next_stage": "STAGE_GPU_2C_F" if passed else None,
+        "qualification_execution_code_commit": _git_commit(),
+        "recommended_next_stage": (
+            "STAGE_GPU_2C_F" if passed else "NEW_PROSPECTIVE_RECOVERY_DESIGN_REQUIRED"
+        ),
     }
     write_json(QUALIFICATION_RESULT, result)
     return result
