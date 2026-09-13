@@ -1,0 +1,14 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "context": 512,
+  "source_records": 800,
+  "evaluable_records": 798,
+  "excluded_zero_assistant_records": [
+    43,
+    599
+  ],
+  "assistant_tokens": 211152,
+  "source_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+  "cache_path": "data\\processed\\gpu2d\\sft_math_context_512_validation_tokens.pt",
+  "cache_sha256": "8d559ec38db576403c69db03a3800033f6c358a0c5877fa299718919122b7bbd"
+}

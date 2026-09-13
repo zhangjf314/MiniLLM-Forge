@@ -1,0 +1,12 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "phase": "PRE_F1_INFRASTRUCTURE_VALIDATION",
+  "attempt": 1,
+  "classification": "VERIFIED_SOFTWARE_FAULT",
+  "status": "FIXED_BEFORE_FORMAL_TRAINING",
+  "reason": "The validation cache builder did not initially handle the production encoder's explicit exception for examples whose assistant span is fully truncated at context 512.",
+  "resolution": "Exclude exactly those zero-assistant validation examples and preserve their source indices in the formal validation manifest.",
+  "expected_excluded_records": 2,
+  "formal_training_launches": 0,
+  "formal_benchmark_launches": 0
+}

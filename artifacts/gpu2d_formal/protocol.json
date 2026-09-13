@@ -1,0 +1,195 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "status": "FROZEN_BEFORE_FORMAL_TRAINING",
+  "formal_baseline": "9dbd99ee6b92103ae2af742bca8e9ecbd9a216c8",
+  "claim_scope": "CPT_TO_PEFT_SFT_TRANSFER_UNDER_FROZEN_512_CONTEXT",
+  "formal_runs": 12,
+  "initializations": [
+    "BASE_INIT",
+    "CPT_INIT"
+  ],
+  "methods": [
+    "LORA",
+    "QLORA"
+  ],
+  "seeds": [
+    42,
+    31415,
+    271828
+  ],
+  "context": 512,
+  "data_manifest": {
+    "path": "artifacts\\gpu2d\\data_context_512.json",
+    "sha256": "f6d6f5c8f7c363ccd369b2c175c430bb1d5717bf14789a780a1daa465a72e8aa",
+    "encoded_dataset_digest": "7bfffc5a6a3a6abccea8e578a866249e5a6bd0b5ca8475865b9631f771783038",
+    "cache_sha256": "806bef413ae4fdcaeeccb114bdfd9e1f8e8c799d5b6e1d26ca594ad32a716b1c",
+    "train_records": 19200,
+    "eligible_training_records": 19162,
+    "validation_records": 800,
+    "assistant_tokens": 5177783,
+    "final_answer_retention_vs_1024": 0.7322064559895981,
+    "semantic_change": "SCIENTIFIC_DATA_EXPOSURE_CHANGE"
+  },
+  "config_contracts": {
+    "LORA": {
+      "path": "configs\\sft\\gpu2d\\lora-r16-all-linear-512.yaml",
+      "file_sha256": "4bfae74e3da2f0099535e727e9da6572057d57b6e9f8b254add1c33abfd16ade",
+      "semantic_sha256": "e6c0441ffc01f10281605da7f435984aa7c69e937fa2e1890bf593674539a37a",
+      "updates": 1200,
+      "checkpoint_selection": "FINAL_TOKEN_BUDGET_CHECKPOINT"
+    },
+    "QLORA": {
+      "path": "configs\\sft\\gpu2d\\qlora-r16-all-linear-512.yaml",
+      "file_sha256": "6804503eda40a1686223746e1abc9bb01b2c307c7d2d7ba3dfdb0703bda03fc6",
+      "semantic_sha256": "799f17e86547db07910657ac2086af6e8983d10e9acb0f93bc6951d872acb5e1",
+      "updates": 1200,
+      "checkpoint_selection": "FINAL_TOKEN_BUDGET_CHECKPOINT"
+    }
+  },
+  "benchmarks": {
+    "gsm8k": {
+      "dataset": "openai/gsm8k",
+      "subset": "main",
+      "split": "test",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "license": "MIT",
+      "examples": 1319,
+      "record_digest": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf",
+      "snapshot_path": "data\\processed\\gpu2b\\gsm8k_test.jsonl",
+      "snapshot_sha256": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf",
+      "problem_field": "question",
+      "answer_field": "answer",
+      "actual_snapshot_sha256": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf",
+      "problem_ids_sha256": "9262d6f55ca16e2cb899475ffad2c8c5ec1c437f246d92348d741abb9fccf6ba"
+    },
+    "math500": {
+      "dataset": "HuggingFaceH4/MATH-500",
+      "subset": "default",
+      "split": "test",
+      "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+      "license": "not declared by HF snapshot; upstream openai/prm800k is MIT",
+      "examples": 500,
+      "record_digest": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec",
+      "snapshot_path": "data\\processed\\gpu2b\\math500_test.jsonl",
+      "snapshot_sha256": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec",
+      "problem_field": "problem",
+      "answer_field": "answer",
+      "actual_snapshot_sha256": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec",
+      "problem_ids_sha256": "f9621d065ac72d07482e878b8bd87817c22904f4f4b75a705c70d57f9682466f"
+    }
+  },
+  "generation": {
+    "prompt": "Qwen chat template over frozen system prompt and benchmark problem",
+    "do_sample": false,
+    "temperature": null,
+    "num_beams": 1,
+    "max_new_tokens": 512,
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "pad_token_id": 151643,
+    "batch_size": "F0_QUALIFIED_VALUE",
+    "continuation_identity": "tokens through first stop token inclusive; batch-completion padding excluded"
+  },
+  "prompt": {
+    "system": "You are a mathematical reasoning assistant.",
+    "construction": "Qwen chat template over system and frozen benchmark problem",
+    "contract_sha256": "214d5992c5fecb6d235f9bd2f95222676627d601924781dc063940c704a0a66b",
+    "chat_template_sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5"
+  },
+  "scoring": {
+    "primary": "deterministic exact match after frozen extraction/normalization",
+    "gsm8k_reference_extraction": "substring after final #### marker",
+    "math500_reference_field": "answer",
+    "prediction_extraction": "last balanced boxed expression; else final-answer marker; else final non-empty line",
+    "manual_correction": false,
+    "evaluator": "src/minillm_forge/evaluation/math_eval.py",
+    "evaluator_sha256": "9a39f02e471367c7cec47b5ea2f2a6fd84ca09816b8ffcb0965b9e61c7bb3433",
+    "actual_evaluator_sha256": "9a39f02e471367c7cec47b5ea2f2a6fd84ca09816b8ffcb0965b9e61c7bb3433"
+  },
+  "checkpoint_selection": "FINAL_1200_UPDATE_CHECKPOINT",
+  "qualification_subset": {
+    "selection": "16 lowest SHA256(gpu2d-f0-v1:benchmark:benchmark_index)",
+    "ids": {
+      "gsm8k": [
+        "gsm8k-0482",
+        "gsm8k-0594",
+        "gsm8k-0674",
+        "gsm8k-1015",
+        "gsm8k-1131",
+        "gsm8k-0281",
+        "gsm8k-0289",
+        "gsm8k-0840",
+        "gsm8k-0390",
+        "gsm8k-0715",
+        "gsm8k-0047",
+        "gsm8k-0899",
+        "gsm8k-0063",
+        "gsm8k-0079",
+        "gsm8k-0251",
+        "gsm8k-1049"
+      ],
+      "math500": [
+        "math500-0318",
+        "math500-0023",
+        "math500-0190",
+        "math500-0464",
+        "math500-0028",
+        "math500-0232",
+        "math500-0183",
+        "math500-0123",
+        "math500-0422",
+        "math500-0296",
+        "math500-0364",
+        "math500-0149",
+        "math500-0244",
+        "math500-0361",
+        "math500-0373",
+        "math500-0427"
+      ]
+    }
+  },
+  "bootstrap": {
+    "seed": 20260913,
+    "replicates": 10000,
+    "confidence_level": 0.95,
+    "unit": "problem_id paired within method, seed, and benchmark",
+    "interpretation": "benchmark-problem sampling uncertainty only"
+  },
+  "decision_rule": {
+    "source": "reports/gpu2b/decision-rules.md",
+    "source_sha256": "431552622588d0d9819d060d001cc1b16731b0254336d451c0591c52b6d9cffd",
+    "positive_mean_margin_points": 1.0,
+    "negative_mean_margin_points": -1.0,
+    "minimum_directional_seeds": 2,
+    "conflict_margin_points": 0.5
+  },
+  "hypotheses": {
+    "H-P1": "LoRA CPT-vs-Base transfer under frozen 512-context SFT",
+    "H-P2": "QLoRA CPT-vs-Base transfer under frozen 512-context SFT",
+    "H-P3": "transfer direction consistency across LoRA and QLoRA",
+    "H-P4": "measured LoRA/QLoRA memory-quality-throughput trade-off"
+  },
+  "memory_gate": {
+    "minimum_physical_headroom_mib": 1536,
+    "authority": "independent nvidia-smi sampling"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "os": "Windows-10-10.0.26100-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_runtime": "12.8",
+    "driver": "577.02",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "physical_vram_mib": 8151,
+    "execution_mode": "WDDM",
+    "bitsandbytes": "0.50.2",
+    "transformers": "5.16.1",
+    "peft": "0.20.0",
+    "allocator_configuration": null
+  },
+  "source_tree_sha256": "f86a94a3ed341d34f87cc057bba6672b7b6e4ad1c050978ad7bd1bcc5c6a9874",
+  "formal_training_launches": 0,
+  "benchmark_launches": 0
+}

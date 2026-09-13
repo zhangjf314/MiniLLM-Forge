@@ -1,0 +1,103 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "status": "FROZEN_BEFORE_FIRST_FORMAL_RUN",
+  "execution_order_sha256": "aff269253a4fb69e34a02fc35e35af205efc2aa4cfdf314180b7624d45da0fa1",
+  "runs": {
+    "B-LORA-s42": {
+      "run_id": "B-LORA-s42",
+      "initialization": "BASE_INIT",
+      "family": "LORA",
+      "seed": 42,
+      "order_index": 1,
+      "status": "PENDING"
+    },
+    "C-LORA-s42": {
+      "run_id": "C-LORA-s42",
+      "initialization": "CPT_INIT",
+      "family": "LORA",
+      "seed": 42,
+      "order_index": 2,
+      "status": "PENDING"
+    },
+    "C-QLORA-s31415": {
+      "run_id": "C-QLORA-s31415",
+      "initialization": "CPT_INIT",
+      "family": "QLORA",
+      "seed": 31415,
+      "order_index": 3,
+      "status": "PENDING"
+    },
+    "B-QLORA-s31415": {
+      "run_id": "B-QLORA-s31415",
+      "initialization": "BASE_INIT",
+      "family": "QLORA",
+      "seed": 31415,
+      "order_index": 4,
+      "status": "PENDING"
+    },
+    "B-LORA-s271828": {
+      "run_id": "B-LORA-s271828",
+      "initialization": "BASE_INIT",
+      "family": "LORA",
+      "seed": 271828,
+      "order_index": 5,
+      "status": "PENDING"
+    },
+    "C-LORA-s271828": {
+      "run_id": "C-LORA-s271828",
+      "initialization": "CPT_INIT",
+      "family": "LORA",
+      "seed": 271828,
+      "order_index": 6,
+      "status": "PENDING"
+    },
+    "C-QLORA-s42": {
+      "run_id": "C-QLORA-s42",
+      "initialization": "CPT_INIT",
+      "family": "QLORA",
+      "seed": 42,
+      "order_index": 7,
+      "status": "PENDING"
+    },
+    "B-QLORA-s42": {
+      "run_id": "B-QLORA-s42",
+      "initialization": "BASE_INIT",
+      "family": "QLORA",
+      "seed": 42,
+      "order_index": 8,
+      "status": "PENDING"
+    },
+    "C-LORA-s31415": {
+      "run_id": "C-LORA-s31415",
+      "initialization": "CPT_INIT",
+      "family": "LORA",
+      "seed": 31415,
+      "order_index": 9,
+      "status": "PENDING"
+    },
+    "B-LORA-s31415": {
+      "run_id": "B-LORA-s31415",
+      "initialization": "BASE_INIT",
+      "family": "LORA",
+      "seed": 31415,
+      "order_index": 10,
+      "status": "PENDING"
+    },
+    "B-QLORA-s271828": {
+      "run_id": "B-QLORA-s271828",
+      "initialization": "BASE_INIT",
+      "family": "QLORA",
+      "seed": 271828,
+      "order_index": 11,
+      "status": "PENDING"
+    },
+    "C-QLORA-s271828": {
+      "run_id": "C-QLORA-s271828",
+      "initialization": "CPT_INIT",
+      "family": "QLORA",
+      "seed": 271828,
+      "order_index": 12,
+      "status": "PENDING"
+    }
+  }
+}

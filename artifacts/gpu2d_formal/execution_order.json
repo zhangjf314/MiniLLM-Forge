@@ -1,0 +1,41 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "status": "FROZEN_BEFORE_FIRST_FORMAL_RUN",
+  "generation_rule": "predeclared balanced paired-block order",
+  "order": [
+    "B-LORA-s42",
+    "C-LORA-s42",
+    "C-QLORA-s31415",
+    "B-QLORA-s31415",
+    "B-LORA-s271828",
+    "C-LORA-s271828",
+    "C-QLORA-s42",
+    "B-QLORA-s42",
+    "C-LORA-s31415",
+    "B-LORA-s31415",
+    "B-QLORA-s271828",
+    "C-QLORA-s271828"
+  ],
+  "order_sha256": "aff269253a4fb69e34a02fc35e35af205efc2aa4cfdf314180b7624d45da0fa1",
+  "balance": {
+    "paired_by_method_and_seed": true,
+    "base_first_pairs": 3,
+    "cpt_first_pairs": 3,
+    "all_methods_initializations_seeds_present_once": true
+  },
+  "seed_permutations": {
+    "42": {
+      "eligible_examples": 19162,
+      "uint32_le_sha256": "5f95136e3ea98e731882f22578f167550691b69399446ac5bf4c7c187c145e8f"
+    },
+    "31415": {
+      "eligible_examples": 19162,
+      "uint32_le_sha256": "b0648ce8f2d63ea642f3c8a7f84edccef8f17442860cd47b38462bc96200d2f6"
+    },
+    "271828": {
+      "eligible_examples": 19162,
+      "uint32_le_sha256": "95e223fc7748696538b437e2e01ceca38ff5d1fd8197c53725f00a6a119f45a8"
+    }
+  },
+  "formal_training_launches": 0
+}

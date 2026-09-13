@@ -1,0 +1,24 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "phase": "F0",
+  "attempt": 1,
+  "classification": "VERIFIED_POST_PERSISTENCE_PRESENTATION_FAULT",
+  "status": "QUALIFICATION_RESULT_PERSISTED_AND_VALID",
+  "reason": "After the complete PASS artifact and Markdown report were persisted, the Windows GBK console could not encode a Unicode progress character while the CLI printed the in-memory JSON result.",
+  "evidence": {
+    "process_exit_code": 1,
+    "exception": "UnicodeEncodeError",
+    "failed_operation": "CLI stdout rendering after result persistence",
+    "qualification_artifact": "artifacts/gpu2d_formal/eval_executor_qualification.json",
+    "qualification_status": "PASS",
+    "qualification_classification": "EVAL_EXECUTOR_QUALIFIED_SERIAL",
+    "selected_batch_size": 1,
+    "source_tree_match": true,
+    "protocol_hash_match": true
+  },
+  "formal_training_launches": 0,
+  "formal_benchmark_launches": 0,
+  "scientific_evidence_affected": false,
+  "rerun_required": false,
+  "operational_mitigation": "Set PYTHONUTF8=1 for subsequent Windows CLI launches."
+}

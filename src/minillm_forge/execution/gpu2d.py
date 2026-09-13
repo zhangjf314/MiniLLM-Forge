@@ -213,6 +213,16 @@ def _collator(features: list[dict[str, torch.Tensor]]) -> dict[str, torch.Tensor
 
 
 class GPU2DTrainer(ForgeTrainer):
+    def _log(self, record: dict[str, Any]) -> None:
+        monitor = getattr(self, "physical_monitor", None)
+        if monitor is not None and record.get("event") == "train":
+            record = {
+                **record,
+                "physical_vram_used_mib": monitor.latest_used_mib,
+                "physical_vram_headroom_mib": monitor.latest_free_mib,
+            }
+        super()._log(record)
+
     def _prepare_batch(self, batch: dict[str, Any]) -> dict[str, Any]:
         return super()._prepare_batch(
             {key: value for key, value in batch.items() if key != "source_index"}
@@ -224,6 +234,7 @@ def build_trainer(
     context: int,
     variant: str = "R16_ALL_LINEAR",
     *,
+    initialization: str = "BASE_INIT",
     seed: int = 42,
     max_steps: int = Q1_UPDATES,
     output_dir: str | Path,
@@ -233,7 +244,9 @@ def build_trainer(
     config = load_config(config_path)
     if int(config["data"]["max_length"]) != context:
         raise RuntimeError("frozen configuration/context mismatch")
-    model = _load_model(config, "BASE_INIT", seed)
+    if initialization not in {"BASE_INIT", "CPT_INIT"}:
+        raise ValueError("initialization must be BASE_INIT or CPT_INIT")
+    model = _load_model(config, initialization, seed)
     identity = qlora_identity(model) if family == "QLORA" else {"status": "PASS"}
     if identity["status"] != "PASS":
         raise RuntimeError("QLoRA hard identity gate failed")
@@ -282,6 +295,7 @@ def build_trainer(
         "parameters": trainable_parameter_summary(model),
         "qlora_identity": identity,
         "dataset_examples": len(dataset),
+        "initialization": initialization,
     }
 
 

@@ -1,0 +1,17 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "phase": "F0",
+  "attempt": 1,
+  "classification": "VERIFIED_SOFTWARE_FAULT",
+  "status": "INTERRUPTED_BEFORE_QUALIFICATION_RESULT",
+  "reason": "The LoRA evaluator model was not explicitly moved from CPU to CUDA outside the trainer path.",
+  "evidence": {
+    "observed_gpu_utilization_percent": 0,
+    "observed_physical_gpu_used_mib": 100,
+    "observed_physical_gpu_free_mib": 7711,
+    "process_was_alive": true
+  },
+  "formal_training_launches": 0,
+  "formal_benchmark_launches": 0,
+  "rerun_authorized": true
+}
