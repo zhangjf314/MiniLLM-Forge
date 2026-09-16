@@ -2,7 +2,12 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 
+from minillm_forge.execution.gpu2d_eval_recovery import (
+    finalize_evaluator_freeze,
+    recover_evaluator_runtime,
+)
 from minillm_forge.execution.gpu2d_formal import (
     EXECUTION_ORDER,
     analyze,
@@ -20,6 +25,9 @@ def main() -> None:
     subparsers.add_parser("freeze")
     subparsers.add_parser("qualify-evaluator")
     subparsers.add_parser("preflight")
+    subparsers.add_parser("recover-evaluator-runtime")
+    freeze_evaluator = subparsers.add_parser("freeze-evaluator")
+    freeze_evaluator.add_argument("--regression", type=Path, required=True)
     train = subparsers.add_parser("train-run")
     train.add_argument("--run-id", choices=EXECUTION_ORDER, required=True)
     evaluate = subparsers.add_parser("evaluate-run")
@@ -32,6 +40,10 @@ def main() -> None:
         result = qualify_evaluator()
     elif args.command == "preflight":
         result = preflight()
+    elif args.command == "recover-evaluator-runtime":
+        result = recover_evaluator_runtime()
+    elif args.command == "freeze-evaluator":
+        result = finalize_evaluator_freeze(json.loads(args.regression.read_text(encoding="utf-8")))
     elif args.command == "train-run":
         result = train_run(args.run_id)
     elif args.command == "evaluate-run":

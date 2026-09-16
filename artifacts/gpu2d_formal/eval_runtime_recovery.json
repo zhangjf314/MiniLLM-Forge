@@ -1,0 +1,2090 @@
+{
+  "stage": "STAGE_GPU_2D_E_R1_EXACT_EQUIVALENT_RUNTIME_RECOVERY",
+  "status": "FORMAL_LAUNCH_DECISION_READY",
+  "primary_classification": "REFERENCE_EVALUATOR_REMAINS_ONLY_VALID_PATH",
+  "reference_hours": 227.13,
+  "reference_lora_tokens_per_second": 15.288080593008738,
+  "reference_qlora_tokens_per_second": 13.249024012194292,
+  "kv_cache_reference": {
+    "LORA": {
+      "family": "LORA",
+      "model_class": "PeftModelForCausalLM",
+      "model_training": false,
+      "torch_grad_enabled_outside_inference_mode": true,
+      "torch_grad_enabled_inside_inference_mode": false,
+      "model_config_use_cache": true,
+      "generation_config_use_cache": null,
+      "generation_kwarg_use_cache": true,
+      "gradient_checkpointing_enabled": false,
+      "attention_implementation": "sdpa",
+      "cache_type": "DynamicCache",
+      "cache_present": true,
+      "cache_layers": 28,
+      "cache_sequence_length_after_prefill": 89,
+      "cache_sequence_length_after_one_decode": 90,
+      "cache_same_object": true,
+      "kv_cache_active": true
+    },
+    "QLORA": {
+      "family": "QLORA",
+      "model_class": "PeftModelForCausalLM",
+      "model_training": false,
+      "torch_grad_enabled_outside_inference_mode": true,
+      "torch_grad_enabled_inside_inference_mode": false,
+      "model_config_use_cache": true,
+      "generation_config_use_cache": null,
+      "generation_kwarg_use_cache": true,
+      "gradient_checkpointing_enabled": false,
+      "attention_implementation": "sdpa",
+      "cache_type": "DynamicCache",
+      "cache_present": true,
+      "cache_layers": 28,
+      "cache_sequence_length_after_prefill": 89,
+      "cache_sequence_length_after_one_decode": 90,
+      "cache_same_object": true,
+      "kv_cache_active": true
+    }
+  },
+  "evaluation_mode_audit": {
+    "LORA": {
+      "family": "LORA",
+      "model_class": "PeftModelForCausalLM",
+      "model_training": false,
+      "torch_grad_enabled_outside_inference_mode": true,
+      "torch_grad_enabled_inside_inference_mode": false,
+      "model_config_use_cache": true,
+      "generation_config_use_cache": null,
+      "generation_kwarg_use_cache": true,
+      "gradient_checkpointing_enabled": false,
+      "attention_implementation": "sdpa",
+      "cache_type": "DynamicCache",
+      "cache_present": true,
+      "cache_layers": 28,
+      "cache_sequence_length_after_prefill": 89,
+      "cache_sequence_length_after_one_decode": 90,
+      "cache_same_object": true,
+      "kv_cache_active": true
+    },
+    "QLORA": {
+      "family": "QLORA",
+      "model_class": "PeftModelForCausalLM",
+      "model_training": false,
+      "torch_grad_enabled_outside_inference_mode": true,
+      "torch_grad_enabled_inside_inference_mode": false,
+      "model_config_use_cache": true,
+      "generation_config_use_cache": null,
+      "generation_kwarg_use_cache": true,
+      "gradient_checkpointing_enabled": false,
+      "attention_implementation": "sdpa",
+      "cache_type": "DynamicCache",
+      "cache_present": true,
+      "cache_layers": 28,
+      "cache_sequence_length_after_prefill": 89,
+      "cache_sequence_length_after_one_decode": 90,
+      "cache_same_object": true,
+      "kv_cache_active": true
+    }
+  },
+  "termination_classification": "MODEL_DID_NOT_GENERATE_TERMINATION_TOKEN",
+  "termination_audit": {
+    "tokenizer_eos_token_id": 151643,
+    "tokenizer_eos_token": "<|endoftext|>",
+    "qwen_chat_termination_token_id": 151645,
+    "qwen_chat_termination_token": "<|im_end|>",
+    "chat_template_completed_assistant_last_token_id": 198,
+    "chat_template_assistant_termination_first_position": 11,
+    "chat_template_assistant_termination_last_position": 27,
+    "formal_generation_eos_token_ids": [
+      151643,
+      151645
+    ],
+    "cases_with_tokenizer_eos": 0,
+    "cases_with_chat_termination": 0,
+    "classification": "MODEL_DID_NOT_GENERATE_TERMINATION_TOKEN",
+    "scans": [
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0482",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0594",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0674",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1015",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1131",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0281",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0289",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0840",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0390",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0715",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0047",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0899",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0063",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0079",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0251",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1049",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0318",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0023",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0190",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0464",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0028",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0232",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0183",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0123",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0422",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0296",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0364",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0149",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0244",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0361",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0373",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0427",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0482",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0594",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0674",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1015",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1131",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0281",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0289",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0840",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0390",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0715",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0047",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0899",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0063",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0079",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0251",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1049",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0318",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0023",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0190",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0464",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0028",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0232",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0183",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0123",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0422",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0296",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0364",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0149",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0244",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0361",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0373",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0427",
+        "generated_tokens": 512,
+        "tokenizer_eos_first_position": null,
+        "chat_termination_first_position": null
+      }
+    ],
+    "model_and_generation_config": {
+      "LORA": {
+        "model_config_eos_token_id": 151643,
+        "generation_config_eos_token_id": 151643
+      },
+      "QLORA": {
+        "model_config_eos_token_id": 151643,
+        "generation_config_eos_token_id": 151643
+      }
+    }
+  },
+  "candidates": [
+    {
+      "name": "STATIC_CACHE",
+      "status": "REJECT",
+      "reason": "TritonMissing on current Windows/PyTorch environment"
+    },
+    {
+      "name": "LORA_MERGED_INFERENCE",
+      "status": "REJECT",
+      "reason": "single-case generated token IDs differed at token 1",
+      "screening": {
+        "reference_tokens_per_second": 14.256995549210492,
+        "merged_tokens_per_second": 22.081653711645505,
+        "exact_token_match": false
+      }
+    },
+    {
+      "name": "SERIAL_GREEDY_ALL_FAMILIES",
+      "status": "REJECT",
+      "reason": "QLoRA single-case path was slower despite exact output",
+      "screening": {
+        "qlora_speedup": 0.9396465262552269,
+        "exact_token_match": true
+      }
+    },
+    {
+      "name": "SERIAL_GREEDY_LORA_REFERENCE_GENERATE_QLORA",
+      "status": "FAIL",
+      "exact_equivalence": {
+        "LORA_gsm8k": {
+          "all_match": true,
+          "field_matches": {
+            "generated_token_ids": true,
+            "generated_text": true,
+            "extracted_answer": true,
+            "correct": true
+          }
+        },
+        "LORA_math500": {
+          "all_match": true,
+          "field_matches": {
+            "generated_token_ids": true,
+            "generated_text": true,
+            "extracted_answer": true,
+            "correct": true
+          }
+        },
+        "QLORA_gsm8k": {
+          "all_match": true,
+          "field_matches": {
+            "generated_token_ids": true,
+            "generated_text": true,
+            "extracted_answer": true,
+            "correct": true
+          }
+        },
+        "QLORA_math500": {
+          "all_match": true,
+          "field_matches": {
+            "generated_token_ids": true,
+            "generated_text": true,
+            "extracted_answer": true,
+            "correct": true
+          }
+        }
+      },
+      "reference_cells": {
+        "LORA_gsm8k": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 534.4501881999895,
+          "generated_tokens_per_second": 15.327901796779948,
+          "seconds_per_problem": 33.403136762499344,
+          "physical_peak_vram_mib": 1492,
+          "minimum_physical_headroom_mib": 6319,
+          "physical_monitor_errors": []
+        },
+        "LORA_math500": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 537.2343767997809,
+          "generated_tokens_per_second": 15.24846576050928,
+          "seconds_per_problem": 33.577148549986305,
+          "physical_peak_vram_mib": 1526,
+          "minimum_physical_headroom_mib": 6285,
+          "physical_monitor_errors": []
+        },
+        "QLORA_gsm8k": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 615.672969199717,
+          "generated_tokens_per_second": 13.305765251718583,
+          "seconds_per_problem": 38.479560574982315,
+          "physical_peak_vram_mib": 2110,
+          "minimum_physical_headroom_mib": 5701,
+          "physical_monitor_errors": []
+        },
+        "QLORA_math500": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 620.9464213999454,
+          "generated_tokens_per_second": 13.192764653560367,
+          "seconds_per_problem": 38.80915133749659,
+          "physical_peak_vram_mib": 2110,
+          "minimum_physical_headroom_mib": 5701,
+          "physical_monitor_errors": []
+        }
+      },
+      "candidate_cells": {
+        "LORA_gsm8k": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 541.4819812998176,
+          "generated_tokens_per_second": 15.1288506042902,
+          "seconds_per_problem": 33.8426238312386,
+          "physical_peak_vram_mib": 1524,
+          "minimum_physical_headroom_mib": 6287,
+          "physical_monitor_errors": []
+        },
+        "LORA_math500": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 497.16016630036756,
+          "generated_tokens_per_second": 16.477587214923144,
+          "seconds_per_problem": 31.072510393772973,
+          "physical_peak_vram_mib": 1638,
+          "minimum_physical_headroom_mib": 6173,
+          "physical_monitor_errors": []
+        },
+        "QLORA_gsm8k": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 615.672969199717,
+          "generated_tokens_per_second": 13.305765251718583,
+          "seconds_per_problem": 38.479560574982315,
+          "physical_peak_vram_mib": 2110,
+          "minimum_physical_headroom_mib": 5701,
+          "physical_monitor_errors": []
+        },
+        "QLORA_math500": {
+          "problems": 16,
+          "generated_tokens": 8192,
+          "generation_wall_seconds": 620.9464213999454,
+          "generated_tokens_per_second": 13.192764653560367,
+          "seconds_per_problem": 38.80915133749659,
+          "physical_peak_vram_mib": 2110,
+          "minimum_physical_headroom_mib": 5701,
+          "physical_monitor_errors": []
+        }
+      }
+    }
+  ],
+  "selected_evaluator": "REFERENCE_EVALUATOR",
+  "selected_projected_hours": 227.13048595747668,
+  "speedup": 1.0,
+  "exact_equivalence": true,
+  "exact_equivalence_cells": {
+    "LORA_gsm8k": {
+      "all_match": true,
+      "field_matches": {
+        "generated_token_ids": true,
+        "generated_text": true,
+        "extracted_answer": true,
+        "correct": true
+      }
+    },
+    "LORA_math500": {
+      "all_match": true,
+      "field_matches": {
+        "generated_token_ids": true,
+        "generated_text": true,
+        "extracted_answer": true,
+        "correct": true
+      }
+    },
+    "QLORA_gsm8k": {
+      "all_match": true,
+      "field_matches": {
+        "generated_token_ids": true,
+        "generated_text": true,
+        "extracted_answer": true,
+        "correct": true
+      }
+    },
+    "QLORA_math500": {
+      "all_match": true,
+      "field_matches": {
+        "generated_token_ids": true,
+        "generated_text": true,
+        "extracted_answer": true,
+        "correct": true
+      }
+    }
+  },
+  "minimum_headroom_mib": 5701,
+  "memory_gate_pass": true,
+  "reference_recheck": {
+    "cells": {
+      "LORA_gsm8k": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 534.4501881999895,
+        "generated_tokens_per_second": 15.327901796779948,
+        "seconds_per_problem": 33.403136762499344,
+        "physical_peak_vram_mib": 1492,
+        "minimum_physical_headroom_mib": 6319,
+        "physical_monitor_errors": []
+      },
+      "LORA_math500": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 537.2343767997809,
+        "generated_tokens_per_second": 15.24846576050928,
+        "seconds_per_problem": 33.577148549986305,
+        "physical_peak_vram_mib": 1526,
+        "minimum_physical_headroom_mib": 6285,
+        "physical_monitor_errors": []
+      },
+      "QLORA_gsm8k": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 615.672969199717,
+        "generated_tokens_per_second": 13.305765251718583,
+        "seconds_per_problem": 38.479560574982315,
+        "physical_peak_vram_mib": 2110,
+        "minimum_physical_headroom_mib": 5701,
+        "physical_monitor_errors": []
+      },
+      "QLORA_math500": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 620.9464213999454,
+        "generated_tokens_per_second": 13.192764653560367,
+        "seconds_per_problem": 38.80915133749659,
+        "physical_peak_vram_mib": 2110,
+        "minimum_physical_headroom_mib": 5701,
+        "physical_monitor_errors": []
+      }
+    },
+    "projection": {
+      "benchmark_problem_counts": {
+        "gsm8k": 1319,
+        "math500": 500
+      },
+      "family_hours_including_model_load": {
+        "LORA": 101.41942267738273,
+        "QLORA": 116.93571601575017
+      },
+      "benchmark_hours_excluding_model_load": {
+        "gsm8k": 158.02212964689718,
+        "math500": 60.32191657290241
+      },
+      "model_load_overhead_hours": 0.01109247333331344,
+      "projected_hours": 218.35513869313291
+    }
+  },
+  "candidate_performance": {
+    "cells": {
+      "LORA_gsm8k": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 541.4819812998176,
+        "generated_tokens_per_second": 15.1288506042902,
+        "seconds_per_problem": 33.8426238312386,
+        "physical_peak_vram_mib": 1524,
+        "minimum_physical_headroom_mib": 6287,
+        "physical_monitor_errors": []
+      },
+      "LORA_math500": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 497.16016630036756,
+        "generated_tokens_per_second": 16.477587214923144,
+        "seconds_per_problem": 31.072510393772973,
+        "physical_peak_vram_mib": 1638,
+        "minimum_physical_headroom_mib": 6173,
+        "physical_monitor_errors": []
+      },
+      "QLORA_gsm8k": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 615.672969199717,
+        "generated_tokens_per_second": 13.305765251718583,
+        "seconds_per_problem": 38.479560574982315,
+        "physical_peak_vram_mib": 2110,
+        "minimum_physical_headroom_mib": 5701,
+        "physical_monitor_errors": []
+      },
+      "QLORA_math500": {
+        "problems": 16,
+        "generated_tokens": 8192,
+        "generation_wall_seconds": 620.9464213999454,
+        "generated_tokens_per_second": 13.192764653560367,
+        "seconds_per_problem": 38.80915133749659,
+        "physical_peak_vram_mib": 2110,
+        "minimum_physical_headroom_mib": 5701,
+        "physical_monitor_errors": []
+      }
+    },
+    "projection": {
+      "benchmark_problem_counts": {
+        "gsm8k": 1319,
+        "math500": 500
+      },
+      "family_hours_including_model_load": {
+        "LORA": 100.29836328665009,
+        "QLORA": 116.93571601575017
+      },
+      "benchmark_hours_excluding_model_load": {
+        "gsm8k": 158.98826871967563,
+        "math500": 58.2347181093913
+      },
+      "model_load_overhead_hours": 0.01109247333331344,
+      "projected_hours": 217.23407930240026
+    },
+    "model_load_seconds": {
+      "LORA": 4.341941699851304,
+      "QLORA": 2.31354230013676
+    }
+  },
+  "candidate_projected_hours": 217.23407930240026,
+  "candidate_speedup": 1.0455564186192912,
+  "prefix_diagnostic": {
+    "summary": {
+      "cases": 64,
+      "first_parseable_position_counts": {
+        "64": 64,
+        "128": 0,
+        "192": 0,
+        "256": 0,
+        "384": 0,
+        "512": 0
+      },
+      "changed_after_first_parseable": 62,
+      "unchanged_after_first_parseable": 2
+    },
+    "details": [
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0482",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "dóla",
+          "128": "Keegan",
+          "192": "Keegan earned $8",
+          "256": "Keegan earned $83 and T",
+          "384": "Keegan earned $83 and Tasha earned $91,",
+          "512": "Keegan earned $83 and Tasha earned $91, so they have earned a total"
+        },
+        "final_answer_at_512": "Keegan earned $83 and Tasha earned $91, so they have earned a total",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0594",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "John eats 200 grams of mushrooms every day, so he eats 200 grams x 7 days = 1400 grams of mushrooms in a week.  Since 1400 grams of mushrooms have 3 grams of protein, John gets 140",
+          "128": "4200",
+          "192": "4200",
+          "256": "4200",
+          "384": "4200",
+          "512": "4200"
+        },
+        "final_answer_at_512": "4200",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0674",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The bamboo grows 30 inches a day. Today, its height",
+          "128": "The bamboo grows 30 inches a day. Today, its height is 20 feet, which is 240 inches. In 240 days, the bamboo will grow 7200 inches. In 240 days, the bamboo will grow 30 inches a day, so in 200 days, the bamboo will grow 6",
+          "192": "200 days",
+          "256": "200 days",
+          "384": "200 days",
+          "512": "200 days"
+        },
+        "final_answer_at_512": "200 days",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1015",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Anne kept 2 packs, so she had 15 - 2 = 13 packs. Each pack has 60 pieces, so Anne had 13 x 60 = 780 pieces of sweets. Anne gave 780 - 120 =",
+          "128": "66 pieces of sweets",
+          "192": "",
+          "256": "66 pieces of",
+          "384": "66",
+          "512": ""
+        },
+        "final_answer_at_512": "",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1131",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "0.8",
+          "128": "\\frac{64 \\text{ feet}}{4 \\text{ feet/log}} = 16 \\text{ logs",
+          "192": "16 \\times 5 = 80",
+          "256": "80 \\text{ planks} \\times 1.2 \\text{",
+          "384": "96",
+          "512": "96"
+        },
+        "final_answer_at_512": "96",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0281",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Let $x$ be the number of spots on a mamba, then the number of spots on a cobra is $2 x$. The total number of spots on all the snakes is $70 x+40 \\times 2 x=140 x$. Half of this is",
+          "128": "70",
+          "192": "70",
+          "256": "70",
+          "384": "70",
+          "512": "70"
+        },
+        "final_answer_at_512": "70",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0289",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The car in the fast lane traveled at 60 miles/hour, so it traveled 480 miles in 8 hours. The car in the slow lane traveled at half that speed, so it traveled 30 miles/hour. It traveled 480 miles in 1",
+          "128": "16",
+          "192": "16",
+          "256": "16",
+          "384": "16",
+          "512": "16"
+        },
+        "final_answer_at_512": "16",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0840",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Patrick has three glue sticks that are partially used. One has 1/6 left, the second has 2/3 left and the third one has 1/2 left. If a glue stick is 12 millimeters long originally, what is the total length of the glue sticks that",
+          "128": "The first glue stick is 12 mm long, and it has 1/6 left, so it is $12 \\cdot \\frac{1}{6}=2$ mm long. The second glue stick is 12 mm long, and it has 2/",
+          "192": "The first glue stick is 12 mm long, and it has 1/6 left, so it is $12 \\cdot \\frac{1}{6}=2$ mm long. The second glue stick is 12 mm long, and it has 2/3 left, so it is $12 \\cdot \\frac{2}{3}=8$ mm long. The third glue stick is 12 mm long, and it has 1/2 left, so it is $12 \\cdot \\frac{1}{2}=6$ mm long. The",
+          "256": "16 mm",
+          "384": "16 mm",
+          "512": "16 mm"
+        },
+        "final_answer_at_512": "16 mm",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0390",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "6 + 4 + 2 = 1",
+          "128": "\\]",
+          "192": "\\frac{144 \\text{ inches}}{1",
+          "256": "12",
+          "384": "12",
+          "512": "12"
+        },
+        "final_answer_at_512": "12",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0715",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The company had planned to pay $700 for each computer, but the price was 10% higher. Therefore, the price of each computer was $700 + 10\\% \\cdot 700 = 700 \\cdot 1.1 =",
+          "128": "385000",
+          "192": "385000",
+          "256": "385000",
+          "384": "385000",
+          "512": "385000"
+        },
+        "final_answer_at_512": "385000",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0047",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "\\frac{200}{40} = 5",
+          "128": "40 + 0.",
+          "192": "John buys twice as many red ties as blue ties. Since he bought 5 blue ties, the number of red ties is:",
+          "256": "10 \\times 60 = 600 \\text",
+          "384": "800",
+          "512": "800"
+        },
+        "final_answer_at_512": "800",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0899",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Susan made 100 cookies and divided them equally between her 6 nephews, so each nephew would get $100 \\div 6=16 \\frac{2}{3}$ cookies. Since she can't give a fraction of a cookie, she can give 16",
+          "128": "Susan made 100 cookies and divided them equally between her 6 nephews, so each nephew would get $100 \\div 6=",
+          "192": "Susan made 100 cookies and divided them",
+          "256": "Susan made 100 cookies and divided them equally between her 6 nephews, so each nephew would get $100 \\div 6=16 \\frac{2}{3}$ cookies. Since she can't give a fraction of a cookie, she can give 16 cookies to each nephew, and 2 cookies to her husband. Therefore",
+          "384": "Susan made 100 cookies and divided them equally between her 6 nephews, so each nephew would get $100 \\div",
+          "512": "Susan made 100 cookies and divided them equally between her 6 nephews, so each nephew would get $100 \\div 6=16 \\frac{2}{3}$ cookies. Since she can't give a fraction of a cookie, she can give 16 cookies to each nephew, and 2 cookies to her husband"
+        },
+        "final_answer_at_512": "Susan made 100 cookies and divided them equally between her 6 nephews, so each nephew would get $100 \\div 6=16 \\frac{2}{3}$ cookies. Since she can't give a fraction of a cookie, she can give 16 cookies to each nephew, and 2 cookies to her husband",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0063",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "- The second half of the year is half",
+          "128": "0.10 \\times 140 = 1",
+          "192": "- The total amount paid for the streaming service is the sum of",
+          "256": "266",
+          "384": "266",
+          "512": "266"
+        },
+        "final_answer_at_512": "266",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0079",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "John pays $100 for the dog.  The groomer offers a 30% discount, so he pays $100 - 30% of $100 = $100 - $30 = $70.  The cost of the grooming is",
+          "128": "not $700, because the $100 is not a discount, but a cost",
+          "192": "not $7",
+          "256": "not $700, because the $100 is not a discount, but a cost",
+          "384": "not $700, because the $100 is not a discount, but a cost",
+          "512": "not $700"
+        },
+        "final_answer_at_512": "not $700",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0251",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "68",
+          "128": "68",
+          "192": "68",
+          "256": "68",
+          "384": "68",
+          "512": "68"
+        },
+        "final_answer_at_512": "68",
+        "answer_changes_after_first_parseable": false
+      },
+      {
+        "family": "LORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1049",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "is",
+          "128": "20",
+          "192": "20 books",
+          "256": "",
+          "384": "20 books",
+          "512": "20 books"
+        },
+        "final_answer_at_512": "20 books",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0318",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. To combine these fractions, we need a common denominator. The denominators are 5 and 4, so",
+          "128": "\\frac{4+6a}{5} = \\frac{(4+6a) \\times 4}{5 \\",
+          "192": "\\frac{1+3a}{4} = \\frac{(1+3a) \\times 5}{4 \\times 5} = \\frac{5 + 1",
+          "256": "5. Combine the fractions since they have",
+          "384": "\\frac{11 + 9a}{20}",
+          "512": "\\frac{11 + 9a}{20}"
+        },
+        "final_answer_at_512": "\\frac{11 + 9a}{20}",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0023",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "x - 4 = \\sqrt{11 - 2x}",
+          "128": "x^2 - 8x + 16 = 11 -",
+          "192": "x^2 - 6x +",
+          "256": "x - 1 = 0 \\quad \\text{or} \\",
+          "384": "1 = 7 \\quad",
+          "512": "The only valid solution is \\( x"
+        },
+        "final_answer_at_512": "The only valid solution is \\( x",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0190",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The first six primes are $2,3,5,7,11,13$. The sum of two numbers is even",
+          "128": "The first six primes are $2,3,5,7,11,13$. The sum of two numbers is even if and only if both numbers are even or both are odd. The probability that Paul chooses an even number is $\\frac{3}{6}=\\frac{1}{2}$, and the probability that Jesse chooses an even number is also $\\frac{3}{6}=\\frac{1}{2}$. The",
+          "192": "The first six primes are $2,3,5,7,11,13$. The sum of two numbers is even if and only if both numbers are even or both are odd. The probability that Paul chooses an even number is $\\frac{3}{6}=\\frac{1}{2}$, and the probability that Jesse chooses an even number is also $\\frac{3}{6}=\\frac{1}{2}$. The probability that both Paul and Jesse choose an even number is $\\frac{1}{2} \\cdot \\frac{1}{2}=\\frac{1}{4}$. The probability that both Paul and Jesse choose an odd number is $\\frac{1}{2} \\cdot \\frac{1}{2}=\\",
+          "256": "$\\frac{1}{2}$",
+          "384": "$\\frac{1}{2}$",
+          "512": "$\\frac{1}{2}$"
+        },
+        "final_answer_at_512": "$\\frac{1}{2}$",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0464",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Using the property of logarithms that \\(\\log_b a + \\log_b c = \\log_b (a",
+          "128": "\\log_6 (x^2 - y^2) = 2",
+          "192": "\\log_y",
+          "256": "Solving for \\(y\\",
+          "384": "\\",
+          "512": "x = \\frac{5 \\pm \\sqrt{25 + 144}}{"
+        },
+        "final_answer_at_512": "x = \\frac{5 \\pm \\sqrt{25 + 144}}{",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0028",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2.",
+          "128": "Since \\(i^2 = -1\\), we have",
+          "192": "**",
+          "256": "7i - 2",
+          "384": "7i - 2",
+          "512": "7i - 2"
+        },
+        "final_answer_at_512": "7i - 2",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0232",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "1. Given that \\(\\omega^{1997} = 1\\) and \\(\\omega \\neq 1\\), we know that \\(\\omega\\) is a primitive 1997th root of unity. This means \\(\\omega\\) satisfies the equation \\(\\omega",
+          "128": "\\frac{1}{1 + \\omega} + \\frac{1}{1 + \\omega^2} + \\dots + \\frac{",
+          "192": "\\[",
+          "256": "\\sum_{k=0}^{1996} \\frac{1}{1 + \\",
+          "384": "\\frac",
+          "512": "7. Therefore, the sum becomes"
+        },
+        "final_answer_at_512": "7. Therefore, the sum becomes",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0183",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "\\[",
+          "128": "\\sqrt{2}",
+          "192": "\\sqrt{2} + \\frac{\\sqrt{2}}{2} + \\sqrt{3} +",
+          "256": "\\sqrt{2} + \\frac{\\sqrt{2}}{2} + \\sqrt{3} + \\frac{\\sqrt{3}}{3} = \\left(1 + \\frac{1}{2}\\right)\\sqrt{2} + \\left(1 + \\frac{1}{3}\\right)\\sqrt{3} = \\frac{3}{2}\\sqrt{2} + \\frac{",
+          "384": "a = 9, \\quad b = 8, \\",
+          "512": "23"
+        },
+        "final_answer_at_512": "23",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0123",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "- \\( D = (0,",
+          "128": "- Using the formula for the area of a",
+          "192": "\\text{Area} = \\frac{1}{2} \\left| x_1(y_2 -",
+          "256": "\\text{Area}_{ABE} = \\frac{1}{2}",
+          "384": "\\text{Area}_{BCF} = \\frac{1}{2} \\left| 0(0 - 2) + 8(2 - 0) +",
+          "512": "\\text{Area}_{CDE} = \\frac{1}{2} \\left| 8(3 - 0) + 4(0 - 3) + 0(3 - 0) \\right| = \\frac{1}{2} \\left| 2"
+        },
+        "final_answer_at_512": "\\text{Area}_{CDE} = \\frac{1}{2} \\left| 8(3 - 0) + 4(0 - 3) + 0(3 - 0) \\right| = \\frac{1}{2} \\left| 2",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0422",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The given polynomial is \\(x^4 + 2x^3 + 2 = 0\\). We need to find the roots of this polynomial. Let's denote the roots by \\(\\alpha_1, \\alpha_",
+          "128": "Vieta's formulas relate the coefficients of the polynomial to sums and products of its roots. For the polynomial \\(x^4 + 2x^3 + 2 = 0\\), we",
+          "192": "\\alpha_1\\alpha_2 + \\alpha_1\\alpha_3 + \\alpha_1\\alpha_4 + \\",
+          "256": "\\alpha_1\\alpha_2\\alpha_3 + \\alpha_1\\alpha_2\\alpha_4 + \\alpha",
+          "384": "\\alpha_1\\alpha_2 + \\alpha_3\\",
+          "512": "\\alpha_1\\alpha_2 + \\alpha_3\\alpha_4 = \\frac{(-2)^2 -"
+        },
+        "final_answer_at_512": "\\alpha_1\\alpha_2 + \\alpha_3\\alpha_4 = \\frac{(-2)^2 -",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0296",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "We can take the natural logarithm of each side of each equation, and then use the property of logarithms that $\\ln(a^b) = b\\ln(a)$ to get $x\\ln(1+r) = \\ln(7)$.  We can then solve for $x",
+          "128": "We can take the natural logarithm of each side of each equation, and then use the property of logarithms that $\\ln(a^b) = b\\ln(a)$ to get $x\\ln(1+r) = \\ln(7)$.  We can then solve for $x$ by dividing both sides by $\\ln(1+r)$, which gives $x = \\frac{\\ln(7)}{\\ln(1+r)}$.  We can then plug in $r = 0.5$ and $r = 0.7$ to get $x = 1.2",
+          "192": "\\textbf{(E)}",
+          "256": "\\textbf{(E)}",
+          "384": "\\textbf{(E)}",
+          "512": "\\textbf{(E)}"
+        },
+        "final_answer_at_512": "\\textbf{(E)}",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0364",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The original circle is given by the equation \\(x^2 + y^2 = 25\\). When this circle is reflected in the point \\((4,1)\\), the new circle will have its center at \\",
+          "128": "The general form of the equation of a circle is \\((x - h)^2 + (y - k)^2 = r^2\\), where \\((h, k)\\) is",
+          "192": "(x - 4)^2 + (y - 1)^2 = 2",
+          "256": "(x - 4)^2 + (y - 1)^2 =",
+          "384": "x^2 + y^2 - 8x - 2y + 17 =",
+          "512": "x^2 - 8x +"
+        },
+        "final_answer_at_512": "x^2 - 8x +",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0149",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Rosa is",
+          "128": "dóla",
+          "192": "Rosa is 72 years old. مواقيت",
+          "256": "Rosa is 72 years old.",
+          "384": "R",
+          "512": "Rosa is 72 years old. موا"
+        },
+        "final_answer_at_512": "Rosa is 72 years old. موا",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0244",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Let $n$ be the number of sides of the polygon. Then the sum of all interior angles is $180(n-2)$ degrees. Therefore, the sum of all interior angles minus the sum of the interior angles of the polygon with one less side is $180(n-",
+          "128": "Let $n$ be the number of sides of the polygon. Then the sum of all interior angles is $180(n-2)$ degrees. Therefore, the sum of all interior angles minus the sum of the interior angles of the polygon with one less side is $180(n-2) - 1070 = 180n - 3620$. Since this is equal to $180(n-3)$, we get $180n - 3620 = 180n - 360$. From this, we",
+          "192": "20",
+          "256": "20",
+          "384": "20",
+          "512": "20"
+        },
+        "final_answer_at_512": "20",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0361",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. **Determine the coordinates of the vertices of the equilateral triangle",
+          "128": "3. **",
+          "192": "4. **",
+          "256": "\\sqrt{(0-0)^2 + (0-2)^2} = \\sqrt{0 + 4} =",
+          "384": "Similarly, the distance from the vertex \\((-a, b)\\) to the focus \\((0,2",
+          "512": "a^2"
+        },
+        "final_answer_at_512": "a^2",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0373",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "$\\frac{11}{5}-\\frac{2}{5} i$",
+          "128": "$\\frac",
+          "192": "$\\frac{11}{5}-\\frac",
+          "256": "$\\frac{11}{5}-\\frac{2}{5} i$",
+          "384": "$\\frac{11}{",
+          "512": "$\\frac{11}{5}-\\frac{2}{5} i$"
+        },
+        "final_answer_at_512": "$\\frac{11}{5}-\\frac{2}{5} i$",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "LORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0427",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Let $p$ be the cost of a pencil and $e$ be the cost of a jumbo eraser. Then $3 p+e=124$ and $5 p+e=182$. Subtracting the first equation from the second gives $2 p=5",
+          "128": "2900",
+          "192": "2900",
+          "256": "2900",
+          "384": "2900",
+          "512": "2900"
+        },
+        "final_answer_at_512": "2900",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0482",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Keegan earned $83 and Tasha earned $91, so they have earned a total of $83 + $91 = $174. They need to raise $200 - $174 = $26 more to reach their goal. Therefore, they",
+          "128": "26 dóla",
+          "192": "26 dóla",
+          "256": "26 dóla",
+          "384": "26 dóla",
+          "512": "26 dóla"
+        },
+        "final_answer_at_512": "26 dóla",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0594",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "John eats 200 grams of mushrooms every day, so he eats 200 grams of protein every day.  Since there are 7 days in a week, he eats 200 grams of protein every week.  Therefore, he eats 1400 grams of",
+          "128": "1400",
+          "192": "1400",
+          "256": "1400",
+          "384": "4200",
+          "512": "4200"
+        },
+        "final_answer_at_512": "4200",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0674",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The bamboo grows 30 inches each day. Therefore, in",
+          "128": "The bamboo grows 30 inches each day. Therefore, in 20 days, it will grow $30 \\cdot 20=600$ inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20",
+          "192": "The bamboo grows 30 inches each day. Therefore, in 20 days, it will grow $30 \\cdot 20=600$ inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600",
+          "256": "The bamboo grows 30 inches each day. Therefore, in 20 days, it will grow $30 \\cdot 20=600$ inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days,",
+          "384": "The bamboo grows 30 inches each day. Therefore, in 20 days, it will grow $30 \\cdot 20=600$ inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo",
+          "512": "The bamboo grows 30 inches each day. Therefore, in 20 days, it will grow $30 \\cdot 20=600$ inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach"
+        },
+        "final_answer_at_512": "The bamboo grows 30 inches each day. Therefore, in 20 days, it will grow $30 \\cdot 20=600$ inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach 600 inches. Therefore, in 20 days, the bamboo will reach",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1015",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Anne kept 2 packs, so she kept 2 x 60 = 120 pieces of sweets. She gave the rest to her 10 friends, so each friend received 120 - 10 = 110 pieces of sweets. Therefore, each friend",
+          "128": "110 pieces of sweets",
+          "192": "",
+          "256": "110 pieces of sweets",
+          "384": "110 pieces of sweets",
+          "512": "110 pieces of sweets"
+        },
+        "final_answer_at_512": "110 pieces of sweets",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1131",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "3. **Calculate the",
+          "128": "4. **Determine the number of pl",
+          "192": "Since there are 20",
+          "256": "6. **Calculate the total revenue from selling",
+          "384": "120",
+          "512": "120"
+        },
+        "final_answer_at_512": "120",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0281",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Let $x$ be the number of spots on a mamba, then $2 x$ is the number of spots on a cobra. The total number of spots on the snakes is $70 x+40 \\cdot 2 x=140 x$. Half of this is",
+          "128": "70 spots",
+          "192": "70 spots",
+          "256": "70 spots",
+          "384": "70 spots",
+          "512": "70 spots"
+        },
+        "final_answer_at_512": "70 spots",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0289",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The car in the fast lane traveled 480 miles at a speed of 60 miles/hour. Therefore, the time it took to travel this distance is $480 \\div 60=8$ hours. The car in the slow lane traveled the same distance at half",
+          "128": "The car in the fast lane traveled 480 miles at a speed of 60 miles/hour. Therefore, the time it took to travel this distance is $480 \\div 60=8$ hours. The car in the slow lane traveled the same distance at half the speed of the car in the fast lane, which is $60 \\div 2=30$ miles/hour. Therefore, the time it took to travel this distance is $480 \\div 30=16$ hours. The car in the slow lane took 16 hours",
+          "192": "16 hours",
+          "256": "16 hours",
+          "384": "is",
+          "512": "16 hours"
+        },
+        "final_answer_at_512": "16 hours",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0840",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "a = 12 \\text{ mm}, \\quad b = 12 \\text{ mm}, \\quad",
+          "128": "a - \\frac{",
+          "192": "a - \\frac{1}{6}a = \\frac{5}{6",
+          "256": "b - \\frac{2}{3}b = \\frac{1}{3}b = \\frac{1}{3} \\times 12 =",
+          "384": "\\(\\boxed{20",
+          "512": "20"
+        },
+        "final_answer_at_512": "20",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0390",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Monica has 6 gifts for her family, 4 gifts for her friends, and 2 gifts for her teachers. In total, she has 12 gifts. She has 144 inches of ribbon and wants to make a bow for each gift with it. Therefore, she can",
+          "128": "",
+          "192": "144 dóla",
+          "256": "144 dóla",
+          "384": "144 dóla",
+          "512": ""
+        },
+        "final_answer_at_512": "",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0715",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The price of each computer was originally $700, and the price was increased by 10%, so the new price is $700 \\cdot 1.1=770$. The company bought 500 computers, so the total amount of money they paid is",
+          "128": "385000 dóla",
+          "192": "$a b$ is divisible by $a+b$",
+          "256": "$a b$ is divisible by $a+b$",
+          "384": "$a b$ is divisible by $a+b$",
+          "512": "$a b$ is divisible by $a+b$"
+        },
+        "final_answer_at_512": "$a b$ is divisible by $a+b$",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0047",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. John buys twice as many red ties as blue ties. Therefore,",
+          "128": "3. The red ties cost 50% more than the blue ties. This means the cost of each red tie is \\( x +",
+          "192": "\\",
+          "256": "\\text{Total cost} = 4800 +",
+          "384": "4840",
+          "512": "4840"
+        },
+        "final_answer_at_512": "4840",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0899",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Susan made 100",
+          "128": "16 cookies",
+          "192": "16 cookies",
+          "256": "16 cookies",
+          "384": "16 cookies",
+          "512": "16 cookies"
+        },
+        "final_answer_at_512": "16 cookies",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0063",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "- The second half of the year is 6",
+          "128": "140 - (10\\% \\times 140) = 14",
+          "192": "- The total payment for the second half of the year is $126.",
+          "256": "266",
+          "384": "266",
+          "512": "266"
+        },
+        "final_answer_at_512": "266",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0079",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The groomer offers a 30% discount for being a new customer, which means he will pay 70% of the original price. Since the original price is $100, the discounted price is $100 \\times 0.7 = $70. Therefore",
+          "128": "70",
+          "192": "70",
+          "256": "70",
+          "384": "70",
+          "512": "70"
+        },
+        "final_answer_at_512": "70",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-0251",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Travis had 61 apps on his tablet. He deleted 9 apps he didn't use anymore and downloaded",
+          "128": "Travis had 61 apps on his tablet. He deleted",
+          "192": "Travis had",
+          "256": "Travis had 61 apps on his tablet. He deleted 9 apps he didn't use anymore and downloaded 18 more. How many",
+          "384": "Travis had 61 apps on his tablet",
+          "512": "Travis had 61 apps on his tablet. He deleted 9 apps he didn't use anymore and downloaded 18 more"
+        },
+        "final_answer_at_512": "Travis had 61 apps on his tablet. He deleted 9 apps he didn't use anymore and downloaded 18 more",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "gsm8k",
+        "problem_id": "gsm8k-1049",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Half of the books are written in English, so there are $50: 2=25$ English books. 10% of the books are written in German, so there are $50 \\cdot 0.1=5$ German books. Therefore, there are $",
+          "128": "20",
+          "192": "20",
+          "256": "20",
+          "384": "20",
+          "512": "20"
+        },
+        "final_answer_at_512": "20",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0318",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. To combine these fractions, we need a common denominator. The least common multiple (LCM) of",
+          "128": "\\frac{4 + 6a",
+          "192": "4. Rewrite the second fraction \\(\\frac{1 + 3a}{4}\\)",
+          "256": "\\",
+          "384": "\\frac{11 +",
+          "512": "\\frac{11 + 9a}{20}"
+        },
+        "final_answer_at_512": "\\frac{11 + 9a}{20}",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0023",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "x - 4 = \\sqrt{11",
+          "128": "x^2 - 8x + 1",
+          "192": "x^2 -",
+          "256": "x -",
+          "384": "1 = 3",
+          "512": "5 ="
+        },
+        "final_answer_at_512": "5 =",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0190",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. **Determine the total number of ways to choose two numbers from these primes:**",
+          "128": "\\binom{6}{2} = \\frac{6!}{2!(6-2)!} = \\",
+          "192": "The sum of two numbers is even if one number is odd and the other number is even. The odd numbers in the",
+          "256": "- The odd numbers are \\(3, 5, 7, 11, 13\\",
+          "384": "\\text{Probability} = \\frac{\\text{Number of favorable",
+          "512": "The correct interpretation is that the probability is"
+        },
+        "final_answer_at_512": "The correct interpretation is that the probability is",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0464",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "\\log_6 ((x",
+          "128": "x^2",
+          "192": "(x-y)(x+y) = 36",
+          "256": "\\",
+          "384": "\\left(\\frac{y^2 - 5y}{5}\\right)\\left(\\frac{y^",
+          "512": "\\"
+        },
+        "final_answer_at_512": "\\",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0028",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "$-",
+          "128": "$",
+          "192": ":",
+          "256": "$-2 + 7i$ dóla",
+          "384": "$-2 + 7i$ dóla",
+          "512": "$-2 + 7i$"
+        },
+        "final_answer_at_512": "$-2 + 7i$",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0232",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "1. Given that \\(\\omega^{1997} = 1\\) and \\(\\omega \\neq 1\\), we know that \\(\\omega\\) is a primitive 1997th root of unity. This means \\(\\omega^{1997} =",
+          "128": "\\frac{1}{1 + \\omega",
+          "192": "3. Using the property of roots of unity, we know that \\(\\omega^k = \\omega^{k \\mod 19",
+          "256": "4. We can use the fact that \\(\\omega^k = \\omega^{k \\",
+          "384": "5. Since \\(\\omega\\) is a primitive 1997th root of unity, the sum of all 1997th roots of unity is zero. Therefore, we can pair the terms in the sum:",
+          "512": "6. Each pair \\(\\left( \\frac{1}{1 + \\omega^k}, \\frac{1}{1 + \\omega^{1997 - k}} \\right)\\) sums to 2 because:"
+        },
+        "final_answer_at_512": "6. Each pair \\(\\left( \\frac{1}{1 + \\omega^k}, \\frac{1}{1 + \\omega^{1997 - k}} \\right)\\) sums to 2 because:",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0183",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "\\[",
+          "128": "\\sqrt{3} = \\sqrt{3}, \\quad \\frac{1}{\\sqrt{3}}",
+          "192": "\\",
+          "256": "\\sqrt{2} + \\frac{\\sqrt{2}}{2} = \\frac{2\\sqrt{2}}{2} + \\frac{\\sqrt{2}}{",
+          "384": "6. To express this in the form \\(\\frac",
+          "512": "\\frac{9\\sqrt{2}}{6} + \\frac{"
+        },
+        "final_answer_at_512": "\\frac{9\\sqrt{2}}{6} + \\frac{",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0123",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "- \\( D = (0,",
+          "128": "- The base \\( AB",
+          "192": "\\text{Area of } \\triangle ABE = \\frac{1}{2} \\",
+          "256": "- The base \\( BC \\) is 8 units",
+          "384": "- The area of quadrilateral \\( DBEF \\) is the sum of the areas of",
+          "512": "17"
+        },
+        "final_answer_at_512": "17",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0422",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "The given polynomial is \\(x^4 + 2x^3 + 2 = 0\\). We need to find the roots of this polynomial. Let's denote the roots by \\(\\alpha_1, \\alpha_",
+          "128": "\\]",
+          "192": "\\alpha_1\\alpha_2\\alpha_3 + \\alpha",
+          "256": "We need to find the product \\(\\alpha",
+          "384": "(\\alpha_1 + \\alpha_2 + \\alpha_3 + \\alpha_4)(\\alpha_1\\alpha_2 + \\alpha_2\\alpha_3 + \\alpha_3\\alpha_4 + \\alpha_4\\alpha_1) = \\alpha_1\\alpha_2\\alpha_3 + \\alpha_2\\alpha_3\\alpha_4 + \\alpha_3\\alpha",
+          "512": "\\alpha_1\\alpha_2 + \\alpha_2\\alpha_3 + \\alpha_3\\alpha_4 + \\alpha_4\\alpha_1 ="
+        },
+        "final_answer_at_512": "\\alpha_1\\alpha_2 + \\alpha_2\\alpha_3 + \\alpha_3\\alpha_4 + \\alpha_4\\alpha_1 =",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0296",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. **Calculate the values of \\(",
+          "128": "&1 + 0.",
+          "192": "&1 +",
+          "256": "3. **Compare the values of \\(1 + r\\) for \\(r = 0, 0.5, 1, 1.5,",
+          "384": "We see that \\(1 + r\\) increases",
+          "512": "The equation with the largest base is \\(\\boxed{\\textbf{(E)}"
+        },
+        "final_answer_at_512": "The equation with the largest base is \\(\\boxed{\\textbf{(E)}",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0364",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. **Reflect the center of the",
+          "128": "(2h - x, 2",
+          "192": "So, the reflected center is \\((8",
+          "256": "For the",
+          "384": "(y-2)^",
+          "512": "5. **Identify"
+        },
+        "final_answer_at_512": "5. **Identify",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0149",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "Rosa's age is a multiple of 2, 3, 4, and 6, so it is a multiple of the least common multiple of these numbers, which is 12. Since Rosa's age is less than 75, it is a multiple of 12",
+          "128": "60",
+          "192": "60",
+          "256": "60",
+          "384": "60",
+          "512": "60"
+        },
+        "final_answer_at_512": "60",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0244",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "9 sides",
+          "128": "9 sides",
+          "192": "9 sides",
+          "256": "9 sides",
+          "384": "9 sides",
+          "512": "9 sides"
+        },
+        "final_answer_at_512": "9 sides",
+        "answer_changes_after_first_parseable": false
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0361",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "2. **Determine the coordinates of the vertices of",
+          "128": "Since one vertex of the equilateral triangle coincides with the vertex of the parabola, the other two vertices must be symmetric with respect to the vertex of the parabola. Therefore, the vertices of the equilateral triangle are \\((0,0)\\), \\((4",
+          "192": "The distance between any two vertices of the equilateral triangle is the side length. We can use the distance formula to find the distance between \\((0,0)\\) and \\((",
+          "256": "\\text{Side length} = \\sqrt{(4-0)^2 + (2-0)^2} = \\sqrt{4^2 + 2^2} = \\sqrt{16 + 4} = \\sqrt{20} =",
+          "384": "2\\sqrt{5}",
+          "512": "2\\sqrt{5}"
+        },
+        "final_answer_at_512": "2\\sqrt{5}",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0373",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "$\\frac{11}{5}-\\frac{2",
+          "128": "$\\frac{11}{5}-\\frac{2}{",
+          "192": "$\\frac{11}{5}-\\frac{2}{5",
+          "256": "$\\frac{11}{5}-\\frac{2}{5}",
+          "384": "$\\frac{11}{5}-\\frac{2}{5} i$",
+          "512": "$\\frac{11}{5}-\\frac{2}{5} i$"
+        },
+        "final_answer_at_512": "$\\frac{11}{5}-\\frac{2}{5} i$",
+        "answer_changes_after_first_parseable": true
+      },
+      {
+        "family": "QLORA",
+        "benchmark": "math500",
+        "problem_id": "math500-0427",
+        "first_parseable_answer_token_position": 64,
+        "answers": {
+          "64": "\\end{",
+          "128": "2900",
+          "192": "29",
+          "256": ":",
+          "384": "2900",
+          "512": "2900"
+        },
+        "final_answer_at_512": "2900",
+        "answer_changes_after_first_parseable": true
+      }
+    ]
+  },
+  "scorer_monotonicity": {
+    "prefix_monotonic_terminal_condition": false,
+    "reason": "The frozen extractor selects the last boxed expression, then the last final-answer match, then the final non-empty line; later tokens can change every fallback."
+  },
+  "frozen_identity": {
+    "protocol_sha256": "dc524c563af61311559818846d75ef81797d51c133cfb632d241ee3c7986ce20",
+    "evaluation_manifest_sha256": "eb13f3e67d78b14a4c177b08f2727380daad8a3fb2aa0b3c7b4f3f9174b0718e",
+    "scorer_sha256": "9a39f02e471367c7cec47b5ea2f2a6fd84ca09816b8ffcb0965b9e61c7bb3433",
+    "scorer_matches_protocol": true,
+    "runtime_calibration_sha256_before": "40aa237b3e3c3e6be2b6653211d8d5cff2d9db0f460482d1185abdda655c967d",
+    "runtime_calibration_sha256_after": "40aa237b3e3c3e6be2b6653211d8d5cff2d9db0f460482d1185abdda655c967d",
+    "runtime_calibration_unchanged": true,
+    "training_checkpoints": {
+      "all_match": true,
+      "runs": {
+        "B-LORA-s271828": {
+          "expected": "6361910a955c371a101c258a77f79e82916aca00cc22503fa67e522ee4f66062",
+          "actual": "6361910a955c371a101c258a77f79e82916aca00cc22503fa67e522ee4f66062",
+          "match": true
+        },
+        "B-LORA-s31415": {
+          "expected": "86c0a5198bb5a42c4ec5ead3b5f941a87f22eab904c12b732a3ee1bdda778266",
+          "actual": "86c0a5198bb5a42c4ec5ead3b5f941a87f22eab904c12b732a3ee1bdda778266",
+          "match": true
+        },
+        "B-LORA-s42": {
+          "expected": "f4303a79b47aecb6459e8688d9d5348a54fbd0b42e01d7a4ed81c0badffc6319",
+          "actual": "f4303a79b47aecb6459e8688d9d5348a54fbd0b42e01d7a4ed81c0badffc6319",
+          "match": true
+        },
+        "B-QLORA-s271828": {
+          "expected": "6f07d09967b1a76a6556f56e1a4403e5e7e763a487afc0929886922150db6f56",
+          "actual": "6f07d09967b1a76a6556f56e1a4403e5e7e763a487afc0929886922150db6f56",
+          "match": true
+        },
+        "B-QLORA-s31415": {
+          "expected": "0d2b9c91ddec197eb164d2f3c6cd20d55e435d86e1c0a079509fae69a67cbddc",
+          "actual": "0d2b9c91ddec197eb164d2f3c6cd20d55e435d86e1c0a079509fae69a67cbddc",
+          "match": true
+        },
+        "B-QLORA-s42": {
+          "expected": "6279732874ab44a3eef08c2be790c70c473c5b13357e1ccc01c2b6883d2099a6",
+          "actual": "6279732874ab44a3eef08c2be790c70c473c5b13357e1ccc01c2b6883d2099a6",
+          "match": true
+        },
+        "C-LORA-s271828": {
+          "expected": "ff4bd50dba72bea55afee35395d3dba57c4b644d1db11a24b4afaa78213917f8",
+          "actual": "ff4bd50dba72bea55afee35395d3dba57c4b644d1db11a24b4afaa78213917f8",
+          "match": true
+        },
+        "C-LORA-s31415": {
+          "expected": "22f3c4c1b6f8d3d9ee28e6a7091fd0aa88da18da8d819082ccb26fcf6716e628",
+          "actual": "22f3c4c1b6f8d3d9ee28e6a7091fd0aa88da18da8d819082ccb26fcf6716e628",
+          "match": true
+        },
+        "C-LORA-s42": {
+          "expected": "32e3f765f05453ddce19079c46b1c1f74a4eaf4c0691c38655c20633c1985ed9",
+          "actual": "32e3f765f05453ddce19079c46b1c1f74a4eaf4c0691c38655c20633c1985ed9",
+          "match": true
+        },
+        "C-QLORA-s271828": {
+          "expected": "91534a40f4c5c0c8b508fcfdca173f3054dae844be604ce4023dc56ee58c1e76",
+          "actual": "91534a40f4c5c0c8b508fcfdca173f3054dae844be604ce4023dc56ee58c1e76",
+          "match": true
+        },
+        "C-QLORA-s31415": {
+          "expected": "c9bb74ed683479122bd07d47126780854ca5056382065a3baa41cc5b9e18b631",
+          "actual": "c9bb74ed683479122bd07d47126780854ca5056382065a3baa41cc5b9e18b631",
+          "match": true
+        },
+        "C-QLORA-s42": {
+          "expected": "7ea6606eaaae057472bcda432ff437624a64556546038a3b76ee537377b520c1",
+          "actual": "7ea6606eaaae057472bcda432ff437624a64556546038a3b76ee537377b520c1",
+          "match": true
+        }
+      }
+    }
+  },
+  "formal_launch_recommendation": "FORMAL_EVAL_HIGH_COST_REQUIRES_EXPLICIT_DECISION",
+  "expected_days_continuous": 9.051419970933344,
+  "resume_capability": "Append-only per-problem JSONL with frozen problem-ID completeness checks remains active.",
+  "evaluation_code_freeze": true,
+  "selected_source_tree_sha256": "78960ef1d801cfdad4607c17f4ab255a5bd7ad278c79c15c81989dcbeda6969c",
+  "qualification_git_commit": "1666553167fbe0ea53c108d452245edf098ec759",
+  "formal_benchmark_launches": 0,
+  "regression": {
+    "pytest": "PASS",
+    "pytest_tests": 54,
+    "ruff": "PASS",
+    "format": "PASS",
+    "yaml": "PASS",
+    "yaml_files": 55,
+    "lock": "PASS",
+    "build": "PASS",
+    "training_checkpoints": "NO DIFF",
+    "frozen_scientific_config": "NO DIFF"
+  },
+  "freeze_git_commit": "1666553167fbe0ea53c108d452245edf098ec759"
+}

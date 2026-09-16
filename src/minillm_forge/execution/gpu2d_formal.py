@@ -59,6 +59,7 @@ TRAINING_MATRIX_PATH = FORMAL_ROOT / "training_matrix.json"
 PREFLIGHT_PATH = FORMAL_ROOT / "f1_preflight.json"
 EVAL_QUALIFICATION_PATH = FORMAL_ROOT / "eval_executor_qualification.json"
 FINAL_RESULT_PATH = FORMAL_ROOT / "final_result.json"
+EVAL_RUNTIME_RECOVERY_PATH = FORMAL_ROOT / "eval_runtime_recovery.json"
 EVAL_REPORT_PATH = Path("reports/GPU2D_EVALUATION_EXECUTOR_QUALIFICATION.md")
 FINAL_REPORT_PATH = Path("reports/GPU2D_FORMAL_PEFT_TRANSFER.md")
 EVALUATION_MANIFEST = Path("artifacts/eval_manifests/evaluation-manifest.json")
@@ -353,7 +354,7 @@ def _trim_generated(ids: list[int], stop_ids: set[int]) -> list[int]:
     return ids
 
 
-def _generate_batch(
+def _generate_reference_batch(
     model: Any,
     tokenizer: Any,
     rows: list[dict[str, Any]],
@@ -407,6 +408,99 @@ def _generate_batch(
             }
         )
     return results
+
+
+def _generate_batch(
+    model: Any,
+    tokenizer: Any,
+    rows: list[dict[str, Any]],
+    benchmark: str,
+) -> list[dict[str, Any]]:
+    """Preserved batch-size-one reference evaluator."""
+    return _generate_reference_batch(model, tokenizer, rows, benchmark)
+
+
+def _generate_serial_greedy_batch(
+    model: Any,
+    tokenizer: Any,
+    rows: list[dict[str, Any]],
+    benchmark: str,
+) -> list[dict[str, Any]]:
+    """Exact-semantics greedy decoder specialized for the frozen serial evaluator."""
+    if len(rows) != 1:
+        raise ValueError("serial greedy evaluator requires batch_size=1")
+    row = rows[0]
+    prompt, prompt_ids = _prompt(tokenizer, str(row["problem"]))
+    inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False)
+    device = next(model.parameters()).device
+    input_ids = inputs["input_ids"].to(device)
+    attention_mask = inputs["attention_mask"].to(device)
+    generated: list[int] = []
+    past_key_values = None
+    current_ids = input_ids
+    if torch.cuda.is_available():
+        torch.cuda.synchronize()
+    started = time.perf_counter()
+    with torch.inference_mode():
+        for _step in range(512):
+            output = model(
+                input_ids=current_ids,
+                attention_mask=attention_mask,
+                past_key_values=past_key_values,
+                use_cache=True,
+                return_dict=True,
+            )
+            past_key_values = output.past_key_values
+            current_ids = output.logits[:, -1, :].argmax(dim=-1, keepdim=True)
+            token_id = int(current_ids.item())
+            generated.append(token_id)
+            if token_id in {151643, 151645}:
+                break
+            attention_mask = torch.cat(
+                (
+                    attention_mask,
+                    torch.ones(
+                        (attention_mask.shape[0], 1),
+                        dtype=attention_mask.dtype,
+                        device=device,
+                    ),
+                ),
+                dim=1,
+            )
+    if torch.cuda.is_available():
+        torch.cuda.synchronize()
+    elapsed = time.perf_counter() - started
+    decoded = tokenizer.decode(generated, skip_special_tokens=True)
+    reference = str(row["answer"])
+    return [
+        {
+            "run_id": None,
+            "benchmark": benchmark,
+            "problem_id": _problem_id(benchmark, row),
+            "prompt_hash": hashlib.sha256(prompt.encode()).hexdigest(),
+            "prompt_token_ids": prompt_ids,
+            "generated_token_ids": generated,
+            "generated_text": decoded,
+            "extracted_answer": extract_final_answer(decoded),
+            "reference_answer": extract_final_answer(reference),
+            "correct": exact_match(decoded, reference),
+            "generation_tokens": len(generated),
+            "elapsed_batch_seconds": elapsed,
+            "batch_size": 1,
+        }
+    ]
+
+
+def _generate_selected_batch(
+    model: Any,
+    tokenizer: Any,
+    rows: list[dict[str, Any]],
+    benchmark: str,
+    family: str,
+) -> list[dict[str, Any]]:
+    if family == "LORA":
+        return _generate_serial_greedy_batch(model, tokenizer, rows, benchmark)
+    return _generate_reference_batch(model, tokenizer, rows, benchmark)
 
 
 def _evaluate_rows(
@@ -879,7 +973,17 @@ def _update_matrix(run_id: str, status: str, **values: Any) -> None:
 
 def _formal_code_frozen() -> bool:
     protocol = _read_json(PROTOCOL_PATH)
-    return _code_tree_digest() == protocol["source_tree_sha256"]
+    source_tree_sha256 = _code_tree_digest()
+    if source_tree_sha256 == protocol["source_tree_sha256"]:
+        return True
+    if not EVAL_RUNTIME_RECOVERY_PATH.exists():
+        return False
+    recovery = _read_json(EVAL_RUNTIME_RECOVERY_PATH)
+    return bool(
+        recovery.get("evaluation_code_freeze") is True
+        and recovery.get("exact_equivalence") is True
+        and recovery.get("selected_source_tree_sha256") == source_tree_sha256
+    )
 
 
 def _adapter_digest(model: Any) -> str:
@@ -1157,7 +1261,7 @@ def evaluate_run(run_id: str) -> dict[str, Any]:
         with LoggedPhysicalMonitor(physical_path, interval_seconds=0.2) as monitor:
             for offset in range(0, len(pending), batch_size):
                 batch = pending[offset : offset + batch_size]
-                outputs = _generate_batch(model, tokenizer, batch, benchmark)
+                outputs = _generate_reference_batch(model, tokenizer, batch, benchmark)
                 for output in outputs:
                     output.update(
                         {
