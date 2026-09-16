@@ -1,0 +1,130 @@
+{
+  "stage": "STAGE_GPU_2D_EVALUATION_COST_AMENDMENT",
+  "status": "FROZEN_BEFORE_FORMAL_EVALUATION",
+  "classification": "GPU2D_EVALUATION_COST_AMENDMENT_FROZEN",
+  "outcome_blind": true,
+  "formal_results_seen_before_amendment": false,
+  "timing_evidence": {
+    "formal_evaluation_jobs_launched": 0,
+    "formal_problem_outputs": 0,
+    "formal_accuracy_results": 0,
+    "amendment_frozen_before_downstream_results": true
+  },
+  "original_protocol": {
+    "designation": "ORIGINAL_GPU2D_EVALUATION_PROTOCOL",
+    "status": "PRESERVED_NOT_EXECUTED",
+    "preservation_reason": "COMPUTE_COST",
+    "scientific_failure": false,
+    "gsm8k": 1319,
+    "math500": 500,
+    "formal_runs": 12,
+    "formal_problem_generations": 21828,
+    "projected_hours": 227.13048595747668,
+    "projected_days_continuous": 9.463770248228196,
+    "protocol_path": "artifacts/gpu2d_formal/protocol.json",
+    "protocol_sha256": "dc524c563af61311559818846d75ef81797d51c133cfb632d241ee3c7986ce20"
+  },
+  "amended_protocol": {
+    "gsm8k": 200,
+    "gsm8k_scope": "FIXED_OUTCOME_BLIND_SUBSET",
+    "math500": 500,
+    "math500_scope": "FULL",
+    "formal_runs": 12,
+    "formal_problem_generations": 8400,
+    "generation_protocol_changed": false,
+    "only_changed_dimension": "number of GSM8K problems evaluated"
+  },
+  "primary_benchmark": "MATH-500",
+  "primary_endpoint": "MATH-500 generated-answer accuracy and paired Base/CPT delta",
+  "secondary_benchmark": "GSM8K_FIXED_200",
+  "secondary_endpoint": "GSM8K fixed-200 subset generated-answer accuracy and paired Base/CPT delta",
+  "scientific_matrix": {
+    "runs": 12,
+    "initializations": ["BASE_INIT", "CPT_INIT"],
+    "methods": ["LORA", "QLORA"],
+    "seeds": [42, 31415, 271828],
+    "primary_contrasts": {
+      "LORA": "C-LORA - B-LORA paired within seed",
+      "QLORA": "C-QLORA - B-QLORA paired within seed"
+    },
+    "reduced_dimensions": []
+  },
+  "generation_contract": {
+    "evaluator": "REFERENCE_EVALUATOR",
+    "batch_size": 1,
+    "max_new_tokens": 512,
+    "prompt_changed": false,
+    "chat_template_changed": false,
+    "decoding_changed": false,
+    "checkpoint_changed": false,
+    "answer_extraction_changed": false,
+    "scorer_changed": false,
+    "eos_semantics_changed": false,
+    "evaluation_code_freeze": true,
+    "runtime_recovery_sha256": "5a30b13f95c898a44b4c2515f25f1b0d969eacdcb618cb5755e31409816c51ea"
+  },
+  "gsm8k_subset": {
+    "manifest": "artifacts/gpu2d_formal/gsm8k_200_subset.json",
+    "manifest_sha256": "f2856213af4eda93c54b8998bc1d8dec2df57ba6b9b184ca225596cd47a223b1",
+    "sampling_seed": 20260916,
+    "count": 200,
+    "selected_problem_ids_sha256": "fb9635d80b6210da35a9603da67f16148b5f7e4ca2ba140638865878c1c4cfc8",
+    "same_subset_for_all_runs": true
+  },
+  "statistics": {
+    "problem_level": {
+      "MATH500_FULL": ["accuracy", "paired per-problem comparison", "paired bootstrap CI"],
+      "GSM8K_FIXED_200": ["subset accuracy", "paired per-problem comparison", "paired bootstrap CI"]
+    },
+    "training_seed_level": [
+      "three per-seed paired deltas",
+      "mean paired delta",
+      "standard deviation",
+      "range",
+      "direction consistency"
+    ],
+    "separation_rule": "Problem bootstrap uncertainty and training-seed variation are reported separately.",
+    "gsm8k_uncertainty_boundary": "The fixed-200 result is limited by the fixed benchmark subset size and is not labeled full GSM8K accuracy."
+  },
+  "runtime_calculation": {
+    "source": "artifacts/gpu2d_formal/runtime_calibration.json",
+    "source_sha256": "40aa237b3e3c3e6be2b6653211d8d5cff2d9db0f460482d1185abdda655c967d",
+    "seconds_per_problem": {
+      "LORA_GSM8K": 33.27048664999893,
+      "LORA_MATH500": 33.23777581875038,
+      "QLORA_GSM8K": 41.697152131244366,
+      "QLORA_MATH500": 41.2149414125015
+    },
+    "formula": "6*(200*LORA_GSM8K_s + 500*LORA_MATH500_s) + 6*(200*QLORA_GSM8K_s + 500*QLORA_MATH500_s) + 6*(LORA_load_s + QLORA_load_s)",
+    "lora_hours_including_load": 39.06378350929173,
+    "qlora_hours_including_load": 48.25205612116619,
+    "gsm8k_hours_excluding_load": 24.9892129270811,
+    "math500_hours_excluding_load": 62.04393102604323,
+    "model_load_hours": 0.282695677333589,
+    "projected_hours": 87.31583963045792,
+    "projected_days_continuous": 3.638159984602413,
+    "absolute_hours_saved": 139.81464632701875,
+    "relative_reduction": 0.6155697053947871,
+    "relative_reduction_percent": 61.55697053947871
+  },
+  "projected_hours": 87.31583963045792,
+  "claim_boundary": {
+    "overall": "CPT_TO_PEFT_SFT_TRANSFER_UNDER_FROZEN_512_CONTEXT",
+    "math500": "Full MATH-500 generated-answer accuracy may be reported.",
+    "gsm8k": "Only GSM8K fixed-200 subset accuracy may be reported; full GSM8K accuracy is prohibited.",
+    "disagreement_rule": "MATH-500/GSM8K-200 directional disagreement must be disclosed.",
+    "optional_full_gsm8k_extension": "Future optional validation only; it cannot change this frozen primary result."
+  },
+  "evaluation_order": {
+    "path": "artifacts/gpu2d_formal/evaluation_order_amended.json",
+    "math500_jobs": 12,
+    "gsm8k_fixed_200_jobs": 12,
+    "total_jobs": 24,
+    "job_ids_sha256": "ff50b516501cd66fad6aa23756b2c8eae527884969d1d2befc7d6a70432aba1d",
+    "outcome_dependent_continuation": false
+  },
+  "formal_evaluation_authorized": true,
+  "authorization_scope": "All 24 frozen amendment-aware jobs; authorization does not launch the supervisor.",
+  "supervisor_launched": false,
+  "amendment_timestamp_utc": "2026-09-16T05:04:58Z"
+}
