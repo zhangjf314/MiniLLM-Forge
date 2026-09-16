@@ -604,7 +604,7 @@ def _write_report(result: dict[str, Any]) -> None:
         "## 6. Candidate Implementations",
         "",
         "Static cache was rejected because this environment lacks a working Triton runtime. LoRA",
-        "merge was rejected after a token-1 mismatch. Serial greedy was retained only for LoRA;",
+        "merge was rejected after a token-1 mismatch. Serial greedy was evaluated only for LoRA;",
         "QLoRA keeps the reference `generate()` path because the manual loop was slower.",
         "",
         "## 7. Exact-Equivalence Results",
@@ -619,7 +619,7 @@ def _write_report(result: dict[str, Any]) -> None:
         "",
         "## 9. Runtime Results",
         "",
-        "| Cell | Reference tok/s | Selected tok/s | Selected s/problem |",
+        "| Cell | Reference tok/s | Candidate tok/s | Candidate s/problem |",
         "| --- | ---: | ---: | ---: |",
     ]
     for key, cell in candidate["cells"].items():

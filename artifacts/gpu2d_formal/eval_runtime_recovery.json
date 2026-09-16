@@ -2071,7 +2071,7 @@
   "expected_days_continuous": 9.051419970933344,
   "resume_capability": "Append-only per-problem JSONL with frozen problem-ID completeness checks remains active.",
   "evaluation_code_freeze": true,
-  "selected_source_tree_sha256": "78960ef1d801cfdad4607c17f4ab255a5bd7ad278c79c15c81989dcbeda6969c",
+  "selected_source_tree_sha256": "955f9263692fd5b2584509d4bb8b53185e43efaa56aadfeae5c17686b9e16a9f",
   "qualification_git_commit": "1666553167fbe0ea53c108d452245edf098ec759",
   "formal_benchmark_launches": 0,
   "regression": {
@@ -2086,5 +2086,5 @@
     "training_checkpoints": "NO DIFF",
     "frozen_scientific_config": "NO DIFF"
   },
-  "freeze_git_commit": "1666553167fbe0ea53c108d452245edf098ec759"
+  "freeze_git_commit": "d75f5f7ff6e8cde637f47c3373f5623df1e3938d"
 }

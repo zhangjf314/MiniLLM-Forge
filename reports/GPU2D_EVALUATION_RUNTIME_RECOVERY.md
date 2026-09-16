@@ -27,7 +27,7 @@ Classification: `MODEL_DID_NOT_GENERATE_TERMINATION_TOKEN`. Tokenizer EOS appear
 ## 6. Candidate Implementations
 
 Static cache was rejected because this environment lacks a working Triton runtime. LoRA
-merge was rejected after a token-1 mismatch. Serial greedy was retained only for LoRA;
+merge was rejected after a token-1 mismatch. Serial greedy was evaluated only for LoRA;
 QLoRA keeps the reference `generate()` path because the manual loop was slower.
 
 ## 7. Exact-Equivalence Results
@@ -41,7 +41,7 @@ Minimum measured headroom was 5701 MiB; the 1536 MiB gate passed.
 
 ## 9. Runtime Results
 
-| Cell | Reference tok/s | Selected tok/s | Selected s/problem |
+| Cell | Reference tok/s | Candidate tok/s | Candidate s/problem |
 | --- | ---: | ---: | ---: |
 | LORA_gsm8k | 15.328 | 15.129 | 33.843 |
 | LORA_math500 | 15.248 | 16.478 | 31.073 |
