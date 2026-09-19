@@ -82,7 +82,9 @@ SFT examples contain system, user, and assistant roles. Prefix length is compute
 the loaded tokenizer's own chat template. System/user/padding labels are `-100`; only
 assistant response tokens are trained. This masking path is independently tested.
 
-Measured full-SFT results: **TBD**.
+Full-SFT formal transfer was not completed. GPU-2D instead completed the prospectively
+qualified 512-context LoRA/QLoRA study. This distinction is retained: PEFT evidence must
+not be presented as Full-SFT evidence.
 
 GPU-2B-D design status: **STAGE_GPU_2B_D_COMPLETE**. The preregistered numerical stage
 uses Base/CPT initialization paired within Full SFT, LoRA and QLoRA, three shared seeds,
@@ -96,7 +98,11 @@ The rank experiment is bounded to 4, 8, 16, and 32. Placement compares `q_proj/v
 all attention projections, and `all-linear`. QLoRA loads the base in NF4, enables double
 quantization, computes in BF16, prepares k-bit training, and attaches LoRA adapters.
 
-Measured quality/memory/cost trade-off: **TBD**.
+GPU-2D completed Base/CPT initialization paired within LoRA and QLoRA for seeds 42,
+31415, and 271828. All 12 runs completed 1,200 updates with zero NaN, Inf, or OOM events.
+LoRA used 3428-3686 MiB physical VRAM and averaged 735.05 target tokens/s; QLoRA used
+5792-6116 MiB and averaged 587.58 target tokens/s on the qualified Windows/WDDM stack.
+Thus QLoRA was neither faster nor more memory-efficient in this specific environment.
 
 ## 9. Evaluation
 
@@ -107,13 +113,27 @@ processed. Stability records non-finite values, OOM events, and resume success.
 
 Public benchmark results and the controlled held-out set are reported separately.
 
+The final GPU-2D audit validated 24/24 evaluation jobs and 8,400/8,400 problem-level
+records: 12 full MATH-500 jobs (6,000 generations) and 12 jobs on the outcome-blind
+GSM8K fixed-200 subset (2,400 generations), with zero missing or duplicate IDs. Accuracy
+was recomputed from raw correctness records, and every checkpoint, adapter, prompt,
+scorer, subset, repository, and completion identity was verified.
+
+MATH-500 paired CPT-minus-Base deltas were negative for every seed under both methods:
+LoRA [-0.2, -0.6, -2.2] percentage points and QLoRA [-1.2, -2.0, -0.6]. GSM8K
+fixed-200 was negative for every LoRA seed [-3.0, -12.0, -1.0] but mixed for QLoRA
+[+1.5, -6.0, +9.5]. The classification is
+`CPT_TO_PEFT_SFT_TRANSFER_METHOD_DEPENDENT`, not a claim of reasoning improvement.
+
 ## 10. Ablation
 
 The predefined 15-run matrix covers architecture, optimization, training path, LoRA
 rank and placement, quantization, and repeated seed. Every completed experiment must use
 `reports/ablations/EXPERIMENT_TEMPLATE.md` and be registered automatically.
 
-Results and conclusions: **TBD after controlled runs**.
+The 12-run GPU-2D Base/CPT-by-LoRA/QLoRA multi-seed matrix is complete. Other planned
+architecture, rank, placement, and Full-SFT ablations remain outside the completed formal
+evidence and are not inferred from GPU-2D.
 
 ## 11. Training Failures
 
@@ -156,16 +176,26 @@ the separate 5M-token pilot also resumed across an intentional midpoint interrup
 - QLoRA depends on bitsandbytes and supported CUDA hardware. The local Windows backend
   passed NF4 forward/backward, but other platforms require independent qualification.
 - Full CPT long-run stability is established only for the frozen 512-token GPU-2A configuration; full SFT remains unqualified for long runs.
-- E01 is one seed and one bounded first-shard corpus run. Formal architecture ablations,
-  repeated seeds, and the Qwen SFT/LoRA/QLoRA experiments remain future evidence.
+- E01 is one seed and one bounded first-shard corpus run. GPU-2D adds three paired seeds
+  for LoRA/QLoRA but does not complete the separate architecture or Full-SFT ablations.
+- GPU-2D applies only to the frozen 512-context exposure, Qwen3-0.6B, one SFT corpus,
+  LoRA/QLoRA, and three seeds. The original 1024-context protocol remained blocked.
+- GSM8K is a frozen 200-problem subset, not the full test set.
+- 8,398/8,400 formal generations reached the 512-token ceiling; repetition and truncation
+  materially limit interpretation of the absolute benchmark scores.
+- Problem-level paired bootstrap intervals quantify problem sampling, not training-seed
+  or end-to-end pipeline uncertainty.
 
 ## 14. Conclusions
 
 The training stack is code-complete and its RTX 5060 CUDA, MiniLLM, Qwen, LoRA, and QLoRA
-paths are qualified. GPU-1 additionally validates that the from-scratch MiniLLM E01
-configuration trains stably, improves a frozen held-out split through the 50.004M-token
-budget, and resumes exactly in the bounded control. This is a reproducible engineering
-and trainability baseline, not a production language model. Qwen CPT/SFT/LoRA/QLoRA
-scientific conclusions remain deferred to later pinned experiments. See
-`reports/GPU_ENVIRONMENT_QUALIFICATION.md` and
-`reports/MINILLM_FORMAL_PRETRAINING.md` for the measured evidence and limitations.
+paths are qualified. GPU-1 validates stable bounded MiniLLM pretraining and exact resume;
+GPU-2A validates math-domain language-model adaptation with a small general-domain cost;
+GPU-2D validates an auditable 12-run PEFT campaign and 8,400-answer formal evaluation.
+
+The downstream result is deliberately non-promotional: Math-CPT did not produce a
+consistent positive transfer under the frozen 512-context protocol. LoRA was negative on
+both benchmarks; QLoRA was negative on MATH-500 and mixed on GSM8K fixed-200. This is a
+reproducible engineering and scientific-audit portfolio, not a production model or a
+general mathematical-reasoning claim. See `reports/GPU2D_FORMAL_PEFT_TRANSFER.md` for
+the complete matrix, bootstrap intervals, efficiency evidence, and error analysis.

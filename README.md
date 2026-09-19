@@ -178,6 +178,30 @@ This is domain language-model adaptation evidence, not a claim of improved mathe
 reasoning accuracy.
 <!-- GPU2A_RESULTS_END -->
 
+<!-- GPU2D_FORMAL_RESULTS_START -->
+### GPU-2D measured downstream PEFT transfer
+
+The formal 512-context campaign completed 12/12 valid training runs and 24/24 valid
+evaluation jobs. An independent audit recomputed all 8,400 problem-level records:
+6,000 full MATH-500 generations and 2,400 generations on a frozen GSM8K 200-problem
+subset, with zero missing or duplicate IDs.
+
+| Method | MATH-500 Base mean | MATH-500 CPT mean | Paired delta | GSM8K fixed-200 Base mean | GSM8K fixed-200 CPT mean | Paired delta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| LoRA | 21.67% | 20.67% | -1.00 pp | 30.33% | 25.00% | -5.33 pp |
+| QLoRA | 18.40% | 17.13% | -1.27 pp | 21.17% | 22.83% | +1.67 pp |
+
+The scientific classification is `CPT_TO_PEFT_SFT_TRANSFER_METHOD_DEPENDENT`: LoRA was
+negative on both benchmarks across all three seeds; QLoRA was negative on MATH-500 but
+strongly mixed on the GSM8K fixed-200 subset. This does not support a general claim that
+Math-CPT improved downstream reasoning. The result is limited to the frozen 512-context
+PEFT-SFT protocol; Full SFT and the original 1024-context study were not completed.
+
+Formal generation also exposed a material limitation: 8,398/8,400 records reached the
+512-token ceiling. See `reports/GPU2D_FORMAL_PEFT_TRANSFER.md` for the integrity audit,
+paired bootstrap intervals, error analysis, and measured LoRA/QLoRA efficiency.
+<!-- GPU2D_FORMAL_RESULTS_END -->
+
 ### GPU-2B-D transfer design freeze
 
 `STAGE_GPU_2B_D_COMPLETE` freezes a 2-initialization × 3-adaptation × 3-seed design:
@@ -271,8 +295,8 @@ SFT/CPT-to-SFT, LoRA rank 4/8/16/32, adapter placement, LoRA/QLoRA, and repeated
 | Qwen Base | frozen PPL baseline | - | 2148 MiB | Math PPL 5.17 | - | E00 frozen |
 | MiniLLM | from-scratch pretrain | 37,462,528 | 1,849 MiB | fixed-val PPL 104.42 | 19,573 | E01 completed |
 | Qwen | full CPT | 596,049,920 | 4407 MiB | Math PPL 5.03 | 1973 | E04 completed |
-| Qwen | LoRA SFT | TBD | TBD | Math EM TBD | TBD | pending formal run |
-| Qwen | QLoRA SFT | TBD | TBD | Math EM TBD | TBD | pending formal run |
+| Qwen | LoRA SFT | 10,092,544 | 3428-3686 MiB physical | MATH-500 20.67-21.67% means | 735 target tok/s | 6/6 valid |
+| Qwen | QLoRA SFT | 10,092,544 | 5792-6116 MiB physical | MATH-500 17.13-18.40% means | 588 target tok/s | 6/6 valid |
 
 ## Repository Map
 
@@ -302,9 +326,11 @@ real training evidence. The current repository deliberately distinguishes them:
 | Tiny overfit | `runs/tiny-overfit-verified/summary.json` | passed locally; see generated summary |
 | Checkpoint resume | exact control plus pilot interruption | exact resume confirmed |
 | MiniLLM formal pretraining | E01 result, metrics, curves, checkpoints | validated at 50,003,968 tokens |
-| Qwen baseline and CPT | E00/E04 manifests, reports, curves | validated; SFT/LoRA/QLoRA remain pending |
-| 10+ controlled experiments | registry plus reports | matrix defined; results pending |
+| Qwen baseline and CPT | E00/E04 manifests, reports, curves | validated; domain adaptation does not imply reasoning gain |
+| GPU-2D formal PEFT training | training matrix and 12 run summaries | 12/12 valid at 512 context |
+| GPU-2D formal evaluation | final result plus raw local generations | 24/24 jobs and 8400/8400 records validated |
+| 10+ controlled experiments | registry plus per-run result JSON | completed formal runs registered |
 | CPT contamination audit | pinned JSON report | completed for local train/validation/benchmark probes |
-| Final technical report | `reports/FINAL_REPORT.md` | GPU-1 and GPU-2A evidence integrated; later stages pending |
+| Final technical report | `reports/FINAL_REPORT.md` | GPU-1, GPU-2A, and GPU-2D evidence integrated |
 
 See `reports/FINAL_REPORT.md` for assumptions, expected evidence, and limitations.
