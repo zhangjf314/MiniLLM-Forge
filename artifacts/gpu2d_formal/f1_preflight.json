@@ -1,0 +1,97 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "phase": "F1_START_GATE",
+  "status": "PASS",
+  "classification": "GPU2D_FORMAL_F1_PREFLIGHT_PASS",
+  "checks": {
+    "git": {
+      "status": "PASS",
+      "commit": "1666553167fbe0ea53c108d452245edf098ec759"
+    },
+    "source_tree": {
+      "status": "PASS",
+      "expected": "f86a94a3ed341d34f87cc057bba6672b7b6e4ad1c050978ad7bd1bcc5c6a9874",
+      "actual": "f86a94a3ed341d34f87cc057bba6672b7b6e4ad1c050978ad7bd1bcc5c6a9874"
+    },
+    "environment": {
+      "status": "PASS",
+      "expected": {
+        "python": "3.11.15",
+        "os": "Windows-10-10.0.26100-SP0",
+        "torch": "2.11.0+cu128",
+        "cuda_runtime": "12.8",
+        "driver": "577.02",
+        "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+        "physical_vram_mib": 8151,
+        "execution_mode": "WDDM",
+        "bitsandbytes": "0.50.2",
+        "transformers": "5.16.1",
+        "peft": "0.20.0",
+        "allocator_configuration": null
+      },
+      "actual": {
+        "python": "3.11.15",
+        "os": "Windows-10-10.0.26100-SP0",
+        "torch": "2.11.0+cu128",
+        "cuda_runtime": "12.8",
+        "driver": "577.02",
+        "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+        "physical_vram_mib": 8151,
+        "execution_mode": "WDDM",
+        "bitsandbytes": "0.50.2",
+        "transformers": "5.16.1",
+        "peft": "0.20.0",
+        "allocator_configuration": null
+      }
+    },
+    "data_manifest": {
+      "status": "PASS",
+      "manifest_sha256": "f6d6f5c8f7c363ccd369b2c175c430bb1d5717bf14789a780a1daa465a72e8aa",
+      "cache_sha256": "806bef413ae4fdcaeeccb114bdfd9e1f8e8c799d5b6e1d26ca594ad32a716b1c"
+    },
+    "initializations": {
+      "status": "PASS",
+      "BASE_INIT": {
+        "initialization": "BASE_INIT",
+        "name_or_path": "Qwen/Qwen3-0.6B-Base",
+        "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+        "config_sha256": "461f8999eee16aa9fa00ecc891755ef8067fca39f7880393fa7e670dbcc81413",
+        "model_identity_sha256": "ae3b1fe84d4c87a8b7f21ec36c8e7a43ddae1ad7f7eda01165320cb896f1a4b9"
+      },
+      "CPT_INIT": {
+        "initialization": "CPT_INIT",
+        "name_or_path": "runs\\E04-qwen3-math-cpt\\final_model",
+        "tree_sha256": "0dc455e2499c73bb46d54be7911849864154e965870299222897946341cab585",
+        "model_sha256": "d9a30813347f1fa6076859fdf764ed241c48e8b4d4a7a44cb7746d035e6f2c4a"
+      }
+    },
+    "configs": {
+      "status": "PASS"
+    },
+    "seed_permutations": {
+      "status": "PASS"
+    },
+    "benchmark_protocol": {
+      "status": "PASS",
+      "classification": "EVAL_EXECUTOR_QUALIFIED_SERIAL",
+      "selected_batch_size": 1,
+      "checkpoint_selection": "FINAL_1200_UPDATE_CHECKPOINT"
+    },
+    "validation_cache": {
+      "status": "PASS",
+      "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+      "context": 512,
+      "source_records": 800,
+      "evaluable_records": 798,
+      "excluded_zero_assistant_records": [
+        43,
+        599
+      ],
+      "assistant_tokens": 211152,
+      "source_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+      "cache_path": "data\\processed\\gpu2d\\sft_math_context_512_validation_tokens.pt",
+      "cache_sha256": "8d559ec38db576403c69db03a3800033f6c358a0c5877fa299718919122b7bbd"
+    }
+  },
+  "formal_training_launches": 0
+}

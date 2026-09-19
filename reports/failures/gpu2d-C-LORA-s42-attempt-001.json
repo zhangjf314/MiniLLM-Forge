@@ -1,0 +1,25 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "phase": "F1_FORMAL_TRAINING",
+  "run_id": "C-LORA-s42",
+  "attempt": 1,
+  "classification": "INFRA_FAILURE",
+  "verification": "VERIFIED_SOFTWARE_FAULT",
+  "status": "FAILED_AUTHORIZED_RERUN",
+  "reason": "The external PowerShell serial launcher used ErrorActionPreference=Stop, which promoted native-process stderr handling to a terminating NativeCommandError before model loading. The frozen Python training implementation did not fail.",
+  "evidence": {
+    "updates_completed": 0,
+    "metrics_created": false,
+    "checkpoint_created": false,
+    "final_summary_created": false,
+    "gpu_loaded": false,
+    "launcher_exit_code": 1,
+    "launcher_error": "NativeCommandError",
+    "archived_attempt": "runs/gpu2d-formal/C-LORA-s42-attempt-001-failed"
+  },
+  "completed_runs_affected": false,
+  "source_code_changed": false,
+  "scientific_identity_changed": false,
+  "rerun_authorized": true,
+  "rerun_mitigation": "Invoke the same frozen Python command from a launcher that does not promote native stderr records to terminating PowerShell errors; retain explicit exit-code and final-summary validity checks."
+}

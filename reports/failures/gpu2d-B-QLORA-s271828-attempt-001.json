@@ -1,0 +1,31 @@
+{
+  "stage": "STAGE_GPU_2D_PEFT_TRANSFER",
+  "phase": "F1_FORMAL_TRAINING",
+  "run_id": "B-QLORA-s271828",
+  "attempt": 1,
+  "classification": "INFRA_FAILURE",
+  "verification": "VERIFIED_ABRUPT_PROCESS_TREE_TERMINATION",
+  "status": "FAILED_AUTHORIZED_RERUN",
+  "reason": "The external supervisor and training process disappeared without a Python traceback, numerical failure, OOM, memory-contract violation, Windows crash report, or power-transition event. The executor stopped before the first frozen recovery checkpoint.",
+  "evidence": {
+    "updates_completed": 213,
+    "last_metric_time": "2026-09-14T20:32:21+08:00",
+    "nan_count": 0,
+    "inf_count": 0,
+    "oom_count": 0,
+    "physical_peak_vram_mib": 4358,
+    "minimum_physical_headroom_mib": 3453,
+    "physical_samples": 6479,
+    "checkpoint_created": false,
+    "final_summary_created": false,
+    "metrics_sha256": "66f32c46533c59857a32e8d0cfe8dc329df84459444848ef0affe45b3e7fa433",
+    "physical_vram_sha256": "e1a44031f3652ecb60ceeb9b9c2136dc3cacfeb35d0ee400f4b6b481a641be4c",
+    "archived_attempt": "runs/gpu2d-formal/B-QLORA-s271828-attempt-001-failed"
+  },
+  "completed_runs_affected": false,
+  "source_code_changed": false,
+  "scientific_identity_changed": false,
+  "rerun_authorized": true,
+  "rerun_authority": "explicit user authorization",
+  "rerun_semantics": "Restart from update 0 because no legal recovery checkpoint exists; retain the identical frozen run identity and configuration."
+}

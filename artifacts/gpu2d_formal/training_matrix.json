@@ -9,7 +9,13 @@
       "family": "LORA",
       "seed": 42,
       "order_index": 1,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "bf624ff366821e445d5978ec8c230fbce99deda5f2aec1d4906104a735aa5448",
+      "started_at_unix": 1789306580.114804,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\B-LORA-s42\\final_summary.json",
+      "summary_sha256": "d5f8e3d3b0df4eeba5c28c58553484787e4cd6cf72143c8c55e1d0b40dc1d36f",
+      "ended_at_unix": 1789314954.0111296
     },
     "C-LORA-s42": {
       "run_id": "C-LORA-s42",
@@ -17,7 +23,13 @@
       "family": "LORA",
       "seed": 42,
       "order_index": 2,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "8d028b534716550668d7150a66a57883a4bcce5970817f86f0756a966707fe70",
+      "started_at_unix": 1789315318.6377234,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\C-LORA-s42\\final_summary.json",
+      "summary_sha256": "1966c4f1395d62025b17152371f2c20c97147685c04f90d009506ce52f1d58f2",
+      "ended_at_unix": 1789322694.8046882
     },
     "C-QLORA-s31415": {
       "run_id": "C-QLORA-s31415",
@@ -25,7 +37,13 @@
       "family": "QLORA",
       "seed": 31415,
       "order_index": 3,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "ae15a5b87220ef905c5310a92b17f1a690259c13e220a83a46fe2b753a0def14",
+      "started_at_unix": 1789322776.0106287,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\C-QLORA-s31415\\final_summary.json",
+      "summary_sha256": "b6ff4b5a27858b1fe1ebf07cc17cb520e39b4d46f9430e3c36af593a9c4a6d3f",
+      "ended_at_unix": 1789331812.972896
     },
     "B-QLORA-s31415": {
       "run_id": "B-QLORA-s31415",
@@ -33,7 +51,13 @@
       "family": "QLORA",
       "seed": 31415,
       "order_index": 4,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "461f965f8fa52beeff323981c062f756b0b965a8f96e602d7d242cde18d8c160",
+      "started_at_unix": 1789331830.2599893,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\B-QLORA-s31415\\final_summary.json",
+      "summary_sha256": "4229a14b6432d79f51685da233d796d300eef7885bffe9bc8b56abff5892c5ee",
+      "ended_at_unix": 1789340405.111377
     },
     "B-LORA-s271828": {
       "run_id": "B-LORA-s271828",
@@ -41,7 +65,13 @@
       "family": "LORA",
       "seed": 271828,
       "order_index": 5,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "de2515e7621507318cceed4375912f79a2c5a369c9c3adea84f36612db99cbab",
+      "started_at_unix": 1789340410.104016,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\B-LORA-s271828\\final_summary.json",
+      "summary_sha256": "190cb3be18a14bee1a8bc7783aac0d90378d78794021fa77cad9f42a4e70a345",
+      "ended_at_unix": 1789347024.383365
     },
     "C-LORA-s271828": {
       "run_id": "C-LORA-s271828",
@@ -49,7 +79,13 @@
       "family": "LORA",
       "seed": 271828,
       "order_index": 6,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "a1ef4c4131d9315f6fc139939371fc2831596cced18453b76c7acb38898f4264",
+      "started_at_unix": 1789347030.1856425,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\C-LORA-s271828\\final_summary.json",
+      "summary_sha256": "9e75ec136d4a68d7a172ea0657d2d814b44a1609561e16e3aff439d1059f8463",
+      "ended_at_unix": 1789353647.4409652
     },
     "C-QLORA-s42": {
       "run_id": "C-QLORA-s42",
@@ -57,7 +93,13 @@
       "family": "QLORA",
       "seed": 42,
       "order_index": 7,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "fe77340839805d7b119e80b68c88bd4c2fa33e5dfcde5ab0a1c2d69b0455fd84",
+      "started_at_unix": 1789353653.6804376,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\C-QLORA-s42\\final_summary.json",
+      "summary_sha256": "e8342fd7ace5037176c6c8a2d34aa96deca8cb38e54768edef3266697a46ceb5",
+      "ended_at_unix": 1789363209.660034
     },
     "B-QLORA-s42": {
       "run_id": "B-QLORA-s42",
@@ -65,7 +107,13 @@
       "family": "QLORA",
       "seed": 42,
       "order_index": 8,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "c3efa65aefda00871eb0c6407cd3193f4922aa7926561a00e162e5d5a739167d",
+      "started_at_unix": 1789363213.4091585,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\B-QLORA-s42\\final_summary.json",
+      "summary_sha256": "0b8701d70c54cc6beae363a2f009438c146a6ed09cad5d83ee5cd8a5222de85a",
+      "ended_at_unix": 1789372312.7194657
     },
     "C-LORA-s31415": {
       "run_id": "C-LORA-s31415",
@@ -73,7 +121,13 @@
       "family": "LORA",
       "seed": 31415,
       "order_index": 9,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "ba5393e8f5e2c456fbcea3d3ea26b2f602d60c908144b1d95e206d0dc25c43e0",
+      "started_at_unix": 1789372330.2755742,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\C-LORA-s31415\\final_summary.json",
+      "summary_sha256": "014164c2b58ceedbad60cb3c6957b5c043fb0df6f705ffec68ae2e4d759c4f39",
+      "ended_at_unix": 1789380006.6836126
     },
     "B-LORA-s31415": {
       "run_id": "B-LORA-s31415",
@@ -81,7 +135,13 @@
       "family": "LORA",
       "seed": 31415,
       "order_index": 10,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "8c0b0b3e84c0370e7bb158994fa54effb5d0f34d65926927035afc6112bfd33b",
+      "started_at_unix": 1789380022.6202698,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\B-LORA-s31415\\final_summary.json",
+      "summary_sha256": "831876cc76cfcbd1ec38496032980238ebadbb56411f5a419293e15138b9b9b8",
+      "ended_at_unix": 1789387481.632732
     },
     "B-QLORA-s271828": {
       "run_id": "B-QLORA-s271828",
@@ -89,7 +149,13 @@
       "family": "QLORA",
       "seed": 271828,
       "order_index": 11,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "ee957743980d19bec30cea25b531e7eb9c08c7462cf8dad638a87961db1bdde3",
+      "started_at_unix": 1789393788.1660552,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\B-QLORA-s271828\\final_summary.json",
+      "summary_sha256": "d28b988e92de8ffb3d14dae2e4a9262d6e72809fae67450782c8799640ebf412",
+      "ended_at_unix": 1789402177.0947504
     },
     "C-QLORA-s271828": {
       "run_id": "C-QLORA-s271828",
@@ -97,7 +163,16 @@
       "family": "QLORA",
       "seed": 271828,
       "order_index": 12,
-      "status": "PENDING"
+      "status": "VALID_COMPLETED",
+      "launch_identity_sha256": "1de62c39aa70838850a48c479d492aa39919b5a4b07523868a74ac5777ad6b87",
+      "started_at_unix": 1789402184.5921695,
+      "classification": "VALID_COMPLETED_RUN",
+      "summary_path": "runs\\gpu2d-formal\\C-QLORA-s271828\\final_summary.json",
+      "summary_sha256": "768250bcdaf2913cc179f63a6a321050db6dae1b929c2fae6b8cac6074710b38",
+      "ended_at_unix": 1789411648.6328511
     }
+  },
+  "counts": {
+    "VALID_COMPLETED": 12
   }
 }
