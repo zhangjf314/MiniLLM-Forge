@@ -28,8 +28,23 @@ The project is an experiment laboratory, not a chat application or inference ser
 - A 15-experiment controlled matrix, automatic CSV registration, fixed held-out math
   evaluation set, failure template, and technical report structure
 
-No benchmark score or GPU metric is fabricated in this repository. Result cells remain
-`TBD` until the corresponding pinned run has completed.
+No benchmark score or GPU metric is fabricated in this repository. Historical planning
+tables retain `TBD` only where an experiment was never run; completed GPU-2D results are
+reported below and trace to the committed structured evidence.
+
+## Portfolio Release Guide
+
+- [Model and training implementation](src/minillm_forge/)
+- [Frozen training configurations](configs/)
+- [Data preparation and governance code](src/minillm_forge/data/)
+- [Experiment matrix and registry](experiments/)
+- [Final technical report](reports/FINAL_REPORT.md)
+- [GPU-2D formal transfer report](reports/GPU2D_FORMAL_PEFT_TRANSFER.md)
+- [Structured final result](artifacts/gpu2d_formal/final_result.json)
+- [Result recomputation and integrity audit](scripts/finalize_gpu2d.py)
+- [Regression tests](tests/)
+- [Resume and interview evidence](reports/PORTFOLIO_RESUME_EVIDENCE.md)
+- [Public reproducibility and distribution boundaries](PUBLIC_RELEASE.md)
 
 ## Architecture
 
@@ -210,7 +225,9 @@ training partition provides 7,024,493 assistant target tokens to every arm. GSM8
 MATH-500 generated-answer accuracy are primary; frozen math/general PPL are diagnostics.
 See `reports/GPU2B_DESIGN.md` for the preregistered rules and execution gates.
 
-This is a zero-training design result. SFT, LoRA and QLoRA formal results remain pending.
+At the time of this design freeze, this was a zero-training result and all formal transfer
+runs were pending. GPU-2D later completed the 12-run LoRA/QLoRA campaign described above;
+the separate Full SFT arm remains unexecuted.
 
 Freeze the baseline before any training:
 
@@ -333,4 +350,7 @@ real training evidence. The current repository deliberately distinguishes them:
 | CPT contamination audit | pinned JSON report | completed for local train/validation/benchmark probes |
 | Final technical report | `reports/FINAL_REPORT.md` | GPU-1, GPU-2A, and GPU-2D evidence integrated |
 
-See `reports/FINAL_REPORT.md` for assumptions, expected evidence, and limitations.
+See the [final technical report](reports/FINAL_REPORT.md) for assumptions, measured
+evidence, and limitations. The [public release guide](PUBLIC_RELEASE.md) explains which
+workflows run directly from this repository, which assets must be downloaded, and which
+large local evidence is intentionally not distributed.
