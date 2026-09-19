@@ -22,5 +22,6 @@ reports/figures/*.png
 .hf-cache/
 .mpl-cache/
 .tmp/
+研发文档.md
 !artifacts/tokenizers/
 !reports/figures/minillm_*.png
