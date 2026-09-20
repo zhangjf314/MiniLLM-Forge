@@ -1,0 +1,21 @@
+{
+  "static_check": {
+    "command": ".venv/Scripts/ruff.exe check src/minillm_forge/experiments_gpu4b_r1 src/minillm_forge/cli/gpu4b_r1.py tests/test_gpu4b_r1.py",
+    "result": "PASS",
+    "summary": "All checks passed"
+  },
+  "targeted_tests": {
+    "command": ".venv/Scripts/pytest.exe tests/test_gpu4b_r1.py -q",
+    "result": "PASS",
+    "passed": 21,
+    "duration_seconds": 2.31
+  },
+  "full_regression": {
+    "command": ".venv/Scripts/pytest.exe -q",
+    "result": "PASS",
+    "passed": 197,
+    "warnings": 6,
+    "duration_seconds": 14.46,
+    "warning_scope": "existing forced-Flash-unavailable test; expected backend qualification warnings"
+  }
+}

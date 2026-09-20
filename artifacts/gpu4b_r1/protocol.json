@@ -1,0 +1,68 @@
+{
+  "stage": "GPU-4B-R1",
+  "version": "gpu4b-r1-v1-frozen-before-diagnostics",
+  "starting_branch": "codex/gpu4b-attention-compile-optimization",
+  "starting_commit": "805d6f44a114cb0cf826e474f5bc7354fd1bbd18",
+  "diagnostic_branch": "codex/gpu4b-r1-bf16-numerical-diagnostics",
+  "checkpoint": {
+    "path": "runs/E01-minillm-formal/best.pt",
+    "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc"
+  },
+  "fixed_input": {
+    "source": "first two records of data/processed/gpu4a/train.jsonl via the GPU-4B collator",
+    "batch_size": 2,
+    "expected_sequence_length": 65,
+    "seed": 4204,
+    "model_mode_forward": "eval",
+    "model_mode_backward": "train",
+    "dropout_probability": 0.0
+  },
+  "backends": {
+    "reference": "manual",
+    "primary_candidate": "sdpa_math",
+    "auxiliary_candidate": "sdpa_auto"
+  },
+  "dtypes": ["float32", "bfloat16_autocast"],
+  "frozen_gpu4b_tolerances": {
+    "fp32": {"atol": 0.00002, "rtol": 0.0001},
+    "bf16": {"atol": 0.08, "rtol": 0.03},
+    "loss_abs": 0.02,
+    "gradient_max_abs": 0.05,
+    "gradient_cosine_min": 0.999,
+    "optimizer_parameter_max_abs": 0.0002
+  },
+  "diagnostic_metrics": {
+    "relative_error_denominator_floor": 0.000001,
+    "allclose_fraction_definition": "mean(abs(candidate-reference) <= atol + rtol*abs(reference))",
+    "rms_definition": "sqrt(mean(x^2))",
+    "near_zero_definition": "abs(reference) < relative_error_denominator_floor"
+  },
+  "tensor_scope": [
+    "embedding output", "each block input/output", "layer-1 norms", "layer-1 Q/K/V projections",
+    "layer-1 Q/K after RoPE", "layer-1 attention context at o_proj input", "layer-1 o_proj output",
+    "layer-1 attention residual", "each attention output", "each MLP output", "final norm", "logits"
+  ],
+  "precision_experiments": [
+    "production-equivalent manual reconstruction", "FP32 QK with BF16-rounded probabilities and BF16 AV",
+    "BF16 QK with FP32 probability retention and FP32 AV", "full FP32 QK/softmax/AV",
+    "finite-min versus negative-infinity mask sentinel"
+  ],
+  "execution_budget": {
+    "diagnostic": "under 3 minutes; synchronous",
+    "targeted_tests": "under 1 minute; synchronous",
+    "full_regression": "under 5 minutes based on GPU-4B history; synchronous"
+  },
+  "historical_frozen_artifacts": {
+    "artifacts/gpu4b/protocol.json": "114e6b60d46b271212f559e50f4074135e3a718b08f29f910699cb9bf996e23c",
+    "artifacts/gpu4b/attention_correctness.json": "cdd46d1370155ebffc2da87b29fa32a093db86c239181d0611a1de5c5fc394b6",
+    "artifacts/gpu4b/gpu4b_result.json": "79d72186870c08ad84f68d9bdec572088cab8ab2be9d649324fc9c73be5fb7c0",
+    "artifacts/gpu4a/protocol.json": "46c75a4048919618a94177abfb5337c8206520d6f3c314ebfb4ef98c180df58c",
+    "artifacts/gpu4a/gpu4a_result.json": "c9745b15005e5a6a7b404ffb2383b74ee155091910c2f7b894b2e191fc7fa285"
+  },
+  "prohibited": ["performance benchmark", "torch.compile", "300-step SFT", "checkpoint mutation", "GPU-4A/GPU-4B artifact mutation"],
+  "expected_outputs": [
+    "forward_diagnostics.json", "precision_experiment.json", "gradient_update_diagnostics.json",
+    "NUMERICAL_PATH_AUDIT.md", "FORWARD_ERROR_LOCALIZATION.md", "BF16_PRECISION_EXPERIMENT.md",
+    "GRADIENT_AND_UPDATE_AUDIT.md", "ROOT_CAUSE_REPORT.md", "gpu4b_r1_result.json"
+  ]
+}
