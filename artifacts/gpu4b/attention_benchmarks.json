@@ -1,0 +1,150 @@
+{
+  "stage": "GPU-4B-3",
+  "status": "NOT_RUN_CORRECTNESS_GATE_FAILED",
+  "attention_only": [
+    {
+      "status": "NOT_RUN",
+      "reason": "no correctness-qualified optimized backend for a paired benchmark",
+      "backend": "manual",
+      "sequence_length": 256,
+      "config_sha256": "b8fce255073e6ebc6e34cc93f5c54032ad5840af03d3afd3d3e7fb9d9a7a325c"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_math",
+      "sequence_length": 256,
+      "config_sha256": "064e55c5c861ad2b939e991adf6e3d80f4d54c64b9d9e55583d05230677509f4"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_auto",
+      "sequence_length": 256,
+      "config_sha256": "27af52d32f27f874e1d81a2ce7ec8ace38f6b53212d9e35497a21748bea0f9e6"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "FLASH_BACKEND_NOT_AVAILABLE",
+      "backend": "sdpa_flash",
+      "sequence_length": 256,
+      "config_sha256": "9a89192bbdcd669c851b388d026c3022a232bc20f430445f877eb327a36063d5"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "no correctness-qualified optimized backend for a paired benchmark",
+      "backend": "manual",
+      "sequence_length": 512,
+      "config_sha256": "33d685fb5567dfe14d9c40104233d48e0385f17b8252f5fe8d9a3ec1b53c4ace"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_math",
+      "sequence_length": 512,
+      "config_sha256": "911c5e642c9a441f7c05bfcafbf050472c787d46a723b79e4d88fad75101f3cb"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_auto",
+      "sequence_length": 512,
+      "config_sha256": "536aef854948a861aebedc75318ca25d3ae8bd04e834f152214e14a90b2db7c3"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "FLASH_BACKEND_NOT_AVAILABLE",
+      "backend": "sdpa_flash",
+      "sequence_length": 512,
+      "config_sha256": "647779ca20a14d5d73d585394b112a469786648895e521cd1851fe26aa2eb581"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "no correctness-qualified optimized backend for a paired benchmark",
+      "backend": "manual",
+      "sequence_length": 768,
+      "config_sha256": "618c445dec998aaf45d25d4d21a11d21327ffd3a4ddf8f27e966bb4a1ede8f3f"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_math",
+      "sequence_length": 768,
+      "config_sha256": "26c81016843e3380f1d88227ea39b75048c4e5cadab5246869de843cafd19f70"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_auto",
+      "sequence_length": 768,
+      "config_sha256": "eca3c102f6964f83291084a4d799b27312a6ecc8a8d4738ade1071b876d6c7ed"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "FLASH_BACKEND_NOT_AVAILABLE",
+      "backend": "sdpa_flash",
+      "sequence_length": 768,
+      "config_sha256": "2b4c1f07d3a9e7312a345bfb124b8d55d9b0b668caeef4bac69546bbc8ca957a"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "no correctness-qualified optimized backend for a paired benchmark",
+      "backend": "manual",
+      "sequence_length": 1024,
+      "config_sha256": "b2453f1a5cad0d26b00e0130758edb2856fb4ff2c3b5358da884198ad2aa4b83"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_math",
+      "sequence_length": 1024,
+      "config_sha256": "a18be00fffebbd0a474530f405eda6528e0fe58db873d704e490ca276e851ee9"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "backend": "sdpa_auto",
+      "sequence_length": 1024,
+      "config_sha256": "13ed06ad9a293704572c0af8a0df88f1fb3fd6b20538f24b58613a88658818e0"
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "FLASH_BACKEND_NOT_AVAILABLE",
+      "backend": "sdpa_flash",
+      "sequence_length": 1024,
+      "config_sha256": "bb707719c3391215258fc726a1366e7e7ff074efc9070de2d7dd00ab7f3490f2"
+    }
+  ],
+  "full_model": [
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "sequence_length": 256
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "sequence_length": 512
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "sequence_length": 768
+    },
+    {
+      "status": "NOT_RUN",
+      "reason": "ATTENTION_CORRECTNESS_GATE_FAILED",
+      "sequence_length": 1024
+    }
+  ],
+  "real_sft": {
+    "status": "NOT_RUN",
+    "reason": "NO_OPTIMIZED_ATTENTION_BACKEND_PASSED_B2",
+    "gpu4a_manual_baseline_retained": true
+  },
+  "backend_gates": {
+    "sdpa_math": false,
+    "sdpa_auto": false,
+    "sdpa_flash": "FLASH_BACKEND_NOT_AVAILABLE"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "stage": "GPU-4B",
+  "version": "gpu4b-v1-frozen-before-correctness",
+  "attention_backends": [
+    "manual",
+    "sdpa_math",
+    "sdpa_auto",
+    "sdpa_flash"
+  ],
+  "tolerances": {
+    "fp32": {
+      "atol": 2e-05,
+      "rtol": 0.0001
+    },
+    "bf16": {
+      "atol": 0.08,
+      "rtol": 0.03
+    },
+    "loss_abs": 0.02,
+    "gradient_max_abs": 0.05,
+    "gradient_cosine_min": 0.999,
+    "optimizer_parameter_max_abs": 0.0002,
+    "trajectory_loss_max_abs": 0.05
+  },
+  "correctness_seed": 4204,
+  "correctness_batch_size": 2,
+  "correctness_steps": 10,
+  "benchmark_sequence_lengths": [
+    256,
+    512,
+    768,
+    1024
+  ],
+  "historical_frozen_inputs": {
+    "artifacts/gpu4a/protocol.json": "46c75a4048919618a94177abfb5337c8206520d6f3c314ebfb4ef98c180df58c",
+    "artifacts/gpu4a/gpu4a_result.json": "c9745b15005e5a6a7b404ffb2383b74ee155091910c2f7b894b2e191fc7fa285",
+    "artifacts/gpu4a/formal_sft_result.json": "acad8399bc56e7a8c1230198f07ababfbe7936a6a276170131056987f1f3f9b3",
+    "artifacts/gpu4a/sft_evaluation.json": "4cf215e25163271988a0ed39bc20f3cdfbdd6c1091cdf041e282c76fc9b890ca",
+    "runs/E01-minillm-formal/best.pt": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc"
+  }
+}

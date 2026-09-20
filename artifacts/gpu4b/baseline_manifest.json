@@ -1,0 +1,95 @@
+{
+  "starting_branch": "codex/gpu4a-native-37m-sft",
+  "starting_head": "1333df1246408f34606a0c2648b70750326ecb46",
+  "gpu4a_head": "1333df1246408f34606a0c2648b70750326ecb46",
+  "formal_pretrained_checkpoint": {
+    "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+    "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+    "global_step": 3052,
+    "tokens_seen": 50003968,
+    "best_validation_loss": 4.648381617334154,
+    "parameter_count": 37462528,
+    "model_config": {
+      "vocab_size": 24000,
+      "hidden_size": 512,
+      "num_layers": 8,
+      "num_attention_heads": 8,
+      "num_key_value_heads": 4,
+      "intermediate_size": 1536,
+      "max_seq_len": 1024,
+      "rope_theta": 10000.0,
+      "rms_norm_eps": 1e-06,
+      "attention_dropout": 0.0,
+      "residual_dropout": 0.0,
+      "initializer_range": 0.02,
+      "use_rope": true,
+      "tie_word_embeddings": true,
+      "gradient_checkpointing": true,
+      "pad_token_id": 0,
+      "bos_token_id": 1,
+      "eos_token_id": 2
+    },
+    "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+  },
+  "formal_sft_checkpoint": {
+    "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0300.pt",
+    "sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+    "global_step": 300,
+    "tokens_seen": 461254,
+    "best_validation_loss": 0.5942810970652652,
+    "parameter_count": 37462528,
+    "model_config": {
+      "vocab_size": 24000,
+      "hidden_size": 512,
+      "num_layers": 8,
+      "num_attention_heads": 8,
+      "num_key_value_heads": 4,
+      "intermediate_size": 1536,
+      "max_seq_len": 1024,
+      "rope_theta": 10000.0,
+      "rms_norm_eps": 1e-06,
+      "attention_dropout": 0.0,
+      "residual_dropout": 0.0,
+      "initializer_range": 0.02,
+      "use_rope": true,
+      "tie_word_embeddings": true,
+      "gradient_checkpointing": true,
+      "pad_token_id": 0,
+      "bos_token_id": 1,
+      "eos_token_id": 2
+    },
+    "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+    "sha256_rechecked": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e"
+  },
+  "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+  "dataset_digest": "a21cf5f467a6caef188ee3c7746ecc01b82cf6406fbc1bb0c88752cc09b6d72b",
+  "gpu4a_protocol_sha256": "46c75a4048919618a94177abfb5337c8206520d6f3c314ebfb4ef98c180df58c",
+  "gpu4a_result_sha256": "c9745b15005e5a6a7b404ffb2383b74ee155091910c2f7b894b2e191fc7fa285",
+  "training_config": {
+    "steps": 300,
+    "dtype": "BF16",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "weight_decay": 0.01,
+    "micro_batch": 16,
+    "gradient_accumulation": 2,
+    "effective_batch": 32
+  },
+  "evaluation_config": {
+    "decoding": "greedy",
+    "max_new_tokens": 12,
+    "records": 384,
+    "per_task_split": 64
+  },
+  "frozen_artifacts": {
+    "artifacts/gpu4a/protocol.json": "46c75a4048919618a94177abfb5337c8206520d6f3c314ebfb4ef98c180df58c",
+    "artifacts/gpu4a/gpu4a_result.json": "c9745b15005e5a6a7b404ffb2383b74ee155091910c2f7b894b2e191fc7fa285",
+    "artifacts/gpu4a/formal_sft_result.json": "acad8399bc56e7a8c1230198f07ababfbe7936a6a276170131056987f1f3f9b3",
+    "artifacts/gpu4a/sft_evaluation.json": "4cf215e25163271988a0ed39bc20f3cdfbdd6c1091cdf041e282c76fc9b890ca",
+    "runs/E01-minillm-formal/best.pt": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc"
+  }
+}

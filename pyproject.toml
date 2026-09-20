@@ -56,6 +56,7 @@ minillm-gpu3a = "minillm_forge.cli.gpu3a:main"
 minillm-gpu3b = "minillm_forge.cli.gpu3b:main"
 minillm-gpu3c = "minillm_forge.cli.gpu3c:main"
 minillm-gpu4a = "minillm_forge.cli.gpu4a:main"
+minillm-gpu4b = "minillm_forge.cli.gpu4b:main"
 
 [tool.uv]
 conflicts = [

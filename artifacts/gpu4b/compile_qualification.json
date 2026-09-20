@@ -1,0 +1,48 @@
+{
+  "stage": "GPU-4B-5",
+  "compiled_object": "model forward/training module only",
+  "fixed_attention_backend": "manual",
+  "uncached_prequalification_probe": {
+    "mode": "default",
+    "status": "NOT_SUPPORTED",
+    "first_call_wall_seconds": 17.21571489982307,
+    "error_type": "TritonMissing",
+    "note": "first observed call before the formal runner populated Dynamo/Inductor caches",
+    "silent_eager_fallback": false
+  },
+  "modes": {
+    "default": {
+      "mode": "default",
+      "status": "NOT_SUPPORTED",
+      "first_call_wall_seconds": 3.4840466000605375,
+      "error_type": "TritonMissing",
+      "error": "Cannot find a working triton installation. Either the package is not installed or it is too old. More information on installing Triton can be found at: https://github.com/triton-lang/triton\n\nSet TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS=\"+dynamo\"\n",
+      "peak_allocated_mib": 0.00830078125,
+      "peak_reserved_mib": 2.0,
+      "silent_eager_fallback": false
+    },
+    "reduce-overhead": {
+      "mode": "reduce-overhead",
+      "status": "NOT_SUPPORTED",
+      "first_call_wall_seconds": 0.08423140016384423,
+      "error_type": "TritonMissing",
+      "error": "Cannot find a working triton installation. Either the package is not installed or it is too old. More information on installing Triton can be found at: https://github.com/triton-lang/triton\n\nSet TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS=\"+dynamo\"\n",
+      "peak_allocated_mib": 0.0029296875,
+      "peak_reserved_mib": 2.0,
+      "silent_eager_fallback": false
+    },
+    "max-autotune": {
+      "mode": "max-autotune",
+      "status": "SKIPPED_PREREQUISITE",
+      "reason": "default and reduce-overhead did not establish a stable supported path",
+      "silent_eager_fallback": false
+    }
+  },
+  "qualified_modes": [],
+  "correctness_status": "NOT_RUN_NO_QUALIFIED_MODE",
+  "checkpoint_status": "NOT_RUN_NO_QUALIFIED_MODE",
+  "generation_status": "NOT_RUN_NO_QUALIFIED_MODE",
+  "graph_break_count": null,
+  "recompile_count": null,
+  "performance_status": "NOT_RUN_NO_QUALIFIED_MODE"
+}

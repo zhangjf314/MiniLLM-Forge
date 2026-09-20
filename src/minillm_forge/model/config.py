@@ -24,6 +24,7 @@ class MiniLLMConfig:
     pad_token_id: int = 0
     bos_token_id: int = 1
     eos_token_id: int = 2
+    attention_backend: str = "manual"
 
     def __post_init__(self) -> None:
         positive = {
@@ -46,6 +47,13 @@ class MiniLLMConfig:
             raise ValueError("attention_dropout must be in [0, 1)")
         if not 0.0 <= self.residual_dropout < 1.0:
             raise ValueError("residual_dropout must be in [0, 1)")
+        if self.attention_backend not in {
+            "manual",
+            "sdpa_math",
+            "sdpa_auto",
+            "sdpa_flash",
+        }:
+            raise ValueError(f"unsupported attention_backend={self.attention_backend!r}")
         for token_id in (self.pad_token_id, self.bos_token_id, self.eos_token_id):
             if not 0 <= token_id < self.vocab_size:
                 raise ValueError("special token ids must be inside the vocabulary")

@@ -1,0 +1,72 @@
+{
+  "os": "Windows-10-10.0.26100-SP0",
+  "python": "3.11.15",
+  "pytorch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "cuda_driver": "577.02",
+  "cuda_available": true,
+  "torch_compile_present": true,
+  "dynamo_present": true,
+  "inductor_present": true,
+  "triton_python_package_present": false,
+  "sdpa_present": true,
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "gpu_vram_mib": 8150.5625,
+  "compute_capability": [
+    12,
+    0
+  ],
+  "bf16_supported": true,
+  "backend_qualification": {
+    "sdpa_math_native_gqa": {
+      "qualified": true,
+      "gqa_adapter": "native_enable_gqa",
+      "shape": [
+        2,
+        8,
+        64,
+        64
+      ],
+      "wall_time_seconds": 0.12237640004605055,
+      "warnings": []
+    },
+    "sdpa_flash_expanded_gqa": {
+      "qualified": false,
+      "gqa_adapter": "explicit_kv_expansion",
+      "error": "RuntimeError: No available kernel. Aborting execution.",
+      "warnings": []
+    },
+    "sdpa_efficient_expanded_gqa": {
+      "qualified": true,
+      "gqa_adapter": "explicit_kv_expansion",
+      "shape": [
+        2,
+        8,
+        64,
+        64
+      ],
+      "wall_time_seconds": 0.007435299921780825,
+      "warnings": []
+    },
+    "sdpa_cudnn_expanded_gqa": {
+      "qualified": true,
+      "gqa_adapter": "explicit_kv_expansion",
+      "shape": [
+        2,
+        8,
+        64,
+        64
+      ],
+      "wall_time_seconds": 1.1407930001150817,
+      "warnings": []
+    },
+    "sdpa_auto_production_path": {
+      "selected": "efficient_attention",
+      "operators": [
+        "aten::_efficient_attention_forward",
+        "aten::_scaled_dot_product_efficient_attention",
+        "aten::scaled_dot_product_attention"
+      ]
+    }
+  }
+}

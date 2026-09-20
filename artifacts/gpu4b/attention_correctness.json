@@ -1,0 +1,630 @@
+{
+  "stage": "GPU-4B-2",
+  "tolerances": {
+    "fp32": {
+      "atol": 2e-05,
+      "rtol": 0.0001
+    },
+    "bf16": {
+      "atol": 0.08,
+      "rtol": 0.03
+    },
+    "loss_abs": 0.02,
+    "gradient_max_abs": 0.05,
+    "gradient_cosine_min": 0.999,
+    "optimizer_parameter_max_abs": 0.0002,
+    "trajectory_loss_max_abs": 0.05
+  },
+  "fp32": {
+    "sdpa_math": {
+      "logits": {
+        "max_abs_error": 1.5735626220703125e-05,
+        "max_rel_error": 0.0743529424071312,
+        "mean_abs_error": 7.755662636554916e-07,
+        "allclose": true,
+        "atol": 2e-05,
+        "rtol": 0.0001
+      },
+      "attention_output": {
+        "max_abs_error": 2.9802322387695312e-08,
+        "max_rel_error": 0.0036781609524041414,
+        "mean_abs_error": 2.7765405530288945e-09,
+        "allclose": true,
+        "atol": 2e-05,
+        "rtol": 0.0001
+      },
+      "loss_abs_error": 0.0,
+      "pass": true
+    }
+  },
+  "bf16": {
+    "sdpa_math": {
+      "logits": {
+        "max_abs_error": 0.15625,
+        "max_rel_error": 5433.02685546875,
+        "mean_abs_error": 0.008180638775229454,
+        "allclose": false,
+        "atol": 0.08,
+        "rtol": 0.03
+      },
+      "attention_output": {
+        "max_abs_error": 0.000732421875,
+        "max_rel_error": 48.70212936401367,
+        "mean_abs_error": 4.799610178451985e-05,
+        "allclose": true,
+        "atol": 0.08,
+        "rtol": 0.03
+      },
+      "reference_loss": 5.5029296875,
+      "candidate_loss": 5.4853515625,
+      "loss_abs_error": 0.017578125,
+      "pass": false
+    },
+    "sdpa_auto": {
+      "logits": {
+        "max_abs_error": 0.20703125,
+        "max_rel_error": 12669.29296875,
+        "mean_abs_error": 0.008314397186040878,
+        "allclose": false,
+        "atol": 0.08,
+        "rtol": 0.03
+      },
+      "attention_output": {
+        "max_abs_error": 0.000762939453125,
+        "max_rel_error": 165.39999389648438,
+        "mean_abs_error": 5.414026963990182e-05,
+        "allclose": true,
+        "atol": 0.08,
+        "rtol": 0.03
+      },
+      "reference_loss": 5.5029296875,
+      "candidate_loss": 5.4931640625,
+      "loss_abs_error": 0.009765625,
+      "pass": false
+    }
+  },
+  "backward": {
+    "sdpa_math": {
+      "reference_loss": 5.5029296875,
+      "candidate_loss": 5.4853515625,
+      "parameters": {
+        "token_embedding.weight": {
+          "max_abs_error": 0.05410867929458618,
+          "max_rel_error": 1036.887939453125,
+          "mean_abs_error": 3.353102101755212e-06,
+          "cosine_similarity": 0.999960437697542,
+          "finite": true,
+          "pass": false
+        },
+        "layers.0.input_norm.weight": {
+          "max_abs_error": 0.0012839799746870995,
+          "max_rel_error": 5.200783729553223,
+          "mean_abs_error": 0.00024674960877746344,
+          "cosine_similarity": 0.9998725580817815,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.q_proj.weight": {
+          "max_abs_error": 0.00146484375,
+          "max_rel_error": 3002.37939453125,
+          "mean_abs_error": 9.254600445274264e-05,
+          "cosine_similarity": 0.9998551568748894,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.k_proj.weight": {
+          "max_abs_error": 0.0020751953125,
+          "max_rel_error": 9870.1396484375,
+          "mean_abs_error": 0.00013596877397503704,
+          "cosine_similarity": 0.9998742823118537,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.v_proj.weight": {
+          "max_abs_error": 0.009765625,
+          "max_rel_error": 7871.0,
+          "mean_abs_error": 0.0009129876852966845,
+          "cosine_similarity": 0.999857218278167,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.o_proj.weight": {
+          "max_abs_error": 0.007080078125,
+          "max_rel_error": 1380.4339599609375,
+          "mean_abs_error": 0.0005892451736144722,
+          "cosine_similarity": 0.999808209704568,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.mlp.gate_proj.weight": {
+          "max_abs_error": 0.0107421875,
+          "max_rel_error": 12742.111328125,
+          "mean_abs_error": 0.00033775149495340884,
+          "cosine_similarity": 0.9997770157056045,
+          "finite": true,
+          "pass": true
+        }
+      },
+      "pass": false
+    },
+    "sdpa_auto": {
+      "reference_loss": 5.5029296875,
+      "candidate_loss": 5.4931640625,
+      "parameters": {
+        "token_embedding.weight": {
+          "max_abs_error": 0.06574833393096924,
+          "max_rel_error": 1125.7213134765625,
+          "mean_abs_error": 4.0335621633857954e-06,
+          "cosine_similarity": 0.9998978285095812,
+          "finite": true,
+          "pass": false
+        },
+        "layers.0.input_norm.weight": {
+          "max_abs_error": 0.0015737712383270264,
+          "max_rel_error": 7.522542476654053,
+          "mean_abs_error": 0.0002969442284666002,
+          "cosine_similarity": 0.9998247838776234,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.q_proj.weight": {
+          "max_abs_error": 0.001953125,
+          "max_rel_error": 3443.758544921875,
+          "mean_abs_error": 0.00011020396777894348,
+          "cosine_similarity": 0.9997897997289745,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.k_proj.weight": {
+          "max_abs_error": 0.001953125,
+          "max_rel_error": 28609.83984375,
+          "mean_abs_error": 0.00016428584058303386,
+          "cosine_similarity": 0.9998207010979787,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.v_proj.weight": {
+          "max_abs_error": 0.017578125,
+          "max_rel_error": 3790.97705078125,
+          "mean_abs_error": 0.0011360417120158672,
+          "cosine_similarity": 0.999801235306467,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.o_proj.weight": {
+          "max_abs_error": 0.0078125,
+          "max_rel_error": 878.6778564453125,
+          "mean_abs_error": 0.0006855939282104373,
+          "cosine_similarity": 0.9997673239461751,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.mlp.gate_proj.weight": {
+          "max_abs_error": 0.013671875,
+          "max_rel_error": 15472.77734375,
+          "mean_abs_error": 0.00041783941560424864,
+          "cosine_similarity": 0.9996957277764708,
+          "finite": true,
+          "pass": true
+        }
+      },
+      "pass": false
+    }
+  },
+  "optimizer_step": {
+    "sdpa_math": {
+      "loss_abs_error": 0.017578125,
+      "parameters": {
+        "token_embedding.weight": {
+          "delta_max_abs_error": 0.00020000338554382324,
+          "candidate_delta_norm": 0.3497140109539032,
+          "candidate_parameter_norm": 121.35469818115234,
+          "finite": true,
+          "pass": false
+        },
+        "layers.0.input_norm.weight": {
+          "delta_max_abs_error": 0.00020003318786621094,
+          "candidate_delta_norm": 0.002263113623484969,
+          "candidate_parameter_norm": 20.963306427001953,
+          "finite": true,
+          "pass": false
+        },
+        "layers.0.self_attn.q_proj.weight": {
+          "delta_max_abs_error": 0.00019999593496322632,
+          "candidate_delta_norm": 0.05120082199573517,
+          "candidate_parameter_norm": 10.311094284057617,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.k_proj.weight": {
+          "delta_max_abs_error": 0.00019999593496322632,
+          "candidate_delta_norm": 0.03620315343141556,
+          "candidate_parameter_norm": 7.082503795623779,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.v_proj.weight": {
+          "delta_max_abs_error": 0.00019999966025352478,
+          "candidate_delta_norm": 0.036203060299158096,
+          "candidate_parameter_norm": 5.892568588256836,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.o_proj.weight": {
+          "delta_max_abs_error": 0.00019999966025352478,
+          "candidate_delta_norm": 0.05120229721069336,
+          "candidate_parameter_norm": 8.419971466064453,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.mlp.gate_proj.weight": {
+          "delta_max_abs_error": 0.00019999966025352478,
+          "candidate_delta_norm": 0.08871084451675415,
+          "candidate_parameter_norm": 19.002286911010742,
+          "finite": true,
+          "pass": true
+        }
+      },
+      "pass": false
+    },
+    "sdpa_auto": {
+      "loss_abs_error": 0.009765625,
+      "parameters": {
+        "token_embedding.weight": {
+          "delta_max_abs_error": 0.00020000338554382324,
+          "candidate_delta_norm": 0.3497079908847809,
+          "candidate_parameter_norm": 121.35464477539062,
+          "finite": true,
+          "pass": false
+        },
+        "layers.0.input_norm.weight": {
+          "delta_max_abs_error": 0.00020003318786621094,
+          "candidate_delta_norm": 0.002263111062347889,
+          "candidate_parameter_norm": 20.963289260864258,
+          "finite": true,
+          "pass": false
+        },
+        "layers.0.self_attn.q_proj.weight": {
+          "delta_max_abs_error": 0.00019999593496322632,
+          "candidate_delta_norm": 0.05120110884308815,
+          "candidate_parameter_norm": 10.3110990524292,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.k_proj.weight": {
+          "delta_max_abs_error": 0.00019999779760837555,
+          "candidate_delta_norm": 0.03620316460728645,
+          "candidate_parameter_norm": 7.0824875831604,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.v_proj.weight": {
+          "delta_max_abs_error": 0.00019999966025352478,
+          "candidate_delta_norm": 0.03620307520031929,
+          "candidate_parameter_norm": 5.892578601837158,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.self_attn.o_proj.weight": {
+          "delta_max_abs_error": 0.00019999966025352478,
+          "candidate_delta_norm": 0.05120227858424187,
+          "candidate_parameter_norm": 8.419960975646973,
+          "finite": true,
+          "pass": true
+        },
+        "layers.0.mlp.gate_proj.weight": {
+          "delta_max_abs_error": 0.00020000338554382324,
+          "candidate_delta_norm": 0.08871077001094818,
+          "candidate_parameter_norm": 19.002296447753906,
+          "finite": true,
+          "pass": false
+        }
+      },
+      "pass": false
+    }
+  },
+  "short_trajectory": {
+    "manual": {
+      "losses": [
+        5.5029296875,
+        2.70263671875,
+        1.384033203125,
+        0.7342529296875,
+        0.39589691162109375,
+        0.20705413818359375,
+        0.10556793212890625,
+        0.063751220703125,
+        0.044094085693359375,
+        0.03215217590332031
+      ],
+      "gradient_norms": [
+        51.51162952065931,
+        17.050366328110744,
+        9.356727970806228,
+        6.51992943702254,
+        4.703475455951578,
+        3.077744802633451,
+        1.6972347921093327,
+        1.0369714988977423,
+        0.7347164943584914,
+        0.5471750088143469
+      ],
+      "parameter_norms": [
+        10.311079978942871,
+        10.31104564666748,
+        10.311144828796387,
+        10.311288833618164,
+        10.311439514160156,
+        10.311596870422363,
+        10.311765670776367,
+        10.311941146850586,
+        10.312122344970703,
+        10.312302589416504
+      ],
+      "finite": true
+    },
+    "sdpa_math": {
+      "losses": [
+        5.4853515625,
+        2.710693359375,
+        1.38848876953125,
+        0.7395477294921875,
+        0.3961029052734375,
+        0.2068634033203125,
+        0.10901260375976562,
+        0.06389999389648438,
+        0.04358673095703125,
+        0.03177642822265625
+      ],
+      "gradient_norms": [
+        51.465960471942324,
+        17.20991570839439,
+        9.378899040966015,
+        6.558163731407211,
+        4.708185733264512,
+        3.0727923049489654,
+        1.7543322380119697,
+        1.0363470187413715,
+        0.7272829296697593,
+        0.5359067845698061
+      ],
+      "parameter_norms": [
+        10.311094284057617,
+        10.31106185913086,
+        10.311155319213867,
+        10.311295509338379,
+        10.311441421508789,
+        10.311596870422363,
+        10.311763763427734,
+        10.311938285827637,
+        10.312116622924805,
+        10.312294960021973
+      ],
+      "finite": true,
+      "loss_max_abs_error": 0.017578125,
+      "same_improvement_direction": true,
+      "pass": true
+    },
+    "sdpa_auto": {
+      "losses": [
+        5.4931640625,
+        2.695068359375,
+        1.38616943359375,
+        0.74383544921875,
+        0.3937530517578125,
+        0.20511627197265625,
+        0.10643768310546875,
+        0.0636749267578125,
+        0.043292999267578125,
+        0.03165435791015625
+      ],
+      "gradient_norms": [
+        51.15520141359116,
+        16.895327794873754,
+        9.363329746382307,
+        6.541613911707469,
+        4.687105734861045,
+        3.0485389209245306,
+        1.7106625966496298,
+        1.0381422955833948,
+        0.729653751549064,
+        0.5419278541603378
+      ],
+      "parameter_norms": [
+        10.3110990524292,
+        10.31107234954834,
+        10.311175346374512,
+        10.311322212219238,
+        10.311474800109863,
+        10.311634063720703,
+        10.311803817749023,
+        10.311982154846191,
+        10.312163352966309,
+        10.312345504760742
+      ],
+      "finite": true,
+      "loss_max_abs_error": 0.009765625,
+      "same_improvement_direction": true,
+      "pass": true
+    }
+  },
+  "checkpoint": {
+    "gpu4a_checkpoint_loads_manual_math_auto": true,
+    "parameter_names_and_shapes_unchanged": true,
+    "sdpa_checkpoint_loads_manual": true,
+    "saved_checkpoint": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4b\\correctness\\sdpa-auto-checkpoint.pt",
+    "saved_checkpoint_sha256": "f6768576aa68d60aad62205450cd3a22a0339a536840d8c2f8fb068bd0498753",
+    "pass": true
+  },
+  "generation": {
+    "manual_records": [
+      {
+        "sample_id": "t1-test-00169",
+        "task": "T1_SUPPORT_CLASSIFICATION",
+        "split": "test",
+        "prompt": "Instruction:\nClassify the support request. Reply with BILLING, TECHNICAL, or ACCOUNT.\n\nInput:\nSupport note TE00169 from Finley: concern is offline.\n\nResponse:\n",
+        "generated_text": "TECHNICAL",
+        "generated_token_ids": [
+          55,
+          3483,
+          43,
+          49,
+          23691,
+          2
+        ],
+        "stop_reason": "EOS",
+        "generated_token_count": 6,
+        "extracted_answer": "TECHNICAL",
+        "reference_answer": "TECHNICAL",
+        "task_score": 1.0,
+        "format_validity": true,
+        "instruction_compliance": true,
+        "complete_answer": true,
+        "repetition": false,
+        "inference_wall_time": 0.09581930004060268
+      },
+      {
+        "sample_id": "t2-test-00011",
+        "task": "T2_INTEGER_ADDITION",
+        "split": "test",
+        "prompt": "Instruction:\nAdd the two integers. Reply with only the integer sum.\n\nInput:\n79 + 59\n\nResponse:\n",
+        "generated_text": "132",
+        "generated_token_ids": [
+          2060,
+          21,
+          2
+        ],
+        "stop_reason": "EOS",
+        "generated_token_count": 3,
+        "extracted_answer": "132",
+        "reference_answer": "138",
+        "task_score": 0.0,
+        "format_validity": true,
+        "instruction_compliance": true,
+        "complete_answer": true,
+        "repetition": false,
+        "inference_wall_time": 0.05650410009548068
+      }
+    ],
+    "comparisons": {
+      "sdpa_math": {
+        "token_ids_identical": true,
+        "answers_identical": true,
+        "eos_identical": true,
+        "records": [
+          {
+            "sample_id": "t1-test-00169",
+            "task": "T1_SUPPORT_CLASSIFICATION",
+            "split": "test",
+            "prompt": "Instruction:\nClassify the support request. Reply with BILLING, TECHNICAL, or ACCOUNT.\n\nInput:\nSupport note TE00169 from Finley: concern is offline.\n\nResponse:\n",
+            "generated_text": "TECHNICAL",
+            "generated_token_ids": [
+              55,
+              3483,
+              43,
+              49,
+              23691,
+              2
+            ],
+            "stop_reason": "EOS",
+            "generated_token_count": 6,
+            "extracted_answer": "TECHNICAL",
+            "reference_answer": "TECHNICAL",
+            "task_score": 1.0,
+            "format_validity": true,
+            "instruction_compliance": true,
+            "complete_answer": true,
+            "repetition": false,
+            "inference_wall_time": 0.05959370010532439
+          },
+          {
+            "sample_id": "t2-test-00011",
+            "task": "T2_INTEGER_ADDITION",
+            "split": "test",
+            "prompt": "Instruction:\nAdd the two integers. Reply with only the integer sum.\n\nInput:\n79 + 59\n\nResponse:\n",
+            "generated_text": "132",
+            "generated_token_ids": [
+              2060,
+              21,
+              2
+            ],
+            "stop_reason": "EOS",
+            "generated_token_count": 3,
+            "extracted_answer": "132",
+            "reference_answer": "138",
+            "task_score": 0.0,
+            "format_validity": true,
+            "instruction_compliance": true,
+            "complete_answer": true,
+            "repetition": false,
+            "inference_wall_time": 0.02674559992738068
+          }
+        ],
+        "pass": true
+      },
+      "sdpa_auto": {
+        "token_ids_identical": true,
+        "answers_identical": true,
+        "eos_identical": true,
+        "records": [
+          {
+            "sample_id": "t1-test-00169",
+            "task": "T1_SUPPORT_CLASSIFICATION",
+            "split": "test",
+            "prompt": "Instruction:\nClassify the support request. Reply with BILLING, TECHNICAL, or ACCOUNT.\n\nInput:\nSupport note TE00169 from Finley: concern is offline.\n\nResponse:\n",
+            "generated_text": "TECHNICAL",
+            "generated_token_ids": [
+              55,
+              3483,
+              43,
+              49,
+              23691,
+              2
+            ],
+            "stop_reason": "EOS",
+            "generated_token_count": 6,
+            "extracted_answer": "TECHNICAL",
+            "reference_answer": "TECHNICAL",
+            "task_score": 1.0,
+            "format_validity": true,
+            "instruction_compliance": true,
+            "complete_answer": true,
+            "repetition": false,
+            "inference_wall_time": 0.04944969993084669
+          },
+          {
+            "sample_id": "t2-test-00011",
+            "task": "T2_INTEGER_ADDITION",
+            "split": "test",
+            "prompt": "Instruction:\nAdd the two integers. Reply with only the integer sum.\n\nInput:\n79 + 59\n\nResponse:\n",
+            "generated_text": "132",
+            "generated_token_ids": [
+              2060,
+              21,
+              2
+            ],
+            "stop_reason": "EOS",
+            "generated_token_count": 3,
+            "extracted_answer": "132",
+            "reference_answer": "138",
+            "task_score": 0.0,
+            "format_validity": true,
+            "instruction_compliance": true,
+            "complete_answer": true,
+            "repetition": false,
+            "inference_wall_time": 0.02107330015860498
+          }
+        ],
+        "pass": true
+      }
+    }
+  },
+  "backend_gates": {
+    "sdpa_math": false,
+    "sdpa_auto": false,
+    "sdpa_flash": "FLASH_BACKEND_NOT_AVAILABLE"
+  },
+  "performance_eligible": [],
+  "all_required_gates_pass": false,
+  "historical_artifacts_preserved": true
+}
