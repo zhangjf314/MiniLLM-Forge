@@ -1,0 +1,674 @@
+{
+  "stage": "GPU-4A",
+  "classification": "GPU4A_NATIVE_SFT_CAPABILITY_VALIDATED",
+  "model_type": "native_transformer",
+  "pretraining_checkpoint": {
+    "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+    "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+    "global_step": 3052,
+    "tokens_seen": 50003968,
+    "best_validation_loss": 4.648381617334154,
+    "parameter_count": 37462528,
+    "model_config": {
+      "vocab_size": 24000,
+      "hidden_size": 512,
+      "num_layers": 8,
+      "num_attention_heads": 8,
+      "num_key_value_heads": 4,
+      "intermediate_size": 1536,
+      "max_seq_len": 1024,
+      "rope_theta": 10000.0,
+      "rms_norm_eps": 1e-06,
+      "attention_dropout": 0.0,
+      "residual_dropout": 0.0,
+      "initializer_range": 0.02,
+      "use_rope": true,
+      "tie_word_embeddings": true,
+      "gradient_checkpointing": true,
+      "pad_token_id": 0,
+      "bos_token_id": 1,
+      "eos_token_id": 2
+    },
+    "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+  },
+  "dataset_and_task_protocol": {
+    "version": "gpu4a-sft-v1-frozen",
+    "seed": 4204,
+    "max_length": 128,
+    "split_counts": {
+      "train": 4800,
+      "validation": 700,
+      "test": 700
+    },
+    "task_split_counts": {
+      "train": {
+        "T2_INTEGER_ADDITION": 3000,
+        "T1_SUPPORT_CLASSIFICATION": 1800
+      },
+      "validation": {
+        "T1_SUPPORT_CLASSIFICATION": 300,
+        "T2_INTEGER_ADDITION": 400
+      },
+      "test": {
+        "T2_INTEGER_ADDITION": 400,
+        "T1_SUPPORT_CLASSIFICATION": 300
+      }
+    },
+    "split_sha256": {
+      "train": "cd5ff3493e4cea4db962e810e5b19ca7bc4a4c8082419f546034b36a4eceac80",
+      "validation": "479b8ce0a9345c3e91b33879015500141ca1a41fd4b8c4e6634be2ad90d2f909",
+      "test": "8727e5da6fa5a307b2b128627614b4d901bccaa5da65c9f28fcc40b4716c8f19"
+    },
+    "semantic_key_overlaps": {
+      "train_validation": 0,
+      "train_test": 0,
+      "validation_test": 0
+    },
+    "all_complete": true,
+    "eos_present_count": 6200,
+    "eos_supervised_count": 6200,
+    "sample_count": 6200,
+    "effective_supervised_tokens": {
+      "train": 16087,
+      "validation": 2432,
+      "test": 2450
+    },
+    "lengths": {
+      "prompt_max": 66,
+      "target_max": 6,
+      "sequence_max": 71,
+      "sequence_min": 37
+    },
+    "dataset_digest": "a21cf5f467a6caef188ee3c7746ecc01b82cf6406fbc1bb0c88752cc09b6d72b",
+    "limitations": [
+      "Both tasks are deterministic synthetic controls, not broad language understanding benchmarks.",
+      "T1 tests held-out phrasings but shares category keywords with training.",
+      "T2 tests unseen operand pairs inside the same 0-99 range."
+    ]
+  },
+  "sft_implementation": {
+    "method": "FULL_SFT",
+    "response_only": true,
+    "native_eos_supervised": true,
+    "tiny_overfit": {
+      "status": "PASS",
+      "initial_checkpoint": {
+        "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+        "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+        "global_step": 3052,
+        "tokens_seen": 50003968,
+        "best_validation_loss": 4.648381617334154,
+        "parameter_count": 37462528,
+        "model_config": {
+          "vocab_size": 24000,
+          "hidden_size": 512,
+          "num_layers": 8,
+          "num_attention_heads": 8,
+          "num_key_value_heads": 4,
+          "intermediate_size": 1536,
+          "max_seq_len": 1024,
+          "rope_theta": 10000.0,
+          "rms_norm_eps": 1e-06,
+          "attention_dropout": 0.0,
+          "residual_dropout": 0.0,
+          "initializer_range": 0.02,
+          "use_rope": true,
+          "tie_word_embeddings": true,
+          "gradient_checkpointing": true,
+          "pad_token_id": 0,
+          "bos_token_id": 1,
+          "eos_token_id": 2
+        },
+        "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+      },
+      "sample_ids": [
+        "t1-train-01237",
+        "t1-train-00995",
+        "t1-train-01012",
+        "t1-train-00430",
+        "t2-train-01664",
+        "t2-train-02499",
+        "t2-train-00192",
+        "t2-train-00980"
+      ],
+      "steps_before_resume": 60,
+      "steps_after_resume": 61,
+      "initial_metrics": {
+        "loss": 5.70654296875,
+        "perplexity": 300.8292923298057,
+        "target_token_accuracy": 0.21875,
+        "targets": 32
+      },
+      "trained_metrics": {
+        "loss": 0.0016841590404510498,
+        "perplexity": 1.001685578032779,
+        "target_token_accuracy": 1.0,
+        "targets": 32
+      },
+      "initial_exact_generation": 0.0,
+      "trained_exact_generation": 8.0,
+      "restored_generation_matches": true,
+      "initial_model_sha256": "1f5b7b32d6f922ed634df5ac4ae71b481d3be18bad641a2f2ff5614380d4f530",
+      "trained_model_sha256": "4731c3c438cb0b83854181d69068f2e865e767a8a841dc844a5fc7c7ae42832f",
+      "restored_model_sha256": "4731c3c438cb0b83854181d69068f2e865e767a8a841dc844a5fc7c7ae42832f",
+      "parameters_updated": true,
+      "checkpoint_model_exact": true,
+      "restored_step": 60,
+      "restored_sampler_position": 8,
+      "finite_loss": true,
+      "wall_time_seconds": 7.086212400114164,
+      "peak_cuda_allocated_mib": 697.287109375,
+      "peak_cuda_reserved_mib": 820.0
+    },
+    "checkpoint_resume": "PASS"
+  },
+  "training_runs": [
+    {
+      "stage": "GPU-4A-3",
+      "status": "COMPLETED",
+      "experiment_id": "gpu4a-native-full-sft-s42-v1",
+      "method": "FULL_SFT",
+      "initial_checkpoint": {
+        "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+        "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+        "global_step": 3052,
+        "tokens_seen": 50003968,
+        "best_validation_loss": 4.648381617334154,
+        "parameter_count": 37462528,
+        "model_config": {
+          "vocab_size": 24000,
+          "hidden_size": 512,
+          "num_layers": 8,
+          "num_attention_heads": 8,
+          "num_key_value_heads": 4,
+          "intermediate_size": 1536,
+          "max_seq_len": 1024,
+          "rope_theta": 10000.0,
+          "rms_norm_eps": 1e-06,
+          "attention_dropout": 0.0,
+          "residual_dropout": 0.0,
+          "initializer_range": 0.02,
+          "use_rope": true,
+          "tie_word_embeddings": true,
+          "gradient_checkpointing": true,
+          "pad_token_id": 0,
+          "bos_token_id": 1,
+          "eos_token_id": 2
+        },
+        "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+      },
+      "trainable_parameters": 37462528,
+      "optimizer_parameter_count": 37462528,
+      "steps": 300,
+      "examples_seen": 9600,
+      "input_tokens_seen": 461254,
+      "supervised_tokens_seen": 32174,
+      "initial_validation": {
+        "validation_loss": 5.992174652846236,
+        "validation_perplexity": 400.2841431692092,
+        "validation_target_token_accuracy": 0.12376644736842106,
+        "validation_targets": 2432
+      },
+      "checkpoints": [
+        {
+          "step": 50,
+          "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0050.pt",
+          "sha256": "058f079234bacef4d2146720e22f1189ec850d5e51842538167ca7ce3841dca7",
+          "validation_loss": 1.008722554622708,
+          "validation_perplexity": 2.7420958989662,
+          "validation_target_token_accuracy": 0.7388980263157895
+        },
+        {
+          "step": 100,
+          "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0100.pt",
+          "sha256": "8adea6f505fb49007f33555188229ce3f1f706b7d7e92978b896a0507c2e47e6",
+          "validation_loss": 0.7872386641040641,
+          "validation_perplexity": 2.1973205013067023,
+          "validation_target_token_accuracy": 0.8005756578947368
+        },
+        {
+          "step": 150,
+          "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0150.pt",
+          "sha256": "b851b3e3463aa37607ca50aac92dae4e91b9c15680395c5d452718ea8626de05",
+          "validation_loss": 0.7007219638234299,
+          "validation_perplexity": 2.0152070890168625,
+          "validation_target_token_accuracy": 0.8100328947368421
+        },
+        {
+          "step": 200,
+          "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0200.pt",
+          "sha256": "2d22d8413060b27b759e135698612c6b4ca88813073f47e2a302f3200abd3691",
+          "validation_loss": 0.6570954786147922,
+          "validation_perplexity": 1.9291808419856808,
+          "validation_target_token_accuracy": 0.8149671052631579
+        },
+        {
+          "step": 250,
+          "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0250.pt",
+          "sha256": "c7e00e701a43b6e1a28898fecb8ea87fc8140f60ae90b65a4c4e85bc145ae245",
+          "validation_loss": 0.6178936413244197,
+          "validation_perplexity": 1.8550165935408311,
+          "validation_target_token_accuracy": 0.8223684210526315
+        },
+        {
+          "step": 300,
+          "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0300.pt",
+          "sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+          "validation_loss": 0.5942810970652652,
+          "validation_perplexity": 1.8117280200874322,
+          "validation_target_token_accuracy": 0.829358552631579
+        }
+      ],
+      "selected_checkpoint": {
+        "step": 300,
+        "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0300.pt",
+        "sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+        "validation_loss": 0.5942810970652652,
+        "validation_perplexity": 1.8117280200874322,
+        "validation_target_token_accuracy": 0.829358552631579
+      },
+      "final_train_loss": 0.5784010589122772,
+      "median_train_loss": 0.8347675502300262,
+      "median_tokens_per_second": 12188.047190960431,
+      "median_target_tokens_per_second": 850.247780421643,
+      "peak_cuda_allocated_mib": 1003.62548828125,
+      "peak_cuda_reserved_mib": 1318.0,
+      "minimum_headroom_mib": 5590.0,
+      "nan_count": 0,
+      "inf_count": 0,
+      "oom_count": 0,
+      "initial_model_sha256": "1f5b7b32d6f922ed634df5ac4ae71b481d3be18bad641a2f2ff5614380d4f530",
+      "final_model_sha256": "629061f8638e0bcdbdcd02de1fb779144d55a6331101223418e0f747900cdedd",
+      "parameters_updated": true,
+      "wall_time_seconds": 48.870153799885884,
+      "selected_checkpoint_reload": {
+        "status": "PASS",
+        "restored_step": 300,
+        "validation": {
+          "validation_loss": 0.5942810970652652,
+          "validation_perplexity": 1.8117280200874322,
+          "validation_target_token_accuracy": 0.829358552631579,
+          "validation_targets": 2432
+        },
+        "matches_recorded_validation": true
+      }
+    }
+  ],
+  "baseline_evaluation": {
+    "model_id": "native-pretrained:ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+    "records": 384,
+    "per_task_split": 64,
+    "metrics": {
+      "train:T1_SUPPORT_CLASSIFICATION": {
+        "count": 64,
+        "correct": 0.0,
+        "accuracy": 0.0,
+        "format_validity_rate": 0,
+        "instruction_compliance_rate": 0,
+        "eos_stop_rate": 0,
+        "length_limit_rate": 1,
+        "complete_answer_rate": 0,
+        "invalid_output_rate": 1,
+        "repetition_rate": 0.515625,
+        "generated_token_count_mean": 12
+      },
+      "train:T2_INTEGER_ADDITION": {
+        "count": 64,
+        "correct": 0.0,
+        "accuracy": 0.0,
+        "format_validity_rate": 0,
+        "instruction_compliance_rate": 0,
+        "eos_stop_rate": 0,
+        "length_limit_rate": 1,
+        "complete_answer_rate": 0,
+        "invalid_output_rate": 1,
+        "repetition_rate": 0.9375,
+        "generated_token_count_mean": 12
+      },
+      "validation:T1_SUPPORT_CLASSIFICATION": {
+        "count": 64,
+        "correct": 0.0,
+        "accuracy": 0.0,
+        "format_validity_rate": 0,
+        "instruction_compliance_rate": 0,
+        "eos_stop_rate": 0,
+        "length_limit_rate": 1,
+        "complete_answer_rate": 0,
+        "invalid_output_rate": 1,
+        "repetition_rate": 0.796875,
+        "generated_token_count_mean": 12
+      },
+      "validation:T2_INTEGER_ADDITION": {
+        "count": 64,
+        "correct": 0.0,
+        "accuracy": 0.0,
+        "format_validity_rate": 0,
+        "instruction_compliance_rate": 0,
+        "eos_stop_rate": 0,
+        "length_limit_rate": 1,
+        "complete_answer_rate": 0,
+        "invalid_output_rate": 1,
+        "repetition_rate": 0.875,
+        "generated_token_count_mean": 12
+      },
+      "test:T1_SUPPORT_CLASSIFICATION": {
+        "count": 64,
+        "correct": 0.0,
+        "accuracy": 0.0,
+        "format_validity_rate": 0,
+        "instruction_compliance_rate": 0,
+        "eos_stop_rate": 0,
+        "length_limit_rate": 1,
+        "complete_answer_rate": 0,
+        "invalid_output_rate": 1,
+        "repetition_rate": 0.109375,
+        "generated_token_count_mean": 12
+      },
+      "test:T2_INTEGER_ADDITION": {
+        "count": 64,
+        "correct": 0.0,
+        "accuracy": 0.0,
+        "format_validity_rate": 0,
+        "instruction_compliance_rate": 0,
+        "eos_stop_rate": 0,
+        "length_limit_rate": 1,
+        "complete_answer_rate": 0,
+        "invalid_output_rate": 1,
+        "repetition_rate": 0.890625,
+        "generated_token_count_mean": 12
+      }
+    },
+    "generation_path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\baseline\\generations.jsonl",
+    "wall_time_seconds": 43.12637970037758,
+    "checkpoint": {
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+      "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+      "global_step": 3052,
+      "tokens_seen": 50003968,
+      "best_validation_loss": 4.648381617334154,
+      "parameter_count": 37462528,
+      "model_config": {
+        "vocab_size": 24000,
+        "hidden_size": 512,
+        "num_layers": 8,
+        "num_attention_heads": 8,
+        "num_key_value_heads": 4,
+        "intermediate_size": 1536,
+        "max_seq_len": 1024,
+        "rope_theta": 10000.0,
+        "rms_norm_eps": 1e-06,
+        "attention_dropout": 0.0,
+        "residual_dropout": 0.0,
+        "initializer_range": 0.02,
+        "use_rope": true,
+        "tie_word_embeddings": true,
+        "gradient_checkpointing": true,
+        "pad_token_id": 0,
+        "bos_token_id": 1,
+        "eos_token_id": 2
+      },
+      "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+    }
+  },
+  "sft_evaluation": {
+    "model_id": "native-full-sft:9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+    "records": 384,
+    "per_task_split": 64,
+    "metrics": {
+      "train:T1_SUPPORT_CLASSIFICATION": {
+        "count": 64,
+        "correct": 64.0,
+        "accuracy": 1.0,
+        "format_validity_rate": 1,
+        "instruction_compliance_rate": 1,
+        "eos_stop_rate": 1,
+        "length_limit_rate": 0,
+        "complete_answer_rate": 1,
+        "invalid_output_rate": 0,
+        "repetition_rate": 0,
+        "generated_token_count_mean": 4.984375
+      },
+      "train:T2_INTEGER_ADDITION": {
+        "count": 64,
+        "correct": 4.0,
+        "accuracy": 0.0625,
+        "format_validity_rate": 1,
+        "instruction_compliance_rate": 1,
+        "eos_stop_rate": 1,
+        "length_limit_rate": 0,
+        "complete_answer_rate": 1,
+        "invalid_output_rate": 0,
+        "repetition_rate": 0,
+        "generated_token_count_mean": 2.5
+      },
+      "validation:T1_SUPPORT_CLASSIFICATION": {
+        "count": 64,
+        "correct": 64.0,
+        "accuracy": 1.0,
+        "format_validity_rate": 1,
+        "instruction_compliance_rate": 1,
+        "eos_stop_rate": 1,
+        "length_limit_rate": 0,
+        "complete_answer_rate": 1,
+        "invalid_output_rate": 0,
+        "repetition_rate": 0,
+        "generated_token_count_mean": 4.984375
+      },
+      "validation:T2_INTEGER_ADDITION": {
+        "count": 64,
+        "correct": 5.0,
+        "accuracy": 0.078125,
+        "format_validity_rate": 1,
+        "instruction_compliance_rate": 1,
+        "eos_stop_rate": 1,
+        "length_limit_rate": 0,
+        "complete_answer_rate": 1,
+        "invalid_output_rate": 0,
+        "repetition_rate": 0,
+        "generated_token_count_mean": 2.390625
+      },
+      "test:T1_SUPPORT_CLASSIFICATION": {
+        "count": 64,
+        "correct": 64.0,
+        "accuracy": 1.0,
+        "format_validity_rate": 1,
+        "instruction_compliance_rate": 1,
+        "eos_stop_rate": 1,
+        "length_limit_rate": 0,
+        "complete_answer_rate": 1,
+        "invalid_output_rate": 0,
+        "repetition_rate": 0,
+        "generated_token_count_mean": 4.984375
+      },
+      "test:T2_INTEGER_ADDITION": {
+        "count": 64,
+        "correct": 2.0,
+        "accuracy": 0.03125,
+        "format_validity_rate": 1,
+        "instruction_compliance_rate": 1,
+        "eos_stop_rate": 1,
+        "length_limit_rate": 0,
+        "complete_answer_rate": 1,
+        "invalid_output_rate": 0,
+        "repetition_rate": 0,
+        "generated_token_count_mean": 2.546875
+      }
+    },
+    "generation_path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\sft-evaluation\\generations.jsonl",
+    "wall_time_seconds": 13.705807797145098,
+    "checkpoint": {
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0300.pt",
+      "sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+      "global_step": 300,
+      "tokens_seen": 461254,
+      "best_validation_loss": 0.5942810970652652,
+      "parameter_count": 37462528,
+      "model_config": {
+        "vocab_size": 24000,
+        "hidden_size": 512,
+        "num_layers": 8,
+        "num_attention_heads": 8,
+        "num_key_value_heads": 4,
+        "intermediate_size": 1536,
+        "max_seq_len": 1024,
+        "rope_theta": 10000.0,
+        "rms_norm_eps": 1e-06,
+        "attention_dropout": 0.0,
+        "residual_dropout": 0.0,
+        "initializer_range": 0.02,
+        "use_rope": true,
+        "tie_word_embeddings": true,
+        "gradient_checkpointing": true,
+        "pad_token_id": 0,
+        "bos_token_id": 1,
+        "eos_token_id": 2
+      },
+      "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+    }
+  },
+  "capability_comparison": {
+    "paired_changes": {
+      "train:T1_SUPPORT_CLASSIFICATION": {
+        "incorrect_to_correct": 64,
+        "correct_to_incorrect": 0,
+        "unchanged_correct": 0,
+        "unchanged_incorrect": 0
+      },
+      "train:T2_INTEGER_ADDITION": {
+        "incorrect_to_correct": 4,
+        "correct_to_incorrect": 0,
+        "unchanged_correct": 0,
+        "unchanged_incorrect": 60
+      },
+      "validation:T1_SUPPORT_CLASSIFICATION": {
+        "incorrect_to_correct": 64,
+        "correct_to_incorrect": 0,
+        "unchanged_correct": 0,
+        "unchanged_incorrect": 0
+      },
+      "validation:T2_INTEGER_ADDITION": {
+        "incorrect_to_correct": 5,
+        "correct_to_incorrect": 0,
+        "unchanged_correct": 0,
+        "unchanged_incorrect": 59
+      },
+      "test:T1_SUPPORT_CLASSIFICATION": {
+        "incorrect_to_correct": 64,
+        "correct_to_incorrect": 0,
+        "unchanged_correct": 0,
+        "unchanged_incorrect": 0
+      },
+      "test:T2_INTEGER_ADDITION": {
+        "incorrect_to_correct": 2,
+        "correct_to_incorrect": 0,
+        "unchanged_correct": 0,
+        "unchanged_incorrect": 62
+      }
+    },
+    "t1_test_confusion": {
+      "ACCOUNT->ACCOUNT": 21,
+      "BILLING->BILLING": 22,
+      "TECHNICAL->TECHNICAL": 21
+    }
+  },
+  "resource_usage": {
+    "prewarm": {
+      "status": "PASS",
+      "steps": 8,
+      "initial_checkpoint": {
+        "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+        "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+        "global_step": 3052,
+        "tokens_seen": 50003968,
+        "best_validation_loss": 4.648381617334154,
+        "parameter_count": 37462528,
+        "model_config": {
+          "vocab_size": 24000,
+          "hidden_size": 512,
+          "num_layers": 8,
+          "num_attention_heads": 8,
+          "num_key_value_heads": 4,
+          "intermediate_size": 1536,
+          "max_seq_len": 1024,
+          "rope_theta": 10000.0,
+          "rms_norm_eps": 1e-06,
+          "attention_dropout": 0.0,
+          "residual_dropout": 0.0,
+          "initializer_range": 0.02,
+          "use_rope": true,
+          "tie_word_embeddings": true,
+          "gradient_checkpointing": true,
+          "pad_token_id": 0,
+          "bos_token_id": 1,
+          "eos_token_id": 2
+        },
+        "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+      },
+      "initial_validation": {
+        "validation_loss": 5.992174652846236,
+        "validation_perplexity": 400.2841431692092,
+        "validation_target_token_accuracy": 0.12376644736842106,
+        "validation_targets": 2432
+      },
+      "final_validation": {
+        "validation_loss": 1.7173050380753059,
+        "validation_perplexity": 5.569498634203927,
+        "validation_target_token_accuracy": 0.6726973684210527,
+        "validation_targets": 2432
+      },
+      "training_seconds": 1.241963699925691,
+      "median_step_seconds": 0.15524546249071136,
+      "checkpoint_seconds": 0.38949349988251925,
+      "tokens_seen": 12055,
+      "target_tokens_seen": 840,
+      "median_tokens_per_second": 11213.601565909474,
+      "median_target_tokens_per_second": 786.1573460094537,
+      "peak_cuda_allocated_mib": 1002.75048828125,
+      "peak_cuda_reserved_mib": 1314.0,
+      "minimum_headroom_mib": 5594.0,
+      "nan_count": 0,
+      "inf_count": 0,
+      "oom_count": 0,
+      "checkpoint": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\prewarm\\checkpoints\\step-0008.pt"
+    },
+    "formal_wall_time_seconds": 48.870153799885884,
+    "formal_peak_cuda_allocated_mib": 1003.62548828125,
+    "formal_peak_cuda_reserved_mib": 1318.0,
+    "baseline_generation_wall_time_seconds": 43.12637970037758,
+    "sft_generation_wall_time_seconds": 13.705807797145098
+  },
+  "background_runs": [],
+  "background_status": "NOT_REQUIRED_FOR_GPU4A_MEASURED_TASKS",
+  "optional_lora_comparison": "NOT_EXECUTED_FULL_SFT_WAS_SUFFICIENT",
+  "historical_artifacts_preserved": true,
+  "validated_capabilities": [
+    "Formal native checkpoint loading, inference, full-parameter BF16 SFT and exact resume.",
+    "Response-only instruction formatting and native EOS termination.",
+    "Held-out-phrasing support classification on the frozen synthetic control."
+  ],
+  "limitations": [
+    "T1 is a controlled keyword-routing task, not broad instruction understanding.",
+    "T2 arithmetic remained weak: only 2/64 independent test generations were correct.",
+    "One seed and 64 generated examples per task/split limit statistical claims.",
+    "The 50M-token pretrained model remains small and undertrained for general capabilities."
+  ],
+  "next_stage_recommendations": [
+    "Proceed to GPU-4B SDPA/FlashAttention and torch.compile with this functional SFT path as the correctness baseline.",
+    "Do not enlarge the SFT budget to fix arithmetic without a new data or tokenization hypothesis.",
+    "Study more pretraining separately if broader language or arithmetic capability is required."
+  ],
+  "tests": {
+    "status": "PASS",
+    "count": 136
+  },
+  "artifacts": {
+    "model_audit": "artifacts/gpu4a/PRETRAINED_MODEL_AUDIT.md",
+    "dataset_protocol": "artifacts/gpu4a/SFT_DATASET_AND_TASK_PROTOCOL.md",
+    "implementation": "artifacts/gpu4a/SFT_IMPLEMENTATION_VALIDATION.md",
+    "baseline": "artifacts/gpu4a/PRETRAINED_BASELINE_EVALUATION.md",
+    "training": "artifacts/gpu4a/FULL_SFT_TRAINING_REPORT.md",
+    "capability": "artifacts/gpu4a/SFT_CAPABILITY_EVALUATION.md",
+    "background": "artifacts/gpu4a/BACKGROUND_RUNS.md",
+    "final": "artifacts/gpu4a/GPU4A_FINAL_REPORT.md"
+  }
+}

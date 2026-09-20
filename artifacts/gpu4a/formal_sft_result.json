@@ -1,0 +1,130 @@
+{
+  "stage": "GPU-4A-3",
+  "status": "COMPLETED",
+  "experiment_id": "gpu4a-native-full-sft-s42-v1",
+  "method": "FULL_SFT",
+  "initial_checkpoint": {
+    "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+    "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+    "global_step": 3052,
+    "tokens_seen": 50003968,
+    "best_validation_loss": 4.648381617334154,
+    "parameter_count": 37462528,
+    "model_config": {
+      "vocab_size": 24000,
+      "hidden_size": 512,
+      "num_layers": 8,
+      "num_attention_heads": 8,
+      "num_key_value_heads": 4,
+      "intermediate_size": 1536,
+      "max_seq_len": 1024,
+      "rope_theta": 10000.0,
+      "rms_norm_eps": 1e-06,
+      "attention_dropout": 0.0,
+      "residual_dropout": 0.0,
+      "initializer_range": 0.02,
+      "use_rope": true,
+      "tie_word_embeddings": true,
+      "gradient_checkpointing": true,
+      "pad_token_id": 0,
+      "bos_token_id": 1,
+      "eos_token_id": 2
+    },
+    "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+  },
+  "trainable_parameters": 37462528,
+  "optimizer_parameter_count": 37462528,
+  "steps": 300,
+  "examples_seen": 9600,
+  "input_tokens_seen": 461254,
+  "supervised_tokens_seen": 32174,
+  "initial_validation": {
+    "validation_loss": 5.992174652846236,
+    "validation_perplexity": 400.2841431692092,
+    "validation_target_token_accuracy": 0.12376644736842106,
+    "validation_targets": 2432
+  },
+  "checkpoints": [
+    {
+      "step": 50,
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0050.pt",
+      "sha256": "058f079234bacef4d2146720e22f1189ec850d5e51842538167ca7ce3841dca7",
+      "validation_loss": 1.008722554622708,
+      "validation_perplexity": 2.7420958989662,
+      "validation_target_token_accuracy": 0.7388980263157895
+    },
+    {
+      "step": 100,
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0100.pt",
+      "sha256": "8adea6f505fb49007f33555188229ce3f1f706b7d7e92978b896a0507c2e47e6",
+      "validation_loss": 0.7872386641040641,
+      "validation_perplexity": 2.1973205013067023,
+      "validation_target_token_accuracy": 0.8005756578947368
+    },
+    {
+      "step": 150,
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0150.pt",
+      "sha256": "b851b3e3463aa37607ca50aac92dae4e91b9c15680395c5d452718ea8626de05",
+      "validation_loss": 0.7007219638234299,
+      "validation_perplexity": 2.0152070890168625,
+      "validation_target_token_accuracy": 0.8100328947368421
+    },
+    {
+      "step": 200,
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0200.pt",
+      "sha256": "2d22d8413060b27b759e135698612c6b4ca88813073f47e2a302f3200abd3691",
+      "validation_loss": 0.6570954786147922,
+      "validation_perplexity": 1.9291808419856808,
+      "validation_target_token_accuracy": 0.8149671052631579
+    },
+    {
+      "step": 250,
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0250.pt",
+      "sha256": "c7e00e701a43b6e1a28898fecb8ea87fc8140f60ae90b65a4c4e85bc145ae245",
+      "validation_loss": 0.6178936413244197,
+      "validation_perplexity": 1.8550165935408311,
+      "validation_target_token_accuracy": 0.8223684210526315
+    },
+    {
+      "step": 300,
+      "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0300.pt",
+      "sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+      "validation_loss": 0.5942810970652652,
+      "validation_perplexity": 1.8117280200874322,
+      "validation_target_token_accuracy": 0.829358552631579
+    }
+  ],
+  "selected_checkpoint": {
+    "step": 300,
+    "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu4a\\formal-full-sft-s42-v1\\checkpoints\\step-0300.pt",
+    "sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+    "validation_loss": 0.5942810970652652,
+    "validation_perplexity": 1.8117280200874322,
+    "validation_target_token_accuracy": 0.829358552631579
+  },
+  "final_train_loss": 0.5784010589122772,
+  "median_train_loss": 0.8347675502300262,
+  "median_tokens_per_second": 12188.047190960431,
+  "median_target_tokens_per_second": 850.247780421643,
+  "peak_cuda_allocated_mib": 1003.62548828125,
+  "peak_cuda_reserved_mib": 1318.0,
+  "minimum_headroom_mib": 5590.0,
+  "nan_count": 0,
+  "inf_count": 0,
+  "oom_count": 0,
+  "initial_model_sha256": "1f5b7b32d6f922ed634df5ac4ae71b481d3be18bad641a2f2ff5614380d4f530",
+  "final_model_sha256": "629061f8638e0bcdbdcd02de1fb779144d55a6331101223418e0f747900cdedd",
+  "parameters_updated": true,
+  "wall_time_seconds": 48.870153799885884,
+  "selected_checkpoint_reload": {
+    "status": "PASS",
+    "restored_step": 300,
+    "validation": {
+      "validation_loss": 0.5942810970652652,
+      "validation_perplexity": 1.8117280200874322,
+      "validation_target_token_accuracy": 0.829358552631579,
+      "validation_targets": 2432
+    },
+    "matches_recorded_validation": true
+  }
+}

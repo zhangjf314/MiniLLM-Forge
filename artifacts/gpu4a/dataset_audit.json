@@ -1,0 +1,55 @@
+{
+  "version": "gpu4a-sft-v1-frozen",
+  "seed": 4204,
+  "max_length": 128,
+  "split_counts": {
+    "train": 4800,
+    "validation": 700,
+    "test": 700
+  },
+  "task_split_counts": {
+    "train": {
+      "T2_INTEGER_ADDITION": 3000,
+      "T1_SUPPORT_CLASSIFICATION": 1800
+    },
+    "validation": {
+      "T1_SUPPORT_CLASSIFICATION": 300,
+      "T2_INTEGER_ADDITION": 400
+    },
+    "test": {
+      "T2_INTEGER_ADDITION": 400,
+      "T1_SUPPORT_CLASSIFICATION": 300
+    }
+  },
+  "split_sha256": {
+    "train": "cd5ff3493e4cea4db962e810e5b19ca7bc4a4c8082419f546034b36a4eceac80",
+    "validation": "479b8ce0a9345c3e91b33879015500141ca1a41fd4b8c4e6634be2ad90d2f909",
+    "test": "8727e5da6fa5a307b2b128627614b4d901bccaa5da65c9f28fcc40b4716c8f19"
+  },
+  "semantic_key_overlaps": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "all_complete": true,
+  "eos_present_count": 6200,
+  "eos_supervised_count": 6200,
+  "sample_count": 6200,
+  "effective_supervised_tokens": {
+    "train": 16087,
+    "validation": 2432,
+    "test": 2450
+  },
+  "lengths": {
+    "prompt_max": 66,
+    "target_max": 6,
+    "sequence_max": 71,
+    "sequence_min": 37
+  },
+  "dataset_digest": "a21cf5f467a6caef188ee3c7746ecc01b82cf6406fbc1bb0c88752cc09b6d72b",
+  "limitations": [
+    "Both tasks are deterministic synthetic controls, not broad language understanding benchmarks.",
+    "T1 tests held-out phrasings but shares category keywords with training.",
+    "T2 tests unseen operand pairs inside the same 0-99 range."
+  ]
+}

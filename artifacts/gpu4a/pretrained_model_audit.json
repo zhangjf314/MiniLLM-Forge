@@ -1,0 +1,285 @@
+{
+  "stage": "GPU-4A-0",
+  "status": "PASS",
+  "checkpoint": {
+    "path": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\E01-minillm-formal\\best.pt",
+    "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+    "global_step": 3052,
+    "tokens_seen": 50003968,
+    "best_validation_loss": 4.648381617334154,
+    "parameter_count": 37462528,
+    "model_config": {
+      "vocab_size": 24000,
+      "hidden_size": 512,
+      "num_layers": 8,
+      "num_attention_heads": 8,
+      "num_key_value_heads": 4,
+      "intermediate_size": 1536,
+      "max_seq_len": 1024,
+      "rope_theta": 10000.0,
+      "rms_norm_eps": 1e-06,
+      "attention_dropout": 0.0,
+      "residual_dropout": 0.0,
+      "initializer_range": 0.02,
+      "use_rope": true,
+      "tie_word_embeddings": true,
+      "gradient_checkpointing": true,
+      "pad_token_id": 0,
+      "bos_token_id": 1,
+      "eos_token_id": 2
+    },
+    "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+  },
+  "checkpoint_inventory_match": true,
+  "formal_pretraining": {
+    "status": "completed",
+    "global_step": 3052,
+    "tokens_seen": 50003968,
+    "supervised_tokens_seen": 49955136,
+    "final_train_loss": 4.559089660644531,
+    "final_validation": {
+      "validation_loss": 4.648381617334154,
+      "validation_perplexity": 104.41586393802609,
+      "evaluated_targets": 294624
+    },
+    "final_train_probe_loss": 4.531962513923645,
+    "best_validation_loss": 4.648381617334154,
+    "best_step": 3052,
+    "peak_allocated_mib": 1849.02490234375,
+    "peak_reserved_mib": 2394.0,
+    "elapsed_seconds": 2684.819079500041,
+    "loop_elapsed_seconds": 2663.814279299928,
+    "compute_seconds": 2549.149993401137,
+    "median_tokens_per_second": 19572.967124167495,
+    "average_tokens_per_second": 19615.937912418995,
+    "nan_count": 0,
+    "inf_count": 0,
+    "oom_count": 0,
+    "parameters": 37462528,
+    "config_hash": "c0116533319937725d70299f16d7b4a8d4555be87ff50464c944cccd12667004",
+    "data_identity": {
+      "manifest_hash": "44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103",
+      "tokenizer_hash": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+      "validation_hash": "da42c8818d5865f3251c454977e5532e1a51fe30edd3ed0d62794b92a3d846a3"
+    }
+  },
+  "model_manifest_sha256": "de4afdc0535a6e2b532a5ec156a1798a57bf1516616d3e7daa04cda9d37c5bbc",
+  "tokenizer_manifest_sha256": "7e5cab85c9d3b6733d8bee934b8ab4f173b305546afa83fea79203043ac32c98",
+  "tokenizer_artifact_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+  "tokenizer": {
+    "dataset": "HuggingFaceFW/fineweb-edu",
+    "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "algorithm": "byte-level BPE",
+    "tokenizer_input_corpus_hash": "41c13e92a4554105bcc0bbb2785e3f164139208afa5a52d0d24c988e575fb188",
+    "training_documents": 5000,
+    "training_partition": "train only",
+    "tokenizer_artifact_hash": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+    "special_tokens": {
+      "<pad>": 0,
+      "<bos>": 1,
+      "<eos>": 2,
+      "<unk>": 3
+    },
+    "statistics": {
+      "vocab_size": 24000,
+      "document_count": 304,
+      "average_tokens_per_document": 969.671052631579,
+      "unk_ratio": 0.0,
+      "compression_ratio": 4.568607096817966,
+      "roundtrip_success_rate": 1.0
+    },
+    "created_at": "2026-09-12T05:58:08.134754+00:00"
+  },
+  "embedding_output_tied": true,
+  "diagnostic_generations": [
+    {
+      "prompt": "The purpose of education is",
+      "prompt_token_ids": [
+        1,
+        986,
+        3923,
+        282,
+        1875,
+        316
+      ],
+      "generated_token_ids": [
+        293,
+        313,
+        1610,
+        293,
+        313,
+        1610,
+        293,
+        313,
+        1610,
+        293,
+        313,
+        1610,
+        293,
+        313,
+        1610,
+        293,
+        313,
+        1610,
+        293,
+        313,
+        1610,
+        293,
+        313,
+        1610
+      ],
+      "generated_text": " to be able to be able to be able to be able to be able to be able to be able to be able",
+      "generated_token_count": 24,
+      "stop_reason": "LENGTH_LIMIT",
+      "finite_logits": true,
+      "token_ids_in_vocabulary": true
+    },
+    {
+      "prompt": "A computer program can",
+      "prompt_token_ids": [
+        1,
+        36,
+        2187,
+        1357,
+        441
+      ],
+      "generated_token_ids": [
+        313,
+        769,
+        293,
+        851,
+        403,
+        1389,
+        265,
+        932,
+        282,
+        265,
+        932,
+        17,
+        340,
+        725,
+        2103,
+        316,
+        293,
+        2080,
+        261,
+        664,
+        773,
+        282,
+        921,
+        15
+      ],
+      "generated_text": " be used to help you understand the world of the world. The first step is to create a new system of information,",
+      "generated_token_count": 24,
+      "stop_reason": "LENGTH_LIMIT",
+      "finite_logits": true,
+      "token_ids_in_vocabulary": true
+    },
+    {
+      "prompt": "When water freezes, it",
+      "prompt_token_ids": [
+        1,
+        7408,
+        799,
+        1609,
+        9409,
+        15,
+        365
+      ],
+      "generated_token_ids": [
+        316,
+        1098,
+        293,
+        1619,
+        265,
+        799,
+        419,
+        3239,
+        265,
+        799,
+        17,
+        340,
+        799,
+        316,
+        582,
+        261,
+        1153,
+        972,
+        293,
+        1619,
+        265,
+        799,
+        419,
+        265
+      ],
+      "generated_text": " is important to keep the water from getting the water. The water is also a good way to keep the water from the",
+      "generated_token_count": 24,
+      "stop_reason": "LENGTH_LIMIT",
+      "finite_logits": true,
+      "token_ids_in_vocabulary": true
+    }
+  ],
+  "dataset_audit": {
+    "version": "gpu4a-sft-v1-frozen",
+    "seed": 4204,
+    "max_length": 128,
+    "split_counts": {
+      "train": 4800,
+      "validation": 700,
+      "test": 700
+    },
+    "task_split_counts": {
+      "train": {
+        "T2_INTEGER_ADDITION": 3000,
+        "T1_SUPPORT_CLASSIFICATION": 1800
+      },
+      "validation": {
+        "T1_SUPPORT_CLASSIFICATION": 300,
+        "T2_INTEGER_ADDITION": 400
+      },
+      "test": {
+        "T2_INTEGER_ADDITION": 400,
+        "T1_SUPPORT_CLASSIFICATION": 300
+      }
+    },
+    "split_sha256": {
+      "train": "cd5ff3493e4cea4db962e810e5b19ca7bc4a4c8082419f546034b36a4eceac80",
+      "validation": "479b8ce0a9345c3e91b33879015500141ca1a41fd4b8c4e6634be2ad90d2f909",
+      "test": "8727e5da6fa5a307b2b128627614b4d901bccaa5da65c9f28fcc40b4716c8f19"
+    },
+    "semantic_key_overlaps": {
+      "train_validation": 0,
+      "train_test": 0,
+      "validation_test": 0
+    },
+    "all_complete": true,
+    "eos_present_count": 6200,
+    "eos_supervised_count": 6200,
+    "sample_count": 6200,
+    "effective_supervised_tokens": {
+      "train": 16087,
+      "validation": 2432,
+      "test": 2450
+    },
+    "lengths": {
+      "prompt_max": 66,
+      "target_max": 6,
+      "sequence_max": 71,
+      "sequence_min": 37
+    },
+    "dataset_digest": "a21cf5f467a6caef188ee3c7746ecc01b82cf6406fbc1bb0c88752cc09b6d72b",
+    "limitations": [
+      "Both tasks are deterministic synthetic controls, not broad language understanding benchmarks.",
+      "T1 tests held-out phrasings but shares category keywords with training.",
+      "T2 tests unseen operand pairs inside the same 0-99 range."
+    ]
+  },
+  "environment": {
+    "python": "Python 3.11.15",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "bf16_supported": true,
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU"
+  },
+  "elapsed_seconds": 3.658670999808237
+}
