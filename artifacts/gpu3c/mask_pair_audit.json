@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "samples": 12469,
+  "input_ids_identical": true,
+  "attention_mask_identical": true,
+  "label_difference_count": 12469,
+  "label_difference_per_sample": 1,
+  "only_difference": "final assistant <|im_end|> label",
+  "masked_effective_supervised_tokens": 2570994,
+  "supervised_effective_supervised_tokens": 2583463,
+  "target_token_difference": 12469,
+  "sample_order_sha256": "6d994a5f08553214076d12da88fa244f4b3d60ddf0ae00e19f394a2bcdd6c0fb",
+  "packing": "DISABLED",
+  "causal_shift": "Hugging Face causal LM shifts labels internally; label at position t is predicted from logits t-1",
+  "pad_masking": "position based; token ID 151643 is not globally masked"
+}

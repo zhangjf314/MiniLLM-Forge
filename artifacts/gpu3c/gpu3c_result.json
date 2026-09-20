@@ -1,0 +1,118 @@
+{
+  "stage": "GPU-3C",
+  "classification": "TO_BE_DETERMINED",
+  "historical_baseline_preserved": true,
+  "dataset_audit": "artifacts/gpu3c/data_audit.json",
+  "eos_supervision_ablation": {
+    "pair_audit": "PASS",
+    "formal_status": "PENDING"
+  },
+  "data_completeness_ablation": {
+    "implemented_strategy": "D1_COMPLETE_FILTER_STATIC_AND_SHARED_BC_SUBSET",
+    "separate_ad_training": "NOT_EXECUTED"
+  },
+  "formal_sft_evaluation": {
+    "status": "PENDING"
+  },
+  "autonomous_termination": {},
+  "answer_quality": {},
+  "training_cost": {},
+  "background_runs": [
+    {
+      "task_id": "duplicate-test-5c311efeda664f2ca4a36632b930c5d1",
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-c",
+        "pass"
+      ],
+      "estimated_duration_seconds": 0.1,
+      "supervisor_pid": 15020,
+      "worker_pid": 41928,
+      "status": "COMPLETED",
+      "stdout_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-5c311efeda664f2ca4a36632b930c5d1\\stdout.log",
+      "stderr_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-5c311efeda664f2ca4a36632b930c5d1\\stderr.log",
+      "exit_code": 0,
+      "elapsed_seconds": 0.06082725524902344
+    },
+    {
+      "task_id": "duplicate-test-a7c0654113564d45bff87822a7a65d61",
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-c",
+        "pass"
+      ],
+      "estimated_duration_seconds": 0.1,
+      "supervisor_pid": 17580,
+      "worker_pid": 44496,
+      "status": "COMPLETED",
+      "stdout_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-a7c0654113564d45bff87822a7a65d61\\stdout.log",
+      "stderr_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-a7c0654113564d45bff87822a7a65d61\\stderr.log",
+      "exit_code": 0,
+      "elapsed_seconds": 0.05289316177368164
+    },
+    {
+      "task_id": "duplicate-test-d2f50dafd4914d7babd1b7cfa1a16da9",
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-c",
+        "pass"
+      ],
+      "estimated_duration_seconds": 0.1,
+      "supervisor_pid": 41564,
+      "worker_pid": 36652,
+      "status": "COMPLETED",
+      "stdout_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-d2f50dafd4914d7babd1b7cfa1a16da9\\stdout.log",
+      "stderr_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-d2f50dafd4914d7babd1b7cfa1a16da9\\stderr.log",
+      "exit_code": 0,
+      "elapsed_seconds": 0.051729440689086914
+    },
+    {
+      "task_id": "duplicate-test-f7f08577f22641909350950a8246637b",
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-c",
+        "pass"
+      ],
+      "estimated_duration_seconds": 0.1,
+      "supervisor_pid": 37764,
+      "worker_pid": 52680,
+      "status": "COMPLETED",
+      "stdout_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-f7f08577f22641909350950a8246637b\\stdout.log",
+      "stderr_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\duplicate-test-f7f08577f22641909350950a8246637b\\stderr.log",
+      "exit_code": 0,
+      "elapsed_seconds": 0.05986475944519043
+    },
+    {
+      "task_id": "gpu3c-background-simulation-v1",
+      "command": [
+        "D:\\Agents\\Codex\\MiniLLM-Forge\\.venv\\Scripts\\python.exe",
+        "-m",
+        "minillm_forge.experiments_gpu3c.worker",
+        "simulate",
+        "--seconds",
+        "2"
+      ],
+      "estimated_duration_seconds": 2.0,
+      "supervisor_pid": 4812,
+      "worker_pid": 48952,
+      "status": "COMPLETED",
+      "stdout_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\gpu3c-background-simulation-v1\\stdout.log",
+      "stderr_log": "D:\\Agents\\Codex\\MiniLLM-Forge\\runs\\gpu3c\\background\\gpu3c-background-simulation-v1\\stderr.log",
+      "exit_code": 0,
+      "elapsed_seconds": 3.901808738708496
+    }
+  ],
+  "confirmed_findings": [
+    "B/C labels differ only at the final assistant <|im_end|> position.",
+    "Both one-step smoke arms update adapters and reload checkpoints successfully."
+  ],
+  "unresolved_questions": [
+    "Whether EOS supervision changes autonomous termination under the frozen evaluation."
+  ],
+  "next_stage_recommendations": [],
+  "tests": {
+    "pytest": "118 passed",
+    "smoke": "PASS"
+  },
+  "artifacts": {}
+}

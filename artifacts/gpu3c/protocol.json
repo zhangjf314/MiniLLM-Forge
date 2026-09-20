@@ -1,0 +1,131 @@
+{
+  "stage": "GPU-3C",
+  "protocol_version": "gpu3c-v1-frozen",
+  "start_commit": "2e1bd4bcb2246071bc7e5826b4d97bc55377cd6d",
+  "baseline_commit": "91c7efe6a646b0b8a9c6592390abbf36ed6f58af",
+  "gpu3a_commit": "b41c718c337946c14a0bf80dcbacf68a1129d633",
+  "gpu3b_commit": "2e1bd4bcb2246071bc7e5826b4d97bc55377cd6d",
+  "model": {
+    "id": "Qwen/Qwen3-0.6B-Base",
+    "revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+    "initialization": "BASE_INIT",
+    "method": "LORA",
+    "seed": 42,
+    "context": 512
+  },
+  "tokenizer": {
+    "tokenizer": "Qwen/Qwen3-0.6B-Base",
+    "eos_token": "<|endoftext|>",
+    "eos_token_id": 151643,
+    "pad_token": "<|endoftext|>",
+    "pad_token_id": 151643,
+    "assistant_end_token": "<|im_end|>",
+    "assistant_end_token_id": 151645,
+    "chat_template_sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+    "assistant_target_terminator": "<|im_end|>",
+    "thinking_mode": "NO_EXPLICIT_THINKING_SWITCH_IN_FROZEN_BASE_CHAT_TEMPLATE",
+    "training_inference_template_consistent": true
+  },
+  "training_data": {
+    "path": "data/processed/gpu2b/sft_math_v1_train.jsonl",
+    "sha256": "681e9f003926aa038b9bb0ee96a249dd7ece833e1ab5a502166084ae21ef0be2",
+    "validation_path": "data/processed/gpu2b/sft_math_v1_validation.jsonl",
+    "validation_sha256": "66fffad84d6db06fa6d6d747066628f455d09e3b0add809c52273a814d101c59",
+    "complete_subset_count": 12469,
+    "complete_subset_digest": "371a2ce118ee63c34d4d635790fb7054e2a2b8e2d911ddc4439223cdb3c09ce7",
+    "sample_order": "torch randperm over complete subset with seed 42"
+  },
+  "historical_inputs": {
+    "artifacts/gpu3a/gpu3a_result.json": "13736c692dabfc61be35609104357995786e2db6ea038b5db417f854d8ce6dc6",
+    "artifacts/gpu3b/gpu3b_result.json": "d9a0366977114305944f11041ddad0cc93222131764d6370d97e60de89ce5ac2",
+    "artifacts/gpu3b/protocol.json": "408041c4e595300a2e6ac0bfcdc3066da70535e8c75c2775291df2b0421c1394",
+    "runs/gpu2d-formal/B-LORA-s42/final_adapter/adapter_config.json": "d17f0268dcfa7296a94999c8573f9ff3e67fd244ea1892ac55686a2311e4e35c",
+    "runs/gpu2d-formal/B-LORA-s42/final_adapter/adapter_model.safetensors": "2b49ef0a4bd45b1443d51f17764a44a08f5a392735237022bb069e70fd188e8a"
+  },
+  "groups": {
+    "B-EOS-MASKED": {
+      "dataset": "identical complete subset",
+      "target_im_end_label": -100
+    },
+    "C-EOS-SUPERVISED": {
+      "dataset": "identical complete subset",
+      "target_im_end_label": 151645
+    }
+  },
+  "training": {
+    "optimizer_steps": 64,
+    "checkpoint_steps": [
+      32,
+      64
+    ],
+    "micro_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "effective_examples_per_update": 16,
+    "learning_rate": 0.0002,
+    "scheduler_total_steps": 64,
+    "precision": "bf16",
+    "max_wall_time_seconds": 2700,
+    "single_active_gpu_job": true
+  },
+  "evaluation": {
+    "problem_ids": [
+      "gsm8k-1176",
+      "gsm8k-0805",
+      "math500-0076",
+      "math500-0181"
+    ],
+    "paths": {
+      "C0": {
+        "eos_token_ids": [
+          151643,
+          151645
+        ],
+        "external_stop": false
+      },
+      "S3": {
+        "eos_token_ids": [
+          151643,
+          151645
+        ],
+        "external_stop": true
+      }
+    },
+    "max_new_tokens": 512,
+    "extractors": [
+      "legacy-gpu2d",
+      "first-valid-v1",
+      "conflict-aware-v1"
+    ]
+  },
+  "runtime_estimate": {
+    "historical_median_step_seconds": 6.453890950011555,
+    "training_seconds_per_arm": 473.0490208007395,
+    "paired_training_seconds": 946.098041601479,
+    "evaluation_generations": 16,
+    "historical_seconds_per_512_generation": 30,
+    "evaluation_seconds": 480,
+    "total_estimated_seconds": 1426.098041601479,
+    "basis": "GPU-2D B-LORA-s42 measured median step time plus GPU-3B generation timings"
+  },
+  "resource_limits": {
+    "gpu_memory_mib": 8151,
+    "minimum_headroom_mib": 1024,
+    "max_training_steps_per_arm": 64,
+    "max_generated_tokens": 512,
+    "checkpoint_interval_steps": 32
+  },
+  "success_conditions": [
+    "B/C input_ids and attention_mask identical",
+    "B/C labels differ only at final assistant <|im_end|>",
+    "both arms finish 64 optimizer updates without OOM or non-finite loss",
+    "all frozen evaluation records are retained including negative results"
+  ],
+  "failure_conditions": [
+    "mask identity mismatch",
+    "OOM or non-finite training",
+    "checkpoint save/load failure",
+    "historical input hash mismatch",
+    "background supervisor timeout"
+  ],
+  "status": "FROZEN_BEFORE_GPU3C_TRAINING"
+}

@@ -54,6 +54,7 @@ minillm-stage-gpu2d = "minillm_forge.cli.stage_gpu2d:main"
 minillm-stage-gpu2d-formal = "minillm_forge.cli.stage_gpu2d_formal:main"
 minillm-gpu3a = "minillm_forge.cli.gpu3a:main"
 minillm-gpu3b = "minillm_forge.cli.gpu3b:main"
+minillm-gpu3c = "minillm_forge.cli.gpu3c:main"
 
 [tool.uv]
 conflicts = [
