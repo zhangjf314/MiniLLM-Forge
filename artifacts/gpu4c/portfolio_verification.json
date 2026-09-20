@@ -1,0 +1,156 @@
+{
+  "mode": "quick",
+  "classification": "PASS",
+  "checks": [
+    {
+      "name": "hash:artifacts/training/minillm_formal_result.json",
+      "passed": true,
+      "detail": "expected=6c27dbf40736919a21c8bd69f68f0f4e3e91ea0b46cfe58f397e101a40874f6a; actual=6c27dbf40736919a21c8bd69f68f0f4e3e91ea0b46cfe58f397e101a40874f6a"
+    },
+    {
+      "name": "hash:artifacts/training/minillm_formal_model.json",
+      "passed": true,
+      "detail": "expected=de4afdc0535a6e2b532a5ec156a1798a57bf1516616d3e7daa04cda9d37c5bbc; actual=de4afdc0535a6e2b532a5ec156a1798a57bf1516616d3e7daa04cda9d37c5bbc"
+    },
+    {
+      "name": "hash:artifacts/training/minillm_gpu_resume_validation.json",
+      "passed": true,
+      "detail": "expected=eb5fbb8be5220692f8203ddc5a68f21c06ac06d8855a8812fc7f3d22ecf62e15; actual=eb5fbb8be5220692f8203ddc5a68f21c06ac06d8855a8812fc7f3d22ecf62e15"
+    },
+    {
+      "name": "hash:artifacts/tokenizers/minillm-tokenizer.json",
+      "passed": true,
+      "detail": "expected=e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22; actual=e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+    },
+    {
+      "name": "hash:artifacts/data_manifests/minillm_pretrain_formal.json",
+      "passed": true,
+      "detail": "expected=44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103; actual=44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103"
+    },
+    {
+      "name": "hash:artifacts/gpu2d_formal/final_result.json",
+      "passed": true,
+      "detail": "expected=d2c1397a1541bc400054287915639393dee9d68b4a0f73fb4156d78a3074af93; actual=d2c1397a1541bc400054287915639393dee9d68b4a0f73fb4156d78a3074af93"
+    },
+    {
+      "name": "hash:artifacts/gpu3a/gpu3a_result.json",
+      "passed": true,
+      "detail": "expected=13736c692dabfc61be35609104357995786e2db6ea038b5db417f854d8ce6dc6; actual=13736c692dabfc61be35609104357995786e2db6ea038b5db417f854d8ce6dc6"
+    },
+    {
+      "name": "hash:artifacts/gpu3b/gpu3b_result.json",
+      "passed": true,
+      "detail": "expected=d9a0366977114305944f11041ddad0cc93222131764d6370d97e60de89ce5ac2; actual=d9a0366977114305944f11041ddad0cc93222131764d6370d97e60de89ce5ac2"
+    },
+    {
+      "name": "hash:artifacts/gpu3c/gpu3c_result.json",
+      "passed": true,
+      "detail": "expected=5dc81f0591262ab7f8728bc53e1345034dab629b92ea28d8bced37f7522023a8; actual=5dc81f0591262ab7f8728bc53e1345034dab629b92ea28d8bced37f7522023a8"
+    },
+    {
+      "name": "hash:artifacts/gpu4a/gpu4a_result.json",
+      "passed": true,
+      "detail": "expected=c9745b15005e5a6a7b404ffb2383b74ee155091910c2f7b894b2e191fc7fa285; actual=c9745b15005e5a6a7b404ffb2383b74ee155091910c2f7b894b2e191fc7fa285"
+    },
+    {
+      "name": "hash:artifacts/gpu4a/formal_sft_result.json",
+      "passed": true,
+      "detail": "expected=acad8399bc56e7a8c1230198f07ababfbe7936a6a276170131056987f1f3f9b3; actual=acad8399bc56e7a8c1230198f07ababfbe7936a6a276170131056987f1f3f9b3"
+    },
+    {
+      "name": "hash:artifacts/gpu4a/sft_evaluation.json",
+      "passed": true,
+      "detail": "expected=4cf215e25163271988a0ed39bc20f3cdfbdd6c1091cdf041e282c76fc9b890ca; actual=4cf215e25163271988a0ed39bc20f3cdfbdd6c1091cdf041e282c76fc9b890ca"
+    },
+    {
+      "name": "hash:artifacts/gpu4b/gpu4b_result.json",
+      "passed": true,
+      "detail": "expected=79d72186870c08ad84f68d9bdec572088cab8ab2be9d649324fc9c73be5fb7c0; actual=79d72186870c08ad84f68d9bdec572088cab8ab2be9d649324fc9c73be5fb7c0"
+    },
+    {
+      "name": "hash:artifacts/gpu4b_r1/gpu4b_r1_result.json",
+      "passed": true,
+      "detail": "expected=69b1cc95f40640a089784a513900c4073dd6e87564c9fe922788552f1edd947d; actual=69b1cc95f40640a089784a513900c4073dd6e87564c9fe922788552f1edd947d"
+    },
+    {
+      "name": "hash:runs/E01-minillm-formal/best.pt",
+      "passed": true,
+      "detail": "expected=ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc; actual=ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc"
+    },
+    {
+      "name": "hash:runs/gpu4a/formal-full-sft-s42-v1/checkpoints/step-0300.pt",
+      "passed": true,
+      "detail": "expected=9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e; actual=9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e"
+    },
+    {
+      "name": "manifest_schema",
+      "passed": true,
+      "detail": "required final evidence fields"
+    },
+    {
+      "name": "claim_schema",
+      "passed": true,
+      "detail": "claims=23"
+    },
+    {
+      "name": "validated_claim_evidence",
+      "passed": true,
+      "detail": "every VALIDATED claim has a repository artifact"
+    },
+    {
+      "name": "experiment_schema",
+      "passed": true,
+      "detail": "experiments=23"
+    },
+    {
+      "name": "tokenizer_load",
+      "passed": true,
+      "detail": "vocab_size=24000"
+    },
+    {
+      "name": "pretrained_checkpoint_metadata",
+      "passed": true,
+      "detail": "global_step=3052; model_state=True"
+    },
+    {
+      "name": "native_sft_checkpoint_metadata",
+      "passed": true,
+      "detail": "global_step=300; model_state=True"
+    },
+    {
+      "name": "t1_subset_denominator",
+      "passed": true,
+      "detail": "fixed independent subset=64/64; not full test"
+    },
+    {
+      "name": "gpu3b_evaluator_boundary",
+      "passed": true,
+      "detail": "extraction/stopping improvement does not change model"
+    },
+    {
+      "name": "gpu3c_negative_preserved",
+      "passed": true,
+      "detail": "GPU3C_CONTROLLED_NEGATIVE_RESULT"
+    },
+    {
+      "name": "gpu4b_partial_preserved",
+      "passed": true,
+      "detail": "GPU4B_PARTIAL_VALIDATION"
+    },
+    {
+      "name": "gpu4b_original_gate_preserved",
+      "passed": true,
+      "detail": "BF16=false; production unchanged"
+    },
+    {
+      "name": "quick_has_no_training",
+      "passed": true,
+      "detail": "quick performs read-only verification except its own report"
+    }
+  ],
+  "passed": 29,
+  "total": 29,
+  "wall_time_seconds": 0.806782600004226,
+  "long_training_executed": false,
+  "network_accessed": false
+}

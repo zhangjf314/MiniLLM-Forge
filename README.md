@@ -7,6 +7,33 @@ contains a decoder-only Transformer implemented directly in PyTorch and a separa
 Qwen3-0.6B-Base pipeline for continued pretraining (CPT), full SFT, LoRA, and QLoRA.
 The project is an experiment laboratory, not a chat application or inference service.
 
+## Portfolio evidence status
+
+The canonical portfolio evidence is now indexed by
+[`artifacts/gpu4c/final_evidence_manifest.json`](artifacts/gpu4c/final_evidence_manifest.json),
+the [claim registry](artifacts/gpu4c/CLAIM_REGISTRY.md), and the
+[capability matrix](artifacts/gpu4c/CAPABILITY_MATRIX.md). Run the bounded local audit with:
+
+```powershell
+portfolio-verify quick
+```
+
+The strongest validated facts are a 37,462,528-parameter native Transformer, 50,003,968
+processed-token BF16 pretraining, exact checkpoint resume, and 300-step native
+full-parameter SFT. Native generation evaluation used fixed 64-example subsets per
+task/split: T1 support classification improved from 0/64 to 64/64 on its independent
+test subset, while T2 addition improved only from 0/64 to 2/64. All 384 post-SFT
+generations were format-valid, complete, EOS-terminated, non-repetitive, and not
+length-limited.
+
+The separate Qwen3-0.6B line completed 12 LoRA/QLoRA runs and 8,400 audited outputs.
+Math-CPT transfer was negative for LoRA and mixed for QLoRA. Later diagnostics retained
+the 8,398/8,400 length-limit result, a controlled negative EOS-supervision experiment,
+and failed frozen BF16 SDPA gates. FlashAttention was unavailable and `torch.compile`
+was blocked by missing Triton, so this repository makes no Flash, compile, SDPA speedup,
+Qwen Full SFT effectiveness, or distributed-training claim. Manual Attention + Eager is
+the formal native-model default.
+
 > MiniLLM uses a deliberately limited corpus to validate the complete Transformer
 > training mechanism and controlled architecture/optimization experiments. The E01
 > formal run completed 50,003,968 processed tokens with fixed-validation perplexity

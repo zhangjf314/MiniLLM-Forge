@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "allowed_statuses": [
+    "VALIDATED",
+    "PARTIALLY_VALIDATED",
+    "NEGATIVE_RESULT",
+    "NOT_VALIDATED",
+    "BLOCKED",
+    "HISTORICAL_ONLY"
+  ],
+  "claims": [
+    {
+      "claim_id": "C001",
+      "claim_text": "Implemented and checkpointed a 37,462,528-parameter, 8-layer decoder Transformer with GQA 8/4, RoPE, RMSNorm, SwiGLU, tied embeddings, and context 1024.",
+      "category": "native_model",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/training/minillm_formal_model.json",
+      "evidence_metric": "parameter_count=37462528; architecture_frozen=true",
+      "limitations": "Architecture validation is not a claim of broad language ability.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C002",
+      "claim_text": "Trained a native 24K byte-level BPE tokenizer with zero validation UNKs and exact normalized round-trip success.",
+      "category": "tokenizer",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/tokenizers/minillm-tokenizer-manifest.json",
+      "evidence_metric": "vocab_size=24000; unk_ratio=0; roundtrip_success_rate=1",
+      "limitations": "Tokenizer corpus and revision are bounded and pinned.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C003",
+      "claim_text": "Completed BF16 pretraining for 50,003,968 processed tokens and 3,052 optimizer steps; fixed validation loss improved 10.1964 to 4.6484 and PPL 26,805.55 to 104.42.",
+      "category": "pretraining",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/training/minillm_formal_result.json",
+      "evidence_metric": "MINILLM_FORMAL_PRETRAINING_VALIDATED",
+      "limitations": "50.0M processed tokens are 1.554 corpus passes, not 50M unique tokens; no strong general-language claim.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C004",
+      "claim_text": "Verified exact checkpoint resume for model, optimizer, scheduler, and RNG state.",
+      "category": "training_system",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/training/minillm_gpu_resume_validation.json",
+      "evidence_metric": "classification=EXACT_RESUME_CONFIRMED",
+      "limitations": "Bounded control on the qualified local environment.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C005",
+      "claim_text": "Built a leakage-controlled native SFT dataset with 4,800/700/700 train/validation/test rows, zero semantic-key overlap, 6,200 complete targets with supervised EOS, and no truncation.",
+      "category": "native_sft",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu4a/dataset_audit.json",
+      "evidence_metric": "dataset_digest=a21cf5...; eos_supervised_count=6200",
+      "limitations": "Two deterministic synthetic tasks; T1 shares category vocabulary and T2 stays in 0-99.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C006",
+      "claim_text": "Completed 300-step full-parameter BF16 response-only SFT of all 37,462,528 parameters; validation loss improved 5.9922 to 0.5943 in 48.87 seconds.",
+      "category": "native_sft",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu4a/formal_sft_result.json",
+      "evidence_metric": "selected checkpoint step=300; median=12188 input tok/s; peak allocated=1003.63 MiB",
+      "limitations": "One seed and one synthetic two-task mixture.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C007",
+      "claim_text": "Native SFT improved T1 support classification from 0/64 to 64/64 on a fixed independent test subset.",
+      "category": "native_sft_quality",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu4a/sft_evaluation.json",
+      "evidence_metric": "test:T1_SUPPORT_CLASSIFICATION correct=64 of 64",
+      "limitations": "This is a 64-example subset of the 300-row T1 test split, not full-test accuracy.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C008",
+      "claim_text": "Native SFT did not acquire reliable two-digit addition: T2 improved only from 0/64 to 2/64 on the fixed test subset.",
+      "category": "native_sft_quality",
+      "status": "NEGATIVE_RESULT",
+      "evidence_artifact": "artifacts/gpu4a/sft_evaluation.json",
+      "evidence_metric": "test:T2_INTEGER_ADDITION correct=2 of 64",
+      "limitations": "Bounded synthetic task and subset, but clearly insufficient capability.",
+      "resume_allowed": false,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C009",
+      "claim_text": "All 384 native-SFT evaluation generations were format-valid, complete, EOS-terminated, non-repetitive, and avoided length-limit termination.",
+      "category": "generation_behavior",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu4a/sft_evaluation.json",
+      "evidence_metric": "384 records across 2 tasks x 3 splits x 64",
+      "limitations": "Generation behavior is not equivalent to task correctness.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C010",
+      "claim_text": "Completed the formal Qwen3-0.6B PEFT campaign: 12/12 LoRA/QLoRA runs, three seeds, 1,200 steps each, and 8,400 audited MATH-500/GSM8K outputs.",
+      "category": "peft",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu2d_formal/final_result.json",
+      "evidence_metric": "12 training runs; 24 evaluation jobs; 8400 outputs",
+      "limitations": "Frozen 512-context protocol; Qwen Full SFT and 1024-context formal study were not completed.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C011",
+      "claim_text": "Math CPT did not yield a general downstream reasoning improvement under the frozen PEFT protocol: LoRA transfer was negative and QLoRA was mixed.",
+      "category": "peft_quality",
+      "status": "NEGATIVE_RESULT",
+      "evidence_artifact": "artifacts/gpu2d_formal/final_result.json",
+      "evidence_metric": "LORA=NEGATIVE; QLORA=MIXED; scientific=CPT_TO_PEFT_SFT_TRANSFER_METHOD_DEPENDENT",
+      "limitations": "Applies only to the frozen context, datasets, adapter settings, and three seeds.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C012",
+      "claim_text": "The formal PEFT generation campaign had 8,398/8,400 outputs reach max_new_tokens=512.",
+      "category": "generation_diagnostics",
+      "status": "NEGATIVE_RESULT",
+      "evidence_artifact": "artifacts/gpu3a/gpu3a_result.json",
+      "evidence_metric": "length_limit numerator=8398 denominator=8400",
+      "limitations": "This observation alone does not prove why the models failed to stop.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C013",
+      "claim_text": "Improved evaluator extraction on frozen outputs: legacy 1,764/8,400; first-valid 2,008; last-valid 1,824; conflict-aware 1,793, with 607 conflicts exposed.",
+      "category": "evaluation_system",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu3b/extraction_ablation.json",
+      "evidence_metric": "36/36 legacy failures recovered; 16 correct",
+      "limitations": "Evaluator improvement, not model-capability improvement.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C014",
+      "claim_text": "External answer-boundary stopping reduced post-answer redundant generation in the bounded S3 confirmation without improving autonomous EOS learning.",
+      "category": "inference_system",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu3b/gpu3b_result.json",
+      "evidence_metric": "confirmation S3 reduced redundancy for 6/8 outputs; paired accuracy 3/8 unchanged",
+      "limitations": "Small confirmation set; external intervention, not a model improvement.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C015",
+      "claim_text": "A controlled 64-step EOS-label ablation did not validate autonomous-stop improvement; the EOS-supervised arm emitted no autonomous <|im_end|> and hit 512 tokens on all four C0 prompts.",
+      "category": "eos_ablation",
+      "status": "NEGATIVE_RESULT",
+      "evidence_artifact": "artifacts/gpu3c/gpu3c_result.json",
+      "evidence_metric": "classification=GPU3C_CONTROLLED_NEGATIVE_RESULT",
+      "limitations": "One seed and four frozen confirmation problems.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C016",
+      "claim_text": "Integrated experimental Manual, SDPA Math, SDPA Auto, and forced Flash backend selection while retaining Manual as the formal default.",
+      "category": "attention_system",
+      "status": "PARTIALLY_VALIDATED",
+      "evidence_artifact": "artifacts/gpu4b/gpu4b_result.json",
+      "evidence_metric": "classification=GPU4B_PARTIAL_VALIDATION; FP32 Math gate passed",
+      "limitations": "BF16 correctness gates failed and no qualified performance benchmark exists.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C017",
+      "claim_text": "SDPA Math and Auto failed the frozen BF16 correctness/gradient/update gates; no speedup claim is supported.",
+      "category": "attention_system",
+      "status": "NEGATIVE_RESULT",
+      "evidence_artifact": "artifacts/gpu4b/attention_correctness.json",
+      "evidence_metric": "Math BF16 logits max abs=0.15625; Auto=0.20703125",
+      "limitations": "Fixed single-batch gate and frozen tolerances.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C018",
+      "claim_text": "Built-in FlashAttention was unavailable in the qualified Windows/PyTorch environment.",
+      "category": "attention_system",
+      "status": "BLOCKED",
+      "evidence_artifact": "artifacts/gpu4b/environment_audit.json",
+      "evidence_metric": "FLASH_BACKEND_NOT_AVAILABLE",
+      "limitations": "Platform/build limitation; not a universal hardware claim.",
+      "resume_allowed": false,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C019",
+      "claim_text": "torch.compile qualification was blocked by missing Triton; no compile speedup was measured.",
+      "category": "compile",
+      "status": "BLOCKED",
+      "evidence_artifact": "artifacts/gpu4b/compile_qualification.json",
+      "evidence_metric": "classification=TORCH_COMPILE_BLOCKED_TRITON_MISSING",
+      "limitations": "Environment limitation; eager execution remains formal.",
+      "resume_allowed": false,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C020",
+      "claim_text": "Localized the BF16 Manual/SDPA Math split to the first attention context boundary and supported a different intermediate-precision/rounding mechanism without finding a semantic implementation defect.",
+      "category": "numerical_diagnostics",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu4b_r1/gpu4b_r1_result.json",
+      "evidence_metric": "classification=GPU4B_R1_NUMERICAL_PATH_DIFFERENCE_IDENTIFIED",
+      "limitations": "Exact SDPA internal instruction ordering remains unknown.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C021",
+      "claim_text": "Qwen full-parameter SFT effectiveness was not formally evaluated in the completed campaign.",
+      "category": "qwen_full_sft",
+      "status": "NOT_VALIDATED",
+      "evidence_artifact": "artifacts/gpu2d_formal/final_result.json",
+      "evidence_metric": "claim boundary excludes Full SFT",
+      "limitations": "Implementation and qualification history do not equal formal effectiveness evidence.",
+      "resume_allowed": false,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C022",
+      "claim_text": "Distributed DDP/FSDP training was not executed or validated.",
+      "category": "distributed_training",
+      "status": "NOT_VALIDATED",
+      "evidence_artifact": "artifacts/gpu4c/protocol.json",
+      "evidence_metric": "explicitly outside GPU-4C and no formal artifact",
+      "limitations": "No performance or correctness claim is permitted.",
+      "resume_allowed": false,
+      "interview_allowed": true
+    },
+    {
+      "claim_id": "C023",
+      "claim_text": "At context 512, 12,469/19,162 PEFT training samples retained a supervised assistant-end token (65.07%); 6,693 training samples lost it after truncation.",
+      "category": "eos_supervision",
+      "status": "VALIDATED",
+      "evidence_artifact": "artifacts/gpu3a/gpu3a_result.json",
+      "evidence_metric": "context_512 coverage_over_training_samples=0.6507149567",
+      "limitations": "Coverage is a confirmed data fact, not proof that missing EOS supervision caused length-limit generation.",
+      "resume_allowed": true,
+      "interview_allowed": true
+    }
+  ]
+}

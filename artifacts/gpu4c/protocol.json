@@ -1,0 +1,40 @@
+{
+  "stage": "GPU-4C",
+  "version": "gpu4c-portfolio-v1-frozen-before-verification",
+  "starting_branch": "codex/gpu4b-r1-bf16-numerical-diagnostics",
+  "starting_head": "caef706d2aeb2d8bb6426a71218ada656f12244a",
+  "branch": "codex/gpu4c-portfolio-finalization",
+  "scope": "artifact audit, unified verification, truthful documentation, and portfolio release readiness",
+  "prohibited": [
+    "new pretraining", "new SFT or PEFT training", "new EOS experiment",
+    "SDPA performance benchmark", "torch.compile experiment", "network download",
+    "FlashAttention or Triton installation", "distributed training"
+  ],
+  "verification_modes": {
+    "quick": "artifact existence, hashes, schemas, checkpoint metadata, tokenizer load, and bounded model smoke load",
+    "full": "quick verification plus the repository regression suite; never retrains or regenerates the 8400-output campaign"
+  },
+  "frozen_evidence_hashes": {
+    "artifacts/training/minillm_formal_result.json": "6c27dbf40736919a21c8bd69f68f0f4e3e91ea0b46cfe58f397e101a40874f6a",
+    "artifacts/training/minillm_formal_model.json": "de4afdc0535a6e2b532a5ec156a1798a57bf1516616d3e7daa04cda9d37c5bbc",
+    "artifacts/training/minillm_gpu_resume_validation.json": "eb5fbb8be5220692f8203ddc5a68f21c06ac06d8855a8812fc7f3d22ecf62e15",
+    "artifacts/tokenizers/minillm-tokenizer.json": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+    "artifacts/data_manifests/minillm_pretrain_formal.json": "44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103",
+    "artifacts/gpu2d_formal/final_result.json": "d2c1397a1541bc400054287915639393dee9d68b4a0f73fb4156d78a3074af93",
+    "artifacts/gpu3a/gpu3a_result.json": "13736c692dabfc61be35609104357995786e2db6ea038b5db417f854d8ce6dc6",
+    "artifacts/gpu3b/gpu3b_result.json": "d9a0366977114305944f11041ddad0cc93222131764d6370d97e60de89ce5ac2",
+    "artifacts/gpu3c/gpu3c_result.json": "5dc81f0591262ab7f8728bc53e1345034dab629b92ea28d8bced37f7522023a8",
+    "artifacts/gpu4a/gpu4a_result.json": "c9745b15005e5a6a7b404ffb2383b74ee155091910c2f7b894b2e191fc7fa285",
+    "artifacts/gpu4a/formal_sft_result.json": "acad8399bc56e7a8c1230198f07ababfbe7936a6a276170131056987f1f3f9b3",
+    "artifacts/gpu4a/sft_evaluation.json": "4cf215e25163271988a0ed39bc20f3cdfbdd6c1091cdf041e282c76fc9b890ca",
+    "artifacts/gpu4b/gpu4b_result.json": "79d72186870c08ad84f68d9bdec572088cab8ab2be9d649324fc9c73be5fb7c0",
+    "artifacts/gpu4b_r1/gpu4b_r1_result.json": "69b1cc95f40640a089784a513900c4073dd6e87564c9fe922788552f1edd947d",
+    "runs/E01-minillm-formal/best.pt": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+    "runs/gpu4a/formal-full-sft-s42-v1/checkpoints/step-0300.pt": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e"
+  },
+  "release_candidate": "v2.0.0-portfolio",
+  "classification_options": [
+    "GPU4C_PORTFOLIO_RELEASE_READY", "GPU4C_READY_WITH_DOCUMENTED_LIMITATIONS",
+    "GPU4C_EVIDENCE_INCONSISTENCY_FOUND", "GPU4C_PARTIAL_FINALIZATION", "GPU4C_BLOCKED"
+  ]
+}

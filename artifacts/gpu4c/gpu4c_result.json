@@ -1,0 +1,136 @@
+{
+  "stage": "GPU-4C",
+  "classification": "GPU4C_READY_WITH_DOCUMENTED_LIMITATIONS",
+  "repository_integrity": {
+    "starting_branch": "codex/gpu4b-r1-bf16-numerical-diagnostics",
+    "starting_head": "caef706d2aeb2d8bb6426a71218ada656f12244a",
+    "final_branch": "codex/gpu4c-portfolio-finalization",
+    "historical_artifacts_preserved": true,
+    "production_attention_changed": false,
+    "training_executed": false,
+    "performance_benchmark_executed": false
+  },
+  "checkpoint_integrity": {
+    "pretrained": {
+      "path": "runs/E01-minillm-formal/best.pt",
+      "sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+      "global_step": 3052,
+      "status": "PASS"
+    },
+    "native_sft": {
+      "path": "runs/gpu4a/formal-full-sft-s42-v1/checkpoints/step-0300.pt",
+      "sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+      "global_step": 300,
+      "status": "PASS"
+    },
+    "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22"
+  },
+  "dataset_integrity": {
+    "native_pretraining_manifest_sha256": "44989a2a0fc8b41e2ecea3f5f5a5e312315dec4333fc8f4106844cfff7256103",
+    "native_sft_dataset_digest": "a21cf5f467a6caef188ee3c7746ecc01b82cf6406fbc1bb0c88752cc09b6d72b",
+    "native_sft_semantic_overlap": 0,
+    "native_sft_complete_eos_targets": 6200,
+    "status": "PASS"
+  },
+  "claim_registry": {
+    "claims": 23,
+    "schema": "PASS",
+    "validated_claim_evidence": "PASS"
+  },
+  "capability_matrix": {
+    "entries": 20,
+    "truth_boundaries_present": true
+  },
+  "experiment_registry": {
+    "entries": 23,
+    "schema": "PASS",
+    "negative_blocked_and_diagnostic_runs_retained": true
+  },
+  "documentation_truth_audit": {
+    "status": "PASS_WITH_DOCUMENTED_LIMITATIONS",
+    "readme_updated": true,
+    "final_report_updated": true,
+    "subset_denominators_preserved": true,
+    "evaluator_vs_model_boundary_preserved": true,
+    "negative_results_visible": true
+  },
+  "portfolio_verification": {
+    "mode": "quick",
+    "status": "PASS",
+    "passed": 29,
+    "total": 29,
+    "long_training_executed": false,
+    "network_accessed": false
+  },
+  "validated_capabilities": [
+    "native 37.46M Transformer implementation",
+    "native 24K byte-level BPE tokenizer",
+    "50.0M processed-token BF16 pretraining",
+    "exact full-state checkpoint resume",
+    "native full-parameter response-only SFT",
+    "formal Qwen LoRA and QLoRA campaigns",
+    "evaluation and generation diagnostics",
+    "answer extraction and bounded external stopping",
+    "BF16 attention numerical-path diagnosis"
+  ],
+  "negative_results": [
+    "native T2 addition remained 2/64 on the fixed test subset",
+    "CPT-to-PEFT transfer was negative for LoRA and mixed for QLoRA",
+    "8398/8400 formal PEFT outputs reached the 512-token limit",
+    "controlled EOS supervision did not validate autonomous-stop improvement",
+    "SDPA Math and Auto failed the frozen BF16 correctness gates"
+  ],
+  "blocked_capabilities": [
+    "built-in FlashAttention unavailable in the qualified environment",
+    "torch.compile blocked by missing Triton"
+  ],
+  "not_validated_capabilities": [
+    "Qwen full-parameter SFT effectiveness",
+    "SDPA training performance improvement",
+    "distributed DDP/FSDP training",
+    "DPO and GRPO"
+  ],
+  "resume_facts": [
+    "37.46M native Transformer and 24K tokenizer",
+    "50.0M processed-token BF16 pretraining with validation PPL 26805.55 to 104.42",
+    "300-step native Full SFT with validation loss 5.9922 to 0.5943",
+    "T1 fixed independent test subset 0/64 to 64/64; T2 0/64 to 2/64",
+    "12 Qwen LoRA/QLoRA runs and 8400 audited outputs",
+    "reproducible evidence, checkpoint, evaluation, and numerical-diagnostics system"
+  ],
+  "release_readiness": {
+    "status": "READY_WITH_DOCUMENTED_LIMITATIONS",
+    "suggested_tag": "v2.0.0-portfolio",
+    "tag_created": false,
+    "remote_push_performed": false,
+    "limitations": [
+      "native generation evaluation uses fixed 64-example subsets",
+      "Flash and compile paths are blocked",
+      "Qwen Full SFT effectiveness is not validated",
+      "distributed training was not executed"
+    ]
+  },
+  "tests": {
+    "targeted": "21 passed",
+    "full_regression": "218 passed, 6 expected warnings",
+    "static_check": "PASS"
+  },
+  "artifacts": {
+    "CAPABILITY_MATRIX.md": "73580aba2b64baf3b25f794d59b72461d639c1df3e4aa0d74ad63b85ac14d42e",
+    "claim_registry.json": "5b7a2ee7d004c49d55fd7861c881def3efd49b14a429df48b27c1d5320a19432",
+    "CLAIM_REGISTRY.md": "091f08d0723c2e80712f3d7120e682cfbdfd18b599193743376fcac38e4e09d3",
+    "DOCUMENTATION_TRUTH_AUDIT.md": "7c973f47f32286a56a8606a3e350e133df66053e10748b439eb85501f00fd753",
+    "execution_plan.jsonl": "91a88f44b18c295bb47a45bd5e690b7961da80b159e2594e20582faa41789f21",
+    "experiment_registry.json": "f05141e7d9ed7c113a7078948105fa33e05053a6acb5d552bbf1b48cb7b7416b",
+    "EXPERIMENT_REGISTRY.md": "d38c5df426823acd6ebd8f1c2b4e185a832ed19c6af652c2ee76396617391882",
+    "final_evidence_manifest.json": "8fea8879f54e91617556fadf0a662b18898a8edba402e508dc036dbe8018b871",
+    "INTERVIEW_FACTS.md": "5770534bb2cb75ec0e1267a75e20c1e764247d6d05da0602bc3898560730b670",
+    "MINILLM_FORGE_FINAL_TECHNICAL_REPORT.md": "9457567ded322cc7d57a88829cdfef2dbf6f0c3d7d63c0b84d3333552667a81f",
+    "PORTFOLIO_RELEASE_READINESS.md": "95e2b97f6a2f4079f0419e07f35de8af9367a269315e6f89109adf910ecf9516",
+    "portfolio_verification.json": "a55f983af594077551626c8616c1382a6ce767d7b35efdc27895091c4f4db798",
+    "PORTFOLIO_VERIFICATION.md": "30883207e5af81f96abfd89ffff24a1002911916108d5e4a829f14cf6684b36e",
+    "protocol.json": "d8f90a8aa71b5527233820b4be04b2ac5a55c89e41bd20852f555c159518d73c",
+    "RESUME_FACTS.md": "93b8cf1313c1945fb500556aa16fbab2937b709397e5fd32fc61c166e9e0937c",
+    "validation.json": "c6a13f41dd857344f558dcb91cd0fe8bb04be84b9771fede1960c65e3022a2b5"
+  }
+}

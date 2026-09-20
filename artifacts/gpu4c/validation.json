@@ -1,0 +1,26 @@
+{
+  "static_check": {
+    "result": "PASS",
+    "command": ".venv/Scripts/ruff.exe check src/minillm_forge/portfolio src/minillm_forge/cli/portfolio_verify.py tests/test_gpu4c.py"
+  },
+  "quick_verification": {
+    "result": "PASS",
+    "passed": 29,
+    "total": 29,
+    "wall_time_seconds": 0.806782600004226,
+    "long_training_executed": false,
+    "network_accessed": false
+  },
+  "targeted_tests": {
+    "result": "PASS",
+    "passed": 21,
+    "duration_seconds": 3.89
+  },
+  "full_regression": {
+    "result": "PASS",
+    "passed": 218,
+    "warnings": 6,
+    "duration_seconds": 19.19,
+    "warning_scope": "existing forced-Flash-unavailable qualification test"
+  }
+}
