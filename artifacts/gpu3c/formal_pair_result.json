@@ -1,0 +1,83 @@
+{
+  "status": "COMPLETED",
+  "pair_audit": {
+    "status": "PASS",
+    "samples": 12469,
+    "input_ids_identical": true,
+    "attention_mask_identical": true,
+    "label_difference_count": 12469,
+    "label_difference_per_sample": 1,
+    "only_difference": "final assistant <|im_end|> label",
+    "masked_effective_supervised_tokens": 2570994,
+    "supervised_effective_supervised_tokens": 2583463,
+    "target_token_difference": 12469,
+    "sample_order_sha256": "6d994a5f08553214076d12da88fa244f4b3d60ddf0ae00e19f394a2bcdd6c0fb",
+    "packing": "DISABLED",
+    "causal_shift": "Hugging Face causal LM shifts labels internally; label at position t is predicted from logits t-1",
+    "pad_masking": "position based; token ID 151643 is not globally masked"
+  },
+  "arms": [
+    {
+      "stage": "GPU-3C",
+      "group": "B-EOS-MASKED",
+      "status": "COMPLETED",
+      "steps": 64,
+      "examples_seen": 1024,
+      "input_tokens_seen": 312651,
+      "supervised_tokens_seen": 213070,
+      "final_loss": 1.0788145884871483,
+      "nan_count": 0,
+      "inf_count": 0,
+      "oom_count": 0,
+      "initial_adapter_sha256": "b75f2611fedde29fcd374e7c8c1fe3cba90b06cb7bdc1ffb718f6427142db437",
+      "final_adapter_sha256": "548ba76f075babd58b8324feb3182249718e53f129508ec173cdaa6a749969ed",
+      "adapter_changed": true,
+      "adapter_files": {
+        "adapter_config.json": "3f86b773598aeae16258e162d9a25b177098534549734d6b4e123dc0fcd71866",
+        "adapter_model.safetensors": "9921180a2c2db5a8629d7e560caebdb3bfd9acbe1ba80af258268b40e62b35e7",
+        "README.md": "b31a8ec85fa36d40b42a99636eef9f7a8abe04ad6c5ba31de796aa112fc1afa0"
+      },
+      "peak_cuda_allocated_mib": 1291.1943359375,
+      "peak_cuda_reserved_mib": 2214.0,
+      "wall_time_seconds": 425.31454430008307,
+      "generation_records": 8,
+      "median_target_tokens_per_second": 603.4850865327355,
+      "metadata": {
+        "initial_adapter_sha256": "b75f2611fedde29fcd374e7c8c1fe3cba90b06cb7bdc1ffb718f6427142db437",
+        "dataset_samples": 12469,
+        "cache_sha256": "806bef413ae4fdcaeeccb114bdfd9e1f8e8c799d5b6e1d26ca594ad32a716b1c"
+      }
+    },
+    {
+      "stage": "GPU-3C",
+      "group": "C-EOS-SUPERVISED",
+      "status": "COMPLETED",
+      "steps": 64,
+      "examples_seen": 1024,
+      "input_tokens_seen": 312651,
+      "supervised_tokens_seen": 214094,
+      "final_loss": 1.172408988699317,
+      "nan_count": 0,
+      "inf_count": 0,
+      "oom_count": 0,
+      "initial_adapter_sha256": "b75f2611fedde29fcd374e7c8c1fe3cba90b06cb7bdc1ffb718f6427142db437",
+      "final_adapter_sha256": "c03e64538159670f603580d7ec3fb372fcd946a19cdf9dcf7537c217963d82d3",
+      "adapter_changed": true,
+      "adapter_files": {
+        "adapter_config.json": "3f86b773598aeae16258e162d9a25b177098534549734d6b4e123dc0fcd71866",
+        "adapter_model.safetensors": "9385353ac1394edb2e29ca1e0518389e8fb0f25647e3fdc39c7afc91f455feac",
+        "README.md": "b31a8ec85fa36d40b42a99636eef9f7a8abe04ad6c5ba31de796aa112fc1afa0"
+      },
+      "peak_cuda_allocated_mib": 1291.1943359375,
+      "peak_cuda_reserved_mib": 2218.0,
+      "wall_time_seconds": 582.5289880998898,
+      "generation_records": 8,
+      "median_target_tokens_per_second": 542.2414797532158,
+      "metadata": {
+        "initial_adapter_sha256": "b75f2611fedde29fcd374e7c8c1fe3cba90b06cb7bdc1ffb718f6427142db437",
+        "dataset_samples": 12469,
+        "cache_sha256": "806bef413ae4fdcaeeccb114bdfd9e1f8e8c799d5b6e1d26ca594ad32a716b1c"
+      }
+    }
+  ]
+}

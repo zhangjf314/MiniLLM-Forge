@@ -128,6 +128,30 @@ def test_completed_smoke_saved_reloaded_and_generated() -> None:
         assert arm["generation_smoke"]["status"] == "COMPLETED"
 
 
+def test_formal_pair_artifacts_are_complete_and_attributed() -> None:
+    formal = json.loads(
+        (REPO / "artifacts/gpu3c/formal_pair_result.json").read_text(encoding="utf-8")
+    )
+    assert formal["status"] == "COMPLETED"
+    assert len(formal["arms"]) == 2
+    assert len({arm["initial_adapter_sha256"] for arm in formal["arms"]}) == 1
+    for arm in formal["arms"]:
+        assert arm["steps"] == 64
+        assert arm["adapter_changed"] is True
+        assert (arm["oom_count"], arm["nan_count"], arm["inf_count"]) == (0, 0, 0)
+        root = REPO / "runs/gpu3c/formal-64" / arm["group"]
+        assert (root / "checkpoints/step-0032.pt").stat().st_size > 0
+        assert (root / "checkpoints/step-0064.pt").stat().st_size > 0
+        rows = [
+            json.loads(line)
+            for line in (root / "generations.jsonl").read_text(encoding="utf-8").splitlines()
+        ]
+        assert len(rows) == 8
+        assert sum(row["decoding_path"] == "C0" for row in rows) == 4
+        assert sum(row["decoding_path"] == "S3" for row in rows) == 4
+        assert all(not row["external_answer_stop"] for row in rows if row["decoding_path"] == "C0")
+
+
 def test_historical_inputs_match_frozen_hashes() -> None:
     protocol = json.loads((REPO / "artifacts/gpu3c/protocol.json").read_text(encoding="utf-8"))
     for relative, expected in protocol["historical_inputs"].items():
