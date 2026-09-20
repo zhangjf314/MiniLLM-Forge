@@ -1,0 +1,199 @@
+{
+  "stage": "GPU-3B",
+  "protocol_version": "gpu3b-v1-frozen",
+  "baseline_commit": "91c7efe6a646b0b8a9c6592390abbf36ed6f58af",
+  "gpu3a_commit": "b41c718c337946c14a0bf80dcbacf68a1129d633",
+  "branch_start_commit": "b41c718c337946c14a0bf80dcbacf68a1129d633",
+  "model_id": "Qwen/Qwen3-0.6B-Base",
+  "model_revision": "da87bfb608c14b7cf20ba1ce41287e8de496c0cd",
+  "selected_adapters": {
+    "B-LORA-s42": {
+      "initialization": "BASE_INIT",
+      "family": "LORA",
+      "seed": 42,
+      "checkpoint_id": "f4303a79b47aecb6459e8688d9d5348a54fbd0b42e01d7a4ed81c0badffc6319",
+      "checkpoint_path": "runs\\gpu2d-formal\\B-LORA-s42\\checkpoints\\final.pt",
+      "adapter_id": "224cee701503e786854a8f6aa198fdafeb47826130cabce8b1429ac7828c66f5",
+      "adapter_path": "runs\\gpu2d-formal\\B-LORA-s42\\final_adapter"
+    },
+    "C-LORA-s42": {
+      "initialization": "CPT_INIT",
+      "family": "LORA",
+      "seed": 42,
+      "checkpoint_id": "32e3f765f05453ddce19079c46b1c1f74a4eaf4c0691c38655c20633c1985ed9",
+      "checkpoint_path": "runs\\gpu2d-formal\\C-LORA-s42\\checkpoints\\final.pt",
+      "adapter_id": "d0da9b8670e4555e79cb0ed58d3a49e82229748991b38d810458795835e0123d",
+      "adapter_path": "runs\\gpu2d-formal\\C-LORA-s42\\final_adapter"
+    },
+    "B-QLORA-s42": {
+      "initialization": "BASE_INIT",
+      "family": "QLORA",
+      "seed": 42,
+      "checkpoint_id": "6279732874ab44a3eef08c2be790c70c473c5b13357e1ccc01c2b6883d2099a6",
+      "checkpoint_path": "runs\\gpu2d-formal\\B-QLORA-s42\\checkpoints\\final.pt",
+      "adapter_id": "ad462fd76b12ec33b1658c9cb06e76f30952a15201ef1ccaaa277e87a51bfdb6",
+      "adapter_path": "runs\\gpu2d-formal\\B-QLORA-s42\\final_adapter"
+    },
+    "C-QLORA-s42": {
+      "initialization": "CPT_INIT",
+      "family": "QLORA",
+      "seed": 42,
+      "checkpoint_id": "7ea6606eaaae057472bcda432ff437624a64556546038a3b76ee537377b520c1",
+      "checkpoint_path": "runs\\gpu2d-formal\\C-QLORA-s42\\checkpoints\\final.pt",
+      "adapter_id": "b3421832fcbc50dd5437e070bdbc98f222f32886baa57f0be0a7395862bad9a2",
+      "adapter_path": "runs\\gpu2d-formal\\C-QLORA-s42\\final_adapter"
+    }
+  },
+  "tokenizer_revision": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+  "dataset_revision": {
+    "gsm8k": "740312add88f781978c0658806c59bc2815b9866",
+    "math500": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be"
+  },
+  "dataset_hash": {
+    "gsm8k": "ee22a458cb44be48e782d5150027ba530911efbfcaa71fe3fb01fa67a48952cf",
+    "math500": "f850b2b7554370eb31b6ea5dba6f893ce6f8462912c9d0edf658802feda5a9ec"
+  },
+  "prompt_template": {
+    "system": "You are a mathematical reasoning assistant.",
+    "construction": "Qwen chat template over system and frozen benchmark problem",
+    "contract_sha256": "214d5992c5fecb6d235f9bd2f95222676627d601924781dc063940c704a0a66b",
+    "chat_template_sha256": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5"
+  },
+  "historical_generation_config": {
+    "prompt": "Qwen chat template over frozen system prompt and benchmark problem",
+    "do_sample": false,
+    "temperature": null,
+    "num_beams": 1,
+    "max_new_tokens": 512,
+    "stop_token_ids": [
+      151643,
+      151645
+    ],
+    "pad_token_id": 151643,
+    "batch_size": "F0_QUALIFIED_VALUE",
+    "continuation_identity": "tokens through first stop token inclusive; batch-completion padding excluded"
+  },
+  "stop_protocols": {
+    "S0": {
+      "eos_token_ids": [
+        151643,
+        151645
+      ],
+      "external_answer_stop": false
+    },
+    "S1": {
+      "eos_token_ids": [
+        151643
+      ],
+      "external_answer_stop": false
+    },
+    "S2": {
+      "eos_token_ids": [
+        151645
+      ],
+      "external_answer_stop": false
+    },
+    "S3": {
+      "eos_token_ids": [
+        151643,
+        151645
+      ],
+      "external_answer_stop": true
+    }
+  },
+  "repetition_protocols": {
+    "R0": {
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 0
+    },
+    "R1": {
+      "repetition_penalty": 1.05,
+      "no_repeat_ngram_size": 0
+    },
+    "R2": {
+      "repetition_penalty": 1.1,
+      "no_repeat_ngram_size": 0
+    },
+    "R3": {
+      "repetition_penalty": 1.15,
+      "no_repeat_ngram_size": 0
+    },
+    "N3": {
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 3
+    },
+    "N4": {
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 4
+    }
+  },
+  "length_protocols": {
+    "L256": 256,
+    "L512": 512,
+    "L768": 768
+  },
+  "decoding_strategy": "deterministic greedy, single sample",
+  "extraction_protocol_versions": [
+    "legacy-gpu2d",
+    "first-valid-v1",
+    "last-valid-v1",
+    "conflict-aware-v1"
+  ],
+  "development_sample_ids": [
+    "gsm8k-0240",
+    "gsm8k-0483",
+    "gsm8k-0579",
+    "gsm8k-0845",
+    "math500-0153",
+    "math500-0254",
+    "math500-0269",
+    "math500-0374"
+  ],
+  "confirmation_sample_ids": [
+    "gsm8k-0055",
+    "gsm8k-0103",
+    "gsm8k-0606",
+    "gsm8k-1019",
+    "math500-0076",
+    "math500-0181",
+    "math500-0324",
+    "math500-0478"
+  ],
+  "partition_rule": "fixed problem IDs; no problem appears in both partitions; same partition across adapters",
+  "random_seed": 20260920,
+  "resource_limits": {
+    "gpu_memory_mib": 8151,
+    "minimum_headroom_mib": 1024,
+    "per_generation_wall_time_seconds": 120,
+    "maximum_new_tokens": 768,
+    "maximum_new_generations": 96,
+    "automatic_full_8400_parameter_search": false
+  },
+  "historical_inputs": {
+    "runs/gpu2d-formal/B-LORA-s271828/evaluation-amended/gsm8k-fixed-200.jsonl": "6bfdf231bcdeee47358eed99bc586fdd76b39d010b88740057007cd3e1dd25b6",
+    "runs/gpu2d-formal/B-LORA-s271828/evaluation-amended/math500.jsonl": "b63e0abbd7cdf1b41d1cc801002bfea30520d09128c4f6b7d1ab74b81996cd2c",
+    "runs/gpu2d-formal/B-LORA-s31415/evaluation-amended/gsm8k-fixed-200.jsonl": "f67820ebf8eaa1fbfebd7cc2e7f1f02484a420d8b57d590840bc264b25ea5d8b",
+    "runs/gpu2d-formal/B-LORA-s31415/evaluation-amended/math500.jsonl": "4cd9995ef2a0251a5dec0415198358c282dccf7cc8ef3d6a4567211d4fe27a19",
+    "runs/gpu2d-formal/B-LORA-s42/evaluation-amended/gsm8k-fixed-200.jsonl": "82ed14ddd8073e6116460f179a696f81cb7b5d6a664be8bca2aadcccfde6d8ef",
+    "runs/gpu2d-formal/B-LORA-s42/evaluation-amended/math500.jsonl": "6293006567c346f35fdf0c2696452b1ed07f7e80cebfa58f123724c174abc24c",
+    "runs/gpu2d-formal/B-QLORA-s271828/evaluation-amended/gsm8k-fixed-200.jsonl": "e05ed07136a6c7124480d1b5706ea461b6fdc8e8be0f8f7be3d8a4e067ad2be8",
+    "runs/gpu2d-formal/B-QLORA-s271828/evaluation-amended/math500.jsonl": "c0fd5367b2b62a01aabe44b2def0b0747c2fcf3e7f64eabe34165d28a6ec8b32",
+    "runs/gpu2d-formal/B-QLORA-s31415/evaluation-amended/gsm8k-fixed-200.jsonl": "624cbd363552ba34de0731255aa1e0b7f240239dac83237522978103abad6891",
+    "runs/gpu2d-formal/B-QLORA-s31415/evaluation-amended/math500.jsonl": "cfdfd35e88bdfcdaa0c719d2b96a76696ba9cacc116973080885643538d20d8e",
+    "runs/gpu2d-formal/B-QLORA-s42/evaluation-amended/gsm8k-fixed-200.jsonl": "1f9d1594ee32f3efe08ad16ecab74c3bd0e7529a23cbd554ee8de30401938a15",
+    "runs/gpu2d-formal/B-QLORA-s42/evaluation-amended/math500.jsonl": "35e8f732e2381bf39198a477155ce24ab73ec8c35766518f252bdf995a8308d5",
+    "runs/gpu2d-formal/C-LORA-s271828/evaluation-amended/gsm8k-fixed-200.jsonl": "a658fb3b9d737104d16e1e58e968247ead0a41b93919307aaee6539f88e5f45a",
+    "runs/gpu2d-formal/C-LORA-s271828/evaluation-amended/math500.jsonl": "4d6902e8fe94111ed4625f2ad2581bc2a9fbe629d75c2bdfaf16ec52695387b5",
+    "runs/gpu2d-formal/C-LORA-s31415/evaluation-amended/gsm8k-fixed-200.jsonl": "6c784e212bbbbec32076e23e4bc61d9bb53ec4355e70602b64a5d4b38a6f00cf",
+    "runs/gpu2d-formal/C-LORA-s31415/evaluation-amended/math500.jsonl": "a299dd04e6726eba1b4bd14cd17d9d52cfb08d44dfb4b42e656e73047ccc5b59",
+    "runs/gpu2d-formal/C-LORA-s42/evaluation-amended/gsm8k-fixed-200.jsonl": "754988b9bc94fc803381c1c43d3ca2076a9633cac87dc0317d16c8fa139d8e46",
+    "runs/gpu2d-formal/C-LORA-s42/evaluation-amended/math500.jsonl": "9b9e537557f901c9b20d234b2b63c1c515a7ecf5113c0411cd7885765db58f62",
+    "runs/gpu2d-formal/C-QLORA-s271828/evaluation-amended/gsm8k-fixed-200.jsonl": "7bea06fb849e88b19b4fad6fd7d93cc42c08d90e15d0ed676949bd8a4633f8e2",
+    "runs/gpu2d-formal/C-QLORA-s271828/evaluation-amended/math500.jsonl": "0a19e8d89365169c4ecf9b5da0d359961b964d20bee43bcade2b6346aff6d669",
+    "runs/gpu2d-formal/C-QLORA-s31415/evaluation-amended/gsm8k-fixed-200.jsonl": "54eeb4887d8d380cb7e1e9f46c05cf330951f375b4943316437763e6675c26b4",
+    "runs/gpu2d-formal/C-QLORA-s31415/evaluation-amended/math500.jsonl": "31b71ef55dd3e71f36f76606a9033050ff0b5082c51439bd2b421b2e8a9b0c81",
+    "runs/gpu2d-formal/C-QLORA-s42/evaluation-amended/gsm8k-fixed-200.jsonl": "fde15588662404bcbeb4241e4ede2d695557c01f5f79f8a2438808a2d4c9d829",
+    "runs/gpu2d-formal/C-QLORA-s42/evaluation-amended/math500.jsonl": "0d03eeb28487149fedd34f550723fd22eead8bb0ca523fc52f0b78d0e9de0c68"
+  },
+  "status": "FROZEN_BEFORE_GPU3B_INFERENCE"
+}
