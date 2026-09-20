@@ -1,0 +1,127 @@
+{
+  "stage": "GPU-3A",
+  "classification": "GPU3A_ROOT_CAUSES_IDENTIFIED",
+  "historical_baseline_preserved": true,
+  "training_executed": false,
+  "model_inference_executed": false,
+  "generation_records_expected": 8400,
+  "generation_records_verified": 8400,
+  "historical_cap_rate_verified": {
+    "numerator": 8398,
+    "denominator": 8400,
+    "rate": 0.9997619047619047
+  },
+  "extraction_failures_verified": 36,
+  "eos_supervision_status": "PARTIAL_VERIFIED",
+  "sft_status": {
+    "SFT_IMPLEMENTED": "PASS",
+    "SFT_TRAINING_EXECUTED": "PASS",
+    "SFT_SUPERVISION_VALIDATED": "PASS",
+    "SFT_EFFECTIVENESS_VALIDATED": "PASS"
+  },
+  "confirmed_root_causes": [
+    "PARTIAL_EOS_SUPERVISION_AFTER_TRUNCATION",
+    "REPETITION_AND_CONTINUATION_TO_LENGTH_LIMIT",
+    "LAST_MATCH_EXTRACTION_RULE_MISMATCH"
+  ],
+  "supported_hypotheses": [
+    "MULTI_FACTOR_INTERACTION"
+  ],
+  "unresolved_questions": [
+    "causal effect size of EOS supervision loss",
+    "post-answer token counts without stored token/character offsets",
+    "Base/CPT-only and Full-SFT behavior"
+  ],
+  "gpu3b_recommendations": [
+    "controlled EOS-supervision and stop-token ablation"
+  ],
+  "gpu3c_recommendations": [
+    "versioned multi-answer-aware extraction and decoding controls"
+  ],
+  "tests": {
+    "gpu3a_unit_tests": {
+      "status": "PASS",
+      "count": 16,
+      "command": "python -m pytest -q tests/test_gpu3a.py"
+    }
+  },
+  "artifacts": {
+    "EXPERIMENT_INVENTORY.md": "artifacts/gpu3a/EXPERIMENT_INVENTORY.md",
+    "generation_diagnostics.jsonl": "artifacts/gpu3a/generation_diagnostics.jsonl",
+    "generation_statistics.json": "artifacts/gpu3a/generation_statistics.json",
+    "EOS_AND_SFT_AUDIT.md": "artifacts/gpu3a/EOS_AND_SFT_AUDIT.md",
+    "DECODING_AND_EXTRACTION_AUDIT.md": "artifacts/gpu3a/DECODING_AND_EXTRACTION_AUDIT.md",
+    "MODEL_COMPARISON.md": "artifacts/gpu3a/MODEL_COMPARISON.md",
+    "GPU3A_ROOT_CAUSE_REPORT.md": "artifacts/gpu3a/GPU3A_ROOT_CAUSE_REPORT.md"
+  },
+  "training_cache_audit": {
+    "source_1024": {
+      "status": "VERIFIED_FROM_FROZEN_CACHE",
+      "path": "data/processed/gpu2b/sft_math_v1_train_tokens.pt",
+      "training_samples": 19200,
+      "source_samples": 19200,
+      "samples_with_target_eos_before_context_truncation": 19200,
+      "samples_with_eos_after_truncation": 17583,
+      "samples_with_supervised_assistant_end": 17583,
+      "samples_with_masked_target_eos": 0,
+      "samples_missing_supervised_assistant_end_over_source": 1617,
+      "samples_missing_supervised_assistant_end_over_training": 1617,
+      "coverage_over_training_samples": 0.91578125,
+      "coverage_over_source_samples": 0.91578125,
+      "samples_with_masked_prompt_end": 19200,
+      "assistant_end_token_id": 151645,
+      "model_eos_token_id": 151643
+    },
+    "context_512": {
+      "status": "VERIFIED_FROM_FROZEN_CACHE",
+      "path": "data/processed/gpu2d/sft_math_context_512_train_tokens.pt",
+      "training_samples": 19162,
+      "source_samples": 19200,
+      "samples_with_target_eos_before_context_truncation": 19200,
+      "samples_with_eos_after_truncation": 12469,
+      "samples_with_supervised_assistant_end": 12469,
+      "samples_with_masked_target_eos": 0,
+      "samples_missing_supervised_assistant_end_over_source": 6731,
+      "samples_missing_supervised_assistant_end_over_training": 6693,
+      "coverage_over_training_samples": 0.6507149566851059,
+      "coverage_over_source_samples": 0.6494270833333333,
+      "samples_with_masked_prompt_end": 19162,
+      "assistant_end_token_id": 151645,
+      "model_eos_token_id": 151643
+    },
+    "context_768": {
+      "status": "VERIFIED_FROM_FROZEN_CACHE",
+      "path": "data/processed/gpu2d/sft_math_context_768_train_tokens.pt",
+      "training_samples": 19191,
+      "source_samples": 19200,
+      "samples_with_target_eos_before_context_truncation": 19200,
+      "samples_with_eos_after_truncation": 15880,
+      "samples_with_supervised_assistant_end": 15880,
+      "samples_with_masked_target_eos": 0,
+      "samples_missing_supervised_assistant_end_over_source": 3320,
+      "samples_missing_supervised_assistant_end_over_training": 3311,
+      "coverage_over_training_samples": 0.827471210463238,
+      "coverage_over_source_samples": 0.8270833333333333,
+      "samples_with_masked_prompt_end": 19191,
+      "assistant_end_token_id": 151645,
+      "model_eos_token_id": 151643
+    },
+    "context_1024": {
+      "status": "VERIFIED_FROM_FROZEN_CACHE",
+      "path": "data/processed/gpu2d/sft_math_context_1024_train_tokens.pt",
+      "training_samples": 19200,
+      "source_samples": 19200,
+      "samples_with_target_eos_before_context_truncation": 19200,
+      "samples_with_eos_after_truncation": 17583,
+      "samples_with_supervised_assistant_end": 17583,
+      "samples_with_masked_target_eos": 0,
+      "samples_missing_supervised_assistant_end_over_source": 1617,
+      "samples_missing_supervised_assistant_end_over_training": 1617,
+      "coverage_over_training_samples": 0.91578125,
+      "coverage_over_source_samples": 0.91578125,
+      "samples_with_masked_prompt_end": 19200,
+      "assistant_end_token_id": 151645,
+      "model_eos_token_id": 151643
+    }
+  }
+}
