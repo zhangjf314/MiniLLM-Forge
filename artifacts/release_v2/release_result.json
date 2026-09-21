@@ -1,0 +1,84 @@
+{
+  "stage": "Release-R1",
+  "classification": "PORTFOLIO_V2_RELEASE_READY",
+  "gate": "RELEASE_READY",
+  "baseline_branch": "codex/gpu4c-portfolio-finalization",
+  "baseline_head": "94009321215f30549d62f5e8d86847f782d91120",
+  "release_branch": "codex/release-v2.0.0-portfolio",
+  "release_head": "v2.0.0-portfolio^{commit}",
+  "tag": "v2.0.0-portfolio",
+  "repository_audit": {
+    "status": "PASS_WITH_DOCUMENTED_DISCLOSURES",
+    "tracked_files_at_baseline": 501,
+    "tracked_checkpoint_files": 0,
+    "largest_tracked_file_mib": 46.497,
+    "all_tracked_files_below_github_limit": true
+  },
+  "secret_scan": {
+    "status": "PASS",
+    "reachable_commits_scanned": 43,
+    "credential_values_found": 0,
+    "history_rewritten": false
+  },
+  "privacy_scan": {
+    "status": "PASS_WITH_HISTORICAL_PATH_DISCLOSURES",
+    "historical_files_with_local_paths": 3,
+    "credential_or_user_data_found": false
+  },
+  "large_file_scan": {
+    "status": "PASS_WITH_RETAINED_EVIDENCE",
+    "tracked_checkpoint_files": 0,
+    "retained_large_evidence": [
+      {"path": "artifacts/gpu3a/generation_diagnostics.jsonl", "mib": 46.497},
+      {"path": "artifacts/gpu3b/extraction_ablation.jsonl", "mib": 23.881},
+      {"path": "artifacts/gpu3c/data_audit.jsonl", "mib": 12.349}
+    ]
+  },
+  "documentation_audit": {
+    "status": "PASS",
+    "readme_matches_claim_registry": true,
+    "subset_denominators_preserved": true,
+    "evaluator_vs_model_boundary_preserved": true,
+    "negative_and_blocked_results_visible": true,
+    "local_links_resolve": true
+  },
+  "quick_verification": {
+    "status": "PASS",
+    "passed": 29,
+    "total": 29,
+    "training_executed": false,
+    "network_accessed": false
+  },
+  "tests": {
+    "status": "PASS",
+    "passed": 218,
+    "warnings": 6,
+    "warning_scope": "expected unavailable-Flash qualification"
+  },
+  "lint": {"status": "PASS", "tool": "ruff"},
+  "critical_hashes": {
+    "pretrained_checkpoint_sha256": "ee306384fcdef646f557cf9aa1165c464b2ca373c6d64d81f5df3b19b8f859fc",
+    "native_sft_checkpoint_sha256": "9c33b1c5a781c4ab1d9832a0aad1349516fafb011d24ff6c67be3b1d3885b96e",
+    "tokenizer_sha256": "e9578dfd6d2a0f4c3137d7cc223a7b8a782afba8190ae1ad105e1b8ef37e9a22",
+    "status": "PASS"
+  },
+  "tag_status": "AUTHORIZED_AFTER_RELEASE_COMMIT",
+  "remote_status": "origin_github_main_fast_forward_available",
+  "push_status": "AUTHORIZED_NOT_YET_ATTEMPTED",
+  "github_release_status": "OPTIONAL_CLI_UNAVAILABLE",
+  "known_limitations": [
+    "native model is small and undertrained",
+    "native task results use fixed 64-example subsets and T2 remained weak",
+    "Qwen Full SFT effectiveness was not formally validated",
+    "Flash unavailable and torch.compile blocked by missing Triton",
+    "no distributed training",
+    "hardware evidence from one RTX 5060 Laptop GPU Windows environment"
+  ],
+  "artifacts": {
+    "readme": "README.md",
+    "release_notes": "RELEASE_NOTES_v2.0.0-portfolio.md",
+    "final_audit": "artifacts/release_v2/RELEASE_FINAL_AUDIT.md",
+    "gpu4c_manifest": "artifacts/gpu4c/final_evidence_manifest.json"
+  },
+  "historical_experiment_artifacts_modified": false
+}

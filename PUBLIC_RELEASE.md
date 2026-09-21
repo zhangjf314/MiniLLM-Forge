@@ -14,8 +14,9 @@ repeat the formal training campaign.
 
 The model implementation, training and evaluation entry points, data-governance tools,
 frozen YAML configurations, experiment registry, and report-generation/audit code are
-included. The committed `artifacts/gpu2d_formal/final_result.json` is the canonical compact
-result for the formal transfer study.
+included. The canonical release index is
+`artifacts/gpu4c/final_evidence_manifest.json`, supported by the claim, capability, and
+experiment registries in `artifacts/gpu4c/`.
 
 ## External Assets
 
@@ -44,7 +45,7 @@ source terms still apply.
 - Qwen base-model weights and tokenizer cache
 - E01 MiniLLM, E04 CPT, LoRA, QLoRA, and qualification checkpoints/adapters
 - raw or processed training and evaluation datasets
-- full per-problem generation JSONL files and machine-local execution logs
+- model and dependency caches and machine-local execution logs
 - dependency, Hugging Face, and build caches
 
 These items remain local and are ignored by Git. The final structured evidence records
@@ -60,10 +61,11 @@ aggregate job-hours): full MATH-500 for each run and an outcome-blind fixed 200-
 GSM8K subset for each run. The 8,400 problem records were audited with zero missing or
 duplicate IDs.
 
-Full SFT was resource-qualified in a bounded single-step test but was not run as a formal
-comparison. The study does not establish a full-GSM8K score, 1024-context transfer, or a
-general QLoRA memory advantage. Math-CPT did not provide stable positive downstream
-transfer under the frozen protocol.
+Qwen Full SFT was resource-qualified in a bounded single-step test but was not run as a
+formal comparison. Separately, the native 37.46M model completed formal full-parameter
+SFT on two controlled synthetic tasks. The Qwen study does not establish a full-GSM8K
+score, 1024-context transfer, or a general QLoRA memory advantage. Math-CPT did not
+provide stable positive downstream transfer under the frozen protocol.
 
 ## Recomputing the Final Result
 
@@ -77,6 +79,11 @@ time cost; it is not part of a normal installation or release smoke test.
 
 ## Canonical Evidence
 
+- `artifacts/gpu4c/final_evidence_manifest.json`
+- `artifacts/gpu4c/CLAIM_REGISTRY.md`
+- `artifacts/gpu4c/CAPABILITY_MATRIX.md`
+- `artifacts/gpu4c/EXPERIMENT_REGISTRY.md`
+- `artifacts/gpu4c/MINILLM_FORGE_FINAL_TECHNICAL_REPORT.md`
 - `reports/FINAL_REPORT.md`
 - `reports/GPU2D_FORMAL_PEFT_TRANSFER.md`
 - `reports/MINILLM_FORMAL_PRETRAINING.md`
